@@ -1,0 +1,163 @@
+@import "../../../src/scss/partials/variables";
+
+/* -------------------------------
+KEYNUMBERS COMPONENT
+------------------------------- */
+.cbo-keynumbers{
+  position: relative;
+
+  .keynumbers-uptitle {
+    .tag-picture{
+      bottom: -1.25rem;
+    }
+  }
+  .keynumbers-title {
+    margin-bottom: 2.5rem;
+  }
+  .keynumbers-list{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(#{"min(17.5rem, 100%)"}, 1fr));
+    gap: 2.5rem;
+
+    .list-el{
+      .el-inner{
+        height: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+
+        .content-number{
+          font-weight: bold;
+          height: 7.125rem;
+          width: 10.625rem;
+          padding: 0 1.25rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 4.375rem;
+          line-height: 5rem;
+          border-radius: $bordermedium $bordermedium 0 0;
+        }
+        .content-text {
+          flex: 1;
+          margin-top: -0.625rem;
+          padding: 2.5rem;
+          font-size: 1.25rem;
+          line-height: 1.75rem;
+          border-radius: $bordermedium;
+          background: $colorwhite;
+          box-shadow: $shadowbig;
+        }
+
+        &.inner--blue{
+          .content-number{
+            background: $colorblue;
+          }
+        }
+         &.inner--yellow{
+          .content-number{
+            background: $coloryellow;
+          }
+        }
+         &.inner--black{
+          .content-number{
+            color: $colorwhite;
+            background: $colorgrey;
+          }
+        }
+      }
+    }
+  }
+  .keynumbers-outro{
+    margin-top: 3.75rem;
+
+    .outro-col{
+      padding-top: 1.5rem;
+      border-top: 0.0625rem solid $colorblue;
+      font-size: 1.875rem;
+      line-height: 2.25rem;
+
+      &:last-child{
+        margin-top: 1.5rem;
+      }
+    }
+  }
+
+  .keynumbers-wrapper{
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+    top: -5rem;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    .keynumbers-bigtxt{
+      position: absolute;
+      top: 0%;
+      left: 50%;
+      transform: translateX(-50%);
+      white-space: nowrap;
+      text-transform: uppercase;
+      font-weight: 900;
+      line-height: 1;
+      color: $colorgreymedium;
+    }
+  }
+}
+
+/* -------------------------------
+SMALL SCREENS
+------------------------------- */
+@media (min-width:$screen-sm-min) {
+  .cbo-keynumbers{
+    .keynumbers-title {
+      margin-bottom: 3.75rem;
+    }
+    .keynumbers-list{
+      gap: 1.875rem;
+    }
+    .keynumbers-outro{
+      display: flex;
+      gap: 1.875rem;
+
+      .outro-col{
+        width: 50%;
+
+        &:last-child{
+          margin-top: 0;
+        }
+      }
+    }
+  }
+}
+
+/* -------------------------------
+MEDIUM SCREENS
+------------------------------- */
+@media (min-width:$screen-md-min) {
+  .cbo-keynumbers{
+    .keynumbers-list{
+      .list-el{
+        .el-inner{
+          .content-text {
+            padding: 2.875rem;
+          }
+        }
+      }
+    }
+    
+    .keynumbers-outro{
+      padding: 0 6.25rem;
+      margin-top: 4.875rem;
+
+      .outro-col{
+        font-size: 2.1875rem;
+        line-height: 2.5rem;
+      }
+    }
+     .keynumbers-wrapper{
+      top: -8.125rem;
+    }
+  }
+}

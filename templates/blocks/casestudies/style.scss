@@ -1,0 +1,147 @@
+@import "../../../src/scss/partials/variables";
+
+/* -------------------------------
+CASES STUDIES LIST COMPONENT
+------------------------------- */
+.cbo-casestudies{
+  position: relative;
+
+  .casestudies-list{
+    width: 100%;
+    margin-top: 2.75rem;
+
+    &:not(.slick-slider){
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(#{"min(17.5rem, 100%)"}, 1fr));
+      gap: 2.5rem;
+    }
+  }
+
+  .casestudies-button{
+    margin-top: 2.5rem;
+    text-align: center;
+  }
+
+  &.casestudies--relationship{
+    .casestudies-list{
+      .slick-list{
+        width: calc(100% - -2.5rem);
+        margin-left: -1.25rem;
+        padding: 0 1.25rem 1.5rem 1.25rem;
+
+        .slick-track{
+          gap: 1.25rem;
+    
+          .slick-slide {
+            height: auto;
+
+            & > div{
+              height: 100%;
+
+              .list-el{
+                height: 100%;
+              }
+            }
+          }
+        }
+      }
+      .slick-dots{
+        margin-top: 2.5rem;
+      }
+    }
+  }
+
+  .casestudies-textslide{
+    color: $colorgreymedium;
+    font-weight: 900;
+    font-size: 6.25rem;
+    line-height: 6.25rem;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%;
+    position: absolute;
+    bottom: -3.125rem;
+    left: 0;
+    z-index: -1;
+
+    .textslide-track{
+      display: inline-flex;
+      animation: ticker-scroll 18s linear infinite;
+      will-change: transform;
+
+       .textslide-item{
+        flex-shrink: 0;
+        padding-right: 4rem;
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .textslide-track{
+        animation: none;
+      }
+    }
+  }
+  @keyframes ticker-scroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-33.333%); }
+  }
+}
+
+/* -------------------------------
+SMALL SCREENS
+------------------------------- */
+@media (min-width: $screen-sm-min){
+  .cbo-casestudies{
+    &.casestudies--relationship{
+      .casestudies-list{
+        .slick-list{
+          width: calc(100% - -5rem);
+          margin-left: -2.5rem;
+          padding: 0 2.5rem 1.5rem 2.5rem;
+        }
+      }
+    }
+  }
+}
+
+/* -------------------------------
+MEDIUM SCREENS
+------------------------------- */
+@media (min-width: $screen-md-min){
+  .cbo-casestudies{
+    .casestudies-inner{
+      align-items: center;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+    .casestudies-head{
+      order: 1;
+      flex: 1;
+      padding-right: 1.875rem;
+    }
+    .casestudies-list{
+       &:not(.slick-slider){
+        gap: 2.5rem 1.875rem;
+        order: 3;
+      }
+    }
+    .casestudies-button{
+      margin: 0;
+      max-width: fit-content;
+      order: 2;
+      text-align: right;
+    }
+
+    .casestudies-textslide{
+      font-size: 12.5rem;
+      line-height: 12.5rem;
+      bottom: -6.25rem;
+
+      .textslide-track{
+        .textslide-item{
+          padding-right: 5rem;
+        }
+      }
+    }
+  }
+}

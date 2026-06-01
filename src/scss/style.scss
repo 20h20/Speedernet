@@ -1,0 +1,36 @@
+/******************************************************************
+Site Name: HS2
+Author: Julien B.
+******************************************************************/
+/*********************
+PARTIALS
+*********************/
+@import "partials/variables";
+@import "partials/icons";
+
+/*********************
+STUCTURE COMPONENTS
+*********************/
+@import "components/structure/base";
+@import "components/structure/footer";
+@import "components/structure/header";
+
+/*********************
+MICRO COMPONENTS
+*********************/
+@import "components/micros/container";
+@import "components/micros/buttons";
+@import "components/micros/form";
+@import "components/micros/login";
+@import "components/micros/pictures";
+@import "components/micros/slider";
+@import "components/micros/tag";
+@import "components/micros/typography";
+
+
+/*********************
+BACK END REMOVE
+*********************/
+.cbo-main{
+    @import "partials/animations";
+}

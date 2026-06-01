@@ -1,0 +1,36 @@
+/* -------------------------------
+TAGS COMPONENT
+------------------------------- */
+.cbo-tag{
+	position: relative;
+	font-weight: 900;
+	border-radius: 1584px;
+	background: rgba($colorred, 0.2);
+	border: 0.0625rem solid rgba($colorred, 0.5);
+	height: 1.875rem;
+	padding: 0 0.875rem;
+	display: inline-flex;
+	align-items: center;
+	font-size: 0.75rem;
+	margin-bottom: 0.75rem;
+
+	.tag-picture {
+		position: absolute;
+		right: -3.75rem;
+		bottom: 0;
+		width: 3.125rem;
+		height: 3.125rem;
+	}
+	&.tag--blue{
+		background: rgba($colorblue, 0.2);
+		border: 0.0625rem solid rgba($colorblue, 0.5);
+	}
+	&.tag--yellow{
+		background: rgba($coloryellow, 0.2);
+		border: 0.0625rem solid rgba($coloryellow, 0.5);
+	}
+	&.tag--grey{
+		background: rgba($colorgrey, 0.2);
+		border: 0.0625rem solid rgba($colorgrey, 0.5);
+	}
+}

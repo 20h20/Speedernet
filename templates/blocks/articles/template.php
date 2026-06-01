@@ -1,0 +1,111 @@
+<?php
+
+$uptitle  = get_field('articles_uptitle');
+$uptitlepic  = get_field('articles_uptitlepicture');
+$title  = get_field('articles_title');
+$button = get_field('articles_bouton');
+$last   = get_field('articles_last');
+$type  = get_field('articles_category');
+$is_articles_page = is_home() || is_category() || is_tag() || is_archive() || is_404();
+
+?>
+
+<section class="cbo-articles <?php echo !$is_articles_page ? 'articles--relationship' : ''; ?>">
+    <div class="articles-inner cbo-container">
+
+        <?php if ($title || $uptitle) : ?>
+            <div class="articles-head">
+                <?php if($uptitle): ?>
+                    <span class="cbo-tag tag--blue content-uptitle slide-up">
+                        <?php echo esc_html($uptitle); ?>
+
+                        <?php if($uptitlepic): ?>
+                            <span class="tag-picture cbo-picture-contain">
+                                <img
+                                    src="<?php echo esc_url($uptitlepic['sizes']['small']); ?>"
+                                    srcset="<?php echo esc_url($uptitlepic['sizes']['small']); ?> 320w"
+                                    sizes="(max-width: 768px) 54px, 54px"
+                                    alt=""
+                                    width="<?php echo esc_attr($uptitlepic['sizes']['small-width']); ?>"
+                                    height="<?php echo esc_attr($uptitlepic['sizes']['small-height']); ?>"
+                                    decoding="async"
+                                    loading="lazy"
+                                >
+                            </span>
+                        <?php endif; ?>
+                    </span>
+                <?php endif; ?>
+
+                <?php if ($title): ?>
+                    <div class="articles-title cbo-title-2 slide-up">
+                        <?php echo wp_kses_post($title); ?>
+                    </div>
+                <?php endif; ?>
+            </div>
+        <?php endif; ?>
+
+        <div class="articles-list">
+            <?php
+                if ($last) {
+                    if ($is_articles_page) {
+                        if (have_posts()) :
+                            while (have_posts()) : the_post();
+                            get_part('article/template');
+                            endwhile;
+
+                            if (function_exists('page_navi')) {
+                                page_navi();
+                            } else {
+                                the_posts_pagination();
+                            }
+                        else:
+                            echo '<p>' . esc_html__('Aucun article trouvé.', 'textdomain') . '</p>';
+                        endif;
+                    } else {
+                        $args = [
+                            'post_type'           => 'post',
+                            'posts_per_page'      => 3,
+                            'post_status'         => 'publish',
+                            'no_found_rows'       => true,
+                            'update_post_meta_cache' => false,
+                        ];
+                        if ( ! empty( $type ) ) {
+                            $args['cat'] = is_object( $type ) ? $type->term_id : $type;
+                        }
+                        $posts_query = new WP_Query($args);
+                        if ($posts_query->have_posts()) :
+                            while ($posts_query->have_posts()) : $posts_query->the_post();
+                            get_part('article/template');
+                            endwhile;
+                            wp_reset_postdata();
+                        endif;
+                    }
+                } else {
+                    $acf_posts = get_field('articles_articleslist');
+                    if (!$is_articles_page && !empty($acf_posts)):
+                        global $post;
+                        foreach ($acf_posts as $post):
+                            setup_postdata($post);
+                            get_part('article/template');
+                        endforeach;
+                        wp_reset_postdata();
+                    endif;
+                }
+            ?>
+        </div>
+
+        <?php if ($button): ?>
+            <div class="articles-button slide-up">
+                <a 
+                    class="cbo-button button--blue"
+                    href="<?php echo esc_url($button['url']); ?>"
+                    target="<?php echo esc_attr($button['target'] ?: '_self'); ?>"
+                    <?php if (($button['target'] ?? '') === '_blank'): ?>rel="noopener noreferrer"<?php endif; ?>
+                >
+                    <?php echo esc_html($button['title']); ?>
+                </a>
+            </div>
+        <?php endif; ?>
+
+    </div>
+</section>

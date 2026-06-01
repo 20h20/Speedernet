@@ -1,0 +1,194 @@
+/* -------------------------------
+TYPOGRAPHY
+------------------------------- */
+@font-face {
+    font-family: 'Mulish';
+    src: url('../fonts/Mulish-Black.woff2') format('woff2'),
+        url('../fonts/Mulish-Black.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Mulish';
+    src: url('../fonts/Mulish-Bold.woff2') format('woff2'),
+        url('../fonts/Mulish-Bold.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Mulish';
+    src: url('../fonts/Mulish-ExtraBold.woff2') format('woff2'),
+        url('../fonts/Mulish-ExtraBold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Mulish';
+    src: url('../fonts/Mulish-Regular.woff2') format('woff2'),
+        url('../fonts/Mulish-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+ul{
+	margin:0;
+	padding:0;
+	
+	li{
+		list-style-type: none; 
+	}
+}
+
+a{
+	text-decoration:none;
+}
+
+.cbo-title-1, .cbo-title-1 h1, .cbo-title-1 h2, .cbo-title-1 h3, .cbo-title-1 h4.cbo-title-1 h5, .cbo-title-1 p, .cbo-cms h1
+.cbo-title-2, .cbo-title-2 h1, .cbo-title-2 h2, .cbo-title-2 h3, .cbo-title-2 h4.cbo-title-2 h5, .cbo-title-2 p, .cbo-cms h2,
+.cbo-title-3, .cbo-title-3 h1, .cbo-title-3 h2, .cbo-title-3 h3, .cbo-title-3 h4.cbo-title-3 h5, .cbo-title-3 p, .cbo-cms h3,
+.cbo-title-4, .cbo-title-4 h1, .cbo-title-4 h2, .cbo-title-4 h3, .cbo-title-4 h4.cbo-title-4 h5, .cbo-title-4 p, .cbo-cms h4{
+	margin: 0;
+
+	strong{
+		font-weight: 900;
+	}
+}
+
+.cbo-title-2, .cbo-title-2 h1, .cbo-title-2 h2, .cbo-title-2 h3, .cbo-title-2 h4.cbo-title-2 h5, .cbo-title-2 p, .cbo-cms h2{
+	font-size: 32px;
+	line-height: 36px;
+	font-weight: 300;
+}
+
+.cbo-title-3, .cbo-title-3 h1, .cbo-title-3 h2, .cbo-title-3 h3, .cbo-title-3 h4.cbo-title-3 h5, .cbo-title-3 p, .cbo-cms h3,
+.cbo-title-4, .cbo-title-4 h1, .cbo-title-4 h2, .cbo-title-4 h3, .cbo-title-4 h4.cbo-title-4 h5, .cbo-title-4 p, .cbo-cms h4{
+	font-size: 22px;
+	line-height: 30px;
+	font-weight: 900;
+}
+
+.cbo-title-4, .cbo-title-4 h1, .cbo-title-4 h2, .cbo-title-4 h3, .cbo-title-4 h4.cbo-title-4 h5, .cbo-title-4 p, .cbo-cms h4{
+	font-weight: bold;
+}
+
+.cbo-chapo{
+	font-size: 18px;
+	line-height: 28px;
+	font-weight: 600;
+}
+
+.cbo-cms{
+	h1,h2,h3,h4,h5{
+		margin: 64px 0 32px 0;
+
+		&:first-child{
+			margin-top: 0;
+		}
+	}
+	p{
+		margin: 14px 0;
+
+		&:last-child{
+			margin-bottom: 0;
+		}
+		&:first-child{
+			margin-top: 0;
+		}
+	}
+	hr{
+		border: 0;
+		border-bottom: 1px solid rgba($colorgrey, .2);
+		margin: 50px 0;
+	}
+}
+
+/* -------------------------------
+LARGE SCREENS
+------------------------------- */
+@media (min-width: $screen-md-min) {
+	.cbo-title-2, .cbo-title-2 h1, .cbo-title-2 h2, .cbo-title-2 h3, .cbo-title-2 h4.cbo-title-2 h5, .cbo-title-2 p, .cbo-cms h2{
+		font-size: 40px;
+		line-height: 1;
+	}
+	.cbo-title-3, .cbo-title-3 h1, .cbo-title-3 h2, .cbo-title-3 h3, .cbo-title-3 h4.cbo-title-3 h5, .cbo-title-3 p, .cbo-cms h3{
+		font-size: 32px;
+		line-height: 38px;
+	}
+	.cbo-title-4, .cbo-title-4 h1, .cbo-title-4 h2, .cbo-title-4 h3, .cbo-title-4 h4.cbo-title-4 h5, .cbo-title-4 p, .cbo-cms h4{
+		font-size: 25px;
+	}
+	.cbo-chapo{
+		font-size: 24px;
+		line-height: 32px;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.cbo-cms{
+
+
+	a:not(.cbo-button){
+		color:$colorgrey;
+		text-decoration:underline;
+	}
+	.cbo-button{
+		margin-top: 40px;
+	}
+	img{
+		display: block;
+		margin: 0 auto;
+	}
+
+	ul{
+		li{
+			position:relative;
+			padding-left: 16px;
+
+			&:before{
+				content:'';
+				width:4px;
+				height:4px;
+				border-radius:50%;
+				box-shadow:0px 0px 0px 2px $colorgrey;
+				position:absolute;
+				top:10px;
+				left:0;
+			}
+		}
+	}
+}

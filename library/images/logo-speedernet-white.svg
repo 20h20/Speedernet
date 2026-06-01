@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Calque_1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 512 512">
+  <!-- Generator: Adobe Illustrator 30.4.0, SVG Export Plug-In . SVG Version: 2.1.4 Build 226)  -->
+  <defs>
+    <style>
+      .st0, .st1, .st2, .st3 {
+        fill: #fff;
+      }
+
+      .st1 {
+        fill-opacity: 0;
+      }
+
+      .st2 {
+        opacity: .3;
+      }
+
+      .st2, .st3 {
+        isolation: isolate;
+      }
+
+      .st3 {
+        opacity: .5;
+      }
+    </style>
+  </defs>
+  <polygon class="st2" points="476.3 384 254.6 512.1 32.9 384 32.9 128 254.6 0 476.3 128 476.3 384"/>
+  <polygon class="st1" points="458.8 373.1 280.1 495.9 32.9 384 51.9 146.9 254.6 19.4 500 103.8 458.8 373.1"/>
+  <polygon class="st3" points="448.6 408.7 254.4 475 61.3 411.3 12.5 205.5 207.5 12.6 468.2 146.9 448.6 408.7"/>
+  <path class="st0" d="M251,53.1l-184.7,127.9,18.1,206.7,151.6,74.4,170.8-58.3,36.2-236.7L251,53.1ZM342.5,213.8h-44c0,0-21.9-22-21.9-22h-43.9l-22,21.9,22,22h65.8l44,43.9v43.9l-44,43.9h-87.8l-43.9-43.9v-21.8h43.9v-.2l22,22h43.9l21.9-22-21.9-21.9h-65.9l-43.9-43.9v-43.9l43.9-44h87.8l44,44v22Z"/>
+</svg>

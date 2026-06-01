@@ -1,0 +1,96 @@
+@import "../../../src/scss/partials/variables";
+
+/* -------------------------------
+VIDEO SCROLL EXPAND
+------------------------------- */
+.cbo-video {
+	height: 150vh;
+	height: 150svh;
+	position: relative;
+	margin-bottom: -6.25rem;
+	margin-top: -6.25rem;
+
+	.video-inner {
+		position: relative;
+		height: calc(100svh - var(--video-header-h, 0rem));
+		overflow: hidden;
+
+		&.video-inner--fixed {
+			position: fixed;
+			top: var(--video-header-h, 0rem);
+			left: 0;
+			width: 100%;
+		}
+		&.video-inner--end {
+			position: absolute;
+			top: auto;
+			bottom: 0;
+			width: 100%;
+		}
+
+		.video-file {
+			position: absolute;
+			inset: 0;
+			transform-origin: center center;
+			overflow: hidden;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			border-radius: $borderlarge;
+			will-change: transform, border-radius;
+
+			&:after{
+				content: '';
+				background: rgba($colorgrey, .6);
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+			}
+			.icon--player{
+				background: $coloryellow;
+				color: $colorgrey;
+				border-radius: 1584px;
+				border: 0.125rem solid $colorgrey;
+				cursor: pointer;
+				width: 3.125rem;
+				height: 3.125rem;
+				font-size: 1.25rem;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				position: absolute;
+				z-index: 1;
+				transform: scale(1);
+				transition:all .3s $easeinout;
+
+				&:hover{
+					transform: scale(1.2);
+				}
+			}
+			.cbo-video-element {
+				display: block;
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+			}
+		}
+	}
+}
+
+/* -------------------------------
+MEDIUM SCREENS
+------------------------------- */
+@media (min-width: $screen-md-min) {
+	.cbo-video {
+		margin-bottom: -12.5rem;
+		margin-top: -12.5rem;
+
+		.video-inner {
+			position: sticky;
+			top: var(--video-header-h, 0rem);
+			transform: translateZ(0);
+		}
+	}
+}

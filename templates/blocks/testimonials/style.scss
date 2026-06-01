@@ -1,0 +1,208 @@
+@import "../../../src/scss/partials/variables";
+
+/* -------------------------------
+TESTIMONIALS LIST COMPONENT
+------------------------------- */
+.cbo-testimonials{
+  position: relative;
+
+  .testimonials-list{
+    z-index: 1;
+    position: relative;
+    width: 100%;
+    margin-top: 2.75rem;
+
+    &:not(.slick-slider){
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(#{"min(17.5rem, 100%)"}, 1fr));
+      gap: 2.5rem;
+    }
+  }
+  .testimonials-button{
+    margin-top: 2.5rem;
+    text-align: center;
+  }
+
+  &.testimonials--relationship{
+    overflow: hidden;
+    position: relative;
+
+    &:before{
+      content: '';
+      background: $colorgreymedium;
+      top: 0;
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 50%;
+      z-index: -1;
+    }
+    .testimonials-inner.cbo-container{
+      margin-top: 0;
+      position: static;
+      z-index: 1;
+      padding-top: 4.375rem;
+    }
+
+    .testimonials-list .list-el .el-inner .inner-content{
+      box-shadow: 0.625rem 0.625rem 1.25rem 0 rgba($colorgrey, .4);
+    }
+    .testimonials-list{
+      .slick-list{
+        overflow: visible;
+        width: calc(100% - -2.5rem);
+        margin-left: -1.25rem;
+        padding: 0 1.25rem 1.5rem 1.25rem;
+
+        .slick-track{
+          gap: 1.25rem;
+    
+          .slick-slide {
+            height: auto;
+
+            & > div{
+              height: 100%;
+
+              .list-el{
+                height: 100%;
+              }
+            }
+          }
+        }
+      }
+      .slick-dots{
+        margin-top: 2.5rem;
+      }
+    }
+    .testimonials-bluebg{
+      z-index: 0;
+      background: $colorblue;
+      position: absolute;
+      bottom: 8.125rem;
+      left: -1.25rem;
+      width: calc(100% - -2.5rem);
+      height: calc(50% - 4.0625rem);
+      transform: rotate(-3deg);
+
+      &:before,
+      &:after{
+        content: '';
+        background: url(../../images/testimonials-shape.svg) no-repeat;
+        background-size: cover;
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: 0.4375rem;
+      }
+      &:before{
+        top: -0.4375rem;
+      }
+      &:after{
+        bottom: -0.3125rem;
+        transform: rotate(180deg);
+      }
+    }
+  }
+  &.is-admin{
+    overflow: visible;
+
+    .testimonials-list{
+      display: flex;
+
+      .list-el{
+        width: 100%;
+        min-width: 100%;
+      }
+    }
+  }
+}
+
+/* -------------------------------
+SMALL SCREENS
+------------------------------- */
+@media (min-width: $screen-sm-min){
+  .cbo-testimonials{
+    &.testimonials--relationship{
+      .testimonials-list{
+        .slick-list{
+          width: calc(100% - -5rem);
+          margin-left: -2.5rem;
+          padding: 0 2.5rem 1.5rem 2.5rem;
+        }
+      }
+    }
+    &.is-admin{
+      .testimonials-list{
+        .list-el{
+          width: 50%;
+          min-width: 50%;
+        }
+      }
+    }
+  }
+}
+
+/* -------------------------------
+MEDIUM SCREENS
+------------------------------- */
+@media (min-width: $screen-md-min){
+  .cbo-testimonials{
+    .testimonials-inner{
+      align-items: center;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+    .testimonials-head{
+      order: 1;
+      flex: 1;
+      padding-right: 1.875rem;
+    }
+    .testimonials-list{
+      gap: 2.5rem 1.875rem;
+      order: 3;
+    }
+    .testimonials-button{
+      margin: 0;
+      max-width: fit-content;
+      order: 2;
+      text-align: right;
+    }
+    &.testimonials--relationship{
+      .testimonials-inner{
+        padding-top: 5.625rem;
+      }
+      .testimonials-bluebg{
+        bottom: 1.5rem;
+        height: calc(50% - 0rem);
+      }
+    }
+     &.is-admin{
+      .testimonials-list{
+        .list-el{
+          width: 33.333333%;
+          min-width: 33.333333%;
+        }
+      }
+    }
+  }
+}
+
+/* -------------------------------
+LARGE SCREENS
+------------------------------- */
+@media (min-width: $screen-lg-min){
+  .cbo-testimonials{
+    &.testimonials--relationship{
+      .testimonials-list {
+        .slick-dots{
+          margin-top: 5rem;
+        }
+      }
+      .testimonials-bluebg{
+        bottom: 3.125rem;
+        height: calc(50% - -2.5625rem);
+      }
+    }
+  }
+}

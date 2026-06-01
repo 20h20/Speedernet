@@ -1,0 +1,239 @@
+/* -------------------------------
+FORM MICRO COMPONENT
+------------------------------- */
+.cbo-form{
+	input:focus,
+	textarea:focus,
+	select:focus {
+		outline: none;
+		box-shadow: none;
+	}
+	form {
+		input[type="text"],
+		input[type="email"],
+		input[type="number"],
+		input[type="tel"],
+		input[type="password"],
+		input[type="date"],
+		select,
+		textarea {
+			font-family: $fontprimary;
+			border: none;
+			background: $colorwhite;
+			height: 3.125rem;
+			width: 100%;
+			font-size: 0.875rem;
+			font-weight: 300;
+			color: $colorgrey;
+			border-bottom: 0.125rem solid $colorgrey;
+			transition: all 0.2s cubic-bezier(0.85, 0, 0.15, 1) 0s;
+
+			&:focus,
+			&.filled{
+				border-bottom: 0.125rem solid $colorgrey;
+			}
+			&.wpcf7-not-valid{
+				border: 0.0625rem solid $colorerror;
+			}
+			&::-webkit-input-placeholder {
+				color: $colorgrey;
+				opacity: 1;
+			}
+
+			&::-moz-placeholder {
+				color: $colorgrey !important;
+				opacity: 1 !important;
+			}
+
+			&:-ms-input-placeholder {
+				color: $colorgrey;
+				opacity: 1;
+			}
+
+			&::placeholder {
+				color: $colorgrey;
+			}
+		}
+		textarea {
+			resize: none;
+			height: 8.75rem;
+			padding: 0;
+			font-family: $fontprimary;
+			font-size: 0.875rem;
+			font-weight: 300;
+		}
+		.cf-turnstile{
+			order: 2;
+		}
+		.field--submit{
+			order: 3;
+		}
+		.hidden-fields-container{
+			display: none;
+		}
+		input[type="submit"]{
+			font-family: $fontprimary;
+			display: table;
+			margin: 1.875rem auto 0 auto;
+		}
+		.form-field{
+			margin-bottom: 0.875rem;
+			width: 100%;
+
+			.wpcf7-not-valid-tip{
+				font-size: 0.75rem;
+				color: $colorerror;
+			}
+			&.form-acceptance {
+				.field-inner{
+					display: flex;
+					flex-wrap: wrap;
+				}
+				.wpcf7-form-control-wrap{
+					order: 2;
+				}
+				input {
+					width: 0;
+					height: 0;
+					opacity: 0.00000001;
+					position: absolute;
+				}
+				label {
+					display: flex;
+					justify-content: flex-start;
+					position: relative;
+					position: relative;
+					cursor: pointer;
+					line-height: 0.875rem;
+
+					&:before {
+						content: "";
+						display: block;
+						width: 0.75rem;
+						min-width: 0.75rem;
+						height: 0.75rem;
+						border-radius: 0.125rem;
+						border: 0.0625rem solid $colorgrey;
+						margin: 0 0.625rem 0 0.0625rem;
+						cursor: pointer;
+					}
+					&:after {
+						content: "";
+						display: block;
+						width: 0.5rem;
+						min-width: 0.5rem;
+						height: 0.5rem;
+						border-radius: 0.125rem;
+						background: $colorgrey;
+						position: absolute;
+						top: 0.1875rem;
+						left: 0.25rem;
+						transform: scale(0);
+						transition: all 0.3s $easeinout;
+					}
+				}
+				&:not(.checked) label:hover {
+					&:after{
+						transform: scale(1);
+						opacity: 0.5;
+					}
+				}
+				.field-inner.checked label {
+					&:after {
+						transform: scale(1);
+					}
+				}
+			}
+		}
+		.wpcf7-response-output {
+			color: $colorwhite;
+			display:none;
+			width: 100%;
+			margin: 1.875rem auto 0 auto;
+			padding: 1rem;
+			font-size: 0.875rem;
+			border-radius: 0.3125rem;
+
+			&:before{
+				font-family:"icons";
+				margin-right: 0.625rem;
+			}
+		}
+
+		&.invalid{
+			.wpcf7-response-output {
+				background: rgba($colorerror, .2);
+				border-left: 0.1875rem solid $colorerror;
+				display: block;
+				color: $colorerror;
+
+				&:before{
+					content:"\f108";
+				}
+			}
+		}
+		&.sent{
+			.wpcf7-response-output {
+				background: rgba($colorsuccess, .6);
+				border-left: 0.1875rem solid $colorsuccess;
+				display: block;
+				color: $colorgrey;
+
+				&:before{
+					content:"\f107";
+				}
+			}
+		}
+		&.submitting{
+			&:before {
+				z-index: 99;
+				content: "";
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				width: 2.5rem;
+				height: 2.5rem;
+				margin: -1.25rem 0 0 -1.25rem;
+				border: 0.4375rem solid rgba($colorgrey, 0.3);
+				border-top-color: $colorgrey;
+				border-radius: 50%;
+				animation: spin 1s linear infinite;
+			}
+			.form-field{
+				opacity: .2;
+			}
+		}
+		@keyframes spin {
+			from { transform: rotate(0deg); }
+			to { transform: rotate(360deg); }
+		}
+	}
+	.screen-reader-response{
+		display: none;
+	}
+}
+
+/* -------------------------------
+SMALL SCREENS
+------------------------------- */
+@media (min-width: $screen-sm-min){
+	.cbo-form{
+		form{
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-between;
+
+			.form-step{
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: space-between;
+				width: 100%;
+			}
+			.form-field{
+				&.field-half{
+					width: 49%;
+				}
+			}
+		}
+	}
+}

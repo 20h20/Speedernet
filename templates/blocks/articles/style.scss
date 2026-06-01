@@ -1,0 +1,119 @@
+@import "../../../src/scss/partials/variables";
+
+/* -------------------------------
+ARTICLES LIST COMPONENT
+------------------------------- */
+.cbo-articles{
+  .articles-list{
+    width: 100%;
+    margin-top: 2.75rem;
+
+    &:not(.slick-slider){
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(#{"min(17.5rem, 100%)"}, 1fr));
+      gap: 2.5rem;
+    }
+  }
+
+  .articles-button{
+    margin-top: 2.5rem;
+    text-align: center;
+  }
+
+  &.articles--relationship{
+    position: relative;
+
+    &:after{
+      content: '';
+      background: $colorgreymedium;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 70%;
+    }
+    .articles-inner{
+      z-index: 1;
+      padding-top: 4.375rem;
+    }
+    .articles-list{
+      .slick-list{
+        width: calc(100% - -2.5rem);
+        margin-left: -1.25rem;
+        padding: 0 1.25rem 1.5rem 1.25rem;
+
+        .slick-track{
+          gap: 1.25rem;
+    
+          .slick-slide {
+            height: auto;
+
+            & > div{
+              height: 100%;
+
+              .list-el{
+                height: 100%;
+              }
+            }
+          }
+        }
+      }
+      .slick-dots{
+        margin-top: 2.5rem;
+      }
+    }
+  }
+}
+
+/* -------------------------------
+SMALL SCREENS
+------------------------------- */
+@media (min-width: $screen-sm-min){
+  .cbo-articles{
+    &.articles--relationship{
+      .articles-list{
+        .slick-list{
+          width: calc(100% - -5rem);
+          margin-left: -2.5rem;
+          padding: 0 2.5rem 1.5rem 2.5rem;
+        }
+      }
+    }
+  }
+}
+
+/* -------------------------------
+MEDIUM SCREENS
+------------------------------- */
+@media (min-width: $screen-md-min){
+  .cbo-articles{
+    .articles-inner{
+      align-items: center;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+    .articles-head{
+      order: 1;
+      flex: 1;
+      padding-right: 1.875rem;
+    }
+    .articles-list{
+       &:not(.slick-slider){
+        gap: 2.5rem 1.875rem;
+        order: 3;
+      }
+    }
+    .articles-button{
+      margin: 0;
+      max-width: fit-content;
+      order: 2;
+      text-align: right;
+    }
+    &.articles--relationship{
+      .articles-inner{
+        padding-top: 5.625rem;
+      }
+    }
+  }
+}

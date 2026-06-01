@@ -1,0 +1,70 @@
+/* -------------------------------
+BUTTONS MICRO COMPONENT
+------------------------------- */
+input[type="submit"],
+.cbo-button{
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	color: $colorwhite;
+	background: $colorgrey;
+	padding: 8px 28px;
+	height: 60px;
+	font-size: 18px;
+	border-radius: 99rem;
+	border: none;
+	cursor: pointer;
+	box-shadow: $shadowbig;
+	transition:all .2s cubic-bezier(.694,.048,.335,1);
+
+	&.button--blue{
+		background: $colorblue;
+		color: $colorgrey;
+		border: 2px solid $colorgrey;
+	}
+}
+
+.cbo-link{
+	.link-txt{
+		font-size: 14px;
+		display: block;
+		text-decoration: underline;
+		margin-bottom: 6px;
+	}
+	.link-button{
+		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: $colorgrey;
+		background: $coloryellow;
+		height: 42px;
+		width: 42px;
+		font-size: 18px;
+		border-radius: 99rem;
+		border: 2px solid $colorgrey;
+		cursor: pointer;
+		overflow: hidden;
+		transition:all .2s cubic-bezier(.694,.048,.335,1);
+
+		&.button--player{
+			&:before{
+				content: "\f105";
+			}
+		}
+		&:before{
+			content: "\f101";
+			font-family: "icons";
+			font-style: normal;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(calc(-50% - 42px), -50%);
+			transition: transform .35s cubic-bezier(.694,.048,.335,1);
+		}
+		.icon{
+			transition: transform .35s cubic-bezier(.694,.048,.335,1);
+		}
+	}
+}

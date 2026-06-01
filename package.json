@@ -1,0 +1,33 @@
+{
+  "name": "speedernet",
+  "version": "1.0.0",
+  "devDependencies": {
+    "autoprefixer": "^8.2.0",
+    "cssnano": "^3.10.0",
+    "grunt": "^1.0.2",
+    "grunt-browser-sync": "^2.2.0",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-cssmin": "^5.0.0",
+    "grunt-contrib-uglify": "^3.3.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-include-file": "^0.1.3",
+    "grunt-postcss": "^0.9.0",
+    "grunt-sass": "^2.1.0",
+    "grunt-scss-lint": "^0.5.0",
+    "grunt-webfont": "^1.4.0",
+    "jit-grunt": "^0.10.0",
+    "load-grunt-tasks": "^3.5.2",
+    "medium-button": "^1.1.4",
+    "time-grunt": "^1.4.0",
+    "ttf2woff2": "^2.0.3"
+  },
+  "dependencies": {
+    "grunt-cli": "^1.4.3",
+    "leaflet": "^1.9.4"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "grunt watch",
+    "build": "grunt build"
+  }
+}

@@ -1,0 +1,139 @@
+@import "../../../src/scss/partials/variables";
+
+/* -------------------------------
+JOBS SLIDER COMPONENT
+------------------------------- */
+.cbo-jobslider{
+  overflow: hidden;
+
+  .jobslider-content{
+    max-width: 56.25rem;
+    margin: 0 auto;
+
+    .content-text{
+      margin-top: 2.5rem;
+    }
+  }
+  .jobslider-list{
+    margin-top: 2.5rem;
+
+    &:not(.slick-slider){
+      display: flex;
+      gap: 2.5rem;
+
+      .list-el{
+        width: 100%;
+        min-width: 100%;
+        padding: 0;
+      }
+    }
+
+    .list-el{
+      padding: 0rem 0.625rem;
+
+      .el-inner{
+        .inner-picture{
+          border-radius: $borderbig;
+          box-shadow: 0rem 0.625rem 1.25rem 0 $colorbluelight;
+          padding-bottom: 57%;
+          width: 100%;
+          display: block;
+          overflow: hidden;
+        }
+        .inner-content{
+          color: $colorgrey;
+          box-shadow: $shadowbig;
+          border-radius: $bordermedium;
+          background: $colorwhite;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          min-height: 4.375rem;
+          margin: -2.25rem 0.9375rem 0;
+          position: relative;
+        }
+      }
+    }
+    .slick-list{
+      overflow: visible;
+    }
+    .slick-dots{
+      margin-top: 3.125rem;
+      
+      li.slick-active {
+        box-shadow: inset 0 0 0 2.5rem $colorred;
+      }
+    }
+  }
+}
+
+
+/* -------------------------------
+MEDIUM SCREENS
+------------------------------- */
+@media (min-width:$screen-md-min) {
+  .cbo-jobslider{
+    .jobslider-list{
+      &:not(.slick-slider){
+        .list-el{
+          width: 50%;
+          min-width: 50%;
+        }
+      }
+    }
+  }
+}
+
+/* -------------------------------
+MEDIUM SCREENS
+------------------------------- */
+@media (min-width:$screen-md-min) {
+  .cbo-jobslider{
+    .jobslider-list{
+      margin-top: 4.0625rem;
+
+      &:not(.slick-slider){
+        .list-el{
+          width: 33.3333333%;
+          min-width: 33.3333333%;
+        }
+      }
+
+      .list-el{
+        padding: 0 1.875rem;
+      }
+      .slick-arrow {
+        top: 50%;
+        margin-top: -5.625rem;
+
+        &.slick-prev{
+          left: 11.375rem;
+        }
+        &.slick-next{
+          right: 11.375rem;
+        }
+      }
+    }
+  }
+}
+
+/* -------------------------------
+LARGE SCREENS
+------------------------------- */
+@media (min-width:$screen-lg-min) {
+ .cbo-jobslider{
+    .jobslider-list{
+      .list-el{
+        padding: 0 4.0625rem;
+      }
+      .slick-arrow {
+        &.slick-prev{
+          left: 9.25rem;
+        }
+        &.slick-next{
+          right: 9.25rem;
+        }
+      }
+    }
+  }
+}

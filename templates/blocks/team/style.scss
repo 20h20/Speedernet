@@ -1,0 +1,126 @@
+@import "../../../src/scss/partials/variables";
+
+/* -------------------------------
+TEAM / HERO COMPONENT
+------------------------------- */
+.cbo-team{
+	&:last-of-type {
+		.cbo-container{
+			margin-bottom: 0;
+		}
+	}
+	.team-content{
+		position: relative;
+		z-index: 1;
+
+		.content-chapo{
+			margin-top: 1.875rem;
+		}
+	}
+	.team-list {
+		opacity: .2;
+		padding: 0 1.25rem;
+		margin-top: -18.75rem;
+		display: flex;
+		width: 100%;
+		gap: 0.875rem;
+		overflow: hidden;
+		-webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 50%, black 50%, transparent 100%);
+		mask-image: linear-gradient(to bottom, transparent 0%, black 50%, black 50%, transparent 100%);
+
+		.list-left,
+		.list-right {
+			display: flex;
+			flex-direction: column;
+			width: 50%;
+			gap: 0.875rem;
+			will-change: transform;
+
+			&:nth-child(2) {
+				transform: translateY(0);
+			}
+		}
+
+		.list-right {
+			flex-direction: column-reverse;
+			margin-bottom: -12.5rem;
+		}
+
+		.list-el {
+			border-radius: $borderbig;
+			background: $colorwhite;
+			padding: 0.625rem 0.625rem 3.125rem 0.625rem;
+			box-shadow: $shadowmedium;
+
+			.el-inner {
+				aspect-ratio: 5 / 4;
+				border-radius: $borderlarge;
+				overflow: hidden;
+				transition: box-shadow 0.3s ease;
+			}
+		}
+	}
+}
+
+/* -------------------------------
+SMALL SCREENS
+------------------------------- */
+@media (min-width: $screen-sm-min){
+	.cbo-team{
+		padding-top: 6.25rem;
+
+		.team-inner{
+			margin-top: 0;
+			width: 100%;
+			display: flex;
+			justify-content: space-between;
+		}
+		.team-content{
+			width: 55%;
+			max-width: 33.75rem;
+		}
+		.team-list {
+			opacity: 1;
+			margin: -6.25rem 0 0 0;
+			width: 45%;
+		}
+	}
+}
+
+/* -------------------------------
+MEDIUM SCREENS
+------------------------------- */
+@media (min-width: $screen-md-min){
+	.cbo-team{
+		padding-top: 12.5rem;
+
+		.team-list {
+			margin: -6.25rem -2.5rem 0 -2.5rem;
+			padding: 0 2.5rem;
+			width: 50%;
+
+			.list-right {
+				margin-bottom: -6.25rem;
+			}
+			.list-el {
+				padding: 0.9375rem 0.9375rem 5.25rem 0.9375rem;
+				box-shadow: $shadowbig;
+			}
+		}
+	}
+}
+
+/* -------------------------------
+LARGE SCREENS
+------------------------------- */
+@media (min-width: $screen-lg-min){
+	.cbo-team{
+		.team-list {
+			margin-top: -12.5rem;
+
+			.list-right {
+				margin-bottom: -12.5rem;
+			}
+		}
+	}
+}

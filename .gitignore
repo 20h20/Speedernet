@@ -1,0 +1,16 @@
+# NPM
+/node_modules
+/package-lock.json
+
+# Thumbs
+Thumbs.db
+.idea
+.DS_Store
+
+# Assets
+/library/css/*
+/library/js/*
+/library/iconfont/*
+/library/*.png
+
+# .github

@@ -1,0 +1,124 @@
+@import "../../../src/scss/partials/variables";
+
+/* -------------------------------
+PARTNERS COMPONENT
+------------------------------- */
+.cbo-partners{
+  position: relative;
+  overflow: hidden;
+
+  .partners-inner.cbo-container{
+    position: static;
+  }
+  .partners-uptitle{
+    position: relative;
+    z-index: 2;
+
+    .tag-picture{
+      bottom: -0.625rem;
+    }
+  }
+  .partners-title{
+    margin-bottom: 2.5rem;
+    position: relative;
+    z-index: 2;
+  }
+  .partners-list{
+    position: initial;
+
+    &:before,
+    &:after{
+      content: '';
+      position: absolute;
+      z-index: 1;
+      top: 0;
+      height: 100%;
+      width: 9.375rem;
+    }
+    &:before{
+      left: 0;
+      background: linear-gradient(90deg,rgba($colorgreylight, 1) 20%, rgba($colorgreylight, 0) 100%);
+    }
+    &:after{
+      right: 0;
+      background: linear-gradient(-90deg,rgba($colorgreylight, 1) 20%, rgba($colorgreylight, 0) 100%);
+    }
+
+    .slick-list{
+      filter: grayscale(1) invert(1) brightness(2) invert(1);
+      overflow: visible;
+
+      .slick-track{
+        gap: 3rem;
+        height: 4rem;
+
+        .slick-slide{
+          & > div{
+            height: 100%;
+          }
+        }
+      }
+    }
+    .list-el{
+      height: 100%;
+
+      .el-inner{
+        height: 100%;
+
+        img{
+          position: relative;
+        }
+      }
+    }
+    &:not(.slick-slider){
+      display: flex;
+      overflow: hidden;
+
+      .list-el{
+        width: 50%;
+        min-width: 50%;
+        height: 5rem;
+        margin: 0 1.25rem;
+      }
+    }
+  }
+}
+
+/* -------------------------------
+SMALL SCREENS
+------------------------------- */
+@media (min-width:$screen-sm-min) {
+  .cbo-partners{
+    .partners-list{
+      &:not(.slick-slider){
+        .list-el{
+          width: 25%;
+          min-width: 25%;
+        }
+      }
+    }
+  }
+}
+
+/* -------------------------------
+LARGE SCREENS
+------------------------------- */
+@media (min-width:$screen-lg-min) {
+  .cbo-partners{
+    .partners-title{
+      margin-bottom: 3.75rem;
+    }
+    .partners-list{
+      &:before,
+      &:after{
+        width: 18.75rem;
+      }
+      &:not(.slick-slider){
+        .list-el{
+          width: 15%;
+          min-width: 15%;
+        }
+      }
+    }
+  }
+}

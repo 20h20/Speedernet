@@ -1,0 +1,125 @@
+.slick-slider {
+	position: relative;
+	display: block;
+	box-sizing: border-box;
+	width: 100%;
+	user-select: none;
+	touch-action: pan-y;
+
+	.slick-list {
+		position: relative;
+		overflow: hidden;
+		display: block;
+
+		&:focus {
+			outline: none;
+		}
+		.slick-track {
+			position: relative;
+			display: flex;
+			
+			.slick-slide {
+				height: 100%;
+			}
+		}
+	}
+}
+.slick-slider .slick-track,
+.slick-slider .slick-list {
+	transform: translate3d(0, 0, 0);
+}
+.slick-dots{
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	position: initial;
+
+	li{
+		cursor:pointer;
+		font-size:0;
+		width:0.625rem;
+		height:0.625rem;
+		margin:0 0.25rem;
+		border-radius: 99rem;
+		background: $colorgrey;
+		box-shadow: 0 0 0 0 $colorblue inset;
+		position: relative;
+		transition: .5s all;
+
+		&.slick-active{
+			width: 2.5rem;
+			box-shadow: 0 0 0 2.5rem $colorblue inset;
+		}
+		button{
+			display:none;
+		}
+	}
+}
+.slick-arrow {
+	position: absolute;
+	top: 3.125rem;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	color: $colorgrey;
+	background: $colorwhite;
+	border: 0.125rem solid $colorgrey;
+	padding: 0.5rem 1.75rem;
+	height: 3.75rem;
+	width: 3.75rem;
+	border-radius: 99rem;
+	cursor: pointer;
+	font-size: 0;
+	z-index: 2;
+	overflow: hidden;
+	transition:all .2s cubic-bezier(.694,.048,.335,1);
+
+	 &:after,
+	 &:before{
+		font-family: "icons";
+		font-size: 1.25rem;
+		content: "\f101";
+		transition: transform .35s cubic-bezier(.694,.048,.335,1);
+	}
+	&:before {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(calc(-50% - 3.75rem), -50%);
+	}
+	&:hover {
+		background: $coloryellow;
+
+		&:after  {
+			transform: translateX(3.75rem);
+		}
+		&:before {
+			transform: translate(-50%, -50%);
+		}
+	}
+	&.slick-next{
+		right: 0;
+	}
+	&.slick-prev{
+		left: 0;
+
+		&:after,
+        &:before {
+          content: "\f102";
+        }
+        &:before {
+          transform: translate(calc(-50% + 3.75rem), -50%);
+        }
+        &:hover {
+			&:before {
+				transform: translate(-50%, -50%);
+			}
+			&:after {
+				transform: translateX(-3.75rem);
+			}
+		}
+	}
+	&.slick-disabled{
+		opacity: 0;
+	}
+}

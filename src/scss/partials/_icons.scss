@@ -1,0 +1,37 @@
+// Custom template
+
+@font-face {
+    font-family:"icons";
+    src: url("../iconfont/icons.eot?352f8c348bbd90e9584aa4be7369e49c");
+    src: url("../iconfont/icons.eot?352f8c348bbd90e9584aa4be7369e49c#iefix") format("embedded-opentype"),
+		url("../iconfont/icons.woff?352f8c348bbd90e9584aa4be7369e49c") format("woff"),
+		url("../iconfont/icons.ttf?352f8c348bbd90e9584aa4be7369e49c") format("truetype"),
+		url("../iconfont/icons.svg?352f8c348bbd90e9584aa4be7369e49c#icons") format("svg");
+    font-weight:normal;
+    font-style:normal;
+    font-display:swap;
+    }
+
+.icon {
+    font-family:"icons";
+    display:inline-block;
+    font-style:normal;
+    speak:none;
+    -webkit-font-smoothing:antialiased;
+    font-size:1em;
+    line-height:1em;
+    vertical-align:baseline;
+    }
+
+// Icons
+.icon--arrow-next:before { content:"\f101"; }
+.icon--arrow-prev:before { content:"\f102"; }
+.icon--chevron:before { content:"\f103"; }
+.icon--facebook:before { content:"\f104"; }
+.icon--instagram:before { content:"\f105"; }
+.icon--linkedin:before { content:"\f106"; }
+.icon--player:before { content:"\f107"; }
+.icon--success:before { content:"\f108"; }
+.icon--warning:before { content:"\f109"; }
+.icon--x:before { content:"\f10a"; }
+.icon--youtube:before { content:"\f10b"; }
