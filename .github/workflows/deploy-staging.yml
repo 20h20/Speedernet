@@ -1,0 +1,30 @@
+on: 
+  push:
+    branches: 
+      - develop
+name: Deploy theme to Staging
+jobs:
+  FTP-Deploy-Action:
+    name: FTP-Deploy-Action
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Set up Node.js
+        uses: actions/setup-node@master
+        with:
+          node-version: '12.x'
+      - run: npm install --legacy-peer-deps
+      - run: npm run build
+      - name: RSync-Deploy-Action
+        id: deploy_staging
+        uses: Pendect/action-rsyncer@v1.1.0
+        env:
+          DEPLOY_KEY: ${{ secrets.DEPLOY_KEY_STAGING }}
+        with:
+          flags: '-avzr --delete'
+          options: '
+            --exclude "web/app/.htaccess" --exclude "web/app/advanced-cache.php" --exclude "web/app/autoptimize_404_handler.php" --exclude "web/app/cache" --exclude "web/app/ewww" --exclude "web/app/upgrade" --exclude "web/app/updraft" --exclude "web/app/upgrade-temp-backup" --exclude "web/app/uploads" --exclude "web/app/uploads-webpc" --exclude "web/.htaccess" --exclude "web/.htpasswd" --exclude "web/wp" --exclude ".env" --exclude "package.json" --exclude "package-lock.json" --exclude ".gitignore"  --exclude ".git" --exclude "vendor" --exclude ".github" --exclude "node_modules"'
+          src: '.'
+          dest: 'julienbrh@ftp.cluster015.hosting.ovh.net:/home/julienbrh/speedernet/wp-content/themes/speedernet'
+      - name: Display status from deploy
+        run: echo "${{ steps.deploy_staging.outputs.status }}"
