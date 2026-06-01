@@ -8,7 +8,7 @@
 		$instagram	= get_field('option_instagram', 'option');
 		$twitter	= get_field('option_twitter', 'option');
 		$facebook	= get_field('option_facebook', 'option');
-	?>
+	?> 
 
 	<footer class="cbo-footer" role="contentinfo" itemscope itemtype="https://schema.org/Organization">
 		<span class="sr-only" itemprop="name"><?php echo esc_html( get_bloginfo('name') ); ?></span>
