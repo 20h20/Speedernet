@@ -2,8 +2,8 @@
 TAGS COMPONENT
 ------------------------------- */
 .cbo-tag{
+	min-width: 4.375rem;
 	position: relative;
-	font-weight: 900;
 	border-radius: 1584px;
 	background: rgba($colorred, 0.2);
 	border: 0.0625rem solid rgba($colorred, 0.5);
@@ -11,8 +11,10 @@ TAGS COMPONENT
 	padding: 0 0.875rem;
 	display: inline-flex;
 	align-items: center;
+	justify-content: center;
 	font-size: 0.75rem;
 	margin-bottom: 0.75rem;
+	font-weight: 600;
 
 	.tag-picture {
 		position: absolute;

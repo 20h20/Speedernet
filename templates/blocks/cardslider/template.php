@@ -22,7 +22,7 @@ $items         = get_field('cardslider_list');
 		<?php endif; ?>
 
 		<?php if($items): ?>
-			<nav class="cardslider-tabs" role="tablist" aria-label="<?php pll_e('Navigation par onglets') ?>">
+			<nav class="cardslider-tabs slide-up" role="tablist" aria-label="<?php pll_e('Navigation par onglets') ?>">
 				<?php foreach($items as $index => $item): ?>
 					<button
 						class="cbo-tag slide-up tag--grey tab-el<?php echo $index === 0 ? ' active' : ''; ?>"
@@ -46,19 +46,19 @@ $items         = get_field('cardslider_list');
 						$picture = $item['picture'];
 					?>
 						<li
-							class="list-el"
+							class="list-el slide-up"
 							role="tabpanel"
 							id="card-panel-<?php echo $index; ?>"
 							itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"
 							<?php echo $index !== 0 ? 'aria-hidden="true"' : ''; ?>
 						>
 							<div class="el-inner">
-								<div class="inner-content cbo-cms slide-up">
+								<div class="inner-content cbo-cms">
 									<?php echo wp_kses_post($content); ?>
 								</div>
 
 								<?php if($picture): ?>
-									<div class="inner-picture cbo-picture-cover slide-up">
+									<div class="inner-picture cbo-picture-cover">
 										<img
 											src="<?php echo esc_url($picture['sizes']['small']); ?>"
 											srcset="<?php echo esc_url($picture['sizes']['small']); ?> 320w,
@@ -89,7 +89,7 @@ $items         = get_field('cardslider_list');
 		<?php endif; ?>
 	</div>
 
-	<div class="cardslider-bigtxt slide-up" aria-hidden="true">
+	<div class="cardslider-bigtxt" aria-hidden="true">
 		xp
 	</div>
 </section>

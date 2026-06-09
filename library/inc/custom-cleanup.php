@@ -21,8 +21,8 @@
 		remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
 		remove_action( 'wp_print_styles', 'print_emoji_styles' );
 		remove_action( 'admin_print_styles', 'print_emoji_styles' );
-		add_filter( 'wp_head', 'bones_remove_wp_widget_recent_comments_style', 1 );
-		add_filter( 'wp_title', 'cbo_head_title', 10, 3 );
+		add_action( 'wp_head', 'bones_remove_wp_widget_recent_comments_style', 1 );
+		add_filter( 'title-tag', 'cbo_head_title', 10, 3 );
 	}
 
 	/* Nettoyage titre et meta description */
@@ -136,9 +136,5 @@
 	/* --------------------------
 	   CLEANUP PROCESS
 	-------------------------- */
-	// Remove WP version from RSS
-	add_filter( 'the_generator', 'cbo_remove_rss_version' );
-	// Remove pesky injected css for recent comments widget
-	add_filter( 'wp_head', 'bones_remove_wp_widget_recent_comments_style', 1 );
 	// launching this stuff after theme setup
-	bones_theme_support();
+	add_action( 'after_setup_theme', 'bones_theme_support' );

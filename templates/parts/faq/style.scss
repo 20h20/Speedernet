@@ -1,0 +1,67 @@
+@import "../../../src/scss/partials/variables";
+
+/* -------------------------------
+FAQ BLOC MICRO COMPONENT
+------------------------------- */
+.accordion-list{
+	.list-el{
+ 		display: flex;
+		align-items: center;
+		flex-wrap: wrap;
+		border-top: 0.0625rem solid $colorblue;
+		transition: all .4s;
+
+		&:last-child{
+			border-bottom: 0.0625rem solid $colorblue;		
+		}
+		.el-wrapper{
+			width: 100%;
+			margin: 1.875rem 0;
+
+			.el-title{
+				font-weight: 600;
+				width: 100%;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				text-align: left;
+				cursor: pointer;
+				transition:.4s $easeinout;
+
+				i{
+					box-shadow: 0 0 0 0.0625rem $colorbluedark inset;
+					border-radius: 99rem;
+					width: 2.125rem;
+					min-width: 2.125rem;
+					height: 2.125rem;
+					margin-left: 1.25rem;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					transition:.4s $easeinout;
+					font-size: 1rem;
+					font-weight: normal;
+				}
+			}
+		}
+		.el-content{
+			overflow: hidden;
+			height: 0;
+			transition:.4s $easeinout;
+		}
+		&:hover,
+		&.el--open{
+			.el-title{
+				i{
+					transform:rotate(45deg);
+				}
+			}
+		}
+		&.el--open{
+			.el-content{
+				height: auto;
+				padding-bottom: 1.875rem;
+			}
+		}
+	}
+}

@@ -1,0 +1,131 @@
+@import "../../../src/scss/partials/variables";
+
+/* -------------------------------
+GALLERY COMPONENT
+------------------------------- */
+.cbo-gallery{
+  .gallery-inner.cbo-container{
+    overflow: hidden;
+    max-width: 100%;
+    padding: 0;
+  }
+  .gallery-list{
+    .list-el{
+      padding: 0rem 0.625rem;
+
+      .el-inner {
+        .inner-picture{
+          padding-bottom: 57%;
+          border-radius: $bordermedium;
+          overflow: hidden;
+
+          img {
+            transform: scale(1.15) translateY(0);
+            will-change: transform;
+          }
+        }
+        .el-title{
+          display: none;
+        }
+      }
+    }
+    .slick-dots{
+      margin-top: 1.875rem;
+    }
+
+    &:not(.slick-slider){
+      display: flex;
+      overflow: hidden;
+
+      .list-el{
+        width: 100%;
+        min-width: 100%;
+        margin: 0 0.625rem;
+      }
+    }
+  }
+}
+
+/* -------------------------------
+SMALL SCREENS
+------------------------------- */
+@media (min-width: $screen-sm-min){
+  .cbo-gallery{
+    .gallery-list{
+      .list-el{
+        .el-inner {
+          position: relative;
+
+          .el-title{
+            display: block;
+            margin: 0;
+            color: $colorwhite;
+            border-radius: $bordermedium;
+            position: absolute;
+            bottom: 0.625rem;
+            left: 0.625rem;
+            padding: 0.625rem;
+            text-align: center;
+            width: calc(100% - 1.25rem);
+            font-size: 0.75rem;
+            background-color: rgba($colorgrey, 0.5);
+            backdrop-filter: blur(0.5rem);
+          }
+        }
+      }
+
+      &:not(.slick-slider){
+        .list-el{
+          width: 50%;
+          min-width: 50%;
+        }
+      }
+    }
+  }
+}
+
+/* -------------------------------
+MEDIUM SCREENS
+------------------------------- */
+@media (min-width: $screen-md-min){
+  .cbo-gallery{
+    .gallery-list{
+      &:not(.slick-slider){
+        .list-el{
+          width: 33.33333%;
+          min-width: 33.33333%;
+        }
+      }
+    }
+  }
+}
+
+/* -------------------------------
+LARGE SCREENS
+------------------------------- */
+@media (min-width: $screen-lg-min){
+  .cbo-gallery{
+    .gallery-list{
+       .list-el{
+        .el-inner {
+          .inner-picture{
+            height: 31.25rem;
+            border-radius: $borderbig;
+          }
+          .el-title{
+            bottom: 1.25rem;
+            left: 1.25rem;
+            width: calc(100% - 2.5rem);
+          }
+        }
+      }
+
+      &:not(.slick-slider){
+        .list-el{
+          width: 25%;
+          min-width: 25%;
+        }
+      }
+    }
+  }
+}

@@ -29,8 +29,9 @@ KEYNUMBERS COMPONENT
         .content-number{
           font-weight: bold;
           height: 7.125rem;
-          width: 10.625rem;
-          padding: 0 1.25rem;
+          min-width: 10.625rem;
+          width: fit-content;
+          padding: 0 1.875rem;
           display: flex;
           align-items: center;
           justify-content: center;

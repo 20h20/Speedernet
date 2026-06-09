@@ -1,0 +1,88 @@
+@import "../../../src/scss/partials/variables";
+
+/* -------------------------------
+TEXT PICTURE SLIDE COMPONENT
+------------------------------- */
+.cbo-textpictureslide {
+  position: relative;
+
+  .textpictureslide-inner {
+    position: relative;
+    z-index: 1;
+  }
+
+  .textpictureslide-images {
+    display: none;
+  }
+  .textpictureslide-list {
+    .list-el {
+      margin: 3.125rem 0;
+
+      .el-picture {
+        width: 100%;
+        aspect-ratio: 4 / 3;
+        border-radius: $borderlarge;
+        overflow: hidden;
+        margin-bottom: 1.25rem;
+      }
+    }
+  }
+}
+
+/* -------------------------------
+MEDIUM SCREENS (desktop)
+------------------------------- */
+@media (min-width: $screen-md-min) {
+  .cbo-textpictureslide {
+    .textpictureslide-inner {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 6.25rem;
+    }
+    
+    .textpictureslide-images {
+      display: block;
+      flex: 0 0 42%;
+      position: sticky;
+      top: 6.25rem;
+
+      .images-list {
+        position: relative;
+        aspect-ratio: 4 / 3;
+        border-radius: $borderlarge;
+        overflow: hidden;
+
+        .image-el {
+          position: absolute;
+          inset: 0;
+          opacity: 0;
+          transition: opacity 0.6s $easeinout;
+          pointer-events: none;
+
+          &.is-active {
+            opacity: 1;
+            pointer-events: auto;
+          }
+          .el-picture {
+            width: 100%;
+            height: 100%;
+          }
+        }
+      }
+    }
+
+    .textpictureslide-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8.75rem 0;
+
+      .list-el {
+        margin: 0;
+      }
+      .el-picture {
+        display: none;
+      }
+    }
+  }
+}

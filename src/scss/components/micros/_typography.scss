@@ -61,9 +61,15 @@ a{
 	}
 }
 
+.cbo-title-1, .cbo-title-1 h1, .cbo-title-1 h2, .cbo-title-1 h3, .cbo-title-1 h4.cbo-title-1 h5, .cbo-title-1 p, .cbo-cms h1{
+	font-size: 48px;
+	line-height: 56px;
+	font-weight: 600;
+}
+
 .cbo-title-2, .cbo-title-2 h1, .cbo-title-2 h2, .cbo-title-2 h3, .cbo-title-2 h4.cbo-title-2 h5, .cbo-title-2 p, .cbo-cms h2{
-	font-size: 32px;
-	line-height: 36px;
+	font-size: 28px;
+	line-height: 32px;
 	font-weight: 300;
 }
 
@@ -86,6 +92,7 @@ a{
 
 .cbo-cms{
 	h1,h2,h3,h4,h5{
+		font-weight: normal;
 		margin: 64px 0 32px 0;
 
 		&:first-child{
@@ -113,6 +120,10 @@ a{
 LARGE SCREENS
 ------------------------------- */
 @media (min-width: $screen-md-min) {
+	.cbo-title-1, .cbo-title-1 h1, .cbo-title-1 h2, .cbo-title-1 h3, .cbo-title-1 h4.cbo-title-1 h5, .cbo-title-1 p, .cbo-cms h1{
+		font-size: 75px;
+		line-height: 86px;
+	}
 	.cbo-title-2, .cbo-title-2 h1, .cbo-title-2 h2, .cbo-title-2 h3, .cbo-title-2 h4.cbo-title-2 h5, .cbo-title-2 p, .cbo-cms h2{
 		font-size: 40px;
 		line-height: 1;
@@ -123,10 +134,6 @@ LARGE SCREENS
 	}
 	.cbo-title-4, .cbo-title-4 h1, .cbo-title-4 h2, .cbo-title-4 h3, .cbo-title-4 h4.cbo-title-4 h5, .cbo-title-4 p, .cbo-cms h4{
 		font-size: 25px;
-	}
-	.cbo-chapo{
-		font-size: 24px;
-		line-height: 32px;
 	}
 }
 

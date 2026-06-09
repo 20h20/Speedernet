@@ -23,6 +23,11 @@ input[type="submit"],
 		color: $colorgrey;
 		border: 2px solid $colorgrey;
 	}
+	&.button--white{
+		background: $colorwhite;
+		color: $colorgrey;
+		border: 2px solid $colorgrey;
+	}
 }
 
 .cbo-link{

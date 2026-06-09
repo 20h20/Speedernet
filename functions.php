@@ -5,6 +5,7 @@
 		require_once( 'library/inc/custom-dashboard.php' );
 		require_once( 'library/inc/styles-import.php' );
 		require_once( 'library/inc/custom-post/cpt-castestudies.php' );
+		require_once( 'library/inc/custom-post/cpt-faq.php' );
 		require_once( 'library/inc/custom-post/cpt-testimonial.php' );
 		require_once( 'library/inc/acf.php' );
 	}
@@ -48,6 +49,8 @@
 		// Toolbar simple
 		$toolbars['Custom'] = [];
 		$toolbars['Custom'][1] = ['bold', 'formatselect', 'styleselect'];
+		$toolbars['HeroRich'] = [];
+		$toolbars['HeroRich'][1] = ['bold'];
 
 		return $toolbars;
 	}
@@ -160,6 +163,18 @@
 
 
 	/* ************************* */
+	/* Security headers HTTP */
+	/* ************************* */
+	add_action('send_headers', function() {
+		if (is_admin()) return;
+		header('X-Content-Type-Options: nosniff');
+		header('X-Frame-Options: SAMEORIGIN');
+		header('Referrer-Policy: strict-origin-when-cross-origin');
+		header('Permissions-Policy: camera=(), microphone=(), geolocation=()');
+	});
+
+
+	/* ************************* */
 	/* Désactivation jQuery Migrate */
 	/* ************************* */
 	add_action('wp_default_scripts', function($scripts) {
@@ -194,10 +209,19 @@
 		pll_register_string( 'article', "Lire l\'article");
 
 		pll_register_string( 'casestudy', "Lire le cas");
+		pll_register_string( 'casestudy', "Études de cas similaires");
+		pll_register_string( 'casestudy', "Les réussites de nos clients");
+		pll_register_string( 'casestudy', "Aucune étude de cas");
+		pll_register_string( 'casestudy', "Aucune catégorie associée à cette étude de cas");
+		pll_register_string( 'casestudy', "Études de cas");
 
 		pll_register_string( 'testimonial', "Voir l\'interview");
 
 		pll_register_string( 'global', "Navigation par onglets");
+
+		pll_register_string( '404', "Erreur 404");
+		pll_register_string( '404', "La page que vous rechechez n\'existe pas.<br />Vous pouvez toujours revenir sur vos pas.");
+		pll_register_string( '404', "Revenir à l\'accueil");
 	});
 
 

@@ -22,9 +22,13 @@
 		?>
 	</head>
 
-	<body <?php body_class('cbo-main'); ?> itemscope itemtype="http://schema.org/WebPage">
+	<body <?php body_class('cbo-main'); ?> itemscope itemtype="https://schema.org/WebPage">
 
-		<header class="cbo-header" role="banner" itemscope itemtype="http://schema.org/WPHeader">
+		<a class="skip-link" href="#main-content">
+			<?php pll_e('Aller au contenu principal') ?>
+		</a>
+
+		<header class="cbo-header" role="banner" itemscope itemtype="https://schema.org/WPHeader">
 			<div class="header-inner">
 
 				<a class="header-logo" title="Accueil - <?php echo get_bloginfo('description'); ?>" href="<?php echo home_url(); ?>" itemprop="url">
@@ -55,7 +59,7 @@
 					class="header-nav"
 					role="navigation"
 					itemscope
-					itemtype="http://schema.org/SiteNavigationElement"
+					itemtype="https://schema.org/SiteNavigationElement"
 					aria-label="<?php pll_e('Navigation principale') ?> <?php esc_attr_e('Navigation principale', 'textdomain'); ?>"
 				>
 					<?php wp_nav_menu( array(
@@ -80,4 +84,9 @@
 			</div>
 		</header>
 
-		<main class="cbo-page" role="main" itemscope itemtype="http://schema.org/WebPageElement">
+		<main id="main-content" class="cbo-page" role="main" itemscope itemtype="https://schema.org/WebPageElement">
+
+
+		<?php
+			if (!is_front_page()) get_part('breadcrumb/template');
+		?>

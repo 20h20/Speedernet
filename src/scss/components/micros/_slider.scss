@@ -11,9 +11,7 @@
 		overflow: hidden;
 		display: block;
 
-		&:focus {
-			outline: none;
-		}
+
 		.slick-track {
 			position: relative;
 			display: flex;
@@ -121,5 +119,9 @@
 	}
 	&.slick-disabled{
 		opacity: 0;
+	}
+	&:focus-visible {
+		outline: 2px solid $colorblue;
+		outline-offset: 2px;
 	}
 }

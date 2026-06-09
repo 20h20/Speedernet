@@ -3,4 +3,38 @@
 /* -------------------------------
 TEXT COMPONENT
 ------------------------------- */
-.cbo-text{}
+.cbo-text{
+    &.text--blue{
+        .text-wrap{
+            padding: 1.25rem 1.25rem 0 1.25rem;
+            background: linear-gradient(180deg,rgba($colorblue, .2) 0%, rgba($colorblue, 0) 68%);
+            border-radius: $borderbig $borderbig 0 0;
+        }
+    }
+}
+
+/* -------------------------------
+MEDIUM SCREENS
+------------------------------- */
+@media (min-width: $screen-md-min) {
+    .cbo-text{
+        &.text--blue{
+            .text-wrap{
+                padding: 3.75rem 3.75rem 0 3.75rem;
+            }
+        }
+    }
+}
+
+/* -------------------------------
+LARGE SCREENS
+------------------------------- */
+@media (min-width: $screen-lg-min) {
+    .cbo-text{
+        &.text--blue{
+            .text-wrap{
+                padding: 110px 110px 0 110px;
+            }
+        }
+    }
+}

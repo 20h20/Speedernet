@@ -15,6 +15,7 @@
 			/////////////////// SLIDER ARTICLES ///////////////////
 			function initArticlesSlider() {
 				var $list = $('.cbo-articles.articles--relationship .articles-list, .cbo-casestudies .casestudies-list');
+				if (!$list.length || typeof $.fn.slick === 'undefined') return;
 				var width = $(window).width();
 				if (width < 1024) {
 					var slidesToShow = width < 767 ? 1 : 2;
@@ -91,18 +92,85 @@
 			});
 
 
+			/////////////////// SLIDER GALLERY ///////////////////
+			$('.cbo-gallery .gallery-list').slick({
+				arrows: false,
+				dots: true,
+				slidesToShow: 1,
+				slidesToScroll: 1,
+				infinite: true,
+				centerMode: true,
+				centerPadding: '20%',
+				responsive: [
+					{
+						breakpoint: 1024,
+						settings: {
+							centerPadding: '120px',
+						}
+					},
+					{
+						breakpoint: 767,
+						settings: {
+							centerPadding: '30px',
+						}
+					}
+				]
+			});
+
+
+			/////////////////// PARALLAX PICTURE ///////////////////
+			function galleryParallax() {
+				var pictures = document.querySelectorAll('.cbo-gallery .inner-picture img, .cbo-heroarticle .content-picture img, .cbo-textpicture .textpicture-picture  img');
+				if (!pictures.length) return;
+
+				var ticking = false;
+
+				function applyParallax() {
+					for (var i = 0; i < pictures.length; i++) {
+						var img = pictures[i];
+						var rect = img.closest('.inner-picture, .content-picture, .textpicture-picture ').getBoundingClientRect();
+						var center = rect.top + rect.height / 2;
+						var offset = (window.innerHeight / 2 - center) * 0.1;
+						img.style.transform = 'scale(1.15) translateY(' + offset + 'px)';
+					}
+				}
+
+				function scheduleParallax() {
+					requestAnimationFrame(function() {
+						requestAnimationFrame(applyParallax);
+					});
+				}
+
+				if (document.readyState === 'complete') {
+					scheduleParallax();
+				} else {
+					$(window).on('load.galleryParallax', scheduleParallax);
+				}
+
+				window.addEventListener('scroll', function() {
+					if (!ticking) {
+					requestAnimationFrame(function() {
+						applyParallax();
+						ticking = false;
+					});
+					ticking = true;
+					}
+				}, { passive: true });
+			}
+			galleryParallax();
+
+
 			/////////////////// BIG TEXT FIT (keynumbers + cardslider) ///////////////////
 			function fitKeyNumbersBigText() {
 				document.querySelectorAll('.keynumbers-bigtxt, .cardslider-bigtxt').forEach(function(el) {
 					el.style.fontSize = '100px';
-					var ratio = window.innerWidth / el.scrollWidth;
+					var maxWidth = el.classList.contains('cardslider-bigtxt') ? Math.min(window.innerWidth, 1400) : window.innerWidth;
+					var ratio = maxWidth / el.scrollWidth;
 					var fontSize = Math.floor(110 * ratio);
 					el.style.fontSize = fontSize + 'px';
 
 					if (el.classList.contains('cardslider-bigtxt')) {
-						var coeff = window.innerWidth >= 1283 ? 0.15 :
-									window.innerWidth >= 768  ? 0.08 : 0.04;
-						el.style.top = Math.floor(fontSize * -coeff) + 'px';
+						el.style.top = '0';
 					}
 				});
 			}
@@ -397,8 +465,151 @@
 			});
 
 
+			//////////////// ACCORDION ////////////////
+			function initAccordion($container) {
+				$container.find('.accordion-list .el-title').off('click').on('click', function(){
+					var $btn = $(this);
+					var $el = $btn.closest('.list-el');
+					var $content = $('#' + $btn.attr('aria-controls'));
+					var open = $btn.attr('aria-expanded') === 'true';
+
+					// Fermer les autres
+					$el.siblings('.list-el.el--open').each(function() {
+						var $c = $(this).find('.el-content');
+						$(this).removeClass('el--open').find('.el-title').attr('aria-expanded', 'false');
+						$c.css('height', $c[0].scrollHeight + 'px');
+						$c[0].offsetHeight;
+						$c.css('height', '0');
+						setTimeout(function(){ $c.attr('hidden', ''); }, 300);
+					});
+
+					// Toggle celui-ci
+					if(open){
+						$btn.attr('aria-expanded', 'false');
+						$el.removeClass('el--open');
+						$content.css('height', $content[0].scrollHeight + 'px');
+						$content[0].offsetHeight;
+						$content.css('height', '0');
+						setTimeout(function(){ $content.attr('hidden', ''); }, 300);
+					} else {
+						$btn.attr('aria-expanded', 'true');
+						$el.addClass('el--open');
+						$content.removeAttr('hidden');
+						var fullHeight = $content[0].scrollHeight + 'px';
+						$content.css('height', '0');
+						$content[0].offsetHeight;
+						$content.css('height', fullHeight);
+						setTimeout(function(){ $content.css('height', 'auto'); }, 300);
+					}
+				});
+			}
+
+			$(document).ready(function(){
+				initAccordion($('.cbo-accordionpicture'));
+				initAccordion($('.cbo-accordion'));
+			});
 
 
+			//////////////// TEXTPICTURESLIDE STICKY SCROLL ////////////////
+			(function() {
+				var section = document.querySelector('.cbo-textpictureslide');
+				if (!section) return;
+
+				var contentEls = section.querySelectorAll('.list-el');
+				var imageEls   = section.querySelectorAll('.image-el');
+
+				if (!contentEls.length || !imageEls.length) return;
+
+				var currentActive = -1;
+				var triggerLine = window.innerHeight * 0.25;
+
+				function updateActiveImage() {
+					var newActive = 0;
+					for (var i = 0; i < contentEls.length; i++) {
+						if (contentEls[i].getBoundingClientRect().top <= triggerLine) {
+							newActive = i;
+						} else {
+							break;
+						}
+					}
+					if (newActive !== currentActive) {
+						imageEls.forEach(function(img) { img.classList.remove('is-active'); });
+						var active = section.querySelector('.image-el[data-index="' + newActive + '"]');
+						if (active) active.classList.add('is-active');
+						currentActive = newActive;
+					}
+				}
+
+				updateActiveImage();
+				$(window).on('scroll.textpictureslide', function() {
+					window.requestAnimationFrame(updateActiveImage);
+				});
+			})();
+
+
+			/////////////////// WORD SLIDE-UP ANIMATION ///////////////////
+			function initWordAnim() {
+				var elements = document.querySelectorAll('[data-word-anim]');
+				if (!elements.length) return;
+
+				function escHtml(str) {
+					return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+				}
+
+				elements.forEach(function(el) {
+					var words = el.textContent.trim().split(/\s+/);
+					var delay = parseFloat(el.getAttribute('data-word-delay') || 0.07);
+					var html  = '';
+					words.forEach(function(word, i) {
+						html += '<span class="word-wrapper">'
+							+ '<span class="word-anim" style="animation-delay:' + (i * delay) + 's">'
+							+ escHtml(word)
+							+ '</span></span>';
+						if (i < words.length - 1) html += ' ';
+					});
+					el.innerHTML = html;
+				});
+
+				if ('IntersectionObserver' in window) {
+					var observer = new IntersectionObserver(function(entries) {
+						entries.forEach(function(entry) {
+							if (entry.isIntersecting) {
+								entry.target.classList.add('word-anim--ready');
+								observer.unobserve(entry.target);
+							}
+						});
+					}, { threshold: 0.2 });
+					elements.forEach(function(el) { observer.observe(el); });
+				} else {
+					elements.forEach(function(el) { el.classList.add('word-anim--ready'); });
+				}
+			}
+			initWordAnim();
+
+
+			//////////////// SCROLL ANIMATIONS ////////////////
+			var scroll = window.requestAnimationFrame || function(callback){ window.setTimeout(callback, 1000/60)};
+			var elementsToShow = document.querySelectorAll('.slide-up, .slide-up, .slide-right, .slide-left, .scale-up, .scale-down'); 
+			function loop() {
+				Array.prototype.forEach.call(elementsToShow, function(element){
+					if (isElementInViewport(element)) {
+						element.classList.add('anim-scroll');
+					} else {
+						element.classList.remove('anim-scroll');
+					}
+				});
+				scroll(loop);
+			}	
+			loop();
+			function isElementInViewport(el) {
+				if (typeof jQuery === "function" && el instanceof jQuery) {
+					el = el[0];
+				}
+				var rect = el.getBoundingClientRect();
+				return (
+					(rect.top <= 0&& rect.bottom >= 0)||(rect.bottom >= (window.innerHeight || document.documentElement.clientHeight) && rect.top <= (window.innerHeight || document.documentElement.clientHeight))||(rect.top >= 0 && rect.bottom <= (window.innerHeight || document.documentElement.clientHeight))
+				);
+			}
 
 
 
@@ -446,42 +657,66 @@
 
 
 			
-			/////////////////// Ouverture d'une modale lors de la soumission d'un formulaire ///////////////////
+			/////////////////// Modales CF7 accessibles (role dialog + focus trap + Echap) ///////////////////
+			function openCF7Modal(cssClass, innerHTML) {
+				var previousFocus = document.activeElement;
+
+				var modal = document.createElement('div');
+				modal.className = cssClass;
+				modal.setAttribute('role', 'dialog');
+				modal.setAttribute('aria-modal', 'true');
+				modal.setAttribute('aria-label', 'Notification');
+				modal.innerHTML = innerHTML;
+				document.body.appendChild(modal);
+
+				var focusables = modal.querySelectorAll('button,[href],input,select,textarea,[tabindex]:not([tabindex="-1"])');
+				var first = focusables[0];
+				var last  = focusables[focusables.length - 1];
+
+				function closeModal() {
+					modal.remove();
+					document.removeEventListener('keydown', handleKey);
+					if (previousFocus) previousFocus.focus();
+				}
+
+				function handleKey(e) {
+					if (e.key === 'Escape') {
+						closeModal();
+					} else if (e.key === 'Tab') {
+						if (focusables.length === 1) { e.preventDefault(); return; }
+						if (e.shiftKey) {
+							if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+						} else {
+							if (document.activeElement === last)  { e.preventDefault(); first.focus(); }
+						}
+					}
+				}
+
+				modal.querySelector('.inner-button').addEventListener('click', closeModal);
+				document.addEventListener('keydown', handleKey);
+				if (first) first.focus();
+			}
+
 			document.addEventListener('wpcf7mailsent', function(event) {
 				event.preventDefault();
-
-				var modal = document.createElement('div');
-				modal.className = 'cbo-cf7modale';
-				modal.innerHTML =
+				openCF7Modal('cbo-cf7modale',
 					'<div class="cf7modale-inner">' +
-						'<i class="inner-icon icon icon--success"></i>' +
+						'<i class="inner-icon icon icon--success" aria-hidden="true"></i>' +
 						'<p class="inner-title cbo-title-3">Votre message a bien été envoyé !</p>' +
 						'<button type="button" class="inner-button cbo-button" aria-label="Fermer la fenêtre">Fermer la fenêtre</button>' +
-					'</div>';
-				document.body.appendChild(modal);
-
-				var closeButton = modal.querySelector('.inner-button');
-				closeButton.addEventListener('click', function() {
-					modal.remove();
-				});
+					'</div>'
+				);
 			}, false);
 
-			/////////////////// Ouverture d'une modale lors d'un échec d'envoi CF7 ///////////////////
 			document.addEventListener('wpcf7mailfailed', function(event) {
 				event.preventDefault();
-				var modal = document.createElement('div');
-				modal.className = 'cbo-cf7modale cbo-cf7modale--error';
-				modal.innerHTML =
+				openCF7Modal('cbo-cf7modale cbo-cf7modale--error',
 					'<div class="cf7modale-inner">' +
-						'<i class="inner-icon icon icon--warning"></i>' +
+						'<i class="inner-icon icon icon--warning" aria-hidden="true"></i>' +
 						'<p class="inner-title cbo-title-3">Une erreur s\'est produite lors de l\'envoi de votre message. Veuillez essayer à nouveau plus tard.</p>' +
 						'<button type="button" class="inner-button cbo-button" aria-label="Fermer la fenêtre">Fermer la fenêtre</button>' +
-					'</div>';
-				document.body.appendChild(modal);
-				var closeButton = modal.querySelector('.inner-button');
-				closeButton.addEventListener('click', function() {
-					modal.remove();
-				});
+					'</div>'
+				);
 			}, false);
 
 
@@ -515,29 +750,7 @@
 			cbo_forms.init();
 
 
-			//////////////// SCROLL ANIMATIONS ////////////////
-			var scroll = window.requestAnimationFrame || function(callback){ window.setTimeout(callback, 1000/60)};
-			var elementsToShow = document.querySelectorAll('.slide-up, .slide-up, .slide-right, .slide-left, .scale-up, .scale-down'); 
-			function loop() {
-				Array.prototype.forEach.call(elementsToShow, function(element){
-					if (isElementInViewport(element)) {
-						element.classList.add('anim-scroll');
-					} else {
-						element.classList.remove('anim-scroll');
-					}
-				});
-				scroll(loop);
-			}	
-			loop();
-			function isElementInViewport(el) {
-				if (typeof jQuery === "function" && el instanceof jQuery) {
-					el = el[0];
-				}
-				var rect = el.getBoundingClientRect();
-				return (
-					(rect.top <= 0&& rect.bottom >= 0)||(rect.bottom >= (window.innerHeight || document.documentElement.clientHeight) && rect.top <= (window.innerHeight || document.documentElement.clientHeight))||(rect.top >= 0 && rect.bottom <= (window.innerHeight || document.documentElement.clientHeight))
-				);
-			}
+			
 		},
 
 		onload : function(){

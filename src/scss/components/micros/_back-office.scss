@@ -9,6 +9,16 @@ BACK OFFICE COMPONENT
 	.wp-block-post-content{
 		.block-editor-block-list__block{
 			max-width: 104.375rem;
+
+			.cbo-herorich {
+				.herorich-list {
+					.list-el {
+						&.herorich-animate {
+							animation: none;
+						}
+					}
+				}
+			}
 		}
 	}
 }
@@ -83,7 +93,7 @@ BACK OFFICE COMPONENT
 						.cbo-button{
 							background: $dbcolorbluedark;
 							color: $colorwhite;
-							border-radius: $bordersmall;
+							border-radius: 5px;
 							height: 60px;
 							display: inline-flex;
 							justify-content: center;
@@ -102,7 +112,7 @@ BACK OFFICE COMPONENT
 		
 				.inside{ 
 					padding:20px;
-					border-radius:$bordersmall;
+					border-radius:5px;
 					background: $colorwhite;
 					height: calc(100% - 56px);
 		
@@ -147,7 +157,7 @@ BACK OFFICE COMPONENT
 	
 				.inside{
 					background: $colorwhite;
-					border-radius: $bordersmall;
+					border-radius: 5px;
 					padding-left: 20px;
 					padding-right: 20px;
 					height: calc(100% - 57px);

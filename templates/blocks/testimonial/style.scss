@@ -1,0 +1,155 @@
+@import "../../../src/scss/partials/variables";
+
+/* -------------------------------
+TESTIMONIAL COMPONENT
+------------------------------- */
+.cbo-testimonial{
+  position: relative;
+
+  .testimonial-inner {
+    z-index: 1;
+  }
+  .testimonial-infos{
+    .infos-picture{
+      border-radius: $borderbig;
+      background: $colorwhite;
+      padding: 10px 10px 80px 10px;
+      box-shadow: 5px 5px 10px 0 rgba($colorgrey, .6);
+
+      .picture-inner {
+        aspect-ratio: 6 / 4;
+        border-radius: $borderlarge;
+        overflow: hidden;
+      }
+    }
+    .infos-content{
+      margin-top: 20px;
+      font-size: 14px;
+      line-height: 16px;
+
+      .content-name{
+        font-weight: bold;
+      }
+    }
+  }
+  .testimonial-content{
+    .icon{
+      color: $colorred;
+      font-size: 48px;
+      line-height: 48px;
+      display: block;
+      text-align: center;
+
+      &.icon--bottom-quote{
+        margin-top: -10px;
+      }
+    }
+  }
+  .testimonial-blob{
+    overflow: visible;
+
+    &::before,
+    &::after {
+      background: $coloryellow;
+      right: inherit;
+    }
+    &::before{
+      left: -100px;
+       opacity: 0.5;
+    }
+    &::after{
+      left: 0;
+    }
+  }
+}
+
+*:has(+ .cbo-testimonial) {
+  .cbo-container {
+    margin-bottom: 0;
+  }
+  .cbo-container.container--padding {
+    padding-bottom: 0;
+  }
+}
+
+.cbo-testimonial + * {
+  .cbo-container {
+    margin-top: 0;
+  }
+  .cbo-container.container--padding {
+    padding-top: 0;
+  }
+}
+
+/* -------------------------------
+SMALL SCREENS
+------------------------------- */
+@media (min-width: $screen-sm-min){
+  .cbo-testimonial{
+    .testimonial-inner{
+      display: flex;
+      align-items: center;
+    }
+    .testimonial-infos{
+      width: 200px;
+
+      .infos-picture{
+        .picture-inner {
+          aspect-ratio: 5 / 4;
+        }
+      }
+      .infos-content{
+        font-size: 16px;
+        line-height: 18px;
+      }
+    }
+    .testimonial-content{
+      flex: 1;
+      padding-left: 40px;
+      font-size: 30px;
+      line-height: 36px;
+    }
+  }
+}
+
+/* -------------------------------
+MEDIUM SCREENS
+------------------------------- */
+@media (min-width: $screen-md-min){
+    .cbo-testimonial{
+    .testimonial-inner{
+      display: flex;
+      align-items: center;
+    }
+    .testimonial-infos{
+      width: 200px;
+
+      .infos-picture{
+        padding: 16px 16px 80px 16px;
+
+        .picture-inner {
+          width: 170px;
+          height: 170px;
+        }
+      }
+      .infos-content{
+        margin-top: 34px;
+      }
+    }
+    .testimonial-content{
+      .icon{
+        margin-left: 140px;
+        text-align: left;
+      }
+    }
+  }
+}
+
+/* -------------------------------
+LARGE SCREENS
+------------------------------- */
+@media (min-width: $screen-lg-min){
+  .cbo-testimonial{
+    
+  }
+}

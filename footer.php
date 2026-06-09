@@ -14,7 +14,7 @@
 		<span class="sr-only" itemprop="name"><?php echo esc_html( get_bloginfo('name') ); ?></span>
 		<div class="footer-inner">
 			<div class="footer-top cbo-container container--padding container--nomargin">
-				<a class="footer-logo cbo-picture-contain" href="<?php echo esc_url( home_url() ); ?>/" rel="home" aria-label="<?php esc_attr(pll__('Revenir à l\'accueil')) ?>" itemprop="url">
+				<a class="footer-logo cbo-picture-contain" href="<?php echo esc_url( home_url() ); ?>/" rel="home" aria-label="<?php echo esc_attr(pll__('Revenir à l\'accueil')); ?>" itemprop="url">
 					<img
 						decoding="async"
 						src="<?php echo esc_url( get_template_directory_uri() ); ?>/library/images/logo-speedernet-footer.svg"
@@ -27,7 +27,7 @@
 				</a>
 
 				<div class="footer-nav">
-					<nav aria-label="<?php esc_attr(pll__('Navigation du pied de page')) ?>">
+					<nav aria-label="<?php echo esc_attr(pll__('Navigation du pied de page')); ?>">
 						<?php wp_nav_menu( array(
 							'container' => false,
 							'container_class' => '',

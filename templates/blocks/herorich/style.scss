@@ -1,0 +1,180 @@
+@import "../../../src/scss/partials/variables";
+
+/* -------------------------------
+HERO RICH COMPONENT
+------------------------------- */
+.cbo-herorich {
+  overflow: hidden;
+
+  .herorich-inner {
+    text-align: center;
+    margin-bottom: 0;
+  }
+  .herorich-title {
+    margin-bottom: 1.875rem;
+  }
+  .herorich-chapo {
+    max-width: 37.5rem;
+    margin: 0 auto 2.5rem;
+  }
+  .herorich-list {
+    margin: 1.875rem -1.25rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.625rem;
+
+    .list-el {
+      flex-shrink: 0;
+      width: 6.25rem;
+      will-change: transform, opacity;
+      transform-origin: center bottom;
+
+      .el-inner {
+        display: block;
+        border-radius: $borderbig;
+        overflow: hidden;
+      }
+      &:nth-child(1),
+      &:nth-child(7),
+      &:nth-child(3),
+      &:nth-child(5){
+        .el-inner {
+          height: 15.625rem;
+        }
+      }
+      &:nth-child(2),
+      &:nth-child(6) {
+        .el-inner {
+          height: 18.75rem;
+        }
+      }
+      &:nth-child(4) {
+        animation-delay: 0.15s;
+
+        .el-inner {
+          height: 9rem;
+        }
+      }
+      &:nth-child(3),
+      &:nth-child(5){
+        animation-delay: 0.28s;
+      }
+      &:nth-child(2),
+      &:nth-child(6){
+        animation-delay: 0.41s;
+      }
+      &:nth-child(1),
+      &:nth-child(7){
+        animation-delay: 0.54s;
+      }
+    }
+  }
+  .herorich-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
+}
+
+/* -------------------------------
+SMALL SCREENS
+------------------------------- */
+@media (min-width: $screen-sm-min) {
+  .cbo-herorich {
+    .herorich-list {
+      .list-el {
+        width: 9.375rem;
+        max-width: 13.125rem;
+      }
+    }
+  }
+}
+
+/* -------------------------------
+MEDIUM SCREENS
+------------------------------- */
+@media (min-width: $screen-md-min) {
+  .cbo-herorich {
+    .herorich-list {
+      gap: 1rem;
+
+      .list-el {
+        flex: 1;
+
+        &:nth-child(1),
+        &:nth-child(3),
+        &:nth-child(5),
+        &:nth-child(7){
+          .el-inner {
+            height: 18rem;
+          }
+        }
+        &:nth-child(2),
+        &:nth-child(6) {
+          .el-inner {
+            height: 26rem;
+          }
+        }
+        &:nth-child(4) {
+          .el-inner {
+            height: 13.125rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* -------------------------------
+LARGE SCREENS
+------------------------------- */
+@media (min-width: $screen-lg-min) {
+  .cbo-herorich {
+    .herorich-list {
+      margin: -3.75rem -1.875rem 0;
+
+      .list-el {
+        &:nth-child(1),
+        &:nth-child(3),
+        &:nth-child(5),
+        &:nth-child(7){
+          .el-inner {
+            height: 23.75rem;
+          }
+        }
+        &:nth-child(2),
+        &:nth-child(6) {
+          .el-inner {
+            height: 36.25rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* -------------------------------
+XLARGE SCREENS
+------------------------------- */
+@media (min-width: $screen-xl-min) {
+  .cbo-herorich {
+    .herorich-list {
+      gap: 1.875rem;
+      max-width: 106.25rem;
+      margin-left: auto;
+      margin-right: auto;
+
+      .list-el {
+        width: 13.125rem;
+        max-width: 16.25rem;
+
+        .el-inner {
+          border-radius: 3.125rem;
+        }
+      }
+    }
+  }
+}

@@ -1,26 +1,42 @@
 <?php
 	require get_template_directory() . '/templates/blocks/articles/block.php';
+	require get_template_directory() . '/templates/blocks/accordion/block.php';
+	require get_template_directory() . '/templates/blocks/blocs/block.php';
+	require get_template_directory() . '/templates/blocks/blocsrich/block.php';
 	require get_template_directory() . '/templates/blocks/cardslider/block.php';
 	require get_template_directory() . '/templates/blocks/casestudies/block.php';
+	require get_template_directory() . '/templates/blocks/gallery/block.php';
+	require get_template_directory() . '/templates/blocks/herorich/block.php';
 	require get_template_directory() . '/templates/blocks/jobslider/block.php';
 	require get_template_directory() . '/templates/blocks/keynumbers/block.php';
 	require get_template_directory() . '/templates/blocks/partners/block.php';
 	require get_template_directory() . '/templates/blocks/team/block.php';
+	require get_template_directory() . '/templates/blocks/testimonial/block.php';
 	require get_template_directory() . '/templates/blocks/testimonials/block.php';
 	require get_template_directory() . '/templates/blocks/text/block.php';
+	require get_template_directory() . '/templates/blocks/textpicture/block.php';
+	require get_template_directory() . '/templates/blocks/textpictureslide/block.php';
 	require get_template_directory() . '/templates/blocks/video/block.php';
 
 	function allow_only_custom_blocks( $allowed_blocks, $editor_context ) {
 		return array(
 			'acf/articles',
+			'acf/accordion',
+			'acf/blocs',
+			'acf/blocsrich',
 			'acf/cardslider',
 			'acf/casestudies',
+			'acf/gallery',
+			'acf/herorich',
 			'acf/jobslider',
 			'acf/keynumbers',
 			'acf/partners',
 			'acf/team',
+			'acf/testimonial',
 			'acf/testimonials',
 			'acf/text',
+			'acf/textpicture',
+			'acf/textpictureslide',
 			'acf/video',
 		);
 	}

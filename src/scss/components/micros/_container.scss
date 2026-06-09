@@ -2,7 +2,7 @@
 CONTAINER MICRO COMPONENT
 ------------------------------- */
 .cbo-overflow-container{
-  margin: 6.25rem auto;
+  margin: 100px auto;
 
   .cbo-container {
     margin-bottom: 0;
@@ -10,9 +10,9 @@ CONTAINER MICRO COMPONENT
   }
 }
 .cbo-container {
-  margin: 6.25rem auto;
-  max-width: 81.875rem;
-  padding: 0 1.25rem;
+  margin: 100px auto;
+  max-width: 1310px;
+  padding: 0 20px;
   position: relative;
   width: 100%;
 
@@ -22,11 +22,11 @@ CONTAINER MICRO COMPONENT
   &.container--padding {
     margin-top: 0;
     margin-bottom: 0;
-    padding-top: 6.25rem;
-    padding-bottom:6.25rem;
+    padding-top: 100px;
+    padding-bottom:100px;
   }
   &.container--small{
-    max-width: 68.125rem;
+    max-width: 1090px;
   }
 }
 
@@ -35,8 +35,8 @@ SMALL SCREENS
 ------------------------------- */
 @media (min-width: $screen-sm-min) {
   .cbo-container {
-    padding-left: 2.5rem;
-    padding-right: 2.5rem;
+    padding-left: 40px;
+    padding-right: 40px;
   }
 }
 
@@ -45,16 +45,16 @@ LARGE SCREENS
 ------------------------------- */
 @media (min-width: $screen-lg-min) {
   .cbo-overflow-container{
-    margin: 12.5rem auto;
+    margin: 200px auto;
   }
   .cbo-container {
-    margin: 12.5rem auto;
-    padding-left: 3.75rem;
-    padding-right: 3.75rem;
+    margin: 200px auto;
+    padding-left: 60px;
+    padding-right: 60px;
 
     &.container--padding {
-      padding-top: 12.5rem;
-      padding-bottom: 12.5rem;
+      padding-top: 200px;
+      padding-bottom: 200px;
     }
   }
 }

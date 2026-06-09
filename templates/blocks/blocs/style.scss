@@ -1,0 +1,81 @@
+@import "../../../src/scss/partials/variables";
+
+/* -------------------------------
+BLOCS SIMPLE COMPONENT
+------------------------------- */
+.cbo-blocs{
+  .blocs-list{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+
+    .list-el{
+      .el-inner{
+        width: 100%;
+
+        .inner-icon{
+          background: $coloryellow;
+          border-radius: $bordermedium;
+          margin-bottom: 0.875rem;
+          width: 4.25rem;
+          height: 4.25rem;
+          border: 0.125rem solid $colorgrey;
+          padding: 0.75rem;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          img{
+            position: relative;
+          }
+          &.icon--blue{
+            background: $colorblue;
+
+            img{
+              filter: invert(1);
+            }
+          }
+        }
+        .inner-title{
+          margin-bottom: 0.75rem;
+          font-size: 1.25rem;
+          line-height: 1.625rem;
+        }
+      }
+    }
+  }
+}
+
+/* -------------------------------
+SMALL SCREENS
+------------------------------- */
+@media (min-width:$screen-sm-min) {
+  .cbo-blocs{
+    .blocs-list{
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}
+
+/* -------------------------------
+MEDIUM SCREENS
+------------------------------- */
+@media (min-width:$screen-md-min) {
+  .cbo-blocs{
+    .blocs-list{
+      gap: 2.5rem;
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+}
+
+/* -------------------------------
+LARGE SCREENS
+------------------------------- */
+@media (min-width:$screen-lg-min) {
+  .cbo-blocs{
+    .blocs-list{
+          gap: 2.5rem 6.25rem;
+    }
+  }
+}

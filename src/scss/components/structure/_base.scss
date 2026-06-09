@@ -83,6 +83,32 @@ body{
     border: 0;
 }
 
+/* Skip link — visible uniquement au focus clavier */
+.skip-link {
+    position: absolute;
+    top: -100%;
+    left: 1rem;
+    z-index: 9999;
+    padding: 0.5rem 1rem;
+    background: $colorgrey;
+    color: $colorwhite;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 0 0 $bordermedium $bordermedium;
+    transition: top 0.2s;
+
+    &:focus {
+        top: 0;
+    }
+}
+
+/* Focus visible global — WCAG 2.4.7 */
+:focus-visible {
+    outline: 2px solid $colorblue;
+    outline-offset: 3px;
+}
+
 figure{
 	margin: 0;
 }
@@ -95,4 +121,15 @@ button{
 	background: none;
 	border: 0;
 	padding: 0;
+}
+.cbo-page{
+	section{
+		&:first-child{
+			.cbo-container{
+				&:not(.container--padding){
+					margin-top: 40px;
+				}
+			}
+		}
+	}
 }

@@ -73,65 +73,63 @@
 				true
 			);
 
-			/* Détection automatique des blocs ACF dans le contenu */
+			/* ---- Configuration des CPTs ----
+			 * archive_option  : clé wp_option stockant l'ID de la page d'archive
+			 * taxonomies      : slugs de taxonomies liées à ce CPT
+			 * singular_blocks : blocs hardcodés dans le template single (non détectables via le contenu ACF)
+			 */
+			$cbo_cpt_config = [
+				'casestudies' => [
+					'archive_option'  => 'cbo_casestudies_archive_page',
+					'taxonomies'      => ['casestudies_cat'],
+					'singular_blocks' => ['casestudies'],
+				],
+				'testimonial' => [
+					'archive_option'  => 'cbo_testimonials_archive_page',
+					'taxonomies'      => ['testimonials_cat'],
+					'singular_blocks' => [],
+				],
+			];
+
+			/* Détection automatique des blocs ACF dans le contenu (singular & tax) */
 			if (is_singular() || is_tax()) {
 				global $post;
 				if (!empty($post->post_content)) {
 					preg_match_all('/wp:acf\/([a-z0-9-]+)/', $post->post_content, $matches);
-					if (!empty($matches[1])) {
-						foreach ($matches[1] as $block_name) {
+					foreach ($matches[1] ?? [] as $block_name) {
+						cbo_register_block_usage($block_name);
+					}
+				}
+			}
+
+			/* is_home() n'est pas is_singular() : on parse manuellement la "Page des articles" */
+			if (is_home()) {
+				$home_page = get_post(get_option('page_for_posts'));
+				if ($home_page && !empty($home_page->post_content)) {
+					preg_match_all('/wp:acf\/([a-z0-9-]+)/', $home_page->post_content, $home_matches);
+					foreach ($home_matches[1] ?? [] as $block_name) {
+						cbo_register_block_usage($block_name);
+					}
+				}
+			}
+
+			/* Détection par CPT : archives, taxonomies, et blocs hardcodés dans les singles */
+			foreach ($cbo_cpt_config as $post_type => $config) {
+				$is_archive = is_post_type_archive($post_type) || !empty(array_filter($config['taxonomies'], 'is_tax'));
+
+				if ($is_archive && !empty($config['archive_option'])) {
+					$archive_page = get_post(get_option($config['archive_option']));
+					if ($archive_page && !empty($archive_page->post_content)) {
+						preg_match_all('/wp:acf\/([a-z0-9-]+)/', $archive_page->post_content, $cpt_matches);
+						foreach ($cpt_matches[1] ?? [] as $block_name) {
 							cbo_register_block_usage($block_name);
 						}
 					}
 				}
-			}
 
-			/* Détection des blocs ACF sur la page des articles (is_home) */
-			/* is_home() n'est pas is_singular(), donc la détection ci-dessus ne s'exécute pas.
-			   On récupère manuellement le contenu de la page définie comme "Page des articles". */
-			if (is_home()) {
-				$page_for_posts_id = get_option('page_for_posts');
-				if ($page_for_posts_id) {
-					$home_page = get_post($page_for_posts_id);
-					if ($home_page && !empty($home_page->post_content)) {
-						preg_match_all('/wp:acf\/([a-z0-9-]+)/', $home_page->post_content, $home_matches);
-						if (!empty($home_matches[1])) {
-							foreach ($home_matches[1] as $block_name) {
-								cbo_register_block_usage($block_name);
-							}
-						}
-					}
-				}
-			}
-
-			/* Détection des blocs ACF sur la page d'archive Casestudies */
-			if (is_post_type_archive('casestudies') || is_tax('casestudies_cat')) {
-				$casestudies_page_id = get_option('cbo_casestudies_archive_page');
-				if ($casestudies_page_id) {
-					$cs_page = get_post($casestudies_page_id);
-					if ($cs_page && !empty($cs_page->post_content)) {
-						preg_match_all('/wp:acf\/([a-z0-9-]+)/', $cs_page->post_content, $cs_matches);
-						if (!empty($cs_matches[1])) {
-							foreach ($cs_matches[1] as $block_name) {
-								cbo_register_block_usage($block_name);
-							}
-						}
-					}
-				}
-			}
-
-			/* Détection des blocs ACF sur la page d'archive Testimonials */
-			if (is_post_type_archive('testimonial') || is_tax('testimonials_cat')) {
-				$testimonials_page_id = get_option('cbo_testimonials_archive_page');
-				if ($testimonials_page_id) {
-					$cs_page = get_post($testimonials_page_id);
-					if ($cs_page && !empty($cs_page->post_content)) {
-						preg_match_all('/wp:acf\/([a-z0-9-]+)/', $cs_page->post_content, $cs_matches);
-						if (!empty($cs_matches[1])) {
-							foreach ($cs_matches[1] as $block_name) {
-								cbo_register_block_usage($block_name);
-							}
-						}
+				if (is_singular($post_type)) {
+					foreach ($config['singular_blocks'] as $block_name) {
+						cbo_register_block_usage($block_name);
 					}
 				}
 			}

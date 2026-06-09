@@ -80,7 +80,7 @@ module.exports = function (grunt) {
         map: false,
         processors: [
           require("autoprefixer")({ overrideBrowserslist: "last 3 versions" }),
-          require("cssnano")()
+          require("cssnano")({ reduceIdents: false })
         ]
       },
 
