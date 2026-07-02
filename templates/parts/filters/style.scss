@@ -1,0 +1,119 @@
+@import "../../../src/scss/partials/variables";
+
+/* -------------------------------
+FILTERS MICRO COMPONENT
+------------------------------- */
+.cbo-filterscasestudies {
+	margin: -2.5rem 0 2.5rem 0;
+	width: 100%;
+	background: $colorwhite;
+	box-shadow: 0.625rem 0.625rem 1.25rem 0 rgba($colorgrey, .3);
+	border-radius: $bordermedium;
+	padding: 1.25rem;
+	display: flex;
+	align-items: center;
+
+	.filterscasestudies-inner {
+		text-align: center;
+		width: 100%;
+
+		.filterscasestudies-label {
+			font-weight: 700;
+			font-size: 0.875rem;
+			margin-bottom: 0.625rem;
+			display: block;
+		}
+		.filterscasestudies-list {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 0.75rem;
+
+			.list-el {
+				height: 3.125rem;
+				background: rgba($colorblue, .2);
+				border-radius: $bordermedium;
+				display: flex;
+				align-items: center;
+				border: 0.0625rem solid rgba($colorblue, .4);
+				width: 100%;
+
+				&:after {
+					font-family: "icons";
+					content: '\f104';
+					margin-left: 1rem;
+					position: relative;
+					right: 1.25rem;
+					font-size: 0.625rem;
+					pointer-events: none;
+				}
+				.el-inner {
+					width: 100%;
+					height: 100%;
+					padding: 0 1.25rem;
+					border: none;
+					background: none;
+					-webkit-appearance: none;
+					cursor: pointer;
+				}
+			}
+		}
+		.filterscasestudies-count{
+			font-weight: 700;
+			font-size: 0.875rem;
+			margin-top: 0.625rem;
+			display: block;
+		}
+	}
+}
+
+/* -------------------------------
+SMALL SCREENS
+------------------------------- */
+@media (min-width: $screen-sm-min) {
+	.cbo-filterscasestudies {
+		height: 5rem;
+
+		.filterscasestudies-inner {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+
+			.inner-filters{
+				display: flex;
+				align-items: center;
+				flex-wrap: wrap;
+				gap: 0.75rem;
+				text-align: left;
+			}
+			.filterscasestudies-label {
+				margin-bottom: 0;
+			}
+			.filterscasestudies-list {
+				.list-el {
+					width: 12.5rem;
+				}
+			}
+			.filterscasestudies-count{
+				margin-top: 0;
+			}
+		}
+	}
+}
+
+/* -------------------------------
+MEDIUM SCREENS
+------------------------------- */
+@media (min-width: $screen-md-min) {
+	.cbo-filterscasestudies {
+		margin: 0 0 2.5rem 0;
+	}
+}
+
+/* -------------------------------
+LARGE SCREENS
+------------------------------- */
+@media (min-width: $screen-lg-min) {
+	.cbo-filterscasestudies {
+		margin-top: -6.25rem;
+	}
+}

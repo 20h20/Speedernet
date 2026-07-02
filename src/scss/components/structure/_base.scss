@@ -14,8 +14,8 @@ body{
 	font-weight: normal;
 	width: 100%;
 	min-height: 100%;
-	font-size: 1.125rem;
-	line-height: 1.75rem;
+	font-size: 1rem;
+	line-height: 1.625rem;
 	text-rendering: geometricPrecision;
 	margin: 0;
 	hyphens: inherit;
@@ -123,13 +123,8 @@ button{
 	padding: 0;
 }
 .cbo-page{
-	section{
-		&:first-child{
-			.cbo-container{
-				&:not(.container--padding){
-					margin-top: 40px;
-				}
-			}
-		}
+	> .cbo-breadcrumb + * .cbo-container,
+	> *:first-child:not(.cbo-breadcrumb) .cbo-container {
+		margin-top: 0;
 	}
 }

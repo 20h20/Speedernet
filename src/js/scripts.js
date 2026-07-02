@@ -14,7 +14,7 @@
 
 			/////////////////// SLIDER ARTICLES ///////////////////
 			function initArticlesSlider() {
-				var $list = $('.cbo-articles.articles--relationship .articles-list, .cbo-casestudies .casestudies-list');
+				var $list = $('.cbo-articles.articles--relationship .articles-list');
 				if (!$list.length || typeof $.fn.slick === 'undefined') return;
 				var width = $(window).width();
 				if (width < 1024) {
@@ -42,28 +42,7 @@
 			$(window).on('resize', initArticlesSlider);
 
 
-			/////////////////// SLIDER PARTNERS ///////////////////
-			$('.cbo-partners .partners-list').each(function(){
-				var $slider = $(this);
-				$slider.append($slider.html());
-				$slider.slick({
-					arrows: false,
-					dots: false,
-					infinite: true,
-					slidesToShow: 8,
-					slidesToScroll: 1,
-					speed: 4000,
-					autoplay: true,
-					autoplaySpeed: 0,
-					cssEase: 'linear',
-					variableWidth: false,
-					responsive: [
-						{ breakpoint: 991, settings: { slidesToShow: 5 } },
-						{ breakpoint: 767, settings: { slidesToShow: 4 } },
-						{ breakpoint: 500, settings: { slidesToShow: 2 } }
-					]
-				});
-			});
+	
 
 
 			/////////////////// SLIDER TESTIMONIALS ///////////////////
@@ -92,30 +71,7 @@
 			});
 
 
-			/////////////////// SLIDER GALLERY ///////////////////
-			$('.cbo-gallery .gallery-list').slick({
-				arrows: false,
-				dots: true,
-				slidesToShow: 1,
-				slidesToScroll: 1,
-				infinite: true,
-				centerMode: true,
-				centerPadding: '20%',
-				responsive: [
-					{
-						breakpoint: 1024,
-						settings: {
-							centerPadding: '120px',
-						}
-					},
-					{
-						breakpoint: 767,
-						settings: {
-							centerPadding: '30px',
-						}
-					}
-				]
-			});
+			
 
 
 			/////////////////// PARALLAX PICTURE ///////////////////
@@ -158,24 +114,7 @@
 				}, { passive: true });
 			}
 			galleryParallax();
-
-
-			/////////////////// BIG TEXT FIT (keynumbers + cardslider) ///////////////////
-			function fitKeyNumbersBigText() {
-				document.querySelectorAll('.keynumbers-bigtxt, .cardslider-bigtxt').forEach(function(el) {
-					el.style.fontSize = '100px';
-					var maxWidth = el.classList.contains('cardslider-bigtxt') ? Math.min(window.innerWidth, 1400) : window.innerWidth;
-					var ratio = maxWidth / el.scrollWidth;
-					var fontSize = Math.floor(110 * ratio);
-					el.style.fontSize = fontSize + 'px';
-
-					if (el.classList.contains('cardslider-bigtxt')) {
-						el.style.top = '0';
-					}
-				});
-			}
-			fitKeyNumbersBigText();
-			$(window).on('resize', fitKeyNumbersBigText);
+			
 
 
 			/////////////////// SLIDER JOBS ///////////////////
@@ -198,69 +137,7 @@
 			});
 
 
-			/////////////////// CARD STACK - CARDSLIDER ///////////////////
-			var $cardList = $('.cbo-cardslider .cardslider-list');
-			if ($cardList.length) {
-				var $cardItems   = $cardList.find('> .list-el');
-				var $cardTabs    = $('.cbo-cardslider .cardslider-tabs .tab-el');
-				var $cardPrev    = $('.cbo-cardslider .nav-btn--prev');
-				var $cardNext    = $('.cbo-cardslider .nav-btn--next');
-				var cardTotal   = $cardItems.length;
-				var cardCurrent = 0;
-				var cardBusy    = false;
-				var OFFSET      = 20;
-
-				function renderCardStack() {
-					$cardItems.each(function(i) {
-						var pos = ((i - cardCurrent) + cardTotal) % cardTotal;
-						var isActive = pos === 0;
-						$(this)
-							.data('stack-pos', pos)
-							.css({
-								'z-index' : cardTotal - pos,
-								'top'     : ((cardTotal - 1 - pos) * OFFSET) + 'px',
-								'left'    : (pos * OFFSET) + 'px',
-							})
-							.toggleClass('stack-active', isActive)
-							.attr('aria-hidden', isActive ? 'false' : 'true');
-					});
-					$cardTabs
-						.attr('aria-selected', 'false')
-						.removeClass('active')
-						.eq(cardCurrent)
-						.addClass('active')
-						.attr('aria-selected', 'true');
-					updateCardHeight();
-				}
-
-				function updateCardHeight() {
-					var $front = $cardList.find('.stack-active');
-					if ($front.length) {
-						$cardList.height($front.outerHeight() + (cardTotal - 1) * OFFSET);
-					}
-				}
-
-				function goToCard(index) {
-					if (cardBusy) return;
-					cardBusy = true;
-					cardCurrent = ((index % cardTotal) + cardTotal) % cardTotal;
-					renderCardStack();
-					setTimeout(function() { cardBusy = false; }, 450);
-				}
-
-				$cardPrev.on('click', function() { goToCard(cardCurrent - 1); });
-				$cardNext.on('click', function() { goToCard(cardCurrent + 1); });
-
-				$cardTabs.on('click', function() { goToCard($(this).index()); });
-
-				$cardItems.on('click', function() {
-					var pos = $(this).data('stack-pos');
-					if (pos > 0) { goToCard(cardCurrent + pos); }
-				});
-
-				renderCardStack();
-				$(window).on('resize', updateCardHeight);
-			}
+			
 
 
 			/////////////////// TEAM PARALLAX ///////////////////
@@ -510,64 +387,59 @@
 			});
 
 
-			//////////////// TEXTPICTURESLIDE STICKY SCROLL ////////////////
-			(function() {
-				var section = document.querySelector('.cbo-textpictureslide');
-				if (!section) return;
-
-				var contentEls = section.querySelectorAll('.list-el');
-				var imageEls   = section.querySelectorAll('.image-el');
-
-				if (!contentEls.length || !imageEls.length) return;
-
-				var currentActive = -1;
-				var triggerLine = window.innerHeight * 0.25;
-
-				function updateActiveImage() {
-					var newActive = 0;
-					for (var i = 0; i < contentEls.length; i++) {
-						if (contentEls[i].getBoundingClientRect().top <= triggerLine) {
-							newActive = i;
-						} else {
-							break;
-						}
-					}
-					if (newActive !== currentActive) {
-						imageEls.forEach(function(img) { img.classList.remove('is-active'); });
-						var active = section.querySelector('.image-el[data-index="' + newActive + '"]');
-						if (active) active.classList.add('is-active');
-						currentActive = newActive;
-					}
-				}
-
-				updateActiveImage();
-				$(window).on('scroll.textpictureslide', function() {
-					window.requestAnimationFrame(updateActiveImage);
-				});
-			})();
-
-
 			/////////////////// WORD SLIDE-UP ANIMATION ///////////////////
 			function initWordAnim() {
 				var elements = document.querySelectorAll('[data-word-anim]');
 				if (!elements.length) return;
 
-				function escHtml(str) {
-					return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+				// Skip animation entirely if user prefers reduced motion
+				if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+					elements.forEach(function(el) { el.classList.add('word-anim--ready'); });
+					return;
+				}
+
+				function wrapTextNode(textNode, delay, counter) {
+					var parts = textNode.nodeValue.split(/(\s+)/);
+					var fragment = document.createDocumentFragment();
+					parts.forEach(function(part) {
+						if (!part) return;
+						if (/^\s+$/.test(part)) {
+							fragment.appendChild(document.createTextNode(part));
+						} else {
+							var wrapper = document.createElement('span');
+							wrapper.className = 'word-wrapper';
+							var anim = document.createElement('span');
+							anim.className = 'word-anim';
+							anim.style.animationDelay = (counter.value * delay) + 's';
+							anim.textContent = part;
+							wrapper.appendChild(anim);
+							fragment.appendChild(wrapper);
+							counter.value++;
+						}
+					});
+					textNode.parentNode.replaceChild(fragment, textNode);
+				}
+
+				function walkNodes(node, delay, counter) {
+					if (node.nodeType === Node.TEXT_NODE) {
+						if (node.nodeValue.trim()) wrapTextNode(node, delay, counter);
+					} else if (node.nodeType === Node.ELEMENT_NODE) {
+						Array.from(node.childNodes).forEach(function(child) {
+							walkNodes(child, delay, counter);
+						});
+					}
 				}
 
 				elements.forEach(function(el) {
-					var words = el.textContent.trim().split(/\s+/);
+					// Store plain text for screen readers before rewriting DOM
+					if (!el.getAttribute('aria-label')) {
+						el.setAttribute('aria-label', el.textContent.trim());
+					}
 					var delay = parseFloat(el.getAttribute('data-word-delay') || 0.07);
-					var html  = '';
-					words.forEach(function(word, i) {
-						html += '<span class="word-wrapper">'
-							+ '<span class="word-anim" style="animation-delay:' + (i * delay) + 's">'
-							+ escHtml(word)
-							+ '</span></span>';
-						if (i < words.length - 1) html += ' ';
-					});
-					el.innerHTML = html;
+					var counter = { value: 0 };
+					walkNodes(el, delay, counter);
+					// Hide visual spans from screen readers (aria-label covers the full text)
+					el.querySelectorAll('.word-wrapper').forEach(function(s) { s.setAttribute('aria-hidden', 'true'); });
 				});
 
 				if ('IntersectionObserver' in window) {
@@ -639,13 +511,21 @@
 
 			
 
+			
+function fitKeyNumbersBigText() {
+		document.querySelectorAll('.keynumbers-bigtxt').forEach(function(el) {
+			el.style.fontSize = '100px';
+			var ratio = window.innerWidth / el.scrollWidth;
+			el.style.fontSize = Math.floor(110 * ratio) + 'px';
+		});
+	}
+	fitKeyNumbersBigText();
+	$(window).on('resize', fitKeyNumbersBigText);
+
+
+
 
 			
-
-
-			
-
-
 
 
 
@@ -792,3 +672,10 @@
 	});
 
 })(jQuery);
+
+/*include ../../templates/blocks/casestudies/script.js*/
+/*include ../../templates/blocks/cardslider/script.js*/
+/*include ../../templates/blocks/gallery/script.js*/
+/*include ../../templates/blocks/partners/script.js*/
+/*include ../../templates/blocks/textpictureslide/script.js*/
+/*include ../../templates/blocks/textpictureaccordion/script.js*/

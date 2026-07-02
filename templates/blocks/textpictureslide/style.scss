@@ -18,19 +18,27 @@ TEXT PICTURE SLIDE COMPONENT
     .list-el {
       margin: 3.125rem 0;
 
-      .el-picture {
-        width: 100%;
-        aspect-ratio: 4 / 3;
-        border-radius: $borderlarge;
-        overflow: hidden;
+      .el-picture-wrap {
+        position: relative;
         margin-bottom: 1.25rem;
+        padding-bottom: 2rem;
+
+        .el-picture {
+          width: 100%;
+          aspect-ratio: 4 / 3;
+          border-radius: $borderlarge;
+          overflow: hidden;
+        }
+        .el-illustration {
+          display: none;
+        }
       }
     }
   }
 }
 
 /* -------------------------------
-MEDIUM SCREENS (desktop)
+MEDIUM SCREENS
 ------------------------------- */
 @media (min-width: $screen-md-min) {
   .cbo-textpictureslide {
@@ -51,7 +59,6 @@ MEDIUM SCREENS (desktop)
         position: relative;
         aspect-ratio: 4 / 3;
         border-radius: $borderlarge;
-        overflow: hidden;
 
         .image-el {
           position: absolute;
@@ -63,11 +70,35 @@ MEDIUM SCREENS (desktop)
           &.is-active {
             opacity: 1;
             pointer-events: auto;
+
+            .el-illustration {
+              opacity: 1;
+              transform: translateY(0) scale(1);
+            }
           }
+
           .el-picture {
             width: 100%;
             height: 100%;
+            border-radius: $borderlarge;
+            overflow: hidden;
           }
+
+          .el-illustration {
+            position: absolute;
+            width: 6.25rem;
+            opacity: 0;
+            transform: translateY(1.5rem) scale(0.9);
+            transition: opacity 0.5s $easeinout 0.35s, transform 0.5s $easeinout 0.35s;
+            pointer-events: none;
+
+            img {
+              width: 100%;
+              display: block;
+            }
+          }
+          &:nth-child(odd) .el-illustration  { top: -8%; right: 8%; }
+          &:nth-child(even) .el-illustration { bottom: -8%; left: 8%; }
         }
       }
     }
@@ -80,7 +111,7 @@ MEDIUM SCREENS (desktop)
       .list-el {
         margin: 0;
       }
-      .el-picture {
+      .el-picture-wrap {
         display: none;
       }
     }

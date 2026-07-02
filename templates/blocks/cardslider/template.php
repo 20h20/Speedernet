@@ -21,19 +21,22 @@ $items         = get_field('cardslider_list');
 			</div>
 		<?php endif; ?>
 
+
 		<?php if($items): ?>
 			<nav class="cardslider-tabs slide-up" role="tablist" aria-label="<?php pll_e('Navigation par onglets') ?>">
-				<?php foreach($items as $index => $item): ?>
+				<?php foreach($items as $index => $item):
+					$tab_label = $item['onglet'] ?? '';
+				?>
 					<button
 						class="cbo-tag slide-up tag--grey tab-el<?php echo $index === 0 ? ' active' : ''; ?>"
 						type="button"
 						role="tab"
-						aria-label="<?php echo esc_attr(wp_strip_all_tags($item['title'])); ?>"
+						aria-label="<?php echo esc_attr(wp_strip_all_tags($tab_label)); ?>"
 						aria-selected="<?php echo $index === 0 ? 'true' : 'false'; ?>"
 						aria-controls="card-panel-<?php echo $index; ?>"
 					>
 						<i class="icon icon--arrow-next" aria-hidden="true"></i>
-						<?php echo wp_kses_post($item['title']); ?>
+						<?php echo esc_html($tab_label); ?>
 					</button>
 				<?php endforeach; ?>
 			</nav>
@@ -41,9 +44,9 @@ $items         = get_field('cardslider_list');
 			<div class="list-container">
 				<ul class="cardslider-list" role="list" itemscope itemtype="https://schema.org/ItemList">
 					<?php foreach($items as $index => $item):
-						$title   = $item['title'];
 						$content = $item['content'];
 						$picture = $item['picture'];
+						$featured = $item['featured'];
 					?>
 						<li
 							class="list-el slide-up"
@@ -74,7 +77,7 @@ $items         = get_field('cardslider_list');
 								<?php endif; ?>
 
 								<span class="inner-title slide-up">
-									<?php echo wp_kses_post($title); ?>
+									<?php echo wp_kses_post($featured); ?>
 								</span>
 							</div>
 						</li>

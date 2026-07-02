@@ -1,0 +1,73 @@
+@import "../../../src/scss/partials/variables";
+
+/* -------------------------------
+SPEAKERS PART
+------------------------------- */
+.webinaire-speakers {
+	background: linear-gradient(180deg, rgba($colorblue, .2) 0%, rgba($colorblue, 0) 68%);
+	border-radius: $borderlarge;
+	padding: 1.25rem;
+	margin-top: 2.5rem;
+	width: 100%;
+
+	.speakers-title {
+		font-weight: 700;
+		font-size: 1rem;
+		margin: 0 0 1rem;
+	}
+
+	.speakers-list {
+		.speaker-el {
+			display: flex;
+			align-items: center;
+			gap: 0.875rem;
+			margin: 0.625rem 0;
+
+			.speaker-picture {
+				width: 4.375rem;
+				min-width: 4.375rem;
+				height: 4.375rem;
+				border-radius: $borderlarge;
+				background: $colorwhite;
+				padding: 0.375rem;
+				box-shadow: $shadowblack;
+
+				.picture-inner {
+					height: 100%;
+					width: 100%;
+					border-radius: $borderlarge;
+					overflow: hidden;
+				}
+			}
+
+			.speaker-info {
+				.speaker-name {
+					display: block;
+					font-weight: 700;
+				}
+			}
+		}
+	}
+}
+
+/* -------------------------------
+LARGE SCREENS
+------------------------------- */
+@media (min-width: $screen-lg-min) {
+	.webinaire-speakers {
+		margin-top: 0;
+
+		.speakers-list {
+			.speaker-el {
+				margin: 1.25rem 0;
+
+				.speaker-picture {
+					width: 5rem;
+					min-width: 5rem;
+					height: 5rem;
+					padding: 0.5rem;
+				}
+			}
+		}
+	}
+}

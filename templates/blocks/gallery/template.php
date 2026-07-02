@@ -1,5 +1,18 @@
-<section class="cbo-gallery" itemscope itemtype="https://schema.org/ImageGallery">
+<?php
+
+$title  = get_field('gallery_title');
+
+?>
+
+<section class="cbo-gallery cbo-overflow-container" itemscope itemtype="https://schema.org/ImageGallery">
 	<div class="gallery-inner cbo-container">
+
+		<?php if ($title): ?>
+            <div class="gallery-title cbo-title-2 slide-up">
+                <?php echo wp_kses_post($title); ?>
+            </div>
+        <?php endif; ?>
+
 		<div class="gallery-list slide-up">
 			<?php
 				if( have_rows('gallery_list') ):

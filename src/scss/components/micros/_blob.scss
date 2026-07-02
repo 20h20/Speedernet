@@ -11,32 +11,56 @@ BLOB COMPONENT
     overflow: hidden;
 	top: 0;
 
-    // Blob haut-droite
+    &.blob--yellow{
+        &::before,
+        &::after{
+            background: $coloryellow;
+        }
+        &:before{
+            opacity: 0.5;
+        }
+        &::after {
+            opacity: 0.3;
+        }
+    }
+
+    &.blob--left{
+        &::before,
+        &::after {
+            right: inherit;
+        }
+        &::before{
+            left: -100px;
+        }
+        &::after{
+            left: 0;
+        }
+    }
+
     &::before {
         content: '';
         position: absolute;
-        width: 50rem;
-        height: 50rem;
+        width: 400px;
+        height: 600px;
         top: 10%;
-        right: -6.25rem;
+        right: -100px;
         background: $colorblue;
         opacity: 0.3;
-        filter: blur(4.375rem);
+        filter: blur(70px);
         border-radius: 40% 60% 60% 40% / 40% 40% 60% 60%;
         animation: blob-morph-a 14s ease-in-out infinite;
     }
 
-    // Blob bas-gauche
     &::after {
         content: '';
         position: absolute;
-        width: 40.625rem;
-        height: 40.625rem;
+        width: 300px;
+        height: 450px;
         top: 20%;
-        right: -100px;
+        right: -6.25rem;
         background: $colorblue;
         opacity: 0.2;
-        filter: blur(60px);
+        filter: blur(3.75rem);
         border-radius: 60% 40% 40% 60% / 60% 60% 40% 40%;
         animation: blob-morph-b 18s ease-in-out infinite;
     }
@@ -49,11 +73,11 @@ BLOB COMPONENT
     }
     33% {
         border-radius: 70% 30% 30% 70% / 60% 20% 80% 40%;
-        transform: translate(-80px, 60px) scale(1.1);
+        transform: translate(-5rem, 3.75rem) scale(1.1);
     }
     66% {
         border-radius: 20% 80% 70% 30% / 50% 70% 30% 50%;
-        transform: translate(60px, -80px) scale(0.9);
+        transform: translate(3.75rem, -5rem) scale(0.9);
     }
 }
 
@@ -64,10 +88,26 @@ BLOB COMPONENT
     }
     40% {
         border-radius: 30% 70% 70% 30% / 40% 80% 20% 60%;
-        transform: translate(80px, -60px) scale(1.12);
+        transform: translate(5rem, -3.75rem) scale(1.12);
     }
     70% {
         border-radius: 80% 20% 50% 50% / 60% 30% 70% 40%;
-        transform: translate(-60px, 80px) scale(0.88);
+        transform: translate(-3.75rem, 5rem) scale(0.88);
+    }
+}
+
+/* -------------------------------
+SMALL SCREENS
+------------------------------- */
+@media (min-width: $screen-sm-min) {
+    .cbo-blob {
+        &:before {
+            width: 800px;
+            height: 800px;
+        }
+        &:after {
+            width: 650px;
+            height: 650px;
+        }
     }
 }

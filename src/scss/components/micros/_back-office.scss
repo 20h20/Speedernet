@@ -7,9 +7,16 @@ BACK OFFICE COMPONENT
 // BLOCKS
 .editor-styles-wrapper{
 	.wp-block-post-content{
+		overflow: hidden;
+
 		.block-editor-block-list__block{
 			max-width: 104.375rem;
 
+			.cbo-herosimple{
+				.cbo-blob{
+					overflow: visible;
+				}
+			}
 			.cbo-herorich {
 				.herorich-list {
 					.list-el {
@@ -22,6 +29,11 @@ BACK OFFICE COMPONENT
 		}
 	}
 }
+
+
+
+
+
 
 #wpbody{
 	input[type="submit"]{

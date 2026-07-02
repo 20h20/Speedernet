@@ -2,20 +2,17 @@
 FORM MICRO COMPONENT
 ------------------------------- */
 .cbo-form{
-	input:focus:not(:focus-visible),
-	textarea:focus:not(:focus-visible),
-	select:focus:not(:focus-visible) {
-		outline: none;
-		box-shadow: none;
-	}
-	input:focus-visible,
-	textarea:focus-visible,
-	select:focus-visible {
-		outline: 2px solid $colorblue;
-		outline-offset: 2px;
-		box-shadow: none;
-	}
 	form {
+		label {
+			font-size: 14px;
+			transition: color 0.2s $easeinout;
+		}
+
+		.form-field:focus-within > label,
+		.form-field:focus-within .field-inner > label {
+			color: $colorblue;
+		}
+
 		input[type="text"],
 		input[type="email"],
 		input[type="number"],
@@ -25,70 +22,45 @@ FORM MICRO COMPONENT
 		select,
 		textarea {
 			font-family: $fontprimary;
-			border: none;
+			border: 1px solid $colorgreymediumlight;
+			border-radius: 6px;
 			background: $colorwhite;
-			height: 3.125rem;
+			height: 50px;
 			width: 100%;
-			font-size: 0.875rem;
+			font-size: 14px;
 			font-weight: 300;
-			color: $colorgrey;
-			border-bottom: 0.125rem solid $colorgrey;
-			transition: all 0.2s cubic-bezier(0.85, 0, 0.15, 1) 0s;
+			padding: 0 15px;
+			transition: border-color 0.2s $easeinout, box-shadow 0.2s $easeinout;
 
-			&:focus,
-			&.filled{
-				border-bottom: 0.125rem solid $colorgrey;
-			}
-			&.wpcf7-not-valid{
-				border: 0.0625rem solid $colorerror;
-			}
-			&::-webkit-input-placeholder {
-				color: $colorgrey;
-				opacity: 1;
+			&:focus {
+				outline: none;
+				border-color: $colorblue;
+				box-shadow: 0 0 0 3px rgba($colorblue, 0.2),
+				            0 1px 3px 0 rgba(0, 0, 0, 0.1);
 			}
 
-			&::-moz-placeholder {
-				color: $colorgrey !important;
-				opacity: 1 !important;
-			}
-
-			&:-ms-input-placeholder {
-				color: $colorgrey;
-				opacity: 1;
-			}
-
-			&::placeholder {
-				color: $colorgrey;
+			&.wpcf7-not-valid {
+				border-color: $colorerror;
+				box-shadow: 0 0 0 3px rgba($colorerror, 0.15);
 			}
 		}
 		textarea {
 			resize: none;
 			height: 8.75rem;
-			padding: 0;
+			padding: 0.75rem 0.9375rem;
 			font-family: $fontprimary;
 			font-size: 0.875rem;
 			font-weight: 300;
 		}
-		.cf-turnstile{
-			order: 2;
-		}
-		.field--submit{
-			order: 3;
-		}
 		.hidden-fields-container{
 			display: none;
 		}
-		input[type="submit"]{
-			font-family: $fontprimary;
-			display: table;
-			margin: 1.875rem auto 0 auto;
-		}
 		.form-field{
-			margin-bottom: 0.875rem;
+			margin-bottom: 14px;
 			width: 100%;
 
 			.wpcf7-not-valid-tip{
-				font-size: 0.75rem;
+				font-size: 12px;
 				color: $colorerror;
 			}
 			&.form-acceptance {
@@ -111,33 +83,39 @@ FORM MICRO COMPONENT
 					position: relative;
 					position: relative;
 					cursor: pointer;
-					line-height: 0.875rem;
+					line-height: 14px;
 
 					&:before {
 						content: "";
 						display: block;
-						width: 0.75rem;
-						min-width: 0.75rem;
-						height: 0.75rem;
-						border-radius: 0.125rem;
-						border: 0.0625rem solid $colorgrey;
-						margin: 0 0.625rem 0 0.0625rem;
+						width: 12px;
+						min-width: 12px;
+						height: 12px;
+						border-radius: 2px;
+						border: 1px solid $colorgreymediumlight;
+						margin: 0 10px 0 1px;
 						cursor: pointer;
+						transition: border-color 0.2s $easeinout, box-shadow 0.2s $easeinout;
 					}
 					&:after {
 						content: "";
 						display: block;
-						width: 0.5rem;
-						min-width: 0.5rem;
-						height: 0.5rem;
-						border-radius: 0.125rem;
-						background: $colorgrey;
+						width: 8px;
+						min-width: 8px;
+						height: 8px;
+						border-radius: 2px;
+						background: $colorblue;
 						position: absolute;
-						top: 0.1875rem;
-						left: 0.25rem;
+						top: 3px;
+						left: 4px;
 						transform: scale(0);
 						transition: all 0.3s $easeinout;
 					}
+				}
+				&:focus-within label:before {
+					border-color: $colorblue;
+					box-shadow: 0 0 0 3px rgba($colorblue, 0.2),
+					            0 1px 3px 0 rgba(0, 0, 0, 0.1);
 				}
 				&:not(.checked) label:hover {
 					&:after{
@@ -156,21 +134,21 @@ FORM MICRO COMPONENT
 			color: $colorwhite;
 			display:none;
 			width: 100%;
-			margin: 1.875rem auto 0 auto;
-			padding: 1rem;
-			font-size: 0.875rem;
-			border-radius: 0.3125rem;
+			margin: 30px auto 0 auto;
+			padding: 16px;
+			font-size: 14px;
+			border-radius: 5px;
 
 			&:before{
 				font-family:"icons";
-				margin-right: 0.625rem;
+				margin-right: 10px;
 			}
 		}
 
 		&.invalid{
 			.wpcf7-response-output {
 				background: rgba($colorerror, .2);
-				border-left: 0.1875rem solid $colorerror;
+				border-left: 3px solid $colorerror;
 				display: block;
 				color: $colorerror;
 
@@ -182,7 +160,7 @@ FORM MICRO COMPONENT
 		&.sent{
 			.wpcf7-response-output {
 				background: rgba($colorsuccess, .6);
-				border-left: 0.1875rem solid $colorsuccess;
+				border-left: 3px solid $colorsuccess;
 				display: block;
 				color: $colorgrey;
 
@@ -198,10 +176,10 @@ FORM MICRO COMPONENT
 				position: absolute;
 				top: 50%;
 				left: 50%;
-				width: 2.5rem;
-				height: 2.5rem;
-				margin: -1.25rem 0 0 -1.25rem;
-				border: 0.4375rem solid rgba($colorgrey, 0.3);
+				width: 40px;
+				height: 40px;
+				margin: -20px 0 0 -20px;
+				border: 7px solid rgba($colorgrey, 0.3);
 				border-top-color: $colorgrey;
 				border-radius: 50%;
 				animation: spin 1s linear infinite;
@@ -229,16 +207,14 @@ SMALL SCREENS
 			display: flex;
 			flex-wrap: wrap;
 			justify-content: space-between;
+			margin: 0 -10px;
 
-			.form-step{
-				display: flex;
-				flex-wrap: wrap;
-				justify-content: space-between;
-				width: 100%;
-			}
 			.form-field{
 				&.field-half{
-					width: 49%;
+					width: 50%;
+				}
+				.field-inner{
+					padding: 0 10px;
 				}
 			}
 		}

@@ -5,6 +5,7 @@ $fontprimary: "Mulish";
 $colorblack     : #000;
 $colorwhite     : #FFF;
 $colorgrey      : #313131;
+$colorgreymediumlight  : #ABABAB;
 $colorgreymedium : #EEEEEE;
 $colorgreylight : #F6F6F6;
 $colorred       : #F7343A;
@@ -24,15 +25,21 @@ $dbcolored : #EB4039;
 
 
 // Borders radius
+$bordersmall : 5px;
 $bordermedium : 10px;
 $borderlarge : 20px;
 $borderbig : 30px;
 
 
 // Box shadows
+$shadowblack: 6px 10px 20px 0 rgba($colorbluedark, 0.5);
+
+
+
+
+
 $shadowmedium : 5px 5px 10px 0 $colorbluelight;
 $shadowbig : 10px 10px 20px 0 $colorbluelight;
-
 
 // Animations
 $easeinout : cubic-bezier(0.215, 0.600, 0.270, 0.995);

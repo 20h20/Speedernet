@@ -11,7 +11,8 @@ $items = get_field('textpictureslide_list');
 			<div class="images-list">
 				<?php
 					if($items): foreach($items as $index => $item):
-					$picture = $item['picture'];
+					$picture       = $item['picture'];
+					$illustration  = $item['illustration'] ?? null;
 				?>
 					<div class="image-el<?php echo $index === 0 ? ' is-active' : ''; ?>" data-index="<?php echo $index; ?>">
 						<?php if($picture): ?>
@@ -28,6 +29,11 @@ $items = get_field('textpictureslide_list');
 								>
 							</div>
 						<?php endif; ?>
+						<?php if($illustration): ?>
+							<div class="el-illustration" aria-hidden="true">
+								<img src="<?php echo esc_url($illustration['url']); ?>" alt="" loading="lazy" decoding="async">
+							</div>
+						<?php endif; ?>
 					</div>
 				<?php
 					endforeach;
@@ -39,21 +45,29 @@ $items = get_field('textpictureslide_list');
 		<div class="textpictureslide-list">
 			<?php
 				if($items): foreach($items as $index => $item):
-				$picture = $item['picture'];
-				$content = $item['content'];
+				$picture      = $item['picture'];
+				$illustration = $item['illustration'] ?? null;
+				$content      = $item['content'];
 			?>
 				<div class="list-el" data-index="<?php echo $index; ?>">
 					<?php if($picture): ?>
-						<div class="el-picture cbo-picture-cover">
-							<img decoding="async"
-								src="<?php echo esc_url($picture['sizes']['medium']); ?>"
-								srcset="<?php echo esc_url($picture['sizes']['small']); ?> 320w,
-									<?php echo esc_url($picture['sizes']['medium']); ?> 768w"
-								alt="<?php echo esc_attr($picture['alt']); ?>"
-								sizes="100vw"
-								width="1000" height="1000"
-								loading="lazy"
-							>
+						<div class="el-picture-wrap">
+							<div class="el-picture cbo-picture-cover">
+								<img decoding="async"
+									src="<?php echo esc_url($picture['sizes']['medium']); ?>"
+									srcset="<?php echo esc_url($picture['sizes']['small']); ?> 320w,
+										<?php echo esc_url($picture['sizes']['medium']); ?> 768w"
+									alt="<?php echo esc_attr($picture['alt']); ?>"
+									sizes="100vw"
+									width="1000" height="1000"
+									loading="lazy"
+								>
+							</div>
+							<?php if($illustration): ?>
+								<div class="el-illustration slide-up" aria-hidden="true">
+									<img src="<?php echo esc_url($illustration['url']); ?>" alt="" loading="lazy" decoding="async">
+								</div>
+							<?php endif; ?>
 						</div>
 					<?php endif; ?>
 

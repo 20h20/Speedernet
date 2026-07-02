@@ -187,7 +187,7 @@ module.exports = function (grunt) {
       },
 
       js: {
-        files: "<%= path_src %>js/**/*.js",
+        files: ["<%= path_src %>js/**/*.js", "<%= path_src_blocks %>**/*.js", "<%= path_src_parts %>**/*.js"],
         tasks: ["include_file", "uglify"]
       }
     }

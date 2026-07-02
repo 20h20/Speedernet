@@ -1,0 +1,86 @@
+@import "../../../src/scss/partials/variables";
+
+/* -------------------------------
+SINGLE WEBINAIRE
+------------------------------- */
+.cbo-single-webinaire {
+	.single-content {
+		.content-meta {
+			display: flex;
+			margin-bottom: 20px;
+
+			.icon {
+				width: 50px;
+				height: 50px;
+				background: $coloryellow;
+				border-radius: $bordermedium;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 30px;
+				z-index: 2;
+			}
+
+			.meta-info {
+				background: $colorgreymedium;
+				padding: 0 20px 0 30px;
+				border-radius: 0 $bordermedium $bordermedium 0;
+				margin-left: -10px;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+
+				.meta-duree{
+					display: block;
+				}
+			}
+		}
+	}
+	.single-form {
+		background: $colorwhite;
+		border-radius: $borderlarge;
+		box-shadow: $shadowblack;
+		padding: 20px;
+		height: fit-content;
+	}
+}
+
+/* -------------------------------
+SMALL SCREENS
+------------------------------- */
+@media (min-width: $screen-sm-min) {
+	.cbo-single-webinaire {
+		.single-inner {
+			display: flex;
+			align-items: flex-start;
+		}
+		.single-content {
+			flex: 1;
+			padding-right: 40px;
+		}
+		.single-form {
+			width: 40%;
+			max-width: 500px;
+			position: sticky;
+			top: 100px;
+		}
+	}
+}
+
+/* -------------------------------
+LARGE SCREENS
+------------------------------- */
+@media (min-width: $screen-lg-min) {
+	.cbo-single-webinaire {
+		.single-content {
+			padding-right: 70px;
+
+			.webinaire-speakers {
+				margin-top: 40px;
+			}
+		}
+		.single-form {
+			padding: 40px;
+		}
+	}
+}

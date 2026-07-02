@@ -50,6 +50,16 @@ KEYFRAMES
 		animation: none;
 		transform: translateY(0);
 	}
+	.slide-up,
+	.slide-down,
+	.slide-left,
+	.slide-right,
+	.scale-up,
+	.scale-down {
+		opacity: 1;
+		transform: none;
+		transition: none;
+	}
 }
 
 .herorich-animate{

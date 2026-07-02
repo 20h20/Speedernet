@@ -62,9 +62,9 @@ a{
 }
 
 .cbo-title-1, .cbo-title-1 h1, .cbo-title-1 h2, .cbo-title-1 h3, .cbo-title-1 h4.cbo-title-1 h5, .cbo-title-1 p, .cbo-cms h1{
-	font-size: 48px;
-	line-height: 56px;
-	font-weight: 600;
+	font-size: 34px;
+	line-height: 38px;
+	font-weight: normal;
 }
 
 .cbo-title-2, .cbo-title-2 h1, .cbo-title-2 h2, .cbo-title-2 h3, .cbo-title-2 h4.cbo-title-2 h5, .cbo-title-2 p, .cbo-cms h2{
@@ -88,6 +88,11 @@ a{
 	font-size: 18px;
 	line-height: 28px;
 	font-weight: 600;
+}
+
+.cbo-label{
+	font-size: 14px;
+	line-height: 20px;
 }
 
 .cbo-cms{
@@ -117,12 +122,12 @@ a{
 }
 
 /* -------------------------------
-LARGE SCREENS
+MEDIUM SCREENS
 ------------------------------- */
 @media (min-width: $screen-md-min) {
 	.cbo-title-1, .cbo-title-1 h1, .cbo-title-1 h2, .cbo-title-1 h3, .cbo-title-1 h4.cbo-title-1 h5, .cbo-title-1 p, .cbo-cms h1{
-		font-size: 75px;
-		line-height: 86px;
+		font-size: 50px;
+		line-height: 56px;
 	}
 	.cbo-title-2, .cbo-title-2 h1, .cbo-title-2 h2, .cbo-title-2 h3, .cbo-title-2 h4.cbo-title-2 h5, .cbo-title-2 p, .cbo-cms h2{
 		font-size: 40px;
@@ -133,11 +138,23 @@ LARGE SCREENS
 		line-height: 38px;
 	}
 	.cbo-title-4, .cbo-title-4 h1, .cbo-title-4 h2, .cbo-title-4 h3, .cbo-title-4 h4.cbo-title-4 h5, .cbo-title-4 p, .cbo-cms h4{
-		font-size: 25px;
+		font-size: 22px;
+	}
+	.cbo-chapo{
+		font-size: 22px;
+		line-height: 32px;
 	}
 }
 
-
+/* -------------------------------
+LARGE SCREENS
+------------------------------- */
+@media (min-width: $screen-lg-min) {
+	.cbo-title-1, .cbo-title-1 h1, .cbo-title-1 h2, .cbo-title-1 h3, .cbo-title-1 h4.cbo-title-1 h5, .cbo-title-1 p, .cbo-cms h1{
+		font-size: 70px;
+		line-height: 80px;
+	}
+}
 
 
 

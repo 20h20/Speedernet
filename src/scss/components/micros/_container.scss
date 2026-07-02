@@ -45,12 +45,29 @@ LARGE SCREENS
 ------------------------------- */
 @media (min-width: $screen-lg-min) {
   .cbo-overflow-container{
+    margin: 150px auto;
+  }
+  .cbo-container {
+    margin: 150px auto;
+    padding-left: 60px;
+    padding-right: 60px;
+
+    &.container--padding {
+      padding-top: 150px;
+      padding-bottom: 150px;
+    }
+  }
+}
+
+/* -------------------------------
+XLARGE SCREENS
+------------------------------- */
+@media (min-width: $screen-xl-min) {
+  .cbo-overflow-container{
     margin: 200px auto;
   }
   .cbo-container {
     margin: 200px auto;
-    padding-left: 60px;
-    padding-right: 60px;
 
     &.container--padding {
       padding-top: 200px;

@@ -11,7 +11,7 @@
 				the_content();
 			endif;
 		?>
-	</div>			
+	</div>
 
 	<section class="cbo-casestudies">
 		<div class="casestudies-inner cbo-container">

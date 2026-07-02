@@ -11,7 +11,7 @@ if ( ! empty( $categories ) && ! is_wp_error( $categories ) ) {
 
 ?>
 
-<article <?php post_class('list-el'); ?> itemscope itemtype="https://schema.org/Article">
+<article <?php post_class('cbo-casestudy'); ?> itemscope itemtype="https://schema.org/Article">
 	<meta itemprop="datePublished" content="<?php echo esc_attr( get_the_date('c') ); ?>">
 	<meta itemprop="dateModified" content="<?php echo esc_attr( get_the_modified_date('c') ); ?>">
 	<meta itemprop="description" content="<?php echo esc_attr( get_the_excerpt() ); ?>">
@@ -45,10 +45,12 @@ if ( ! empty( $categories ) && ! is_wp_error( $categories ) ) {
 
 			<div class="content-text">
 				<div class="content-top">
-					<span class="content-client cbo-tag slide-up" itemprop="about" itemscope itemtype="https://schema.org/Organization">
-						<meta itemprop="name" content="<?php echo esc_attr($client); ?>">
-						<?php echo esc_html($client); ?>
-					</span>
+					<?php if ($client): ?>
+						<span class="content-client cbo-tag slide-up" itemprop="about" itemscope itemtype="https://schema.org/Organization">
+							<meta itemprop="name" content="<?php echo esc_attr($client); ?>">
+							<?php echo esc_html($client); ?>
+						</span>
+					<?php endif; ?>
 
 					<span class="content-category slide-up">
 						<?php echo $categories_list; ?>

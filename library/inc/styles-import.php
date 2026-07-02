@@ -22,21 +22,23 @@
 	/* Chargement des parts */
 	/* Charge dynamiquement le CSS associé à une "part"
 	uniquement si son fichier .min.css existe et n'a pas déjà été enqueué.*/
-	function get_part($name){
+	function get_part($name, $args = []){
 		$slug = basename(dirname($name));
 		$handle = 'part-' . $slug;
+
 		$css_file = get_stylesheet_directory() . '/library/css/parts/' . $slug . '.min.css';
 		$css_url  = get_stylesheet_directory_uri() . '/library/css/parts/' . $slug . '.min.css';
-
 		if (file_exists($css_file) && !wp_style_is($handle, 'enqueued')) {
-			wp_enqueue_style(
-				$handle,
-				$css_url,
-				array(),
-				filemtime($css_file)
-			);
+			wp_enqueue_style($handle, $css_url, array(), filemtime($css_file));
 		}
-		get_template_part('templates/parts/' . $name);
+
+		$js_file = get_stylesheet_directory() . '/library/js/parts/' . $slug . '.js';
+		$js_url  = get_stylesheet_directory_uri() . '/library/js/parts/' . $slug . '.js';
+		if (file_exists($js_file) && !wp_script_is($handle, 'enqueued')) {
+			wp_enqueue_script($handle, $js_url, array('jquery'), filemtime($js_file), true);
+		}
+
+		get_template_part('templates/parts/' . $name, null, $args);
 	}
 
 
@@ -89,6 +91,11 @@
 					'taxonomies'      => ['testimonials_cat'],
 					'singular_blocks' => [],
 				],
+				'webinaires' => [
+					'archive_option'  => 'cbo_webinaires_archive_page',
+					'taxonomies'      => ['webinaires_cat'],
+					'singular_blocks' => ['webinaires-single', 'herosimple'],
+				],
 			];
 
 			/* Détection automatique des blocs ACF dans le contenu (singular & tax) */
@@ -132,6 +139,11 @@
 						cbo_register_block_usage($block_name);
 					}
 				}
+			}
+
+			/* Pages avec blocs hardcodés (templates sans ACF block dans le contenu) */
+			if ( is_page('nos-replays') ) {
+				cbo_register_block_usage('webinaires');
 			}
 
 			/* Charger les styles des blocs */

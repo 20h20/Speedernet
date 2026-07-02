@@ -4,6 +4,8 @@
 BREADCRUMB MICRO COMPONENT
 ------------------------------- */
 .cbo-breadcrumb{
+    position: relative;
+    z-index: 1;
     width: 100%; 
     font-size: 0.875rem;
     line-height: 0.875rem;
@@ -12,7 +14,7 @@ BREADCRUMB MICRO COMPONENT
     justify-content: center;
     text-align: center;
     margin: 1.25rem 0 2.5rem; 
- 
+
     a{
         color: $colorgrey;
 
@@ -39,6 +41,6 @@ MEDIUM SCREENS
 ------------------------------- */
 @media (min-width:$screen-md-min) {
     .cbo-breadcrumb{
-        margin: 2.125rem 0 5.5rem; 
+        margin: 2.5rem 0 3.75rem; 
     }
 }

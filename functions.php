@@ -7,7 +7,9 @@
 		require_once( 'library/inc/custom-post/cpt-castestudies.php' );
 		require_once( 'library/inc/custom-post/cpt-faq.php' );
 		require_once( 'library/inc/custom-post/cpt-testimonial.php' );
+		require_once( 'library/inc/custom-post/cpt-webinaires.php' );
 		require_once( 'library/inc/acf.php' );
+		require_once( 'library/inc/strings.php' );
 	}
 	add_action( 'after_setup_theme', 'bones_ahoy' );
 
@@ -48,7 +50,7 @@
 
 		// Toolbar simple
 		$toolbars['Custom'] = [];
-		$toolbars['Custom'][1] = ['bold', 'formatselect', 'styleselect'];
+		$toolbars['Custom'][1] = ['bold', 'formatselect'];
 		$toolbars['HeroRich'] = [];
 		$toolbars['HeroRich'][1] = ['bold'];
 
@@ -85,6 +87,11 @@
 				'attributes' => array(
 					'href' => '#'
 				)
+			],
+			[
+				'title'   => 'Chapô',
+				'classes' => 'cbo-chapo',
+				'block' => 'span'
 			],
 		];
 		$init_array['style_formats'] = wp_json_encode($style_formats);
@@ -163,6 +170,40 @@
 
 
 	/* ************************* */
+	/* Ajoute un réglage pour choisir la page archive Webinaires */
+	/* ************************* */
+	function cbo_register_webinaires_archive_page_setting() {
+		add_settings_section(
+			'cbo_webinaires_section',
+			__('Page de listing des webinaires', 'cbo'),
+			'__return_false',
+			'reading'
+		);
+
+		add_settings_field(
+			'cbo_webinaires_archive_page',
+			__('Page de listing des webinaires', 'cbo'),
+			'cbo_webinaires_archive_page_dropdown',
+			'reading',
+			'cbo_webinaires_section'
+		);
+
+		register_setting('reading', 'cbo_webinaires_archive_page');
+	}
+	add_action('admin_init', 'cbo_register_webinaires_archive_page_setting');
+
+	function cbo_webinaires_archive_page_dropdown() {
+		$value = get_option('cbo_webinaires_archive_page');
+		wp_dropdown_pages([
+			'name'	=> 'cbo_webinaires_archive_page',
+			'show_option_none'  => __('— Aucun —', 'cbo'),
+			'option_none_value' => '',
+			'selected'	=> $value,
+		]);
+	}
+
+
+	/* ************************* */
 	/* Security headers HTTP */
 	/* ************************* */
 	add_action('send_headers', function() {
@@ -184,44 +225,6 @@
 				['jquery-migrate']
 			);
 		}
-	});
-
-
-	/* ************************* */
-	/* TRANSLATE KEYS */
-	/* ************************* */
-	add_action('init', function() {
-		pll_register_string( 'header', "Navigation principale");
-		pll_register_string( 'header', "Ouvrir la navigation principale");
-
-		pll_register_string( 'footer', "Revenir à l\'accueil");
-		pll_register_string( 'footer', "Navigation du pied de page");
-		pll_register_string( 'footer', "Nous appeler au ");
-		pll_register_string( 'footer', "Nos réseaux sociaux");
-		pll_register_string( 'footer', "Notre page LinkedIn (nouvelle fenêtre)");
-		pll_register_string( 'footer', "Notre chaîne YouTube (nouvelle fenêtre)");
-		pll_register_string( 'footer', "Notre page Instagram (nouvelle fenêtre)");
-		pll_register_string( 'footer', "Notre page Twitter (nouvelle fenêtre)");
-		pll_register_string( 'footer', "Notre page Facebook (nouvelle fenêtre)");
-		pll_register_string( 'footer', "Navigation annexe");
-		pll_register_string( 'footer', "Tous droits réservés");
-		
-		pll_register_string( 'article', "Lire l\'article");
-
-		pll_register_string( 'casestudy', "Lire le cas");
-		pll_register_string( 'casestudy', "Études de cas similaires");
-		pll_register_string( 'casestudy', "Les réussites de nos clients");
-		pll_register_string( 'casestudy', "Aucune étude de cas");
-		pll_register_string( 'casestudy', "Aucune catégorie associée à cette étude de cas");
-		pll_register_string( 'casestudy', "Études de cas");
-
-		pll_register_string( 'testimonial', "Voir l\'interview");
-
-		pll_register_string( 'global', "Navigation par onglets");
-
-		pll_register_string( '404', "Erreur 404");
-		pll_register_string( '404', "La page que vous rechechez n\'existe pas.<br />Vous pouvez toujours revenir sur vos pas.");
-		pll_register_string( '404', "Revenir à l\'accueil");
 	});
 
 
@@ -248,6 +251,78 @@
 		echo '<link rel="stylesheet" type="text/css" href="' . get_bloginfo('stylesheet_directory') . '/library/css/style.min.css" />';
 	}
 	add_action('login_head', 'childtheme_custom_login');
+
+
+	/* ************************* */
+	/* CRÉATION PAGINATION */
+	/* ************************* */
+	function page_navi($before = '', $after = '') {
+		global $wpdb, $wp_query;
+		$request = $wp_query->request;
+		$posts_per_page = intval(get_query_var('posts_per_page'));
+		$paged = intval(get_query_var('paged'));
+		$numposts = $wp_query->found_posts;
+		$max_page = $wp_query->max_num_pages;
+		if ( $numposts <= $posts_per_page ) { return; }
+		if(empty($paged) || $paged == 0) {
+			$paged = 1;
+		}
+		$pages_to_show = 7;
+		$pages_to_show_minus_1 = $pages_to_show-1;
+		$half_page_start = floor($pages_to_show_minus_1/2);
+		$half_page_end = ceil($pages_to_show_minus_1/2);
+		$start_page = $paged - $half_page_start;
+		if($start_page <= 0) {
+			$start_page = 1;
+		}
+		$end_page = $paged + $half_page_end;
+		if(($end_page - $start_page) != $pages_to_show_minus_1) {
+			$end_page = $start_page + $pages_to_show_minus_1;
+		}
+		if($end_page > $max_page) {
+			$start_page = $max_page - $pages_to_show_minus_1;
+			$end_page = $max_page;
+		}
+		if($start_page <= 0) {
+			$start_page = 1;
+		}
+		echo $before.'<ul class="cbo-pagination">'."";
+
+		$prevposts = get_previous_posts_link('<i class="icon icon--arrow-next"></i>');
+		if($prevposts) { echo '<li class="cbo-paginate-prev">' . $prevposts  . '</li>'; }
+		else { echo '<li class="disabled"><a href="#"><i class="icon icon--arrow-next"></i></a></li>'; }
+
+		for($i = $start_page; $i  <= $end_page; $i++) {
+			if($i == $paged) {
+				echo '<li class="active"><a href="#">'.$i.'</a></li>';
+			} else {
+				echo '<li><a href="'.get_pagenum_link($i).'">'.$i.'</a></li>';
+			}
+		}
+
+		$nextposts = get_next_posts_link('<i class="icon icon--arrow-next"></i>');
+		if($nextposts) { echo '<li class="cbo-paginate-next">' . $nextposts  . '</li>'; }
+		else { echo '<li class="disabled"><a href="#"><i class="icon icon--arrow-next"></i></a></li>'; }
+		
+		echo '</ul>'.$after."";
+	}
+
+
+add_filter( 'wpseo_breadcrumb_links', function( $links ) {
+	if ( ! is_singular( 'webinaires' ) ) return $links;
+	$archive_url  = get_post_type_archive_link( 'webinaires' );
+	$listing_page = get_page_by_path( 'horizons-learning' );
+	if ( ! $listing_page ) return $links;
+	$listing_url = get_permalink( $listing_page );
+	foreach ( $links as &$link ) {
+		if ( isset( $link['url'] ) && rtrim( $link['url'], '/' ) === rtrim( $archive_url, '/' ) ) {
+			$link['url']  = $listing_url;
+			$link['text'] = get_the_title( $listing_page );
+		}
+	}
+	return $links;
+} );
+
 
 
 ?>

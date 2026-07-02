@@ -3,19 +3,27 @@
 $uptitle  = get_field('casestudies_uptitle');
 $uptitlepic  = get_field('casestudies_uptitlepicture');
 $title  = get_field('casestudies_title');
+$chapo  = get_field('casestudies_chapo');
 $textslide  = get_field('casestudies_textslide');
 $button = get_field('casestudies_bouton');
 $last   = get_field('casestudies_last');
 $type  = get_field('casestudies_category');
 $archive_page_id = (int) get_option('cbo_casestudies_archive_page');
-$is_casestudies_page = is_post_type_archive('casestudies') || is_tax('casestudies_cat') || ( $archive_page_id && is_page( $archive_page_id ) );
+$is_casestudies_page    = is_post_type_archive('casestudies') || is_tax('casestudies_cat') || ( $archive_page_id && is_page( $archive_page_id ) );
+$is_listing_context     = $is_casestudies_page || ( $archive_page_id && is_admin() && (int) get_the_ID() === $archive_page_id );
 
 ?>
 
-<section class="cbo-casestudies <?php echo !$is_casestudies_page ? 'casestudies--relationship' : ''; ?>">
+<section class="cbo-casestudies cbo-overflow-container <?php echo !$is_listing_context ? 'casestudies--relationship' : ''; ?>">
     <div class="casestudies-inner cbo-container">
 
-        <?php if ($title || $uptitle) : ?>
+        <?php
+            if ($is_casestudies_page) :
+                get_part('filters/template');
+            endif;
+        ?>
+
+        <?php if ($title || $uptitle || $chapo) : ?>
             <div class="casestudies-head">
                 <?php if($uptitle): ?>
                     <span class="cbo-tag tag--blue content-uptitle slide-up">
@@ -43,6 +51,12 @@ $is_casestudies_page = is_post_type_archive('casestudies') || is_tax('casestudie
                         <?php echo wp_kses_post($title); ?>
                     </div>
                 <?php endif; ?>
+
+                 <?php if ($chapo): ?>
+                    <div class="casestudies-chapo slide-up">
+                        <?php echo wp_kses_post($chapo); ?>
+                    </div>
+                <?php endif; ?>
             </div>
         <?php endif; ?>
 
@@ -54,18 +68,12 @@ $is_casestudies_page = is_post_type_archive('casestudies') || is_tax('casestudie
                             while (have_posts()) : the_post();
                             get_part('casestudy/template');
                             endwhile;
-
-                            if (function_exists('page_navi')) {
-                                page_navi();
-                            } else {
-                                the_posts_pagination();
-                            }
                         else:
-                            echo '<p>' . esc_html__('Aucune étude de cas trouvée.', 'textdomain') . '</p>';
+                            echo '<p class="casestudies-empty">' . pll__('Aucune étude de cas trouvée.') . '</p>';
                         endif;
                     } else {
                         $args = [
-                            'posts_per_page' => 3,
+                            'posts_per_page' => 6,
                             'post_status'    => 'publish',
                             'post_type'      => 'casestudies',
                             'no_found_rows'  => true,
@@ -101,6 +109,10 @@ $is_casestudies_page = is_post_type_archive('casestudies') || is_tax('casestudie
             ?>
         </div>
 
+        <?php if ( $is_casestudies_page && $last ) : ?>
+            <?php get_part('pagination/template'); ?>
+        <?php endif; ?>
+
         <?php if ($button): ?>
             <div class="casestudies-button">
                 <a
@@ -113,7 +125,6 @@ $is_casestudies_page = is_post_type_archive('casestudies') || is_tax('casestudie
                 </a>
             </div>
         <?php endif; ?>
-
     </div>
 
     <?php if ($textslide): ?>

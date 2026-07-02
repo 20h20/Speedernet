@@ -2,11 +2,11 @@
 
 @font-face {
     font-family:"icons";
-    src: url("../iconfont/icons.eot?f002bf21377b8d1f5fbf2a7c7ff6e506");
-    src: url("../iconfont/icons.eot?f002bf21377b8d1f5fbf2a7c7ff6e506#iefix") format("embedded-opentype"),
-		url("../iconfont/icons.woff?f002bf21377b8d1f5fbf2a7c7ff6e506") format("woff"),
-		url("../iconfont/icons.ttf?f002bf21377b8d1f5fbf2a7c7ff6e506") format("truetype"),
-		url("../iconfont/icons.svg?f002bf21377b8d1f5fbf2a7c7ff6e506#icons") format("svg");
+    src: url("../iconfont/icons.eot?0843a1e78e7681071e7f56550388815f");
+    src: url("../iconfont/icons.eot?0843a1e78e7681071e7f56550388815f#iefix") format("embedded-opentype"),
+		url("../iconfont/icons.woff?0843a1e78e7681071e7f56550388815f") format("woff"),
+		url("../iconfont/icons.ttf?0843a1e78e7681071e7f56550388815f") format("truetype"),
+		url("../iconfont/icons.svg?0843a1e78e7681071e7f56550388815f#icons") format("svg");
     font-weight:normal;
     font-style:normal;
     font-display:swap;
@@ -29,13 +29,15 @@
 .icon--bottom-quote:before { content:"\f103"; }
 .icon--chevron:before { content:"\f104"; }
 .icon--cross:before { content:"\f105"; }
-.icon--facebook:before { content:"\f106"; }
-.icon--instagram:before { content:"\f107"; }
-.icon--linkedin:before { content:"\f108"; }
-.icon--logo-jb:before { content:"\f109"; }
-.icon--player:before { content:"\f10a"; }
-.icon--success:before { content:"\f10b"; }
-.icon--top-quote:before { content:"\f10c"; }
-.icon--warning:before { content:"\f10d"; }
-.icon--x:before { content:"\f10e"; }
-.icon--youtube:before { content:"\f10f"; }
+.icon--datepicker:before { content:"\f106"; }
+.icon--external-link:before { content:"\f107"; }
+.icon--facebook:before { content:"\f108"; }
+.icon--instagram:before { content:"\f109"; }
+.icon--linkedin:before { content:"\f10a"; }
+.icon--logo-jb:before { content:"\f10b"; }
+.icon--player:before { content:"\f10c"; }
+.icon--success:before { content:"\f10d"; }
+.icon--top-quote:before { content:"\f10e"; }
+.icon--warning:before { content:"\f10f"; }
+.icon--x:before { content:"\f110"; }
+.icon--youtube:before { content:"\f111"; }

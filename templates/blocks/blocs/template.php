@@ -1,5 +1,24 @@
+<?php
+
+$uptitle  = get_field('blocs_uptitle');
+$title  = get_field('blocs_title');
+
+?>
+
 <section class="cbo-blocs">
 	<div class="blocs-inner cbo-container">
+
+		<?php if($uptitle): ?>
+			<span class="cbo-tag tag--blue blocsrich-uptitle slide-up">
+				<?php echo esc_html($uptitle); ?>
+			</span>
+		<?php endif; ?>
+
+		<?php if ($title): ?>
+			<div class="blocsrich-title cbo-title-2 slide-up">
+				<?php echo wp_kses_post($title); ?>
+			</div>
+		<?php endif; ?>
 
 		<div class="blocs-list">
 			<?php

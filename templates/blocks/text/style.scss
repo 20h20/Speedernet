@@ -15,25 +15,25 @@ TEXT COMPONENT
 
 /* -------------------------------
 MEDIUM SCREENS
-------------------------------- */
+------------------------------- */ 
 @media (min-width: $screen-md-min) {
     .cbo-text{
         &.text--blue{
             .text-wrap{
                 padding: 3.75rem 3.75rem 0 3.75rem;
-            }
+            } 
         }
-    }
+    } 
 }
 
 /* -------------------------------
-LARGE SCREENS
+LARGE SCREENS 
 ------------------------------- */
 @media (min-width: $screen-lg-min) {
     .cbo-text{
         &.text--blue{
             .text-wrap{
-                padding: 110px 110px 0 110px;
+                padding: 6.875rem 6.875rem 0 6.875rem;
             }
         }
     }

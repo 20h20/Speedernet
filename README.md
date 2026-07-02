@@ -13,7 +13,7 @@
 
 
 ## Staging :
-- http://staging.fr
+- https://speedernet.julien-brochard.fr/
 - to push to preproduction website : git branch > develop then git add ., git commit -m 'my commit', git push origin develop
 
 

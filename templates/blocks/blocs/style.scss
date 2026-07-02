@@ -4,7 +4,11 @@
 BLOCS SIMPLE COMPONENT
 ------------------------------- */
 .cbo-blocs{
+  .blocs-title{
+    max-width: 48.125rem;
+  }
   .blocs-list{
+    margin-top: 3.125rem;
     display: grid;
     grid-template-columns: 1fr;
     gap: 1.25rem;
@@ -14,12 +18,12 @@ BLOCS SIMPLE COMPONENT
         width: 100%;
 
         .inner-icon{
+          box-shadow: $shadowmedium;
           background: $coloryellow;
           border-radius: $bordermedium;
-          margin-bottom: 0.875rem;
-          width: 4.25rem;
-          height: 4.25rem;
-          border: 0.125rem solid $colorgrey;
+          margin-bottom: 1.25rem;
+          width: 3.375rem;
+          height: 3.375rem;
           padding: 0.75rem;
           display: flex;
           justify-content: center;
@@ -40,6 +44,9 @@ BLOCS SIMPLE COMPONENT
           margin-bottom: 0.75rem;
           font-size: 1.25rem;
           line-height: 1.625rem;
+        }
+        .inner-content{
+          opacity: 0.6;
         }
       }
     }
@@ -75,7 +82,7 @@ LARGE SCREENS
 @media (min-width:$screen-lg-min) {
   .cbo-blocs{
     .blocs-list{
-          gap: 2.5rem 6.25rem;
+      gap: 2.5rem 6.25rem;
     }
   }
 }

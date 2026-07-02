@@ -1,0 +1,73 @@
+@import "../../../src/scss/partials/variables";
+
+/* -------------------------------
+HERO RICH COMPONENT
+------------------------------- */
+.cbo-herosimple {
+  .herosimple-inner {
+    text-align: center;
+    z-index: 1;
+    margin-top: 2.5rem;
+  }
+  .herosimple-picture{
+    width: 10.625rem;
+    height: auto;
+    margin: 0 auto 1.875rem;
+
+    img{
+      position: relative;
+    }
+  }
+  .herosimple-title {
+    margin-bottom: 1.875rem;
+  }
+  .herosimple-chapo {
+    max-width: 50rem;
+    margin: 0 auto;
+  }
+  .herosimple-buttons{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.875rem;
+
+    .cbo-button{
+      box-shadow: $shadowblack;
+    }
+  }
+  .cbo-blob{
+    &.blob--blue{
+      &::before{
+        top: 0;
+      }
+      &::after{
+        top: 10%;
+      }
+    }
+    &.blob--yellow{
+      &::before,
+      &::after {
+        right: inherit;
+      }
+      &::before{
+        left: -6.25rem;
+      }
+      &::after{
+        left: 0;
+      }
+    }
+  }
+}
+
+/* -------------------------------
+MEDIUM SCREENS
+------------------------------- */
+@media (min-width: $screen-md-min) {
+  .cbo-herosimple {
+    .herosimple-title {
+      margin-bottom: 50px;
+    }
+  }
+}

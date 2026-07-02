@@ -12,6 +12,7 @@ input[type="submit"],
 	padding: 8px 28px;
 	height: 60px;
 	font-size: 18px;
+	font-weight: 700;
 	border-radius: 99rem;
 	border: none;
 	cursor: pointer;
@@ -25,6 +26,11 @@ input[type="submit"],
 	}
 	&.button--white{
 		background: $colorwhite;
+		color: $colorgrey;
+		border: 2px solid $colorgrey;
+	}
+	&.button--yellow{
+		background: $coloryellow;
 		color: $colorgrey;
 		border: 2px solid $colorgrey;
 	}

@@ -71,10 +71,12 @@ CARDS SLIDER COMPONENT
 
       .list-el{
         position: absolute;
+        top: 0;
         left: 0;
         right: 0;
         max-width: 68.75rem;
-        transition: top 0.45s $easeinout, left 0.45s $easeinout;
+        will-change: transform;
+        transition: transform 0.45s $easeinout;
         cursor: pointer;
 
         .el-inner{
@@ -127,13 +129,16 @@ CARDS SLIDER COMPONENT
     color: $coloryellow;
     text-transform: uppercase;
     font-weight: 900;
+    font-size: clamp(8rem, 80vw, 70rem);
     line-height: 1;
     white-space: nowrap;
     position: absolute;
+    top: 0;
     left: 50%;
-    transform: translateX(-50%) rotate(-10deg);
+    transform: translateX(-50%) rotate(-10deg) translateZ(0);
     z-index: -1;
     pointer-events: none;
+    will-change: transform;
   }
 }
 
