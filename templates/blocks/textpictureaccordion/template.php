@@ -2,6 +2,7 @@
 
 $pictures = get_field('textpictureaccordion_pictures');
 $items    = get_field('textpictureaccordion_items');
+$illustration    = get_field('textpictureaccordion_illustration');
 
 ?>
 
@@ -11,12 +12,27 @@ $items    = get_field('textpictureaccordion_items');
 		<?php if ($pictures) : ?>
 			<div class="textpictureaccordion-pictures">
 				<div class="pictures-grid">
+					<?php if($illustration): ?>
+						<div class="textpictureaccordion-illustration cbo-picture-contain slide-up">
+							<img
+								src="<?php echo esc_url($illustration['sizes']['small']); ?>"
+								srcset="<?php echo esc_url($illustration['sizes']['small']); ?> 320w"
+								sizes="(max-width: 768px) 54px, 54px"
+								alt=""
+								width="<?php echo esc_attr($illustration['sizes']['small-width']); ?>"
+								height="<?php echo esc_attr($illustration['sizes']['small-height']); ?>"
+								decoding="async"
+								loading="lazy"
+							>
+						</div>
+					<?php endif; ?>
+
 					<?php foreach ($pictures as $index => $pic) :
 						$picture = $pic['picture'];
 						if (!$picture) continue;
 					?>
 						<div class="picture-el picture-el--<?php echo $index + 1; ?>">
-							<div class="el-picture cbo-picture-cover">
+							<div class="el-picture cbo-picture-cover slide-up">
 								<img
 									src="<?php echo esc_url($picture['sizes']['medium']); ?>"
 									srcset="<?php echo esc_url($picture['sizes']['small']); ?> 320w,
@@ -45,7 +61,7 @@ $items    = get_field('textpictureaccordion_items');
 				?>
 					<li class="accordion-item">
 						<button
-							class="item-header"
+							class="item-header slide-up"
 							type="button"
 							aria-expanded="false"
 							aria-controls="accordion-body-<?php echo $index; ?>"

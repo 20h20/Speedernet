@@ -8,6 +8,7 @@
 		require get_template_directory() . '/templates/blocks/casestudies/block.php';
 		require get_template_directory() . '/templates/blocks/gallery/block.php';
 		require get_template_directory() . '/templates/blocks/herorich/block.php';
+		require get_template_directory() . '/templates/blocks/heropicture/block.php';
 		require get_template_directory() . '/templates/blocks/herosimple/block.php';
 		require get_template_directory() . '/templates/blocks/jobslider/block.php';
 		require get_template_directory() . '/templates/blocks/keynumbers/block.php';
@@ -34,6 +35,7 @@
 			'acf/gallery',
 			'acf/herorich',
 			'acf/herosimple',
+			'acf/heropicture',
 			'acf/jobslider',
 			'acf/keynumbers',
 			'acf/partners',

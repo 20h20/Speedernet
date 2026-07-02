@@ -1,5 +1,5 @@
 (function($) {
-	var $section   = $('.cbo-textpictureaccordion');
+	var $section = $('.cbo-textpictureaccordion');
 	if (!$section.length) return;
 
 	/* ---- ACCORDION ---- */
@@ -20,27 +20,20 @@
 		}
 	});
 
-	/* ---- MOBILE PARALLAX ---- */
+	/* ---- PARALLAX ---- */
 	var $grid = $section.find('.textpictureaccordion-pictures .pictures-grid');
-	if (!$grid.length || window.innerWidth >= 1024) return;
+	if (!$grid.length) return;
 
-	var $pics   = $grid.find('.picture-el img');
-	var visible = false;
-	var rafId   = null;
-	var speeds  = [-25, 0, 25];
+	var $pics  = $grid.find('.picture-el img');
+	if (!$pics.length) return;
+
+	var rafId  = null;
+	var speeds = [-60, 20, 70];
 
 	$pics.css('will-change', 'transform');
 
-	if ('IntersectionObserver' in window) {
-		new IntersectionObserver(function(entries) {
-			visible = entries[0].isIntersecting;
-		}, { threshold: 0 }).observe($grid[0]);
-	} else {
-		visible = true;
-	}
-
-	$(window).on('scroll.tpa-parallax', function() {
-		if (!visible || rafId) return;
+	function applyParallax() {
+		if (rafId) return;
 		rafId = requestAnimationFrame(function() {
 			rafId = null;
 			var rect     = $grid[0].getBoundingClientRect();
@@ -53,5 +46,8 @@
 				this.style.transform = 'translateY(' + offset + 'px)';
 			});
 		});
-	});
+	}
+
+	$(window).on('scroll.tpa-parallax touchmove.tpa-parallax', applyParallax);
+	applyParallax();
 })(jQuery);

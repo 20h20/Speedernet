@@ -132,6 +132,8 @@ MEDIUM SCREENS
       overflow: hidden;
 
       .casestudies-list{
+        padding-bottom: 1.625rem;
+
         &:not(.slick-slider){
           .cbo-casestudy{
             width: 33.33333%;

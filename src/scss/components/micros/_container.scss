@@ -58,20 +58,3 @@ LARGE SCREENS
     }
   }
 }
-
-/* -------------------------------
-XLARGE SCREENS
-------------------------------- */
-@media (min-width: $screen-xl-min) {
-  .cbo-overflow-container{
-    margin: 200px auto;
-  }
-  .cbo-container {
-    margin: 200px auto;
-
-    &.container--padding {
-      padding-top: 200px;
-      padding-bottom: 200px;
-    }
-  }
-}

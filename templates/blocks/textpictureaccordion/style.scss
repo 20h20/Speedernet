@@ -26,6 +26,13 @@
           aspect-ratio: 1 / 1;
           overflow: hidden;
           border-radius: $borderlarge;
+
+          img {
+            top: -1.875rem;
+            height: calc(100% + 3.75rem);
+            display: block;
+            transition: transform 0.1s linear;
+          }
         }
 
         &.picture-el--1 {
@@ -55,10 +62,10 @@
   .textpictureaccordion-accordion {
     .accordion-list {
       .accordion-item {
-        border-top: 1px solid $colorgreymediumlight;
+        border-top: 0.0625rem solid $colorgreymediumlight;
 
         &:last-child {
-          border-bottom: 1px solid $colorgreymediumlight;
+          border-bottom: 0.0625rem solid $colorgreymediumlight;
         }
         .item-header {
           display: flex;
@@ -74,7 +81,7 @@
             width: 2rem;
             height: 2rem;
             border-radius: 99rem;
-            border: 2px solid $colorblack;
+            border: 0.125rem solid $colorblack;
             position: relative;
             transition: border-color 0.3s $easeinout;
 
@@ -88,8 +95,14 @@
               transform: translate(-50%, -50%);
               transition: transform 0.35s $easeinout, background-color 0.3s $easeinout;
             }
-            &::before { width: 1.5px; height: 50%; }
-            &::after  { width: 50%; height: 1.5px; }
+            &::before {
+              width: 0.0938rem;
+              height: 50%;
+            }
+            &::after {
+              width: 50%;
+              height: 0.0938rem;
+            }
           }
         }
         .item-body {
@@ -143,7 +156,15 @@
 
       .pictures-grid {
         display: block;
+        position: relative;
 
+        .textpictureaccordion-illustration{
+          width: 12.5rem;
+          height: 12.5rem;
+          position: absolute;
+          right: -5rem;
+          top: -6.25rem;
+        }
         .picture-el {
           .el-picture {
             height: auto;
