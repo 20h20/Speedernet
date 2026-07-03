@@ -511,21 +511,8 @@
 
 			
 
-			
-function fitKeyNumbersBigText() {
-		document.querySelectorAll('.keynumbers-bigtxt').forEach(function(el) {
-			el.style.fontSize = '100px';
-			var ratio = window.innerWidth / el.scrollWidth;
-			el.style.fontSize = Math.floor(110 * ratio) + 'px';
-		});
-	}
-	fitKeyNumbersBigText();
-	$(window).on('resize', fitKeyNumbersBigText);
 
 
-
-
-			
 
 
 
@@ -673,6 +660,7 @@ function fitKeyNumbersBigText() {
 
 })(jQuery);
 
+/*include ../../templates/blocks/keynumbers/script.js*/
 /*include ../../templates/blocks/casestudies/script.js*/
 /*include ../../templates/blocks/cardslider/script.js*/
 /*include ../../templates/blocks/gallery/script.js*/

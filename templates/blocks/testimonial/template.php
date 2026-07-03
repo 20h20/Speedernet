@@ -42,10 +42,10 @@ $content  = get_field('testimonial_content');
 
         <div class="testimonial-content slide-up">
             <i class="icon icon--top-quote slide-up" aria-hidden="true"></i>
-            <?php echo wp_kses_post($content); ?>
+            <div class="content-testimonial cbo-title-3">
+                <?php echo wp_kses_post($content); ?>
+            </div>
             <i class="icon icon--bottom-quote slide-up" aria-hidden="true"></i>
         </div>
     </div>
-
-    <div class="cbo-blob testimonial-blob" aria-hidden="true"></div>
 </section>

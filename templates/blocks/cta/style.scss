@@ -1,0 +1,74 @@
+@import "../../../src/scss/partials/variables";
+
+/* -------------------------------
+   CTA COMPONENT
+------------------------------- */
+.cbo-cta {
+	.cta-content {
+		position: relative;
+		width: 100%;
+		max-width: 54.375rem;
+		margin: 0 auto;
+		background: $colorwhite;
+		border-radius: $borderlarge;
+		box-shadow: $shadowbig;
+		overflow: hidden;
+		padding: 1.25rem;
+
+		.cta-title {
+			margin-bottom: 1.875rem;
+		}
+		.cta-icon {
+			max-width: 15.625rem;
+			width: 100%;
+			margin: 2.5rem auto 0;
+			z-index: 1;
+
+			img{
+				position: relative;
+			}
+		}
+	}
+}
+
+/* -------------------------------
+   MEDIUM SCREENS
+------------------------------- */
+@media (min-width: $screen-md-min) {
+	.cbo-cta {
+		.cta-content {
+			display: flex;
+			flex-wrap: wrap;
+			padding: 2.5rem;
+
+			.content-text{
+				flex: 1;
+				position: relative;
+				z-index: 1;
+				padding-right: 1.25rem;
+			}
+			.cta-visual {
+				position: absolute;
+				bottom: 0;
+				right: 0;
+				width: 100%;
+				height: 100%;
+
+				img{
+					object-position: right bottom; 
+				}
+			}
+		}
+	}
+}
+
+/* -------------------------------
+   LARGE SCREENS
+------------------------------- */
+@media (min-width: $screen-lg-min) {
+	.cbo-cta {
+		.cta-content {
+			padding: 3.75rem 4.375rem;
+		}
+	}
+}

@@ -8,11 +8,11 @@ FAQ BLOC MICRO COMPONENT
  		display: flex;
 		align-items: center;
 		flex-wrap: wrap;
-		border-top: 0.0625rem solid $colorblue;
+		border-top: 0.0625rem solid rgba($colorgreymediumlight, .4);
 		transition: all .4s;
 
 		&:last-child{
-			border-bottom: 0.0625rem solid $colorblue;		
+			border-bottom: 0.0625rem solid rgba($colorgreymediumlight, .4);		
 		}
 		.el-wrapper{
 			width: 100%;

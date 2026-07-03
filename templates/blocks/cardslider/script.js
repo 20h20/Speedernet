@@ -62,6 +62,18 @@
 
 	renderCardStack();
 
+	/* BIG TEXT FIT */
+	var bigTxt = document.querySelector('.cbo-cardslider .cardslider-bigtxt');
+	function fitBigText() {
+		if (!bigTxt) return;
+		var naturalW   = bigTxt.scrollWidth;
+		var containerW = bigTxt.closest('.cbo-cardslider').offsetWidth;
+		var maxScale   = (window.innerWidth * 0.70) / naturalW;
+		var scale      = Math.min((containerW / naturalW) * 1.05, maxScale);
+		bigTxt.style.transform = 'translateX(-50%) rotate(-10deg) scale(' + scale + ') translateZ(0)';
+	}
+	fitBigText();
+
 	var resizeTimer;
 	var isVisible = true;
 
@@ -74,6 +86,6 @@
 	$(window).on('resize', function() {
 		if (!isVisible) return;
 		clearTimeout(resizeTimer);
-		resizeTimer = setTimeout(updateCardHeight, 100);
+		resizeTimer = setTimeout(function() { updateCardHeight(); fitBigText(); }, 100);
 	});
 })(jQuery);

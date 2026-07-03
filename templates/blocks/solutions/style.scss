@@ -1,0 +1,94 @@
+@import "../../../src/scss/partials/variables";
+
+/* -------------------------------
+   SOLUTIONS COMPONENT
+------------------------------- */
+.cbo-solutions {
+
+  .solutions-title {
+    max-width: 48rem;
+    margin-bottom: 3rem;
+  }
+
+  .solutions-list {
+    .list-el {
+      margin: 1.25rem 0;
+  
+      .el-inner {
+        background: $colorwhite;
+        border-radius: $borderlarge;
+        box-shadow: $shadowmedium;
+        overflow: hidden;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+
+        .el-header {
+          background: $colorgreylight;
+          padding: 1.5rem 1.75rem;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 1rem;
+          border-bottom: 0.125rem solid rgba($colorblue, 0.15);
+
+          .header-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            line-height: 1;
+            color: $colorblue;
+          }
+
+          .header-picto {
+            width: 3.75rem;
+            height: 3.75rem;
+            background: $coloryellow;
+            border-radius: $bordermedium;
+            padding: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            img {
+              position: relative;
+            }
+          }
+        }
+        .el-content {
+          padding: 1.5rem 1.75rem;
+
+          .content-title {
+            margin-bottom: 0.625rem;
+          }
+          .content-text {
+            opacity: 0.7;
+          }
+        }
+      } 
+    }
+  }
+}
+
+/* -------------------------------
+   SMALL SCREENS
+------------------------------- */
+@media (min-width: $screen-sm-min) {
+  .cbo-solutions {
+    .solutions-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+  }
+}
+
+/* -------------------------------
+   MEDIUM SCREENS
+------------------------------- */
+@media (min-width: $screen-md-min) {
+  .cbo-solutions {
+    .solutions-list {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+}

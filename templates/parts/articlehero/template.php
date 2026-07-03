@@ -39,21 +39,32 @@
 			</div>
 		</div>
 
-		<div class="content-picture cbo-picture-cover slide-up" itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
-			<?php
-				if ( has_post_thumbnail() ) {
-					the_post_thumbnail('large', array(
-						'sizes'    => '(max-width:320px) 145px, (max-width:425px) 220px, 500px',
+		<?php if ( has_post_thumbnail() ) { ?>
+			<div class="content-picture cbo-picture-cover slide-up" itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
+				<?php 
+					the_post_thumbnail('large', [
+						'sizes'   => '(max-width:320px) 145px, (max-width:425px) 220px, 500px',
 						'itemprop' => 'url',
-						'loading' => 'eager',
-						'fetchpriority' => 'high',
+						'loading'  => 'eager',
 						'decoding' => 'async',
-					));
-				} else {
-					echo '<img src="' . esc_url( get_template_directory_uri() ) . '/library/images/logo-speedernet-white.svg" class="picture-default" alt="" itemprop="url" loading="eager" decoding="async" width="150" height="150">';
-				}
-			?>
-		</div>
+						'fetchpriority' => 'high',
+					]);
+				?>
+			</div>
+		<?php } else { ?>
+			<div class="content-picture cbo-picture-cover slide-up picture--none" itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
+				<img
+					src="<?php echo esc_url( get_template_directory_uri() ); ?>/library/images/logo-speedernet-white.svg"
+					alt=""
+					itemprop="url"
+					loading="eager"
+					decoding="async"
+					width="150"
+					height="150"
+					fetchpriority="high"
+				>
+			</div>
+		<?php } ?>
 
 		<?php if ( has_excerpt() ) : ?>
 			<div class="heroarticle-excerpt cbo-cms cbo-chapo slide-up" itemprop="description">

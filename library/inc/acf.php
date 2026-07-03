@@ -2,6 +2,8 @@
 	add_action( 'acf/init', function() {
 		require get_template_directory() . '/templates/blocks/articles/block.php';
 		require get_template_directory() . '/templates/blocks/accordion/block.php';
+		require get_template_directory() . '/templates/blocks/cta/block.php';
+		require get_template_directory() . '/templates/blocks/solutions/block.php';
 		require get_template_directory() . '/templates/blocks/blocs/block.php';
 		require get_template_directory() . '/templates/blocks/blocsrich/block.php';
 		require get_template_directory() . '/templates/blocks/cardslider/block.php';
@@ -28,6 +30,8 @@
 		return array(
 			'acf/articles',
 			'acf/accordion',
+			'acf/cta',
+			'acf/solutions',
 			'acf/blocs',
 			'acf/blocsrich',
 			'acf/cardslider',

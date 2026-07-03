@@ -1,5 +1,6 @@
 <?php
 	function bones_ahoy() {
+		add_theme_support( 'post-thumbnails' );
 		require_once( 'library/inc/custom-cleanup.php' );
 		require_once( 'library/inc/custom-admin.php' );
 		require_once( 'library/inc/custom-dashboard.php' );
@@ -306,6 +307,7 @@
 		
 		echo '</ul>'.$after."";
 	}
+
 
 
 add_filter( 'wpseo_breadcrumb_links', function( $links ) {

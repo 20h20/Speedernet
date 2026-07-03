@@ -122,9 +122,3 @@ button{
 	border: 0;
 	padding: 0;
 }
-.cbo-page{
-	> .cbo-breadcrumb + * .cbo-container,
-	> *:first-child:not(.cbo-breadcrumb) .cbo-container {
-		margin-top: 0;
-	}
-}

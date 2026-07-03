@@ -14,8 +14,9 @@ HERO ARTICLE COMPONENT
 		margin: -20% auto 0;
 		background: $colorwhite;
 		max-width: 60.625rem;
+		width: 100%;
 		border-radius: $borderbig;
-		box-shadow: $shadowbig;
+		box-shadow: $shadowblack;
 		position: relative;
 		z-index: 1;
 		padding: 0 1.25rem 1.25rem;
@@ -51,6 +52,18 @@ HERO ARTICLE COMPONENT
 			transform: scale(1.15);
 			transition: transform 0.15s ease-out;
 		}
+
+		&.picture--none{
+			background: $colorgrey;
+
+			img{
+				width: 6.25rem;
+				height: auto;
+				top: 50%;
+				left: 50%;
+				margin: -5rem 0 0 -3.125rem;
+			}
+		}
 	}
 	.heroarticle-excerpt{
 		margin: 6.25rem auto 0;
@@ -80,17 +93,6 @@ MEDIUM SCREENS
 		.heroarticle-excerpt{
 			font-size: 1.75rem;
 			line-height: 2.625rem;
-		}
-	}
-}
-
-/* -------------------------------
-LARGE SCREENS
-------------------------------- */
-@media (min-width: $screen-lg-min){
-	.cbo-heroarticle{
-		.heroarticle-excerpt{
-			margin-bottom: -6.25rem;
 		}
 	}
 }

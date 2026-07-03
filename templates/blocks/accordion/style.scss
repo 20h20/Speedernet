@@ -4,7 +4,21 @@
 ACCORDION SECTION COMPONENT
 ------------------------------- */
 .cbo-accordion{
+  .accordion-title {
+    text-align: center;
+  }
   .accordion-list{
-		margin-top: 40px;
+		margin-top: 3.125rem;
+  }
+}
+
+/* -------------------------------
+   MEDIUM SCREENS
+------------------------------- */
+@media (min-width: $screen-md-min) {
+  .cbo-accordion{
+    .accordion-list{
+      margin-top: 5rem;
+    }
   }
 }
