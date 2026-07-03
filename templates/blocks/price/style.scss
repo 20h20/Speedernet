@@ -1,0 +1,81 @@
+@import "../../../src/scss/partials/variables";
+
+/* -------------------------------
+   PRICE COMPONENT
+------------------------------- */
+.cbo-price {
+  .price-list{
+    .list-el{
+      margin: 1.25rem 0;
+
+      .el-inner {
+        background: $colorwhite;
+        border-radius: $borderbig;
+        padding: 1.25rem;
+        box-shadow: $shadowmedium;
+
+        .inner-label{
+          display: inline-flex;
+          margin-bottom: 0.875rem;
+        }
+      }
+      .el-price {
+        border-top: 0.0625rem solid rgba($colorblue, 0.2);
+        margin-top: 2rem;
+        padding-top: 1.75rem;
+      }
+      &:nth-child(2){
+        .el-inner {
+          background: linear-gradient(145deg, #0c1340 0%, #1a1c6e 50%, #0f1a52 100%);
+          color: $colorwhite;
+
+          .inner-label{
+            background: rgba($coloryellow, 0.4);
+            border: 1px solid rgba($coloryellow, 0.5);
+          }
+        }
+      }
+    }
+  }
+}
+
+/* -------------------------------
+   SMALL SCREENS
+------------------------------- */
+@media (min-width: $screen-sm-min) {
+  .cbo-price {
+    .price-list {
+      display: flex;
+      flex-wrap: wrap;
+      margin: 0 -0.9375rem;
+
+      .list-el{
+        width: 50%;
+        padding: 0 0.9375rem;
+        margin: 0;
+
+        .el-inner{
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          height: 100%;
+        }
+      }
+    }
+  }
+}
+
+/* -------------------------------
+   MEDIUM SCREENS
+------------------------------- */
+@media (min-width: $screen-md-min) {
+  .cbo-price {
+    .price-list {
+      .list-el{
+        .el-inner{
+          padding: 1.875rem;
+        }
+      }
+    }
+  }
+}

@@ -122,3 +122,12 @@ button{
 	border: 0;
 	padding: 0;
 }
+.cbo-page{
+	section{
+		&:first-of-type{
+			.cbo-container{
+				margin-top: 3.125rem;
+			}
+		}
+	}
+}
