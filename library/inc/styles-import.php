@@ -162,6 +162,10 @@
 				cbo_register_block_usage('webinaires');
 			}
 
+			if ( is_search() ) {
+				cbo_register_block_usage('herosimple');
+			}
+
 			/* Charger les styles des blocs */
 			if (!empty($GLOBALS['cbo_used_blocks'])) {
 				foreach ($GLOBALS['cbo_used_blocks'] as $block_name) {

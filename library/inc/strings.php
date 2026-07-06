@@ -54,6 +54,12 @@
 
 		pll_register_string( 'faq', "Catégories FAQ");
 		pll_register_string( 'faq', "question");
+
+		pll_register_string( 'search', "Rechercher…");
+		pll_register_string( 'search', "Fermer la recherche");
+		pll_register_string( 'search', "Résultats pour");
+		pll_register_string( 'search', "Résultats de recherche");
+		pll_register_string( 'search', "Aucun résultat pour « %s ». Essayez avec d\'autres mots-clés.");
 		
 	});
 ?>

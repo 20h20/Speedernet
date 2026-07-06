@@ -1,41 +1,14 @@
+/*include /libs/footer.js*/
+/*include /libs/languages.js*/
 /*include /libs/slick.js*/
+/*include /libs/search.js*/
 
 (function($) { 
 	
 	var Master = {
 		onready : function(){
 
-			/////////////////// LANG DROPDOWN ///////////////////
-			var $langBtn      = $('.upheader-languages .languages-button');
-			var $langDropdown = $('.upheader-languages .languages-list');
-
-			$langBtn.on('click', function(e) {
-				e.stopPropagation();
-				var isOpen = $langDropdown.hasClass('lang-open');
-				$langDropdown.toggleClass('lang-open', !isOpen);
-				$langBtn.attr('aria-expanded', !isOpen ? 'true' : 'false');
-			});
-
-			$(document).on('click.langDropdown', function() {
-				$langDropdown.removeClass('lang-open');
-				$langBtn.attr('aria-expanded', 'false');
-			});
-
-			$(document).on('keydown.langDropdown', function(e) {
-				if (e.key === 'Escape' && $langDropdown.hasClass('lang-open')) {
-					$langDropdown.removeClass('lang-open');
-					$langBtn.attr('aria-expanded', 'false').focus();
-				}
-			});
-
-
-			//////////////////// FOOTER ////////////////////
-			$('footer .footer-menu .menu-item').on('click', function(){
-				$('footer .footer-menu .menu-item').not(this).removeClass('active');
-				$(this).toggleClass('active');
-			});
-
-
+			
 
 
 
@@ -453,41 +426,7 @@
 			});
 
 
-			/////////////////// SEARCH ///////////////////
-			var $searchBar     = $('.cbo-searchbar');
-			var $searchBg      = $('.cbo-searchoverlay');
-			var $searchTrigger = $('.tools-search, .upheader-search');
-
-			function updateSearchbarTop() {
-				var headerEl = document.querySelector('header.cbo-header');
-				if (headerEl) {
-					document.documentElement.style.setProperty('--searchbar-top', headerEl.getBoundingClientRect().bottom + 'px');
-				}
-			}
-
-			function openSearch() {
-				updateSearchbarTop();
-				$searchBar.add($searchBg).addClass('is-open');
-				$searchBar.attr('aria-hidden', 'false');
-				$searchTrigger.attr('aria-expanded', 'true');
-				setTimeout(function() { $searchBar.find('.searchbar-input').focus(); }, 150);
-			}
-
-			function closeSearch() {
-				$searchBar.add($searchBg).removeClass('is-open');
-				$searchBar.attr('aria-hidden', 'true');
-				$searchTrigger.attr('aria-expanded', 'false');
-				$searchTrigger.focus();
-			}
-
-			$searchTrigger.on('click', openSearch);
-			$searchBar.find('.searchbar-close').on('click', closeSearch);
-			$searchBg.on('click', closeSearch);
-
-			$(document).on('keydown.search', function(e) {
-				if (e.key === 'Escape' && $searchBar.hasClass('is-open')) closeSearch();
-			});
-
+		
 
 			
 

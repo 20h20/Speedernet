@@ -1,47 +1,58 @@
 <?php
-	get_header();
 
-	cbo_enqueue_block_assets( 'acf/block-herosimple' );
+get_header();
+
 ?>
 
-<section class="cbo-herosimple">
-	<div class="herosimple-inner cbo-container container--nomargin container--padding">
-			<?php get_template_part('templates/parts/breadcrumb/template'); ?>
+<section class="cbo-herosimple" itemscope itemtype="https://schema.org/WPHeader">
+    <div class="herosimple-inner cbo-container">
+        <h1 class="herosimple-title cbo-title-1" data-word-anim itemprop="headline">
+			<?php pll_e('Résultats pour'); ?> : <?php echo esc_html(get_search_query(false)); ?>
+        </h1>
+    </div>
 
-			<div class="herosimple-title cbo-title-1 slide-up" itemprop="headline">
-				<h1>
-					<?php pl_e('search-title'); ?><em><?php printf( __( '%s'), get_search_query() ); ?></em>
-				</h1>
+    <div class="cbo-blob blob--blue" aria-hidden="true"></div>
+    <div class="cbo-blob blob--yellow blob--left" aria-hidden="true"></div>
+</section>
+
+<section class="cbo-searchresults" aria-label="<?php pll_e('Résultats de recherche'); ?>">
+	<div class="searchresults-inner cbo-container">
+
+		<?php if (have_posts()) : ?>
+
+			<p class="searchresults-count cbo-label slide-up">
+				<?php printf(
+					esc_html(_n('%d résultat', '%d résultats', $wp_query->found_posts, 'speedernet')),
+					$wp_query->found_posts
+				); ?>
+			</p>
+
+			<div class="searchresults-list">
+				<?php while (have_posts()) : the_post(); ?>
+					<?php get_part('article/template'); ?>
+				<?php endwhile; ?>
 			</div>
-		</div>
-	</section>
 
-	<section class="cbo-searchresults">
-		<div class="searchresults-inner cbo-container">
-			<div class="searchresults-count cbo-label slide-up">
-				<?php printf( _n( '%d résultat', '%d résultats', $wp_query->found_posts, 'merveillespacifique' ), $wp_query->found_posts ); ?>
+			<?php get_part('pagination/template'); ?>
+
+		<?php else : ?>
+
+			<div class="searchresults-empty">
+				<p>
+					<?php printf(
+						esc_html(pll__('Aucun résultat pour « %s ». Essayez avec d\'autres mots-clés.')),
+						esc_html(get_search_query(false))
+					); ?>
+				</p>
 			</div>
 
-			<?php if ( have_posts() ) : ?>
-				<div class="searchresults-list">
-					<?php while ( have_posts() ) : the_post(); ?>
-						<div class="list-el">
-							<?php if ( get_post_type() === 'product' ) : ?>
-								<?php wc_get_template_part( 'content', 'product' ); ?>
-							<?php else : ?>
-								<?php get_template_part( 'templates/parts/article/template' ); ?>
-							<?php endif; ?>
-						</div>
-					<?php endwhile; ?>
-				</div>
-				<?php cbo_template_part('pagination'); ?>
-			<?php else : ?>
-				<div class="searchresults-empty">
-					<p><?php pl_e('search-no-results'); ?></p>
-				</div>
-			<?php endif; ?>
-		</div>
-	</section>
+		<?php endif; ?>
+
+	</div>
+</section>
+
 <?php
-	get_footer();
+
+get_footer();
+
 ?>

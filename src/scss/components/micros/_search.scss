@@ -6,8 +6,85 @@
    Mobile First !
 ------------------------------- */
 
+.cbo-searchoverlay {
+    position: fixed;
+    inset: 0;
+    z-index: 5;
+    background: rgba($colorblack, 0.5);
+    backdrop-filter: blur(0.25rem);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.3s $easeinout, visibility 0s 0.3s;
+    cursor: pointer;
+
+    &.is-open {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transition: opacity 0.3s $easeinout, visibility 0s;
+    }
+}
+
 .cbo-searchbar {
-    display: none;
+    border-top: 1px solid rgba($colorblack, .1);
+    display: block;
+    padding: 0 2.125rem;
+    position: fixed;
+    top: 7.75rem;
+    left: 0;
+    right: 0;
+    z-index: 5;
+    background: $colorwhite;
+    transform: translateY(-100%);
+    visibility: hidden;
+    transition: transform 0.3s $easeinout, visibility 0s 0.3s;
+
+    &.is-open {
+        transform: translateY(0);
+        visibility: visible;
+        transition: transform 0.3s $easeinout, visibility 0s;
+    }
+    .searchbar-form {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        height: 4.375rem;
+
+        > .icon {
+            font-size: 1.25rem;
+            color: $colorgrey;
+        }
+        .icon{
+            cursor: pointer;
+            transition: color 0.2s $easeinout;
+
+            &:hover {
+                color: $colorblue;
+            }
+        }
+        .searchbar-input {
+            flex: 1;
+            height: 100%;
+            border: none;
+            font-weight: 600;
+            text-transform: uppercase;
+
+            &:focus {
+                outline: none;
+            }
+        }
+        .searchbar-close {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 2.5rem;
+            height: 2.5rem;
+            background: none;
+            font-size: 0.75rem;
+            border: none;
+        }
+    }
 }
 
 /* Search results page */

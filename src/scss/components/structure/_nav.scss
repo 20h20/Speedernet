@@ -2,7 +2,7 @@
 SURHEADER / UPHEADER
 ------------------------------- */
 .cbo-nav {
-	padding-top: 5.625rem;
+	padding-top: 8.125rem;
 	display: flex;
 	flex-direction: column;
 	overflow-y: auto;
@@ -65,7 +65,7 @@ MOBILE PANEL
 	z-index: 2;
 	overflow-y: auto;
 	margin: 0;
-	padding: 5.625rem 0 2rem;
+	padding: 8.125rem 0 2rem;
 	visibility: hidden;
 	transform: translateX(110%);
 	transition: transform 0.4s cubic-bezier(0.85, 0, 0.15, 1), visibility 0s linear 0.4s;
