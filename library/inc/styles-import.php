@@ -86,6 +86,12 @@
 					'taxonomies'      => ['casestudies_cat'],
 					'singular_blocks' => ['casestudies'],
 				],
+				'faq' => [
+					'archive_option'  => 'cbo_faqs_archive_page',
+					'taxonomies'      => ['faq_cat'],
+					'singular_blocks' => ['faqs'],
+					'archive_blocks'  => ['faqs'],
+				],
 				'testimonial' => [
 					'archive_option'  => 'cbo_testimonials_archive_page',
 					'taxonomies'      => ['testimonials_cat'],
@@ -124,12 +130,22 @@
 			foreach ($cbo_cpt_config as $post_type => $config) {
 				$is_archive = is_post_type_archive($post_type) || !empty(array_filter($config['taxonomies'], 'is_tax'));
 
-				if ($is_archive && !empty($config['archive_option'])) {
-					$archive_page = get_post(get_option($config['archive_option']));
-					if ($archive_page && !empty($archive_page->post_content)) {
-						preg_match_all('/wp:acf\/([a-z0-9-]+)/', $archive_page->post_content, $cpt_matches);
-						foreach ($cpt_matches[1] ?? [] as $block_name) {
+				if ($is_archive) {
+					// Blocs hardcodés pour l'archive
+					if (!empty($config['archive_blocks'])) {
+						foreach ($config['archive_blocks'] as $block_name) {
 							cbo_register_block_usage($block_name);
+						}
+					}
+
+					// Blocs détectés dans le contenu de la page d'archive désignée
+					if (!empty($config['archive_option'])) {
+						$archive_page = get_post(get_option($config['archive_option']));
+						if ($archive_page && !empty($archive_page->post_content)) {
+							preg_match_all('/wp:acf\/([a-z0-9-]+)/', $archive_page->post_content, $cpt_matches);
+							foreach ($cpt_matches[1] ?? [] as $block_name) {
+								cbo_register_block_usage($block_name);
+							}
 						}
 					}
 				}
@@ -157,6 +173,19 @@
 							array(),
 							filemtime($block_css_file)
 						);
+					}
+				}
+			}
+
+			/* Parts requises par certains blocs */
+			$css_parts_path = get_stylesheet_directory() . '/library/css/parts/';
+			$css_parts_url  = get_stylesheet_directory_uri() . '/library/css/parts/';
+			$block_part_deps = ['faqs' => 'faq'];
+			foreach ($block_part_deps as $block_name => $part_name) {
+				if (in_array($block_name, $GLOBALS['cbo_used_blocks'])) {
+					$part_css_file = $css_parts_path . $part_name . '.min.css';
+					if (file_exists($part_css_file) && !wp_style_is('part-' . $part_name, 'enqueued')) {
+						wp_enqueue_style('part-' . $part_name, $css_parts_url . $part_name . '.min.css', array(), filemtime($part_css_file));
 					}
 				}
 			}

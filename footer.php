@@ -1,7 +1,10 @@
+
+	<?php include get_template_directory() . '/library/inc/customs/searchbar.php'; ?>
+
 	</main>
 
 	<?php
-		$phone	= get_field('footer_phone', 'option');
+		$phone	= get_field('global_phone', 'option');
 		$adress	= get_field('footer_adress', 'option');
 		$linkedin	= get_field('option_linkedin', 'option');
 		$youtube	= get_field('option_youtube', 'option');

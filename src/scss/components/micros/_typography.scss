@@ -74,10 +74,15 @@ a{
 	font-weight: 600;
 }
 
-.cbo-title-3, .cbo-title-3 h1, .cbo-title-3 h2, .cbo-title-3 h3, .cbo-title-3 h4.cbo-title-3 h5, .cbo-title-3 p, .cbo-cms h3,
-.cbo-title-4, .cbo-title-4 h1, .cbo-title-4 h2, .cbo-title-4 h3, .cbo-title-4 h4.cbo-title-4 h5, .cbo-title-4 p, .cbo-cms h4{
+.cbo-title-3, .cbo-title-3 h1, .cbo-title-3 h2, .cbo-title-3 h3, .cbo-title-3 h4.cbo-title-3 h5, .cbo-title-3 p, .cbo-cms h3{
 	font-size: 22px;
 	line-height: 30px;
+	font-weight: 900;
+}
+
+.cbo-title-4, .cbo-title-4 h1, .cbo-title-4 h2, .cbo-title-4 h3, .cbo-title-4 h4.cbo-title-4 h5, .cbo-title-4 p, .cbo-cms h4{
+	font-size: 20px;
+	line-height: 28px;
 	font-weight: 900;
 }
 
@@ -151,9 +156,6 @@ MEDIUM SCREENS
 	.cbo-title-3, .cbo-title-3 h1, .cbo-title-3 h2, .cbo-title-3 h3, .cbo-title-3 h4.cbo-title-3 h5, .cbo-title-3 p, .cbo-cms h3{
 		font-size: 32px;
 		line-height: 38px;
-	}
-	.cbo-title-4, .cbo-title-4 h1, .cbo-title-4 h2, .cbo-title-4 h3, .cbo-title-4 h4.cbo-title-4 h5, .cbo-title-4 p, .cbo-cms h4{
-		font-size: 22px;
 	}
 	.cbo-chapo{
 		font-size: 22px;

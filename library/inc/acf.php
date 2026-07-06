@@ -9,6 +9,7 @@
 		require get_template_directory() . '/templates/blocks/blocsrich/block.php';
 		require get_template_directory() . '/templates/blocks/cardslider/block.php';
 		require get_template_directory() . '/templates/blocks/casestudies/block.php';
+		require get_template_directory() . '/templates/blocks/faqs/block.php';
 		require get_template_directory() . '/templates/blocks/gallery/block.php';
 		require get_template_directory() . '/templates/blocks/herorich/block.php';
 		require get_template_directory() . '/templates/blocks/heropicture/block.php';
@@ -38,6 +39,7 @@
 			'acf/blocsrich',
 			'acf/cardslider',
 			'acf/casestudies',
+			'acf/faqs',
 			'acf/gallery',
 			'acf/herorich',
 			'acf/herosimple',

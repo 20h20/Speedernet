@@ -1,13 +1,13 @@
 <?php
 
-$index = (int) get_query_var('faq_index', 0);
-$section_id     = isset($section_id) ? $section_id : 'faq';
-$item_id	= $section_id . '-item-' . $index;
+$index      = (int) get_query_var('faq_index', 0);
+$section_id = get_query_var('faq_section_id') ?: 'faq';
+$item_id    = $section_id . '-item-' . $index;
 $is_first	= ($index === 0);
  
 ?>
 
-<div class="list-el slide-up <?php echo $is_first ? 'el--open' : ''; ?>" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+<div class="cbo-faq slide-up <?php echo $is_first ? 'el--open' : ''; ?>" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
 	<h3 class="el-wrapper slide-up" itemprop="name">
 		<button
 			type="button"

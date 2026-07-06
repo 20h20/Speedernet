@@ -5,11 +5,65 @@
 	var Master = {
 		onready : function(){
 
+			/////////////////// LANG DROPDOWN ///////////////////
+			var $langBtn      = $('.upheader-languages .languages-button');
+			var $langDropdown = $('.upheader-languages .languages-list');
+
+			$langBtn.on('click', function(e) {
+				e.stopPropagation();
+				var isOpen = $langDropdown.hasClass('lang-open');
+				$langDropdown.toggleClass('lang-open', !isOpen);
+				$langBtn.attr('aria-expanded', !isOpen ? 'true' : 'false');
+			});
+
+			$(document).on('click.langDropdown', function() {
+				$langDropdown.removeClass('lang-open');
+				$langBtn.attr('aria-expanded', 'false');
+			});
+
+			$(document).on('keydown.langDropdown', function(e) {
+				if (e.key === 'Escape' && $langDropdown.hasClass('lang-open')) {
+					$langDropdown.removeClass('lang-open');
+					$langBtn.attr('aria-expanded', 'false').focus();
+				}
+			});
+
+
 			//////////////////// FOOTER ////////////////////
 			$('footer .footer-menu .menu-item').on('click', function(){
 				$('footer .footer-menu .menu-item').not(this).removeClass('active');
 				$(this).toggleClass('active');
 			});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+			
+
+			
 
 
 			/////////////////// SLIDER ARTICLES ///////////////////
@@ -289,33 +343,30 @@
 			}
 
 
-			/////////////////// SMARTPHONE NAVIGATION ///////////////////
-			$('.burger-menu').on('click', function(){
-				$('.header-nav').toggleClass('nav--open');
-				$('.burger-menu').toggleClass('burger-menu-cross');
+			
+
+
+			/////////////////// BURGER MENU ///////////////////
+			var $burger = $('.burger-menu');
+			var $headerNav = $('.cbo-nav');
+
+			$burger.on('click', function() {
+				var isOpen = $headerNav.hasClass('nav--open');
+				$headerNav.toggleClass('nav--open');
+				$burger.toggleClass('burger-menu-cross');
 				$('body').toggleClass('menu--open');
 				$('html').toggleClass('html--hidden');
+				$burger.attr('aria-expanded', !isOpen);
 			});
 
 
-			/////////////////// Burger menu - Accessibilité ///////////////////
-			var burger = document.querySelector('.burger-menu');
-			var nav = document.querySelector('.header-nav');
-			if (burger && nav) {
-				burger.addEventListener('click', function () {
-					var expanded = burger.getAttribute('aria-expanded') === 'true';
-					burger.setAttribute('aria-expanded', !expanded);
-					burger.classList.toggle('is-active');
-					nav.classList.toggle('is-open');
-				});
-			}
-
-
-			//////////////// STICKY ////////////////
+			/////////////////// STICKY ///////////////////
 			var stickyTicking = false;
-			var $header = $('header');
+			var $header = $('header.cbo-header');
+			var surheaderH = $('.cbo-surheader').outerHeight() || 40;
+
 			function updateSticky() {
-				if (window.scrollY > 80) {
+				if (window.scrollY > surheaderH) {
 					$header.addClass('header-scroll');
 				} else {
 					$header.removeClass('header-scroll');
@@ -331,60 +382,114 @@
 			updateSticky();
 
 
-			///////////////////  SOUS-MENU ///////////////////
-			$('header .menu-item-has-children').on('click', function (e) {
+			/////////////////// SOUS-MENU MOBILE — PANEL SYSTEM ///////////////////
+			$headerNav.on('click.mobilePanel', 'li.menu-item-has-children > a', function(e) {
+				if (window.innerWidth >= 1024) return;
+				e.preventDefault();
 				e.stopPropagation();
-				var parentLi = $(this);
-				$('header .menu-item-has-children').not(parentLi).find('.sub-menu').removeClass('submenu--open');
-				$('header .menu-item-has-children').not(parentLi).removeClass('active');
-				parentLi.find('.sub-menu').toggleClass('submenu--open');
-				parentLi.toggleClass('active');
+
+				var $li = $(this).closest('li.menu-item-has-children');
+
+				if (!$li.data('panel-ready')) {
+					var title = $(this).clone().children('i, .icon').remove().end().text().trim();
+					$li.children('.sub-menu').prepend(
+						'<div class="panel-header">' +
+							'<button type="button" class="panel-back" aria-label="Retour">' +
+								'<i class="icon icon--arrow-next" aria-hidden="true"></i>' +
+							'</button>' +
+							'<span class="panel-title">' + title + '</span>' +
+						'</div>'
+					);
+					$li.data('panel-ready', true);
+				}
+
+				$li.addClass('panel--open');
+			});
+
+			$headerNav.on('click.panelBack', '.panel-back', function() {
+				$(this).closest('li.menu-item-has-children').removeClass('panel--open');
+			});
+
+			$burger.on('click.panelReset', function() {
+				if ($headerNav.hasClass('nav--open')) {
+					$headerNav.find('li.menu-item-has-children.panel--open').removeClass('panel--open');
+				}
 			});
 
 
-			//////////////// ACCORDION ////////////////
-			function initAccordion($container) {
-				$container.find('.accordion-list .el-title').off('click').on('click', function(){
-					var $btn = $(this);
-					var $el = $btn.closest('.list-el');
-					var $content = $('#' + $btn.attr('aria-controls'));
-					var open = $btn.attr('aria-expanded') === 'true';
+			/////////////////// MEGA MENU (desktop) ///////////////////
+			var $backdrop  = $('.mega-backdrop');
+			var megaDelay;
 
-					// Fermer les autres
-					$el.siblings('.list-el.el--open').each(function() {
-						var $c = $(this).find('.el-content');
-						$(this).removeClass('el--open').find('.el-title').attr('aria-expanded', 'false');
-						$c.css('height', $c[0].scrollHeight + 'px');
-						$c[0].offsetHeight;
-						$c.css('height', '0');
-						setTimeout(function(){ $c.attr('hidden', ''); }, 300);
-					});
-
-					// Toggle celui-ci
-					if(open){
-						$btn.attr('aria-expanded', 'false');
-						$el.removeClass('el--open');
-						$content.css('height', $content[0].scrollHeight + 'px');
-						$content[0].offsetHeight;
-						$content.css('height', '0');
-						setTimeout(function(){ $content.attr('hidden', ''); }, 300);
-					} else {
-						$btn.attr('aria-expanded', 'true');
-						$el.addClass('el--open');
-						$content.removeAttr('hidden');
-						var fullHeight = $content[0].scrollHeight + 'px';
-						$content.css('height', '0');
-						$content[0].offsetHeight;
-						$content.css('height', fullHeight);
-						setTimeout(function(){ $content.css('height', 'auto'); }, 300);
+			$('header .menu-item-has-children').on('mouseenter', function() {
+				if ($(window).width() < 1024) return;
+				clearTimeout(megaDelay);
+				$('header .menu-item-has-children').removeClass('mega-open');
+				$(this).addClass('mega-open');
+				if ($(this).hasClass('megamenu')) {
+					$backdrop.addClass('backdrop--visible');
+				}
+			}).on('mouseleave', function() {
+				if ($(window).width() < 1024) return;
+				var $li = $(this);
+				megaDelay = setTimeout(function() {
+					$li.removeClass('mega-open');
+					if (!$('header .menu-item-has-children.megamenu.mega-open').length) {
+						$backdrop.removeClass('backdrop--visible');
 					}
-				});
+				}, 120);
+			});
+
+			$backdrop.on('click', function() {
+				$('header .menu-item-has-children').removeClass('mega-open');
+				$backdrop.removeClass('backdrop--visible');
+			});
+
+			$(document).on('keydown', function(e) {
+				if (e.key === 'Escape') {
+					$('header .menu-item-has-children').removeClass('mega-open');
+					$backdrop.removeClass('backdrop--visible');
+				}
+			});
+
+
+			/////////////////// SEARCH ///////////////////
+			var $searchBar     = $('.cbo-searchbar');
+			var $searchBg      = $('.cbo-searchoverlay');
+			var $searchTrigger = $('.tools-search, .upheader-search');
+
+			function updateSearchbarTop() {
+				var headerEl = document.querySelector('header.cbo-header');
+				if (headerEl) {
+					document.documentElement.style.setProperty('--searchbar-top', headerEl.getBoundingClientRect().bottom + 'px');
+				}
 			}
 
-			$(document).ready(function(){
-				initAccordion($('.cbo-accordionpicture'));
-				initAccordion($('.cbo-accordion'));
+			function openSearch() {
+				updateSearchbarTop();
+				$searchBar.add($searchBg).addClass('is-open');
+				$searchBar.attr('aria-hidden', 'false');
+				$searchTrigger.attr('aria-expanded', 'true');
+				setTimeout(function() { $searchBar.find('.searchbar-input').focus(); }, 150);
+			}
+
+			function closeSearch() {
+				$searchBar.add($searchBg).removeClass('is-open');
+				$searchBar.attr('aria-hidden', 'true');
+				$searchTrigger.attr('aria-expanded', 'false');
+				$searchTrigger.focus();
+			}
+
+			$searchTrigger.on('click', openSearch);
+			$searchBar.find('.searchbar-close').on('click', closeSearch);
+			$searchBg.on('click', closeSearch);
+
+			$(document).on('keydown.search', function(e) {
+				if (e.key === 'Escape' && $searchBar.hasClass('is-open')) closeSearch();
 			});
+
+
+			
 
 
 			/////////////////// WORD SLIDE-UP ANIMATION ///////////////////
@@ -667,3 +772,5 @@
 /*include ../../templates/blocks/partners/script.js*/
 /*include ../../templates/blocks/textpictureslide/script.js*/
 /*include ../../templates/blocks/textpictureaccordion/script.js*/
+/*include ../../templates/blocks/faqs/script.js*/
+/*include ../../templates/parts/faq/script.js*/

@@ -2,11 +2,11 @@
 
 @font-face {
     font-family:"icons";
-    src: url("../iconfont/icons.eot?130e7d1405447efc7a06421dfe87a408");
-    src: url("../iconfont/icons.eot?130e7d1405447efc7a06421dfe87a408#iefix") format("embedded-opentype"),
-		url("../iconfont/icons.woff?130e7d1405447efc7a06421dfe87a408") format("woff"),
-		url("../iconfont/icons.ttf?130e7d1405447efc7a06421dfe87a408") format("truetype"),
-		url("../iconfont/icons.svg?130e7d1405447efc7a06421dfe87a408#icons") format("svg");
+    src: url("../iconfont/icons.eot?ddf53bbebe973ffac634c2c30afb9dc5");
+    src: url("../iconfont/icons.eot?ddf53bbebe973ffac634c2c30afb9dc5#iefix") format("embedded-opentype"),
+		url("../iconfont/icons.woff?ddf53bbebe973ffac634c2c30afb9dc5") format("woff"),
+		url("../iconfont/icons.ttf?ddf53bbebe973ffac634c2c30afb9dc5") format("truetype"),
+		url("../iconfont/icons.svg?ddf53bbebe973ffac634c2c30afb9dc5#icons") format("svg");
     font-weight:normal;
     font-style:normal;
     font-display:swap;
@@ -36,9 +36,13 @@
 .icon--instagram:before { content:"\f10a"; }
 .icon--linkedin:before { content:"\f10b"; }
 .icon--logo-jb:before { content:"\f10c"; }
-.icon--player:before { content:"\f10d"; }
-.icon--success:before { content:"\f10e"; }
-.icon--top-quote:before { content:"\f10f"; }
-.icon--warning:before { content:"\f110"; }
-.icon--x:before { content:"\f111"; }
-.icon--youtube:before { content:"\f112"; }
+.icon--mail:before { content:"\f10d"; }
+.icon--phone:before { content:"\f10e"; }
+.icon--player:before { content:"\f10f"; }
+.icon--search:before { content:"\f110"; }
+.icon--success:before { content:"\f111"; }
+.icon--top-quote:before { content:"\f112"; }
+.icon--warning:before { content:"\f113"; }
+.icon--world:before { content:"\f114"; }
+.icon--x:before { content:"\f115"; }
+.icon--youtube:before { content:"\f116"; }

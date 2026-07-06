@@ -103,6 +103,37 @@
 
 
 	/* ************************* */
+	/* Ajoute un réglage pour choisir la page archive FAQ */
+	/* ************************* */
+	function cbo_register_faqs_archive_page_setting() {
+		add_settings_section(
+			'cbo_faqs_section',
+			__('Page Questions fréquentes', 'cbo'),
+			'__return_false',
+			'reading'
+		);
+		add_settings_field(
+			'cbo_faqs_archive_page',
+			__('Page archive FAQ', 'cbo'),
+			'cbo_faqs_archive_page_dropdown',
+			'reading',
+			'cbo_faqs_section'
+		);
+		register_setting('reading', 'cbo_faqs_archive_page');
+	}
+	add_action('admin_init', 'cbo_register_faqs_archive_page_setting');
+
+	function cbo_faqs_archive_page_dropdown() {
+		$value = get_option('cbo_faqs_archive_page');
+		wp_dropdown_pages([
+			'name'              => 'cbo_faqs_archive_page',
+			'show_option_none'  => __('— Aucune —', 'cbo'),
+			'option_none_value' => '',
+			'selected'          => $value,
+		]);
+	}
+
+	/* ************************* */
 	/* Ajoute un réglage pour choisir la page archive Casestudies */
 	/* ************************* */
 	function cbo_register_casestudies_archive_page_setting() {

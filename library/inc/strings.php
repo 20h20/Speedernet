@@ -2,7 +2,13 @@
 	add_action('init', function() {
 		pll_register_string( 'header', "Navigation principale");
 		pll_register_string( 'header', "Ouvrir la navigation principale");
-
+		pll_register_string( 'header', "Info");
+		pll_register_string( 'header', "Ouvrir la recherche");
+		pll_register_string( 'header', "Sélectionner la langue");
+		pll_register_string( 'header', "Barre d\'information");
+		pll_register_string( 'header', "Appeler Speedernet");
+		pll_register_string( 'header', "Envoyer un email à Speedernet");
+		
 		pll_register_string( 'footer', "Revenir à l\'accueil");
 		pll_register_string( 'footer', "Navigation du pied de page");
 		pll_register_string( 'footer', "Nous appeler au ");
@@ -46,6 +52,8 @@
 		pll_register_string( 'webinaire', "Voir le replay");
 		pll_register_string( 'webinaire', "S'inscrire au webinaire");
 
+		pll_register_string( 'faq', "Catégories FAQ");
+		pll_register_string( 'faq', "question");
 		
 	});
 ?>

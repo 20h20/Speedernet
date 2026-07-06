@@ -1,0 +1,191 @@
+/* -------------------------------
+UPHEADER
+------------------------------- */
+.cbo-upheader {
+	background: $colorbluedark;
+	font-size: 0.75rem;
+	line-height: 1;
+	padding: 0.625rem 0;
+	height: 3.125rem;
+	display: flex;
+	align-items: center;
+	width: 100%;
+	position: relative;
+	z-index: 9;
+	border-bottom: 0.0625rem solid rgba($colorblack, .05);
+
+	.upheader-inner {
+		padding: 0 1.25rem;
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+	.upheader-button{
+		margin-bottom: 0;
+		color: $colorblue;
+		background: rgba($colorblue, .2);
+		border: 0.0625rem solid rgba($colorblue, .24);
+		border-radius: 99rem;
+		width: 1.875rem;
+		height: 1.875rem;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		&:hover{
+			color: $colorwhite;
+			background: rgba($colorblue, .8);
+		}
+	}
+	.upheader-contacts{
+		display: flex;
+		gap: 0.625rem;
+	}
+	.upheader-info {
+		display: none;
+	}
+	.upheader-actions{
+		display: flex;
+		align-items: center;
+
+		.upheader-languages {
+			position: relative;
+			text-transform: uppercase;
+			font-weight: 700;
+			border-left: 0.0625rem solid rgba($colorwhite, 0.3);			
+			padding-left: 0.875rem;
+			margin-left: 0.875rem;
+
+			> button {
+				font-size: 0.625rem;
+				color: $colorblue;
+				background: rgba($colorblue, .2);
+				border: 0.0625rem solid rgba($colorblue, .24);
+				border-radius: $bordersmall;
+				height: 1.875rem;
+				padding: 0 0.375rem;
+				display: flex;
+				align-items: center;
+				gap: 0.25rem;
+				cursor: pointer;
+				font-weight: 700;
+				transition: opacity 0.2s;
+
+				.icon {
+					font-size: 0.5rem;
+					transition: transform 0.2s $easeinout;
+				}
+				&[aria-expanded="true"] .icon {
+					transform: rotate(180deg);
+				}
+			}
+
+			.languages-list {
+				position: absolute;
+				top: calc(100% + 1.125rem);
+				right: 0;
+				background: $colorwhite;
+				border-radius: $bordersmall;
+				box-shadow: 0 0.5rem 1.5rem rgba($colorbluedark, 0.12);
+				list-style: none;
+				margin: 0;
+				padding: 0.375rem 0;
+				visibility: hidden;
+				opacity: 0;
+				transform: translateY(-0.25rem);
+				transition: opacity 0.18s $easeinout, transform 0.18s $easeinout, visibility 0s linear 0.18s;
+				z-index: 10;
+
+				&:before{
+					content: "";
+					position: absolute;
+					z-index: -1;
+					top: -0.5rem;
+					left: calc(50% - 0.5rem);
+					transform: rotate(-60deg) skew(-30deg) scaleY(.866);
+					width: 1rem;
+					height: 1rem;
+					border-top-right-radius: 0.25rem;
+					background-color: $colorwhite;
+				}
+				&.lang-open {
+					visibility: visible;
+					opacity: 1;
+					transform: translateY(0);
+					transition: opacity 0.18s $easeinout, transform 0.18s $easeinout, visibility 0s;
+				}
+
+				li a {
+					display: block;
+					padding: 0.375rem 0.875rem;
+					color: $colorblack;
+					transition: color 0.15s;
+
+					&:hover{
+						color: $colorblue;
+					}
+				}
+			}
+		}
+	}
+}
+
+/* -------------------------------
+MEDIUM SCREENS
+------------------------------- */
+@media (min-width: $screen-md-min) {
+	.cbo-upheader {
+		.upheader-inner {
+			justify-content: space-between;
+		}
+		.upheader-info {
+			display: flex;
+			align-items: center;
+			background: $colorwhite;
+			padding: 0.25rem 0.5rem;
+			border-radius: 99rem;
+
+			.info-tag {
+				margin: 0 0.375rem 0 0;
+				text-transform: uppercase;
+				height: auto;
+				font-weight: 700;
+				font-size: 0.625rem;
+				padding: 0.1875rem 0.5rem;
+				min-width: inherit;
+			}
+
+			.info-text {
+				white-space: nowrap;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				display: flex;
+				align-items: center;
+				gap: 0.375rem;
+				transition: color 0.2s;
+				color: $colorblack;
+
+				.icon {
+					font-size: 0.625rem;
+				}
+
+				&:hover {
+					color: rgba($colorblue, 0.75);
+				}
+			}
+		}
+	}
+}
+
+
+/* -------------------------------
+LARGE SCREENS
+------------------------------- */
+@media (min-width: $screen-lg-min) {
+	.cbo-upheader {
+		.upheader-inner {
+			padding: 0 3.125rem;
+		}
+	}
+}

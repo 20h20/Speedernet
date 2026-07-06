@@ -18,7 +18,7 @@
 		<?php wp_head(); ?>
 
 		<?php
-			$hdbt	= get_field('header_button', 'option');
+			$hdbt     = get_field('header_button', 'option');
 		?>
 	</head>
 
@@ -28,10 +28,16 @@
 			<?php pll_e('Aller au contenu principal') ?>
 		</a>
 
+		<?php include get_template_directory() . '/library/inc/customs/upheader.php'; ?>
+
 		<header class="cbo-header" role="banner" itemscope itemtype="https://schema.org/WPHeader">
 			<div class="header-inner">
-
-				<a class="header-logo" title="Accueil - <?php echo get_bloginfo('description'); ?>" href="<?php echo home_url(); ?>" itemprop="url">
+				<a
+					class="header-logo"
+					title="Accueil - <?php echo get_bloginfo('description'); ?>"
+					href="<?php echo home_url(); ?>"
+					itemprop="url"
+				>
 					<img
 						class="logo-full"
 						decoding="async"
@@ -50,28 +56,33 @@
 					>
 				</a>
 
-				<button type="button" class="burger-menu" aria-label="<?php pll_e('Ouvrir la navigation principale') ?>">
+				<button
+					type="button"
+					class="burger-menu"
+					aria-label="<?php pll_e('Ouvrir la navigation principale'); ?>"
+					aria-expanded="false"
+					aria-controls="menu-principal"
+				>
 					<span class="top"></span>
 					<span class="bottom"></span>
 				</button>
 
 				<nav
-					class="header-nav"
+					class="cbo-nav"
 					role="navigation"
 					itemscope
 					itemtype="https://schema.org/SiteNavigationElement"
-					aria-label="<?php pll_e('Navigation principale') ?> <?php esc_attr_e('Navigation principale', 'textdomain'); ?>"
+					aria-label="<?php pll_e('Navigation principale'); ?>"
 				>
-					<?php wp_nav_menu( array(
-						'container' => false,
-						'container_class' => 'nav-inner',
-						'menu_class' => '',
+					<?php wp_nav_menu(array(
+						'container'      => false,
+						'menu_class'     => '',
 						'theme_location' => 'main-nav',
-						'menu_id' => 'menu-principal',
+						'menu_id'        => 'menu-principal',
 					)); ?>
 
 					<?php if ($hdbt): ?>
-						<a 
+						<a
 							class="nav-button cbo-button"
 							href="<?php echo esc_url($hdbt['url']); ?>"
 							target="<?php echo esc_attr($hdbt['target'] ?: '_self'); ?>"
@@ -84,9 +95,7 @@
 			</div>
 		</header>
 
+		<div class="mega-backdrop" aria-hidden="true"></div>
 		<main id="main-content" class="cbo-page" role="main" itemscope itemtype="https://schema.org/WebPageElement">
 
-
-		<?php
-			if (!is_front_page()) get_part('breadcrumb/template');
-		?>
+			<?php if (!is_front_page()) get_part('breadcrumb/template'); ?>

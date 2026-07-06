@@ -13,7 +13,9 @@ STUCTURE COMPONENTS
 *********************/
 @import "components/structure/base";
 @import "components/structure/footer";
+@import "components/structure/upheader";
 @import "components/structure/header";
+@import "components/structure/nav";
 
 /*********************
 MICRO COMPONENTS
@@ -24,6 +26,7 @@ MICRO COMPONENTS
 @import "components/micros/form";
 @import "components/micros/login";
 @import "components/micros/pictures";
+@import "components/micros/search";
 @import "components/micros/slider";
 @import "components/micros/tag";
 @import "components/micros/typography";

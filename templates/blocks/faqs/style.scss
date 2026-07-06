@@ -1,0 +1,141 @@
+@import "../../../src/scss/partials/variables";
+
+/* -------------------------------
+   FAQS COMPONENT
+------------------------------- */
+.cbo-faqs {
+  .faqs-sidebar {
+    .sidebar-nav {
+      display: none;
+    }
+
+    .sidebar-ctas {
+      background: $colorblue;
+      border-radius: $bordermedium;
+      padding: 1.25rem;
+      color: $colorwhite;
+      margin-bottom: 1.875rem;
+
+      .cta-title {
+        color: $colorwhite;
+        margin-bottom: 0.625rem;
+      }
+
+      .cta-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 0.625rem;
+        margin-top: 1rem;
+      }
+    }
+  }
+
+  .faqs-content {
+    display: flex;
+    flex-direction: column;
+    gap: 3.125rem;
+
+    .content-category {
+      .category-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        border-bottom: 0.0625rem solid rgba($colorgrey, 0.2);
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+
+        .category-count {
+          font-size: 0.8125rem;
+          color: $colorblue;
+          font-weight: 600;
+          white-space: nowrap;
+          margin-bottom: 0;
+        }
+      }
+
+      .faq-list {
+        display: flex;
+        flex-direction: column;
+
+        .cbo-faq {
+          border-bottom: 0.0625rem solid rgba($colorgrey, 0.15);
+
+          .el-content {
+            color: rgba($colorgrey, 0.75);
+          }
+        }
+      }
+    }
+  }
+}
+
+/* -------------------------------
+   MEDIUM SCREENS
+------------------------------- */
+@media (min-width: $screen-md-min) {
+  .cbo-faqs {
+    .faqs-inner {
+      display: flex;
+      align-items: flex-start;
+      gap: 3.75rem;
+    }
+
+    .faqs-sidebar {
+      width: 20rem;
+      flex-shrink: 0;
+      position: sticky;
+      top: calc(5rem - -1.25rem);
+
+      .sidebar-nav {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        margin-bottom: 1.25rem;
+
+        .sidebar-link {
+          display: flex;
+          align-items: center;
+          padding: 0.75rem 1rem;
+          border: 0.0625rem solid rgba($colorgrey, 0.2);
+          border-radius: $bordermedium;
+          color: $colorgrey;
+          text-decoration: none;
+          transition: all 0.3s $easeinout;
+          font-size: 0.9375rem;
+
+          &.active,
+          &:hover {
+            background: $colorblue;
+            border-color: $colorblue;
+            color: $colorwhite;
+          }
+        }
+      }
+
+      .sidebar-ctas {
+        margin-bottom: 0;
+      }
+    }
+
+    .faqs-content {
+      flex: 1;
+      min-width: 0;
+    }
+  }
+}
+
+/* -------------------------------
+   LARGE SCREENS
+------------------------------- */
+@media (min-width: $screen-lg-min) {
+  .cbo-faqs {
+    .faqs-inner {
+      gap: 6.25rem;
+    }
+
+    .faqs-sidebar {
+      width: 22rem;
+    }
+  }
+}

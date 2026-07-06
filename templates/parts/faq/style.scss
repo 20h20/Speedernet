@@ -1,67 +1,53 @@
 @import "../../../src/scss/partials/variables";
 
 /* -------------------------------
-FAQ BLOC MICRO COMPONENT
+FAQ ITEM
 ------------------------------- */
-.accordion-list{
-	.list-el{
- 		display: flex;
+.cbo-faq {
+	border-bottom: 0.0625rem solid rgba($colorgreymediumlight, .4);
+
+	.el-wrapper {
+		margin: 1.875rem 0;
+	}
+	.el-title {
+		display: flex;
 		align-items: center;
-		flex-wrap: wrap;
-		border-top: 0.0625rem solid rgba($colorgreymediumlight, .4);
-		transition: all .4s;
+		justify-content: space-between;
+		width: 100%;
+		background: none;
+		border: none;
+		cursor: pointer;
+		text-align: left;
+		gap: 1rem;
 
-		&:last-child{
-			border-bottom: 0.0625rem solid rgba($colorgreymediumlight, .4);		
+		.icon {
+			border-radius: 99rem;
+			width: 2.125rem;
+			min-width: 2.125rem;
+			height: 2.125rem;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			font-size: 1rem;
+			box-shadow: inset 0 0 0 0.125rem $colorbluedark;
+			transition: transform 0.3s $easeinout;
 		}
-		.el-wrapper{
-			width: 100%;
-			margin: 1.875rem 0;
+	}
+	.el-content {
+		overflow: hidden;
+		transition: height 0.3s $easeinout;
 
-			.el-title{
-				font-weight: 600;
-				width: 100%;
-				display: flex;
-				justify-content: space-between;
-				align-items: center;
-				text-align: left;
-				cursor: pointer;
-				transition:.4s $easeinout;
+		&[hidden] {
+			display: none;
+		}
+	}
 
-				i{
-					box-shadow: 0 0 0 0.0625rem $colorbluedark inset;
-					border-radius: 99rem;
-					width: 2.125rem;
-					min-width: 2.125rem;
-					height: 2.125rem;
-					margin-left: 1.25rem;
-					display: flex;
-					justify-content: center;
-					align-items: center;
-					transition:.4s $easeinout;
-					font-size: 1rem;
-					font-weight: normal;
-				}
-			}
+	&.el--open {
+		.el-title .icon {
+			transform: rotate(45deg);
 		}
-		.el-content{
-			overflow: hidden;
-			height: 0;
-			transition:.4s $easeinout;
-		}
-		&:hover,
-		&.el--open{
-			.el-title{
-				i{
-					transform:rotate(45deg);
-				}
-			}
-		}
-		&.el--open{
-			.el-content{
-				height: auto;
-				padding-bottom: 1.875rem;
-			}
+		.el-content {
+			padding-bottom: 1.875rem;
 		}
 	}
 }
