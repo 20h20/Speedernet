@@ -4,7 +4,6 @@ $post_id        = get_the_ID();
 $date_raw       = get_field('webinair_date', $post_id, false);
 $duree          = get_field('webinair_duration', $post_id);
 $speakers       = get_field('webinair_speakers', $post_id);
-$resume         = get_field('webinair_resume', $post_id);
 $form_shortcode = get_field('webinair_form', $post_id);
 
 $date_formatted  = '';
@@ -50,13 +49,11 @@ if ( $date_raw ) {
 					</div>
 				<?php endif; ?>
 
-				<?php if ( $resume ) : ?>
-					<div class="single-resume cbo-cms" itemprop="description">
-						<?php echo wp_kses_post( $resume ); ?>
-					</div>
-				<?php endif; ?>
+				<div class="single-resume cbo-cms" itemprop="description">
+					<?php the_content(); ?>
+				</div>
 
-				<?php get_part( 'speakers/template', [ 'speakers' => $speakers ] ); ?>
+				<?php get_part( 'speakers/template', [ 'speakers' => $speakers, 'show_details' => true ] ); ?>
 
 			</div>
 

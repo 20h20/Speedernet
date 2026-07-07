@@ -6,23 +6,30 @@ SPEAKERS PART
 .webinaire-speakers {
 	background: linear-gradient(180deg, rgba($colorblue, .2) 0%, rgba($colorblue, 0) 68%);
 	border-radius: $borderlarge;
-	padding: 1.25rem;
+	padding: 1.25rem 1.25rem 0 1.25rem;
 	margin-top: 2.5rem;
 	width: 100%;
 
 	.speakers-title {
 		font-weight: 700;
-		font-size: 1rem;
 		margin: 0 0 1rem;
 	}
 
 	.speakers-list {
 		.speaker-el {
+			width: 100%;
 			display: flex;
-			align-items: center;
-			gap: 0.875rem;
+			justify-content: space-between;
 			margin: 0.625rem 0;
 
+			&:last-child{
+				margin-bottom: 0;
+			}
+			.speaker-content{
+				display: flex;
+				align-items: center;
+				gap: 0.875rem;
+			}
 			.speaker-picture {
 				width: 4.375rem;
 				min-width: 4.375rem;
@@ -45,6 +52,32 @@ SPEAKERS PART
 					display: block;
 					font-weight: 700;
 				}
+			}
+
+			.speaker-linkedin{
+				background: $colorblue;
+				border-radius: 99rem;
+				min-width: 1.875rem;
+				width: 1.875rem;
+				height: 1.875rem;
+				color: $colorwhite;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 0.875rem;
+			}
+		}
+	}
+}
+
+/* -------------------------------
+SMALL SCREENS
+------------------------------- */
+@media (min-width: $screen-sm-min) {
+	.webinaire-speakers {
+		.speakers-list {
+			.speaker-el {
+				margin: 1.25rem 0;
 			}
 		}
 	}

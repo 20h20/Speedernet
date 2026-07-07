@@ -1,9 +1,18 @@
 <?php
+	get_header();
+?>
 
-get_header();
-while ( have_posts() ) : the_post();
-	get_template_part( 'templates/blocks/webinaires-single/template' );
-endwhile;
-get_footer();
+<article id="post-<?php the_ID(); ?>" <?php post_class('cbo-page page--single'); ?>>
+	<div class="single-content">
+		<?php
+			if(have_posts()):
+				the_post();
+				get_part('webinairehero/template');
+			endif;
+		?>
+	</div>
+</article>
 
+<?php
+	get_footer();
 ?>

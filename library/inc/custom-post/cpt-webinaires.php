@@ -28,35 +28,10 @@
 		'has_archive' => 'nos-webinaires',
 		'capability_type' => 'post',
 		'hierarchical' => false,
-		'show_in_rest' => true,
-		'supports' => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt'),
+		'show_in_rest' => false,
+		'supports' => array( 'title', 'editor'),
 	));
-
-	register_taxonomy( 'webinaires_cat',
-		array('webinaires'),
-		array('hierarchical' => true,
-			'labels' => array(
-				'name' => __( 'Catégories des webinaires', 'bonestheme' ),
-				'singular_name' => __( 'Catégorie', 'bonestheme' ),
-				'search_items' =>  __( 'Rechercher', 'bonestheme' ),
-				'all_items' => __( 'Toutes les catégories', 'bonestheme' ),
-				'parent_item' => __( 'Catégories parentes', 'bonestheme' ),
-				'parent_item_colon' => __( 'Catégorie parente', 'bonestheme' ),
-				'edit_item' => __( 'Modifier la catégorie', 'bonestheme' ),
-				'update_item' => __( 'Mettre à jour', 'bonestheme' ),
-				'add_new_item' => __( 'Ajouter', 'bonestheme' ),
-				'new_item_name' => __( 'Nouveau nom', 'bonestheme' )
-			),
-			'show_admin_column' => true,
-			'show_ui' => true,
-			'show_in_rest' => true,
-			'query_var' => true,
-			'rewrite' => array( 'slug' => 'horizons-learning' ),
-		)
-	);
 }
-	add_action( 'init', 'cbo_webinaires');
-
-
+add_action( 'init', 'cbo_webinaires');
 
 ?>

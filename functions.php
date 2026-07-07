@@ -360,29 +360,4 @@
 	}
 	add_filter( 'wpseo_breadcrumb_links', 'ju_trim_yoast_breadcrumb_links' );
 
-
-
-
-
-
-
-
-
-add_filter( 'wpseo_breadcrumb_links', function( $links ) {
-	if ( ! is_singular( 'webinaires' ) ) return $links;
-	$archive_url  = get_post_type_archive_link( 'webinaires' );
-	$listing_page = get_page_by_path( 'horizons-learning' );
-	if ( ! $listing_page ) return $links;
-	$listing_url = get_permalink( $listing_page );
-	foreach ( $links as &$link ) {
-		if ( isset( $link['url'] ) && rtrim( $link['url'], '/' ) === rtrim( $archive_url, '/' ) ) {
-			$link['url']  = $listing_url;
-			$link['text'] = get_the_title( $listing_page );
-		}
-	}
-	return $links;
-} );
-
-
-
 ?>

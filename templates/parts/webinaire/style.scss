@@ -54,6 +54,7 @@ WEBINAIRE CARD PART
 	}
 
 	.toggle-wrap{
+		margin-top: 1.875rem;
 		display: flex;
 		justify-content: flex-end;
 
@@ -106,29 +107,47 @@ SMALL SCREENS
 	.cbo-webinaire {
 		.webinaire-inner {
 			position: relative;
-			padding: 2.5rem;
+			padding: 2.5rem 1.25rem 1.25rem 1.25rem;
 			display: flex;
 			flex-wrap: wrap;
 		}
 		.webinaire-content {
+			display: flex;
+			justify-content: space-between;
+			flex-direction: column;
 			flex: 1;
 			padding-right: 2.5rem;
 
 			.content-cta{
 				margin-bottom: 0;
+				width: fit-content;
 			}
 		}
 		.webinaire-speakers {
-			width: 40%;
+			margin-top: 0;
+			width: 45%;
 			max-width: 23.125rem;
 		}
 		.toggle-wrap{
+			margin-top: 0;
 			position: absolute;
 			top: -1.25rem;
 			right: 2.5rem;
 		}
 		.webinaire-excerpt{
+			margin-top: 2.5rem;
 			width: 100%;
+		}
+	}
+}
+
+/* -------------------------------
+MEDIUM SCREENS
+------------------------------- */
+@media (min-width: $screen-md-min) {
+	.cbo-webinaire {
+		.webinaire-inner {
+			padding: 2.5rem;
 		}
 	}
 }
