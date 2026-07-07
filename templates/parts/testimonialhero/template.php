@@ -53,5 +53,11 @@ $cats     = get_the_terms(get_the_ID(), 'testimonials_cat');
 				<?php endif; ?>
 			</div>
 		</div>
+
+		<?php if ( has_excerpt() ) : ?>
+			<div class="testimonialhero-excerpt cbo-cms cbo-chapo slide-up" itemprop="description">
+				<?php the_excerpt(); ?>
+			</div>
+		<?php endif; ?>
 	</div>
 </section>

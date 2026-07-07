@@ -85,6 +85,7 @@
 					'archive_option'  => 'cbo_casestudies_archive_page',
 					'taxonomies'      => ['casestudies_cat'],
 					'singular_blocks' => ['casestudies'],
+					'archive_blocks'  => ['herosimple'],
 				],
 				'faq' => [
 					'archive_option'  => 'cbo_faqs_archive_page',
@@ -96,6 +97,7 @@
 					'archive_option'  => 'cbo_testimonials_archive_page',
 					'taxonomies'      => ['testimonials_cat'],
 					'singular_blocks' => [],
+					'archive_blocks'  => ['herosimple'],
 				],
 				'webinaires' => [
 					'archive_option'  => 'cbo_webinaires_archive_page',
