@@ -20,8 +20,8 @@
 
 	/* ****************** */
 	/* Chargement des parts */
-	/* Charge dynamiquement le CSS associé à une "part"
-	uniquement si son fichier .min.css existe et n'a pas déjà été enqueué.*/
+	/* Charge dynamiquement le CSS/JS d'une "part". Si appelée après wp_head()
+	(rendu du template), les styles sont flushés automatiquement via wp_footer(). */
 	function get_part($name, $args = []){
 		$slug = basename(dirname($name));
 		$handle = 'part-' . $slug;
@@ -40,6 +40,35 @@
 
 		get_template_part('templates/parts/' . $name, null, $args);
 	}
+
+	/* ****************** */
+	/* Chargement des blocs depuis les templates PHP */
+	/* Équivalent de get_part() pour les blocs ACF : charge le CSS du bloc
+	et inclut son template avec des $args. Gère automatiquement le timing. */
+	function get_block($name, $args = []) {
+		$handle = 'block-' . $name;
+
+		$css_file = get_stylesheet_directory() . '/library/css/blocks/' . $name . '.min.css';
+		$css_url  = get_stylesheet_directory_uri() . '/library/css/blocks/' . $name . '.min.css';
+		if (file_exists($css_file) && !wp_style_is($handle, 'enqueued')) {
+			wp_enqueue_style($handle, $css_url, array(), filemtime($css_file));
+		}
+
+		$js_file = get_stylesheet_directory() . '/library/js/blocks/' . $name . '.js';
+		$js_url  = get_stylesheet_directory_uri() . '/library/js/blocks/' . $name . '.js';
+		if (file_exists($js_file) && !wp_script_is($handle, 'enqueued')) {
+			wp_enqueue_script($handle, $js_url, array('jquery'), filemtime($js_file), true);
+		}
+
+		get_template_part('templates/blocks/' . $name . '/template', null, $args);
+	}
+
+	/* ****************** */
+	/* Flush des styles en footer */
+	/* wp_enqueue_style() appelé après wp_head() (ex: depuis get_part() ou get_block()
+	dans le corps du template) n'est pas rendu dans <head>. Ce hook imprime
+	automatiquement tous les styles encore en attente juste avant </body>. */
+	add_action('wp_footer', 'wp_print_styles', 5);
 
 
 	/* ****************** */
@@ -97,7 +126,7 @@
 					'archive_option'  => 'cbo_testimonials_archive_page',
 					'taxonomies'      => ['testimonials_cat'],
 					'singular_blocks' => [],
-					'archive_blocks'  => ['herosimple'],
+					'archive_blocks'  => ['herosimple', 'testimonials'],
 				],
 				'webinaires' => [
 					'archive_option'  => 'cbo_webinaires_archive_page',
@@ -194,12 +223,18 @@
 			/* Parts requises par certains blocs */
 			$css_parts_path = get_stylesheet_directory() . '/library/css/parts/';
 			$css_parts_url  = get_stylesheet_directory_uri() . '/library/css/parts/';
-			$block_part_deps = ['faqs' => 'faq'];
-			foreach ($block_part_deps as $block_name => $part_name) {
+			$block_part_deps = [
+				'faqs'         => ['faq'],
+				'testimonials' => ['testimonial', 'filters'],
+				'casestudies'  => ['casestudy', 'filters'],
+			];
+			foreach ($block_part_deps as $block_name => $part_names) {
 				if (in_array($block_name, $GLOBALS['cbo_used_blocks'])) {
-					$part_css_file = $css_parts_path . $part_name . '.min.css';
-					if (file_exists($part_css_file) && !wp_style_is('part-' . $part_name, 'enqueued')) {
-						wp_enqueue_style('part-' . $part_name, $css_parts_url . $part_name . '.min.css', array(), filemtime($part_css_file));
+					foreach ((array) $part_names as $part_name) {
+						$part_css_file = $css_parts_path . $part_name . '.min.css';
+						if (file_exists($part_css_file) && !wp_style_is('part-' . $part_name, 'enqueued')) {
+							wp_enqueue_style('part-' . $part_name, $css_parts_url . $part_name . '.min.css', array(), filemtime($part_css_file));
+						}
 					}
 				}
 			}

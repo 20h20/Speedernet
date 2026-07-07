@@ -4,24 +4,16 @@
 
 <div class="cbo-page page--archive">
 
-	<section class="cbo-herosimple">
-		<div class="herosimple-inner cbo-container">
-
-			<h1 class="herosimple-title cbo-title-1" data-word-anim>
-				<?php single_cat_title(); ?>
-				<?php if (is_paged()): ?>
-					<span class="title-page slide-up">Page numéro <?php echo max(1, get_query_var('paged')); ?></span>
-				<?php endif; ?>
-			</h1>
-
-
-			<?php if ( ! is_paged() ) : ?>
-				<div class="herosimple-chapo cbo-chapo slide-up">
-					<?php echo category_description(); ?>
-				</div>
-			<?php endif; ?>
-		</div>
-	</section>
+	<?php
+		$hero_title = single_term_title('', false);
+		if (is_paged()) {
+			$hero_title .= ' <span class="title-page slide-up">Page numéro ' . max(1, get_query_var('paged')) . '</span>';
+		}
+		get_block('herosimple', [
+			'title' => $hero_title,
+			'chapo' => !is_paged() ? term_description() : '',
+		]);
+	?>
 
 	<section class="cbo-casestudies">
 		<div class="casestudies-inner cbo-container">

@@ -1,11 +1,15 @@
 <?php
 
-$uptitle  = get_field('articles_uptitle');
-$uptitlepic  = get_field('articles_uptitlepicture');
-$title  = get_field('articles_title');
-$button = get_field('articles_bouton');
-$last   = get_field('articles_last');
-$type  = get_field('articles_category');
+$related_to   = $args['related_to'] ?? null;
+$title_arg    = $args['title']      ?? null;
+
+$uptitle    = get_field('articles_uptitle');
+$uptitlepic = get_field('articles_uptitlepicture');
+$title      = $title_arg ?? get_field('articles_title');
+$button     = get_field('articles_bouton');
+$last       = get_field('articles_last');
+$type       = get_field('articles_category');
+
 $is_articles_page   = is_home() || is_category() || is_tag() || is_archive() || is_404();
 $blog_page_id       = (int) get_option('page_for_posts');
 $is_listing_context = $is_articles_page || ($blog_page_id && is_admin() && (int) get_the_ID() === $blog_page_id);
@@ -62,7 +66,31 @@ $is_listing_context = $is_articles_page || ($blog_page_id && is_admin() && (int)
 
         <div class="articles-list">
             <?php
-                if ($last) {
+                if ($related_to) {
+                    $related_terms = wp_get_post_terms($related_to, 'category');
+                    $related_args  = [
+                        'post_type'              => 'post',
+                        'posts_per_page'         => 3,
+                        'post_status'            => 'publish',
+                        'post__not_in'           => [$related_to],
+                        'no_found_rows'          => true,
+                        'update_post_meta_cache' => false,
+                    ];
+                    if (!empty($related_terms) && !is_wp_error($related_terms)) {
+                        $related_args['tax_query'] = [[
+                            'taxonomy' => 'category',
+                            'field'    => 'term_id',
+                            'terms'    => $related_terms[0]->term_id,
+                        ]];
+                    }
+                    $related_query = new WP_Query($related_args);
+                    if ($related_query->have_posts()) :
+                        while ($related_query->have_posts()) : $related_query->the_post();
+                            get_part('article/template');
+                        endwhile;
+                        wp_reset_postdata();
+                    endif;
+                } elseif ($last) {
                     if ($is_articles_page) {
                         if (have_posts()) :
                             while (have_posts()) : the_post();
@@ -78,17 +106,17 @@ $is_listing_context = $is_articles_page || ($blog_page_id && is_admin() && (int)
                             echo '<p>' . esc_html__('Aucun article trouvé.', 'textdomain') . '</p>';
                         endif;
                     } else {
-                        $args = [
-                            'post_type'           => 'post',
-                            'posts_per_page'      => 3,
-                            'post_status'         => 'publish',
-                            'no_found_rows'       => true,
+                        $query_args = [
+                            'post_type'              => 'post',
+                            'posts_per_page'         => 3,
+                            'post_status'            => 'publish',
+                            'no_found_rows'          => true,
                             'update_post_meta_cache' => false,
                         ];
-                        if ( ! empty( $type ) ) {
-                            $args['cat'] = is_object( $type ) ? $type->term_id : $type;
+                        if (!empty($type)) {
+                            $query_args['cat'] = is_object($type) ? $type->term_id : $type;
                         }
-                        $posts_query = new WP_Query($args);
+                        $posts_query = new WP_Query($query_args);
                         if ($posts_query->have_posts()) :
                             while ($posts_query->have_posts()) : $posts_query->the_post();
                             get_part('article/template');

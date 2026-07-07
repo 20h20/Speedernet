@@ -15,7 +15,7 @@
 	}
 ?>
 
-<section class="cbo-heroarticle" aria-label="<?php echo esc_attr( get_the_title() ); ?>" itemscope itemtype="https://schema.org/Article">
+<section class="cbo-heroarticle <?php echo $post_type === 'post' ? 'heroarticle--post' : ''; ?>" aria-label="<?php echo esc_attr( get_the_title() ); ?>" itemscope itemtype="https://schema.org/Article">
 	<meta itemprop="datePublished" content="<?php echo esc_attr( get_the_date('c') ); ?>">
 	<meta itemprop="dateModified" content="<?php echo esc_attr( get_the_modified_date('c') ); ?>">
 
@@ -37,6 +37,20 @@
 					<?php echo esc_html( get_the_title() ); ?>
 				</h1>
 			</div>
+
+			<?php if ( $post_type === 'post' ) :
+				$word_count   = str_word_count( wp_strip_all_tags( get_post_field( 'post_content', $post_id ) ) );
+				$reading_time = max( 1, (int) ceil( $word_count / 200 ) );
+			?>
+				<div class="content-meta slide-up">
+					<time class="meta-date" datetime="<?php echo esc_attr( get_the_date('c') ); ?>" itemprop="datePublished">
+						<?php echo esc_html( get_the_date() ); ?>
+					</time>
+					<span class="meta-reading" aria-label="<?php echo esc_attr( sprintf( pll__('%d min de lecture'), $reading_time ) ); ?>">
+						<i class="icon icon--clock"></i> <?php echo esc_html( sprintf( pll__('%d min de lecture'), $reading_time ) ); ?>
+					</span>
+				</div>
+			<?php endif; ?>
 		</div>
 
 		<?php if ( has_post_thumbnail() ) { ?>
