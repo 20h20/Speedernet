@@ -1,0 +1,63 @@
+@import "../../../src/scss/partials/variables";
+
+/* -------------------------------
+   TESTIMONIALHERO COMPONENT
+------------------------------- */
+.cbo-testimonialhero {
+	background-image: linear-gradient(rgba($colorblue, 0), rgba($colorblue, 0.07), rgba($colorblue, 0.18), rgba($colorblue, 0.07), rgba($colorblue, 0));
+	text-align: center;
+
+	.testimonialhero-inner {
+		.hero-categories {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+			gap: 0.5rem;
+
+			.cbo-tag {
+				width: fit-content;
+			}
+		}
+
+		.testimonialhero-author {
+			margin-top: 1.875rem;
+			text-align: center;
+			display: flex;
+			align-items: center;
+			flex-direction: column;
+
+			.author-picture {
+				width: 5rem;
+				height: 5rem;
+				border-radius: 50%;
+				overflow: hidden;
+				margin-bottom: 0.625rem;
+				border: 0.125rem solid rgba($colorblue, 0.2);
+			}
+
+			.author-info {
+				.author-name {
+					margin: 0 0 0.375rem;
+				}
+				.author-function {
+					margin: 0;
+				}
+			}
+
+			.author-logo {
+				display: flex;
+				align-items: center;
+				padding-left: 1.5rem;
+				margin-left: 0.25rem;
+				border-left: 0.0625rem solid $colorgrey;
+
+				img {
+					max-height: 2.5rem;
+					width: auto;
+					max-width: 8rem;
+					object-fit: contain;
+				}
+			}
+		}
+	}
+}

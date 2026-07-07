@@ -17,7 +17,7 @@
 			'parent_item_colon' => ''
 		),
 		'description' => __( 'Ceci est une étude de cas d\'exemple', 'bonestheme' ),
-		'public' => false,
+		'public' => true,
 		'publicly_queryable' => true,
 		'exclude_from_search' => false,
 		'show_ui' => true,
@@ -28,7 +28,7 @@
 		'has_archive' => 'nos-temoignages', // slug de la page d'archive
 		'capability_type' => 'post',
 		'hierarchical' => true,
-		'show_in_rest'	=> false,
+		'show_in_rest'	=> true,
 		'supports' => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt'), 
 	)); }
 	add_action( 'init', 'cbo_testimonial');

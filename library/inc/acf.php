@@ -24,6 +24,7 @@
 		require get_template_directory() . '/templates/blocks/textpicture/block.php';
 		require get_template_directory() . '/templates/blocks/textpictureaccordion/block.php';
 		require get_template_directory() . '/templates/blocks/textpictureslide/block.php';
+		require get_template_directory() . '/templates/blocks/videoambiant/block.php';
 		require get_template_directory() . '/templates/blocks/video/block.php';
 		require get_template_directory() . '/templates/blocks/webinaires/block.php';
 	} );
@@ -54,6 +55,7 @@
 			'acf/textpicture',
 			'acf/textpictureaccordion',
 			'acf/textpictureslide',
+			'acf/videoambiant',
 			'acf/video',
 			'acf/webinaires',
 		);

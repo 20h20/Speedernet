@@ -1,103 +1,108 @@
 @import "../../../src/scss/partials/variables";
 
 /* -------------------------------
-VIDEO SCROLL EXPAND
+VIDEO BLOCK — YOUTUBE PLAYER
 ------------------------------- */
 .cbo-video {
-	height: 150vh;
-	height: 150svh;
-	position: relative;
-	margin-bottom: -6.25rem;
-	margin-top: -6.25rem;
+	.video-title {
+		margin-bottom: 3.125rem;
+		text-align: center;
+	}
 
-	.video-inner {
+	.video-player {
 		position: relative;
-		height: 100svh;
+		border-radius: $borderlarge;
 		overflow: hidden;
-		isolation: isolate;
+		background: $colorgrey;
+		cursor: pointer;
 
-		&.video-inner--fixed {
-			position: fixed;
-			top: 0;
-			left: 0;
-			width: 100%;
-		}
-		&.video-inner--end {
+		.player-cover {
 			position: absolute;
-			top: auto;
-			bottom: 0;
-			width: 100%;
-		}
+			inset: 0;
+			z-index: 1;
+			transition: opacity 0.4s $easeinout;
 
-		.video-file {
+			&::after {
+				content: '';
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				background: rgba($colorgrey, .35);
+				transition: all 0.3s $easeinout;
+			}
+		}
+		.player-button {
 			position: absolute;
-			top: calc(var(--video-header-h, 0rem) + 1.25rem);
-			bottom: 10vh;
-			left: 5%;
-			right: 5%;
-			transform-origin: center center;
-			overflow: hidden;
+			inset: 0;
+			z-index: 2;
 			display: flex;
 			align-items: center;
 			justify-content: center;
-			border-radius: $borderlarge;
-			will-change: transform, border-radius;
+			padding: 0;
+			cursor: pointer;
 
-			&:after{
-				content: '';
-				background: rgba($colorgrey, .6);
-				position: absolute;
-				top: 0;
-				left: 0;
-				width: 100%;
-				height: 100%;
-			}
-			.icon--player{
+			.icon--player {
 				background: $coloryellow;
 				color: $colorgrey;
-				border-radius: 99rem;
+				border-radius: 50%;
 				border: 0.125rem solid $colorgrey;
-				cursor: pointer;
-				width: 3.125rem;
-				height: 3.125rem;
+				width: 4rem;
+				height: 4rem;
 				font-size: 1.25rem;
 				display: flex;
-				justify-content: center;
 				align-items: center;
-				position: absolute;
-				z-index: 1;
-				transform: scale(1);
-				transition:all .3s $easeinout;
-
-				&:hover{
-					transform: scale(1.2);
-				}
-			}
-			.cbo-video-element {
-				display: block;
-				width: 100%;
-				height: 100%;
-				object-fit: cover;
+				justify-content: center;
+				transition: transform 0.3s $easeinout;
 			}
 		}
 
-		.video-label {
+		.player-embed {
 			position: absolute;
-			top: 50%;
-			left: 0;
-			right: 0;
-			transform: translateY(-50%);
-			margin: 0;
-			text-align: center;
-			font-size: 12vw;
-			font-weight: 900;
-			line-height: 1;
-			white-space: nowrap;
-			z-index: 2;
-			pointer-events: none;
-			color: rgba($colorgrey, .3);
-			opacity: var(--video-p, 0);
-			will-change: opacity;
+			inset: 0;
+			z-index: 0;
+
+			iframe {
+				width: 100%;
+				height: 100%;
+				border: 0;
+				display: block;
+			}
+		}
+
+		&:not(.player--playing):hover {
+			.player-cover::after {
+				background: rgba($colorgrey, .15);
+			}
+
+			.player-button .icon--player {
+				transform: scale(1.1);
+			}
+		}
+
+		&.player--playing {
+			cursor: default;
+
+			.player-cover,
+			.player-button {
+				opacity: 0;
+				pointer-events: none;
+			}
+
+			.player-embed {
+				z-index: 3;
+			}
+		}
+	}
+
+	&.cbo-video--horizontal .video-player {
+		aspect-ratio: 16 / 9;
+	}
+
+	&.cbo-video--vertical {
+		.video-player {
+			aspect-ratio: 11 / 16;
+			max-width: 24rem;
+			margin: 0 auto;
 		}
 	}
 }
@@ -107,13 +112,8 @@ MEDIUM SCREENS
 ------------------------------- */
 @media (min-width: $screen-md-min) {
 	.cbo-video {
-		margin-bottom: -12.5rem;
-		margin-top: -12.5rem;
-
-		.video-inner {
-			position: sticky;
-			top: 0;
-			transform: translateZ(0);
+		&.cbo-video--vertical .video-player {
+			max-width: 28rem;
 		}
 	}
 }

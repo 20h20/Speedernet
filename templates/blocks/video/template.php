@@ -1,25 +1,58 @@
 <?php
 
-$video		= get_field('video_file');
+$title      = get_field('video_title');
+$youtube_id = get_field('video_youtube_id');
+$cover      = get_field('video_cover');
+$format     = get_field('video_format') ?: 'horizontal';
+
+if (!$youtube_id && !is_admin()) return;
 
 ?>
 
-<div class="cbo-video">
-	<section class="video-inner">
-		<?php if($video): ?>
-			<div class="video-file" itemscope itemtype="https://schema.org/VideoObject">
-				<meta itemprop="name" content="<?php echo esc_attr($video['title']); ?>">
-				<meta itemprop="description" content="<?php echo esc_attr($video['description']); ?>">
-				<meta itemprop="uploadDate" content="<?php echo date('Y-m-d', strtotime($video['date'])); ?>">
-				<meta itemprop="publisher" content="Speedernet">
-				<i class="icon icon--player"></i>
-				<video class="cbo-video-element" autoplay muted loop playsinline>
-					<source type="video/mp4" src="<?php echo esc_url($video['url']); ?>">
-				</video>
+<section class="cbo-video cbo-video--<?php echo esc_attr($format); ?>">
+	<div class="video-inner cbo-container">
+
+		<?php if ($title) : ?>
+			<div class="video-title cbo-title-2 slide-up">
+				<?php echo wp_kses_post($title); ?>
 			</div>
 		<?php endif; ?>
-		<p class="video-label" aria-hidden="true">
-			<?php echo esc_html(pll__('Notre showreel')); ?>
-		</p>
-	</section>
-</div>
+
+		<div
+			class="video-player slide-up"
+			data-youtube-id="<?php echo esc_attr($youtube_id); ?>"
+			itemscope
+			itemtype="https://schema.org/VideoObject"
+		>
+			<meta itemprop="name" content="<?php echo esc_attr($title ?: 'Vidéo'); ?>">
+			<meta itemprop="embedUrl" content="https://www.youtube.com/embed/<?php echo esc_attr($youtube_id); ?>">
+			<?php if ($cover) : ?>
+				<meta itemprop="thumbnailUrl" content="<?php echo esc_url($cover['url']); ?>">
+			<?php endif; ?>
+
+			<?php if ($cover) : ?>
+				<div class="player-cover cbo-picture-cover">
+					<img
+						src="<?php echo esc_url($cover['sizes']['large'] ?? $cover['url']); ?>"
+						alt="<?php echo esc_attr($cover['alt'] ?: $title); ?>"
+						width="<?php echo esc_attr($cover['sizes']['large-width'] ?? $cover['width']); ?>"
+						height="<?php echo esc_attr($cover['sizes']['large-height'] ?? $cover['height']); ?>"
+						loading="lazy"
+						decoding="async"
+					>
+				</div>
+			<?php endif; ?>
+
+			<button
+				class="player-button"
+				type="button"
+				aria-label="<?php echo esc_attr(pll__('Lire la vidéo')); ?>"
+			>
+				<i class="icon icon--player" aria-hidden="true"></i>
+			</button>
+
+			<div class="player-embed"></div>
+		</div>
+
+	</div>
+</section>

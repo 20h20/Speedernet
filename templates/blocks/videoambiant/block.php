@@ -1,10 +1,10 @@
 <?php
     if( function_exists('acf_register_block_type') ):
         acf_register_block_type(array(
-            'name' => 'video',
-            'title' => 'Vidéo',
-            'description' => '',
-            'category' => 'text',
+            'name' => 'videoambiant',
+            'title' => 'Vidéo d\'ambiance',
+            'description' => 'Affichage d\'une vidéo d\'ambiance',
+            'category' => 'media',
             'keywords' => array(
             ),
             'post_types' => array(
@@ -12,14 +12,14 @@
             'mode' => 'auto',
             'align' => '',
             'align_content' => NULL,
-            'render_template' => 'templates/blocks/video/template.php',
+            'render_template' => 'templates/blocks/videoambiant/template.php',
             'render_callback' => '',
             'enqueue_assets' => function() {
                 if (is_admin()) {
-                    wp_enqueue_style('acf-block-style', get_template_directory_uri() . '/library/css/style.css');
+                    wp_enqueue_style('acf-block-style', get_template_directory_uri() . '/library/css/style.min.css');
                 }
             },
-            'icon' => 'video-alt3',
+            'icon' => 'format-video',
             'supports' => array(
                 'align' => false,
                 'mode' => false,

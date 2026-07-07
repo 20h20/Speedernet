@@ -15,6 +15,20 @@ $is_testimonials_page = is_post_type_archive('testimonial') || is_tax('testimoni
 <section class="cbo-testimonials <?php echo !$is_testimonials_page ? 'testimonials--relationship' : ''; ?> cbo-overflow-container<?php echo is_admin() ? ' is-admin' : ''; ?>">
     <div class="testimonials-inner cbo-container">
 
+        <?php
+            if ($is_testimonials_page) :
+                get_part('filters/template', [
+                    'taxonomy'   => 'testimonials_cat',
+                    'post_type'  => 'testimonial',
+                    'base_url'   => $testimonials_page_id ? get_permalink($testimonials_page_id) : home_url('/'),
+                    'aria_label' => pll__('Filtrer les témoignages par catégorie'),
+                    'singular'   => pll__('%d témoignage'),
+                    'plural'     => pll__('%d témoignages'),
+                    'flat'       => true,
+                ]);
+            endif;
+        ?>
+
         <?php if ($title || $uptitle) : ?>
             <div class="testimonials-head">
                 <?php if($uptitle): ?>
