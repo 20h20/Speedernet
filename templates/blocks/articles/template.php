@@ -6,12 +6,28 @@ $title  = get_field('articles_title');
 $button = get_field('articles_bouton');
 $last   = get_field('articles_last');
 $type  = get_field('articles_category');
-$is_articles_page = is_home() || is_category() || is_tag() || is_archive() || is_404();
+$is_articles_page   = is_home() || is_category() || is_tag() || is_archive() || is_404();
+$blog_page_id       = (int) get_option('page_for_posts');
+$is_listing_context = $is_articles_page || ($blog_page_id && is_admin() && (int) get_the_ID() === $blog_page_id);
 
 ?>
 
-<section class="cbo-articles <?php echo !$is_articles_page ? 'articles--relationship' : ''; ?>">
+<section class="cbo-articles <?php echo !$is_listing_context ? 'articles--relationship cbo-overflow-container' : ''; ?>">
     <div class="articles-inner cbo-container">
+
+        <?php
+            if ($is_articles_page) :
+                $blog_page_id = (int) get_option('page_for_posts');
+                get_part('filters/template', [
+                    'taxonomy'   => 'category',
+                    'post_type'  => 'post',
+                    'base_url'   => $blog_page_id ? get_permalink($blog_page_id) : home_url('/'),
+                    'aria_label' => pll__('Filtrer les articles par catégorie'),
+                    'singular'   => pll__('%d article'),
+                    'plural'     => pll__('%d articles'),
+                ]);
+            endif;
+        ?>
 
         <?php if ($title || $uptitle) : ?>
             <div class="articles-head">

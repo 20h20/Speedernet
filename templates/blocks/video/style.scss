@@ -12,12 +12,13 @@ VIDEO SCROLL EXPAND
 
 	.video-inner {
 		position: relative;
-		height: calc(100svh - var(--video-header-h, 0rem));
+		height: 100svh;
 		overflow: hidden;
+		isolation: isolate;
 
 		&.video-inner--fixed {
 			position: fixed;
-			top: var(--video-header-h, 0rem);
+			top: 0;
 			left: 0;
 			width: 100%;
 		}
@@ -30,7 +31,10 @@ VIDEO SCROLL EXPAND
 
 		.video-file {
 			position: absolute;
-			inset: 0;
+			top: calc(var(--video-header-h, 0rem) + 1.25rem);
+			bottom: 10vh;
+			left: 5%;
+			right: 5%;
 			transform-origin: center center;
 			overflow: hidden;
 			display: flex;
@@ -51,7 +55,7 @@ VIDEO SCROLL EXPAND
 			.icon--player{
 				background: $coloryellow;
 				color: $colorgrey;
-				border-radius: 1584px;
+				border-radius: 99rem;
 				border: 0.125rem solid $colorgrey;
 				cursor: pointer;
 				width: 3.125rem;
@@ -76,6 +80,25 @@ VIDEO SCROLL EXPAND
 				object-fit: cover;
 			}
 		}
+
+		.video-label {
+			position: absolute;
+			top: 50%;
+			left: 0;
+			right: 0;
+			transform: translateY(-50%);
+			margin: 0;
+			text-align: center;
+			font-size: 12vw;
+			font-weight: 900;
+			line-height: 1;
+			white-space: nowrap;
+			z-index: 2;
+			pointer-events: none;
+			color: rgba($colorgrey, .3);
+			opacity: var(--video-p, 0);
+			will-change: opacity;
+		}
 	}
 }
 
@@ -89,7 +112,7 @@ MEDIUM SCREENS
 
 		.video-inner {
 			position: sticky;
-			top: var(--video-header-h, 0rem);
+			top: 0;
 			transform: translateZ(0);
 		}
 	}

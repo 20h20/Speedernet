@@ -164,6 +164,14 @@
 
 			if ( is_search() ) {
 				cbo_register_block_usage('herosimple');
+				$css_parts_path = get_stylesheet_directory() . '/library/css/parts/';
+				$css_parts_url  = get_stylesheet_directory_uri() . '/library/css/parts/';
+				foreach (['article', 'pagination'] as $part_name) {
+					$part_css_file = $css_parts_path . $part_name . '.min.css';
+					if (file_exists($part_css_file) && !wp_style_is('part-' . $part_name, 'enqueued')) {
+						wp_enqueue_style('part-' . $part_name, $css_parts_url . $part_name . '.min.css', array(), filemtime($part_css_file));
+					}
+				}
 			}
 
 			/* Charger les styles des blocs */
@@ -204,33 +212,27 @@
 	   (le hook est déjà en cours d'exécution). */
 	add_theme_support( 'editor-styles' );
 	add_editor_style( 'library/css/style.min.css' );
-	add_editor_style( 'library/css/gutenberg.min.css' );
 
 
 	/* ****************** */
 	/* Chargement des styles des blocs et parts dans l'éditeur Gutenberg */
-	/* style.min.css est volontairement absent ici : add_editor_style() le gère déjà */
+	/* Les blocs sont chargés via gutenberg.min.css (concat de tous les blocs) avec filemtime
+	   pour éviter le double chargement et garantir le cache busting. */
 	function cbo_enqueue_block_editor_assets() {
-		// Blocs
-		$css_blocks_path = get_stylesheet_directory() . '/library/css/blocks/';
-		$css_blocks_url  = get_stylesheet_directory_uri() . '/library/css/blocks/';
-		$block_css_files = glob( $css_blocks_path . '*.min.css' );
-
-		if ( ! empty( $block_css_files ) ) {
-			foreach ( $block_css_files as $file ) {
-				$block_name = basename( $file, '.min.css' );
-				wp_enqueue_style(
-					'editor-block-' . $block_name,
-					$css_blocks_url . $block_name . '.min.css',
-					array(),
-					filemtime( $file )
-				);
-			}
+		// Blocs — un seul fichier concaténé, cache busting via filemtime
+		$gutenberg_file = get_stylesheet_directory() . '/library/css/gutenberg.min.css';
+		if ( file_exists( $gutenberg_file ) ) {
+			wp_enqueue_style(
+				'editor-blocks-gutenberg',
+				get_stylesheet_directory_uri() . '/library/css/gutenberg.min.css',
+				array(),
+				filemtime( $gutenberg_file )
+			);
 		}
 
 		// Parts
-		$css_parts_path = get_stylesheet_directory() . '/library/css/parts/';
-		$css_parts_url  = get_stylesheet_directory_uri() . '/library/css/parts/';
+		$css_parts_path  = get_stylesheet_directory() . '/library/css/parts/';
+		$css_parts_url   = get_stylesheet_directory_uri() . '/library/css/parts/';
 		$parts_css_files = glob( $css_parts_path . '*.min.css' );
 
 		if ( ! empty( $parts_css_files ) ) {

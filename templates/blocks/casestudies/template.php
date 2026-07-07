@@ -19,7 +19,15 @@ $is_listing_context     = $is_casestudies_page || ( $archive_page_id && is_admin
 
         <?php
             if ($is_casestudies_page) :
-                get_part('filters/template');
+                $cs_archive_id = (int) get_option('cbo_casestudies_archive_page');
+                get_part('filters/template', [
+                    'taxonomy'   => 'casestudies_cat',
+                    'post_type'  => 'casestudies',
+                    'base_url'   => $cs_archive_id ? get_permalink($cs_archive_id) : home_url('/nos-etudes-de-cas'),
+                    'aria_label' => pll__('Filtrer les études de cas par catégorie'),
+                    'singular'   => pll__('%d étude de cas'),
+                    'plural'     => pll__('%d études de cas'),
+                ]);
             endif;
         ?>
 

@@ -115,6 +115,11 @@ LARGE SCREENS
 ------------------------------- */
 @media (min-width: $screen-lg-min){
 	.cbo-team{
+		&:last-of-type {
+			.cbo-container{
+				margin-bottom: 9.375rem;
+			}
+		}
 		.team-list {
 			margin-top: -12.5rem;
 

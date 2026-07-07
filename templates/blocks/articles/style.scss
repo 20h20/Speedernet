@@ -4,25 +4,13 @@
 ARTICLES LIST COMPONENT
 ------------------------------- */
 .cbo-articles{
+  position: relative;
+
   .articles-list{
-    width: 100%;
-    margin-top: 2.75rem;
-
-    &:not(.slick-slider){
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(#{"min(17.5rem, 100%)"}, 1fr));
-      gap: 2.5rem;
-    }
-  }
-
-  .articles-button{
-    margin-top: 2.5rem;
-    text-align: center;
+    margin-top: 1.875rem;
   }
 
   &.articles--relationship{
-    position: relative;
-
     &:after{
       content: '';
       background: $colorgreymedium;
@@ -37,6 +25,8 @@ ARTICLES LIST COMPONENT
       padding-top: 4.375rem;
     }
     .articles-list{
+      margin: 50px 0 0 0;
+
       .slick-list{
         width: calc(100% - -2.5rem);
         margin-left: -1.25rem;
@@ -44,15 +34,16 @@ ARTICLES LIST COMPONENT
 
         .slick-track{
           gap: 1.25rem;
-    
+
           .slick-slide {
             height: auto;
 
             & > div{
               height: 100%;
 
-              .list-el{
+              .cbo-article{
                 height: 100%;
+                margin: 0;
               }
             }
           }
@@ -63,6 +54,11 @@ ARTICLES LIST COMPONENT
       }
     }
   }
+
+  .articles-button{
+    margin-top: 2.5rem;
+    text-align: center;
+  }
 }
 
 /* -------------------------------
@@ -70,12 +66,27 @@ SMALL SCREENS
 ------------------------------- */
 @media (min-width: $screen-sm-min){
   .cbo-articles{
+    .articles-list{
+      display: flex;
+      flex-wrap: wrap;
+      margin: -2.5rem -0.625rem -1.25rem -0.625rem;
+    }
+
     &.articles--relationship{
+      overflow: hidden;
+
       .articles-list{
         .slick-list{
+          overflow: visible;
           width: calc(100% - -5rem);
           margin-left: -2.5rem;
           padding: 0 2.5rem 1.5rem 2.5rem;
+
+          .cbo-article{
+            .el-inner{
+              padding: 0;
+            }
+          }
         }
       }
     }
@@ -93,26 +104,52 @@ MEDIUM SCREENS
       flex-wrap: wrap;
       justify-content: space-between;
     }
+
+    .articles-list{
+      order: 3;
+      margin:  -1.875rem -0.9375rem;
+    }
+
     .articles-head{
       order: 1;
       flex: 1;
       padding-right: 1.875rem;
     }
-    .articles-list{
-       &:not(.slick-slider){
-        gap: 2.5rem 1.875rem;
-        order: 3;
-      }
-    }
+
     .articles-button{
       margin: 0;
       max-width: fit-content;
       order: 2;
       text-align: right;
     }
+
     &.articles--relationship{
       .articles-inner{
         padding-top: 5.625rem;
+      }
+      .articles-list {
+        .slick-list {
+          .slick-track {
+            gap: 1.875rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* -------------------------------
+LARGE SCREENS
+------------------------------- */
+@media (min-width: $screen-lg-min) {
+  .cbo-articles {
+    &.articles--relationship {
+      .articles-list {
+        .slick-list {
+          width: 100%;
+          margin-left: 0;
+          padding: 0 0 1.5rem;
+        }
       }
     }
   }

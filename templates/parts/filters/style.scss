@@ -3,8 +3,8 @@
 /* -------------------------------
 FILTERS MICRO COMPONENT
 ------------------------------- */
-.cbo-filterscasestudies {
-	margin: -2.5rem 0 2.5rem 0;
+.cbo-filters {
+	margin: 0 0 3.125rem 0;
 	width: 100%;
 	background: $colorwhite;
 	box-shadow: 0.625rem 0.625rem 1.25rem 0 rgba($colorgrey, .3);
@@ -13,17 +13,17 @@ FILTERS MICRO COMPONENT
 	display: flex;
 	align-items: center;
 
-	.filterscasestudies-inner {
+	.filters-inner {
 		text-align: center;
 		width: 100%;
 
-		.filterscasestudies-label {
+		.filters-label {
 			font-weight: 700;
 			font-size: 0.875rem;
 			margin-bottom: 0.625rem;
 			display: block;
 		}
-		.filterscasestudies-list {
+		.filters-list {
 			display: flex;
 			flex-wrap: wrap;
 			gap: 0.75rem;
@@ -39,7 +39,7 @@ FILTERS MICRO COMPONENT
 
 				&:after {
 					font-family: "icons";
-					content: '\f104';
+					content: '\f105';
 					margin-left: 1rem;
 					position: relative;
 					right: 1.25rem;
@@ -53,11 +53,12 @@ FILTERS MICRO COMPONENT
 					border: none;
 					background: none;
 					-webkit-appearance: none;
+				appearance: none;
 					cursor: pointer;
 				}
 			}
 		}
-		.filterscasestudies-count{
+		.filters-count{
 			font-weight: 700;
 			font-size: 0.875rem;
 			margin-top: 0.625rem;
@@ -70,10 +71,10 @@ FILTERS MICRO COMPONENT
 SMALL SCREENS
 ------------------------------- */
 @media (min-width: $screen-sm-min) {
-	.cbo-filterscasestudies {
+	.cbo-filters {
 		height: 5rem;
 
-		.filterscasestudies-inner {
+		.filters-inner {
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
@@ -85,15 +86,15 @@ SMALL SCREENS
 				gap: 0.75rem;
 				text-align: left;
 			}
-			.filterscasestudies-label {
+			.filters-label {
 				margin-bottom: 0;
 			}
-			.filterscasestudies-list {
+			.filters-list {
 				.list-el {
 					width: 12.5rem;
 				}
 			}
-			.filterscasestudies-count{
+			.filters-count{
 				margin-top: 0;
 			}
 		}
@@ -104,16 +105,7 @@ SMALL SCREENS
 MEDIUM SCREENS
 ------------------------------- */
 @media (min-width: $screen-md-min) {
-	.cbo-filterscasestudies {
-		margin: 0 0 2.5rem 0;
-	}
-}
-
-/* -------------------------------
-LARGE SCREENS
-------------------------------- */
-@media (min-width: $screen-lg-min) {
-	.cbo-filterscasestudies {
-		margin-top: -6.25rem;
+	.cbo-filters {
+		margin: 0 0 4.375rem 0;
 	}
 }

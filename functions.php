@@ -340,6 +340,33 @@
 	}
 
 
+	/* ************************* */
+	/* Rogne chaque élément du breadcrumb Yoast SEO à 10 mots max */
+	/* ************************* */
+	function ju_trim_yoast_breadcrumb_links( $links ) {
+		$max_words = 5;
+
+		foreach ( $links as $key => $link ) {
+			if ( ! empty( $link['text'] ) ) {
+				$words = explode( ' ', trim( $link['text'] ) );
+
+				if ( count( $words ) > $max_words ) {
+					$links[ $key ]['text'] = implode( ' ', array_slice( $words, 0, $max_words ) ) . '…';
+				}
+			}
+		}
+
+		return $links;
+	}
+	add_filter( 'wpseo_breadcrumb_links', 'ju_trim_yoast_breadcrumb_links' );
+
+
+
+
+
+
+
+
 
 add_filter( 'wpseo_breadcrumb_links', function( $links ) {
 	if ( ! is_singular( 'webinaires' ) ) return $links;

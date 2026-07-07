@@ -10,7 +10,7 @@ if ( ! empty( $categories ) && ! is_wp_error( $categories ) ) {
 
 ?>
 
-<article <?php post_class('list-el'); ?> itemscope itemtype="https://schema.org/BlogPosting">
+<article <?php post_class('cbo-article'); ?> itemscope itemtype="https://schema.org/BlogPosting">
 	<meta itemprop="dateModified" content="<?php echo esc_attr( get_the_modified_date('c') ); ?>">
 	<meta itemprop="description" content="<?php echo esc_attr( get_the_excerpt() ); ?>">
 

@@ -18,5 +18,8 @@ $video		= get_field('video_file');
 				</video>
 			</div>
 		<?php endif; ?>
+		<p class="video-label" aria-hidden="true">
+			<?php echo esc_html(pll__('Notre showreel')); ?>
+		</p>
 	</section>
 </div>

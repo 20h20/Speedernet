@@ -26,6 +26,26 @@ BACK OFFICE COMPONENT
 					}
 				}
 			}
+			.cbo-articles.articles--relationship .articles-list{
+				width: 100%;
+				display: flex;
+				flex-wrap: nowrap ;
+				gap: 0 30px;
+
+				.cbo-article .el-inner {
+					padding: 0;
+				}
+			}
+			.cbo-articles .articles-list{
+				width: 100%;
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0;
+
+				.cbo-article .el-inner {
+					padding: 0 15px;
+				}
+			}
 		}
 	}
 }
