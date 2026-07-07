@@ -51,6 +51,7 @@
 		pll_register_string( 'webinaire', "Durée :");
 		pll_register_string( 'webinaire', "Voir le replay");
 		pll_register_string( 'webinaire', "S'inscrire au webinaire");
+		pll_register_string( 'webinaire', "Lire le teaser vidéo");
 
 		pll_register_string( 'faq', "Catégories FAQ");
 		pll_register_string( 'faq', "question");

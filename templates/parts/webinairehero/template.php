@@ -5,6 +5,8 @@ $date_raw       = get_field('webinair_date', $post_id, false);
 $duree          = get_field('webinair_duration', $post_id);
 $speakers       = get_field('webinair_speakers', $post_id);
 $form_shortcode = get_field('webinair_form', $post_id);
+$video_id       = get_field('webinair_video', $post_id);
+$video_cover    = get_field('webinair_videocover', $post_id);
 
 $date_formatted  = '';
 $heure_formatted = '';
@@ -18,6 +20,7 @@ if ( $date_raw ) {
 	}
 }
 
+
 ?>
 
 <div class="cbo-page page--single page--single-webinaire">
@@ -30,7 +33,6 @@ if ( $date_raw ) {
 		<div class="single-inner cbo-container">
 
 			<div class="single-content">
-
 				<?php if ( $date_formatted || $duree ) : ?>
 					<div class="content-meta">
 						<i class="icon icon--datepicker" aria-hidden="true"></i>
@@ -49,12 +51,17 @@ if ( $date_raw ) {
 					</div>
 				<?php endif; ?>
 
+				<?php if ( $video_id ) : ?>
+					<a class="content-button cbo-button button--yellow" href="#webinaire-video-<?php echo esc_attr( $post_id ); ?>">
+						<?php pll_e('Lire le teaser vidéo'); ?>
+					</a>
+				<?php endif; ?>
+
 				<div class="single-resume cbo-cms" itemprop="description">
 					<?php the_content(); ?>
 				</div>
 
 				<?php get_part( 'speakers/template', [ 'speakers' => $speakers, 'show_details' => true ] ); ?>
-
 			</div>
 
 			<?php if ( ! empty( $form_shortcode ) ) : ?>
@@ -67,4 +74,14 @@ if ( $date_raw ) {
 
 		</div>
 	</section>
+
+	<?php if ( $video_id ) : ?>
+		<?php get_block( 'video', [
+			'youtube_id' => $video_id,
+			'cover'      => $video_cover,
+			'id'         => 'webinaire-video-' . $post_id,
+			'aria_label' => pll__('Teaser vidéo du webinaire'),
+		] ); ?>
+	<?php endif; ?>
+
 </div>

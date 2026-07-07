@@ -7,25 +7,25 @@ SINGLE WEBINAIRE
 	.single-content {
 		.content-meta {
 			display: flex;
-			margin-bottom: 20px;
+			margin-bottom: 1.25rem;
 
 			.icon {
-				width: 50px;
-				height: 50px;
+				width: 3.125rem;
+				height: 3.125rem;
 				background: $coloryellow;
 				border-radius: $bordermedium;
 				display: flex;
 				align-items: center;
 				justify-content: center;
-				font-size: 30px;
+				font-size: 1.875rem;
 				z-index: 2;
 			}
 
 			.meta-info {
-				background: $colorgreymedium;
-				padding: 0 20px 0 30px;
+				background: $colorwhite;
+				padding: 0 1.25rem 0 1.875rem;
 				border-radius: 0 $bordermedium $bordermedium 0;
-				margin-left: -10px;
+				margin-left: -0.625rem;
 				display: flex;
 				flex-direction: column;
 				justify-content: center;
@@ -35,12 +35,18 @@ SINGLE WEBINAIRE
 				}
 			}
 		}
+		.content-button{
+			margin: 1.875rem 0 3.125rem 0;
+			box-shadow: $shadowblack;
+			width: 100%;
+		}
 	}
 	.single-form {
+		margin-top: 2.5rem;
 		background: $colorwhite;
 		border-radius: $borderlarge;
 		box-shadow: $shadowblack;
-		padding: 20px;
+		padding: 1.25rem;
 		height: fit-content;
 	}
 }
@@ -56,13 +62,13 @@ SMALL SCREENS
 		}
 		.single-content {
 			flex: 1;
-			padding-right: 40px;
+			padding-right: 2.5rem;
 		}
 		.single-form {
 			width: 40%;
-			max-width: 500px;
+			max-width: 31.25rem;
 			position: sticky;
-			top: 100px;
+			top: 10.75rem;
 		}
 	}
 }
@@ -73,14 +79,15 @@ LARGE SCREENS
 @media (min-width: $screen-lg-min) {
 	.cbo-single-webinaire {
 		.single-content {
-			padding-right: 70px;
+			padding-right: 4.375rem;
 
 			.webinaire-speakers {
-				margin-top: 40px;
+				margin-top: 3.75rem;
 			}
 		}
 		.single-form {
-			padding: 40px;
+			padding: 2.5rem;
+			margin-top: 0;
 		}
 	}
 }

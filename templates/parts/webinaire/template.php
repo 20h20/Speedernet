@@ -21,7 +21,7 @@ if ( $date_raw ) {
 	if ( $timestamp ) {
 		$date_formatted  = ucfirst( date_i18n( 'l d F', $timestamp ) );
 		$heure_formatted = date_i18n( 'H\hi', $timestamp );
-		$datetime_iso    = date( 'c', $timestamp ); // ISO 8601 pour Schema.org
+		$datetime_iso    = date( 'c', $timestamp );
 		$is_past         = $timestamp < time();
 	}
 }
@@ -37,7 +37,7 @@ $has_more_content = (bool) get_the_content();
 ?>
 
 <article
-	<?php post_class('cbo-webinaire'); ?>
+	<?php post_class('cbo-webinaire slide-up'); ?>
 	id="<?php echo esc_attr($card_id); ?>"
 	aria-labelledby="<?php echo esc_attr($title_id); ?>"
 	itemscope
@@ -108,7 +108,6 @@ $has_more_content = (bool) get_the_content();
 					<?php pll_e("S'inscrire au webinaire") ?><i class="icon icon--external-link" aria-hidden="true"></i>
 				</a>
 			<?php endif; ?>
-
 		</div>
 
 		<?php get_part( 'speakers/template', [ 'speakers' => $speakers ] ); ?>

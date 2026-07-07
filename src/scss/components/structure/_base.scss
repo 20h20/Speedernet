@@ -1,6 +1,8 @@
 html {
 	min-height:100%;
 	margin: 0 !important;
+	scroll-behavior: smooth;
+	scroll-padding-top: 10rem;
 
 	&.html--hidden{
 		overflow: hidden;

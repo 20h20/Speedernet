@@ -1,15 +1,20 @@
 <?php
 
-$title      = get_field('video_title');
-$youtube_id = get_field('video_youtube_id');
-$cover      = get_field('video_cover');
-$format     = get_field('video_format') ?: 'horizontal';
+$title      = $args['title']      ?? get_field('video_title');
+$youtube_id = $args['youtube_id'] ?? get_field('video_youtube_id');
+$cover      = $args['cover']      ?? get_field('video_cover');
+$format     = $args['format']     ?? (get_field('video_format') ?: 'horizontal');
+$section_id = $args['id']         ?? '';
 
 if (!$youtube_id && !is_admin()) return;
 
 ?>
 
-<section class="cbo-video cbo-video--<?php echo esc_attr($format); ?>">
+<section
+	class="cbo-video cbo-video--<?php echo esc_attr($format); ?>"
+	<?php if ($section_id) : ?>id="<?php echo esc_attr($section_id); ?>"<?php endif; ?>
+	<?php if (!empty($args['aria_label'])) : ?>aria-label="<?php echo esc_attr($args['aria_label']); ?>"<?php endif; ?>
+>
 	<div class="video-inner cbo-container">
 
 		<?php if ($title) : ?>
