@@ -21,6 +21,14 @@
 		remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
 		remove_action( 'wp_print_styles', 'print_emoji_styles' );
 		remove_action( 'admin_print_styles', 'print_emoji_styles' );
+		// REST API — évite d'exposer le endpoint wp-json dans le <head>
+		remove_action( 'wp_head', 'rest_output_link_wp_head', 10 );
+		remove_action( 'template_redirect', 'rest_output_link_header', 11 );
+		// oEmbed — supprime les balises de découverte JSON/XML
+		remove_action( 'wp_head', 'wp_oembed_add_discovery_links' );
+		remove_action( 'wp_head', 'wp_oembed_add_host_js' );
+		// Shortlink — évite d'exposer l'ID interne du post (?p=123)
+		remove_action( 'wp_head', 'wp_shortlink_wp_head', 10, 0 );
 		add_action( 'wp_head', 'bones_remove_wp_widget_recent_comments_style', 1 );
 		add_filter( 'title-tag', 'cbo_head_title', 10, 3 );
 	}
@@ -126,12 +134,12 @@
 	}
 	add_action('wp_enqueue_scripts', 'dequeue_wp_block_library_css', 100);
 
-	function dequeue_contact_form_7_css() {
-		wp_dequeue_style('contact-form-7');
-		wp_deregister_style('contact-form-7');
+	// CSS du plugin Brevo/mailin
+	function dequeue_sib_front_css() {
+		wp_dequeue_style('sib-front-css');
+		wp_deregister_style('sib-front-css');
 	}
-	add_action('wp_enqueue_scripts', 'dequeue_contact_form_7_css', 100);
-
+	add_action('wp_enqueue_scripts', 'dequeue_sib_front_css', 100);
 
 	/* --------------------------
 	   CLEANUP PROCESS

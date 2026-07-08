@@ -70,6 +70,8 @@
 		pll_register_string( 'search', "Rechercher…");
 		pll_register_string( 'search', "Fermer la recherche");
 		pll_register_string( 'search', "Résultats pour");
+		pll_register_string( 'search', "%d résultat");
+		pll_register_string( 'search', "%d résultats");
 		pll_register_string( 'search', "Résultats de recherche");
 		pll_register_string( 'search', "Aucun résultat pour « %s ». Essayez avec d\'autres mots-clés.");
 		

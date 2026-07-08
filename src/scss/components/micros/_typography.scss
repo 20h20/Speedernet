@@ -149,6 +149,8 @@ a{
 	img{
 		display: block;
 		margin: 0 auto;
+		border-radius: $bordermedium;
+		overflow: hidden;
 	}
 }
 

@@ -27,7 +27,7 @@
 }
 
 .cbo-searchbar {
-    border-top: 1px solid rgba($colorblack, .1);
+    border-top: 0.0625rem solid rgba($colorblack, .1);
     display: block;
     padding: 0 2.125rem;
     position: fixed;
@@ -94,16 +94,6 @@
         padding-bottom: 1.875rem;
         border-bottom: 0.0625rem solid $colorgrey;
     }
-    .searchresults-list {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 2.5rem 0;
-
-        .list-el{
-            width: 100%;
-        }
-    }
-
     .searchresults-empty {
         text-align: center;
         margin: 3rem 0;
@@ -118,6 +108,8 @@
 @media (min-width: $screen-sm-min) {
     .cbo-searchresults {
         .searchresults-list {
+            display: flex;
+            flex-wrap: wrap;
             margin: 0 -0.9375rem;
 
             .list-el{
@@ -147,7 +139,6 @@
 ------------------------------- */
 
 @media (min-width: $screen-lg-min) {
-
     .cbo-searchoverlay {
         position: fixed;
         inset: 0;
@@ -167,8 +158,6 @@
             transition: opacity 0.3s $easeinout, visibility 0s;
         }
     }
-
-
     .cbo-searchbar {
         display: block;
         padding: 0 2.125rem;
@@ -226,14 +215,6 @@
                 background: none;
                 font-size: 0.75rem;
                 border: none;
-            }
-        }
-    }
-
-    .cbo-searchresults {
-        .searchresults-list {
-            .list-el{
-                width: 25%;
             }
         }
     }

@@ -62,6 +62,24 @@
 	add_action('admin_menu', 'wpc_force_remove_appearance_menus', 999);
 
 
+	/* Logo sur la page de connexion */
+	add_action('login_enqueue_scripts', function() {
+		$logo_url = esc_url(get_stylesheet_directory_uri() . '/library/images/logo-speedernet-bo.png');
+		echo '<style>
+			#login h1 a, .login h1 a {
+				background-image: url(' . $logo_url . ');
+				background-size: contain;
+				background-repeat: no-repeat;
+				background-position: center;
+				width: 84px;
+				height: 84px;
+			}
+		</style>';
+	});
+	add_filter('login_headerurl',  fn() => home_url());
+	add_filter('login_headertext', fn() => get_bloginfo('name'));
+
+
 	/* Pied de page administration */
 	function remove_footer_admin () {
 		echo 'Proudly handcrafted by <a href="https://julien-brochard.fr/" target="_blank"><i class="icon icon--logo-jb"></i> Julien B</a>';
@@ -78,9 +96,7 @@
 		remove_meta_box('dashboard_quick_press', 'dashboard', 'side'); //Removes the 'Quick Draft' widget
 		remove_meta_box('dashboard_recent_drafts', 'dashboard', 'side'); //Removes the 'Recent Drafts' widget
 		remove_meta_box('dashboard_recent_comments', 'dashboard', 'normal'); //Removes the 'Activity' widget
-		remove_meta_box('dashboard_site_health', 'dashboard', 'normal'); //Removes the 'Health site' widget 
 		remove_meta_box('wordfence_activity_report_widget', 'dashboard', 'normal'); //Removes the 'Wordfence plugin' widget 
-		remove_meta_box('wp_mail_smtp_reports_widget_lite', 'dashboard', 'normal'); //Removes the 'WP mail SMTP widget' widget
 		remove_meta_box('dashboard_activity', 'dashboard', 'normal');
 	}
 	add_action('admin_init', 'remove_dashboard_meta'); 

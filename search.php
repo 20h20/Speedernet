@@ -22,7 +22,7 @@ get_header();
 
 			<p class="searchresults-count cbo-label slide-up">
 				<?php printf(
-					esc_html(_n('%d résultat', '%d résultats', $wp_query->found_posts, 'speedernet')),
+					esc_html( $wp_query->found_posts <= 1 ? pll__('%d résultat') : pll__('%d résultats') ),
 					$wp_query->found_posts
 				); ?>
 			</p>

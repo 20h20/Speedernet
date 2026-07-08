@@ -44,7 +44,7 @@
 			<div class="header-inner">
 				<a
 					class="header-logo"
-					aria-label="<?php echo esc_attr(get_bloginfo('name')); ?> — <?php pll_e('Accueil'); ?>"
+					aria-label="<?php echo esc_attr( get_bloginfo('name') . ' — ' . pll__('Accueil') ); ?>"
 					href="<?php echo esc_url(home_url('/')); ?>"
 				>
 					<img
@@ -52,6 +52,8 @@
 						decoding="async"
 						src="<?php echo esc_url(get_template_directory_uri()); ?>/library/images/logo-speedernet-header.svg"
 						alt="<?php echo esc_attr(get_bloginfo('name')); ?>"
+						width="200"
+						height="50"
 						fetchpriority="high"
 					>
 					<img
@@ -60,6 +62,8 @@
 						src="<?php echo esc_url(get_template_directory_uri()); ?>/library/images/logo-speedernet-min.svg"
 						alt=""
 						aria-hidden="true"
+						width="40"
+						height="42"
 					>
 				</a>
 
