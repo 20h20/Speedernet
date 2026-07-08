@@ -7,7 +7,7 @@
 	<?php
 		$hero_title = single_term_title('', false);
 		if (is_paged()) {
-			$hero_title .= ' <span class="title-page slide-up">Page numéro ' . max(1, get_query_var('paged')) . '</span>';
+			$hero_title .= ' <span class="title-page slide-up">' . sprintf( pll__('Page numéro %d'), max(1, get_query_var('paged')) ) . '</span>';
 		}
 		get_block('herosimple', [
 			'title' => $hero_title,

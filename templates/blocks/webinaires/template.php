@@ -8,7 +8,7 @@ $title   = get_field('webinaires_title');
     <div class="webinaires-inner cbo-container">
 
         <?php if ( $title ) : ?>
-            <div class="webinaires-title cbo-title-2">
+            <div class="webinaires-title cbo-title-2 slide-up">
                 <?php echo wp_kses_post($title); ?>
             </div>
         <?php endif; ?>

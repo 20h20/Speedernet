@@ -32,6 +32,7 @@
 		pll_register_string( 'casestudy', "Aucune catégorie associée à cette étude de cas");
 		pll_register_string( 'casestudy', "Études de cas");
 		pll_register_string( 'casestudy', "Filtrer les études de cas par catégorie");
+		pll_register_string( 'casestudy', "Page numéro %d");
 		pll_register_string( 'casestudy', "%d étude de cas");
 		pll_register_string( 'casestudy', "%d études de cas");
 

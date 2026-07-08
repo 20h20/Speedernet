@@ -23,7 +23,6 @@ if ( $date_raw ) {
 	}
 }
 
-
 ?>
 
 <div class="cbo-page page--single page--single-webinaire">

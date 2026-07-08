@@ -1,6 +1,7 @@
 <?php
 	function bones_ahoy() {
 		add_theme_support( 'post-thumbnails' );
+		add_theme_support( 'title-tag' );
 		require_once( 'library/inc/custom-cleanup.php' );
 		require_once( 'library/inc/custom-admin.php' );
 		require_once( 'library/inc/custom-dashboard.php' );

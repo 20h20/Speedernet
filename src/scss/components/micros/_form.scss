@@ -19,7 +19,7 @@ FORM MICRO COMPONENT
 		}
 		
 		.gfield_label {
-			font-size: 14px;
+			font-size: 0.875rem;
 			transition: color 0.2s $easeinout;
 		}
 
@@ -36,21 +36,21 @@ FORM MICRO COMPONENT
 		select,
 		textarea {
 			font-family: $fontprimary;
-			border: 1px solid $colorgreymediumlight;
-			border-radius: 6px;
+			border: 0.0625rem solid $colorgreymediumlight;
+			border-radius: 0.375rem;
 			background: $colorwhite;
-			height: 50px;
+			height: 3.125rem;
 			width: 100%;
-			font-size: 14px;
+			font-size: 0.875rem;
 			font-weight: 300;
-			padding: 0 15px;
+			padding: 0 0.9375rem;
 			transition: border-color 0.2s $easeinout, box-shadow 0.2s $easeinout;
 
 			&:focus {
 				outline: none;
 				border-color: $colorblue;
-				box-shadow: 0 0 0 3px rgba($colorblue, 0.2),
-				            0 1px 3px 0 rgba(0, 0, 0, 0.1);
+				box-shadow: 0 0 0 0.1875rem rgba($colorblue, 0.2),
+				            0 0.0625rem 0.1875rem 0 rgba(0, 0, 0, 0.1);
 			}
 		}
 
@@ -68,14 +68,14 @@ FORM MICRO COMPONENT
 		}
 
 		.gfield {
-			margin-bottom: 14px;
+			margin-bottom: 0.875rem;
 			width: 100%;
 			list-style: none;
 
 			.validation_message {
-				font-size: 12px;
+				font-size: 0.75rem;
 				color: $colorerror;
-				margin-top: 4px;
+				margin-top: 0.25rem;
 			}
 
 			&.gfield_error {
@@ -88,23 +88,23 @@ FORM MICRO COMPONENT
 				select,
 				textarea {
 					border-color: $colorerror;
-					box-shadow: 0 0 0 3px rgba($colorerror, 0.15);
+					box-shadow: 0 0 0 0.1875rem rgba($colorerror, 0.15);
 				}
 			}
 
 			// Consent / Checkbox
 			&.gfield--type-consent{
 				border-radius: $bordermedium;
-				padding: 20px;
+				padding: 1.25rem;
 				background: rgba($colorbluemedium, .2);
 
 				.ginput_container_consent{
 					padding: 0;
 				}
 				.gfield_consent_description{
-					font-size: 14px;
-					line-height: 14px;
-					margin-top: 14px;
+					font-size: 0.875rem;
+					line-height: 0.875rem;
+					margin-top: 0.875rem;
 				}
 			}
 			&.gfield--type-consent,
@@ -124,40 +124,40 @@ FORM MICRO COMPONENT
 					justify-content: flex-start;
 					position: relative;
 					cursor: pointer;
-					line-height: 14px;
+					line-height: 0.875rem;
 
 					&:before {
 						content: "";
 						display: block;
-						width: 16px;
-						min-width: 16px;
-						height: 16px;
+						width: 1rem;
+						min-width: 1rem;
+						height: 1rem;
 						border-radius: $bordersmall;
 						background: $colorwhite;
-						border: 1px solid $colorblack;
-						margin: 0 10px 0 1px;
+						border: 0.0625rem solid $colorblack;
+						margin: 0 0.625rem 0 0.0625rem;
 						cursor: pointer;
 						transition: border-color 0.2s $easeinout, box-shadow 0.2s $easeinout;
 					}
 					&:after {
 						content: "";
 						display: block;
-						width: 12px;
-						min-width: 12px;
-						height: 12px;
-						border-radius: 2px;
+						width: 0.75rem;
+						min-width: 0.75rem;
+						height: 0.75rem;
+						border-radius: 0.125rem;
 						background: $colorblue;
 						position: absolute;
-						top: 3px;
-						left: 4px;
+						top: 0.1875rem;
+						left: 0.25rem;
 						transform: scale(0);
 						transition: all 0.3s $easeinout;
 					}
 				}
 				&:focus-within label:before {
 					border-color: $colorblue;
-					box-shadow: 0 0 0 3px rgba($colorblue, 0.2),
-					            0 1px 3px 0 rgba(0, 0, 0, 0.1);
+					box-shadow: 0 0 0 0.1875rem rgba($colorblue, 0.2),
+					            0 0.0625rem 0.1875rem 0 rgba(0, 0, 0, 0.1);
 				}
 				input[type="checkbox"]:checked ~ label:after,
 				input[type="checkbox"]:checked + label:after {
@@ -171,7 +171,7 @@ FORM MICRO COMPONENT
 		}
 
 		.gform_footer{
-			margin-top: 30px;
+			margin-top: 1.875rem;
 		}
 
 		// Masquer le spinner GF par défaut (on utilise notre propre animation)
@@ -179,33 +179,6 @@ FORM MICRO COMPONENT
 			display: none;
 		}
 
-		// Soumission en cours (GF 2.7+ pose aria-busy sur le form)
-		&[aria-busy="true"] {
-			position: relative;
-
-			&:before {
-				z-index: 99;
-				content: "";
-				position: absolute;
-				top: 50%;
-				left: 50%;
-				width: 40px;
-				height: 40px;
-				margin: -20px 0 0 -20px;
-				border: 7px solid rgba($colorgrey, 0.3);
-				border-top-color: $colorgrey;
-				border-radius: 50%;
-				animation: spin 1s linear infinite;
-			}
-			.gfield {
-				opacity: .2;
-			}
-		}
-
-		@keyframes spin {
-			from { transform: rotate(0deg); }
-			to   { transform: rotate(360deg); }
-		}
 
 		// Reset liste GF
 		.gform_fields {
@@ -227,18 +200,18 @@ FORM MICRO COMPONENT
 	// Confirmation (succès — GF remplace le form par ce wrapper)
 	.gform_confirmation_wrapper {
 		width: 100%;
-		margin: 30px auto 0 auto;
-		padding: 16px;
-		font-size: 14px;
-		border-radius: 5px;
+		padding: 1rem;
+		font-size: 0.875rem;
+		list-style: 1rem;
+		border-radius: 0.3125rem;
 		background: rgba($colorsuccess, .6);
-		border-left: 3px solid $colorsuccess;
-		color: $colorgrey;
+		border-left: 0.1875rem solid $colorsuccess;
+		display: flex;
 
 		&:before {
 			font-family: "icons";
 			content: "\f112";
-			margin-right: 10px;
+			margin-right: 0.625rem;
 		}
 	}
 
@@ -259,10 +232,10 @@ SMALL SCREENS
 				display: flex;
 				flex-wrap: wrap;
 				justify-content: space-between;
-				margin: 0 -10px;
+				margin: 0 -0.625rem;
 			}
 			.gfield_label {
-				margin: 0 10px;
+				margin: 0 0.625rem;
 			}
 
 			.gfield {
@@ -270,15 +243,15 @@ SMALL SCREENS
 					width: 50%;
 				}
 				.ginput_container {
-					padding: 0 10px;
+					padding: 0 0.625rem;
 				}
 				.validation_message {
-					margin-left: 10px;
+					margin-left: 0.625rem;
 				}
 
 				&.gfield--type-consent{
-				margin-left: 10px;
-					margin-right: 10px;
+				margin-left: 0.625rem;
+					margin-right: 0.625rem;
 
 					.validation_message {
 						margin-left: 0;

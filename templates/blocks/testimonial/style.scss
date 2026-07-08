@@ -15,8 +15,8 @@ TESTIMONIAL COMPONENT
     .infos-picture{
       border-radius: $borderbig;
       background: $colorwhite;
-      padding: 10px 10px 80px 10px;
-      box-shadow: 5px 5px 10px 0 rgba($colorgrey, .6);
+      padding: 0.625rem 0.625rem 5rem 0.625rem;
+      box-shadow: 0.3125rem 0.3125rem 0.625rem 0 rgba($colorgrey, .6);
 
       .picture-inner {
         aspect-ratio: 6 / 4;
@@ -25,9 +25,9 @@ TESTIMONIAL COMPONENT
       }
     }
     .infos-content{
-      margin-top: 20px;
-      font-size: 14px;
-      line-height: 16px;
+      margin-top: 1.25rem;
+      font-size: 0.875rem;
+      line-height: 1rem;
 
       .content-name{
         font-weight: bold;
@@ -35,7 +35,7 @@ TESTIMONIAL COMPONENT
     }
   }
   .testimonial-content{
-    margin-top: 20px;
+    margin-top: 1.25rem;
 
     .content-testimonial{
       p{
@@ -44,13 +44,13 @@ TESTIMONIAL COMPONENT
     }
     .icon{
       color: $colorred;
-      font-size: 48px;
-      line-height: 48px;
+      font-size: 3rem;
+      line-height: 3rem;
       display: block;
       text-align: center;
 
       &.icon--bottom-quote{
-        margin-top: -10px;
+        margin-top: -0.625rem;
       }
     }
   }
@@ -69,7 +69,7 @@ SMALL SCREENS
       justify-content: center;
     }
     .testimonial-infos{
-      width: 200px;
+      width: 12.5rem;
 
       .infos-picture{
         .picture-inner {
@@ -77,17 +77,17 @@ SMALL SCREENS
         }
       }
       .infos-content{
-        margin-top: 34px;
-        font-size: 16px;
-        line-height: 18px;
+        margin-top: 2.125rem;
+        font-size: 1rem;
+        line-height: 1.125rem;
       }
     }
     .testimonial-content{
       flex: 1;
-      padding-left: 60px;
-      max-width: 660px;
-      font-size: 30px;
-      line-height: 36px;
+      padding-left: 3.75rem;
+      max-width: 41.25rem;
+      font-size: 1.875rem;
+      line-height: 2.25rem;
     }
   }
 }
