@@ -4,9 +4,11 @@
 CARDS SLIDER COMPONENT
 ------------------------------- */
 .cbo-cardslider{
+  --card-offset-x: 0;
+  --card-offset-y: 10;
   overflow: hidden;
   position: relative;
-  padding-top: 6.25rem;
+  // padding-top: 6.25rem;
 
   &.is-admin{
     .list-container {
@@ -24,9 +26,6 @@ CARDS SLIDER COMPONENT
         }
       }
     }
-  }
-  &.cbo-overflow-container{
-    margin-top: -6.25rem;
   }
   .cardslider-inner{
     padding-bottom: 3.125rem;
@@ -146,6 +145,9 @@ MEDIUM SCREENS
 ------------------------------- */
 @media (min-width:$screen-md-min) {
   .cbo-cardslider{
+    --card-offset-x: 10;
+    --card-offset-y: 10;
+
     .cardslider-tabs {
       .tab-el {
         font-size: 0.875rem;
@@ -280,6 +282,7 @@ LARGE SCREENS
 ------------------------------- */
 @media (min-width:$screen-lg-min) {
   .cbo-cardslider{
-    padding-top: 12.5rem;
+    --card-offset-x: 20;
+    --card-offset-y: 20;
   }
 }

@@ -5,6 +5,7 @@ HERO RICH COMPONENT
 ------------------------------- */
 .cbo-herorich {
   overflow: hidden;
+  background-image: linear-gradient(rgba($colorblue, 0), rgba($colorblue, 0.07), rgba($colorblue, 0.18), rgba($colorblue, 0.07), rgba($colorblue, 0));
 
   .herorich-inner {
     text-align: center;

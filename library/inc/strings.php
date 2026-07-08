@@ -23,7 +23,7 @@
 		
 		pll_register_string( 'article', "Lire l\'article");
 
-		pll_register_string( 'casestudy', "Lire le cas");
+		pll_register_string( 'casestudy', "Lire le cas : %s" );
 		pll_register_string( 'casestudy', "Études de cas similaires");
 		pll_register_string( 'casestudy', "Les réussites de nos clients");
 		pll_register_string( 'casestudy', "Aucune étude de cas");
@@ -61,6 +61,9 @@
 		pll_register_string( 'search', "Résultats pour");
 		pll_register_string( 'search', "Résultats de recherche");
 		pll_register_string( 'search', "Aucun résultat pour « %s ». Essayez avec d\'autres mots-clés.");
+		
+		pll_register_string( 'global', "Liste des partenaires");
+
 		
 	});
 ?>

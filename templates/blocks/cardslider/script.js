@@ -9,17 +9,28 @@
 	var cardTotal    = $cardItems.length;
 	var cardCurrent  = 0;
 	var cardBusy     = false;
-	var OFFSET       = 20;
-	var heightOffset = (cardTotal - 1) * OFFSET;
 	var $activeItem  = $cardItems.eq(0);
+
+	function readOffsets() {
+		var style    = getComputedStyle($cardList[0]);
+		var offsetX  = parseInt(style.getPropertyValue('--card-offset-x'), 10);
+		var offsetY  = parseInt(style.getPropertyValue('--card-offset-y'), 10);
+		return {
+			x: isNaN(offsetX) ? 20 : offsetX,
+			y: isNaN(offsetY) ? 20 : offsetY,
+		};
+	}
+
+	var offsets      = readOffsets();
+	var heightOffset = (cardTotal - 1) * offsets.y;
 
 	function renderCardStack() {
 		requestAnimationFrame(function() {
 			$cardItems.each(function(i) {
 				var pos      = ((i - cardCurrent) + cardTotal) % cardTotal;
 				var isActive = pos === 0;
-				var tx       = pos * OFFSET;
-				var ty       = (cardTotal - 1 - pos) * OFFSET;
+				var tx       = pos * offsets.x;
+				var ty       = (cardTotal - 1 - pos) * offsets.y;
 				if (isActive) $activeItem = $(this);
 				$(this)
 					.data('stack-pos', pos)
@@ -86,6 +97,11 @@
 	$(window).on('resize', function() {
 		if (!isVisible) return;
 		clearTimeout(resizeTimer);
-		resizeTimer = setTimeout(function() { updateCardHeight(); fitBigText(); }, 100);
+		resizeTimer = setTimeout(function() {
+			offsets      = readOffsets();
+			heightOffset = (cardTotal - 1) * offsets.y;
+			renderCardStack();
+			fitBigText();
+		}, 100);
 	});
 })(jQuery);

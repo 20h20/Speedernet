@@ -51,16 +51,16 @@ CASE STUDY MICRO COMPONENT
 				border-radius: $borderbig;
 
 				.content-top{
-					margin-top: -1.25rem;
+					margin-top: -0.9375rem;
 
 					.content-client{
 						display: inline-flex;
-						height: 2.5rem;
+						height: 1.875rem;
 						background: $colorwhite;
 						border: 0.0625rem solid $colorgrey;
 						margin: 0 auto 1.25rem;
 						font-weight: bold;
-						font-size: 1rem;
+						font-size: 0.875rem;
 					}
 					.content-category{
 						margin: -0.3125rem;
@@ -97,7 +97,6 @@ CASE STUDY MICRO COMPONENT
 		}
 	}
 }
-
 
 /* -------------------------------
 MEDIUM SCREENS

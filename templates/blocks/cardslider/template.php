@@ -9,7 +9,7 @@ $items         = get_field('cardslider_list');
 <section class="cbo-cardslider cbo-overflow-container<?php echo is_admin() ? ' is-admin' : ''; ?>">
 	<div class="cardslider-inner cbo-container">
 
-	 	<?php if($uptitle): ?>
+		<?php if($uptitle): ?>
 			<span class="cbo-tag tag--blue cardslider-uptitle slide-up">
 				<?php echo esc_html($uptitle); ?>
 			</span>
@@ -20,7 +20,6 @@ $items         = get_field('cardslider_list');
 				<?php echo wp_kses_post($section_title); ?>
 			</div>
 		<?php endif; ?>
-
 
 		<?php if($items): ?>
 			<nav class="cardslider-tabs slide-up" role="tablist" aria-label="<?php pll_e('Navigation par onglets') ?>">
