@@ -4,8 +4,6 @@ $uptitle = get_field('jobslider_uptitle');
 $title   = get_field('jobslider_title');
 $content = get_field('jobslider_content');
 
-$section_label = $title ? wp_strip_all_tags( $title ) : pll__('Offres d\'emploi');
-
 ?>
 
 <section class="cbo-jobslider cbo-overflow-container">

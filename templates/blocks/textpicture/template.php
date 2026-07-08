@@ -5,21 +5,21 @@
 	$color	= get_field('textpicture_color');
 ?>
 
-<section class="cbo-textpicture textpicture--<?php echo $color; ?> textpicture--<?php echo $picturepos; ?>">
+<section class="cbo-textpicture textpicture--<?php echo esc_attr( $color ); ?> textpicture--<?php echo esc_attr( $picturepos ); ?>">
 	<div class="textpicture-inner cbo-container container--small">
 		<div class="textpicture-wrap">
 			<div class="textpicture-picture cbo-picture-cover">
-				<img 
-					src="<?php echo esc_url($picture['sizes']['medium']); ?>"
-					srcset="<?php echo esc_url($picture['sizes']['small']); ?> 320w, 
-						<?php echo esc_url($picture['sizes']['medium']); ?> 768w, 
-						<?php echo esc_url($picture['sizes']['large']); ?> 1024w"
-					alt="<?php echo esc_attr($picture['alt']); ?>"
+				<img
+					src="<?php echo esc_url( $picture['sizes']['medium'] ?? $picture['url'] ); ?>"
+					srcset="<?php echo esc_url( $picture['sizes']['small']  ?? $picture['url'] ); ?> 320w,
+						<?php echo esc_url( $picture['sizes']['medium'] ?? $picture['url'] ); ?> 768w,
+						<?php echo esc_url( $picture['sizes']['large']  ?? $picture['url'] ); ?> 1024w"
+					alt="<?php echo esc_attr( $picture['alt'] ); ?>"
 					sizes="(min-width: 1024px) 50vw, (min-width: 768px) 60vw, 100vw"
 					loading="lazy"
 					decoding="async"
-					width="1000" 
-					height="1000"
+					width="<?php echo esc_attr( $picture['width'] ); ?>"
+					height="<?php echo esc_attr( $picture['height'] ); ?>"
 				>
 			</div>
 

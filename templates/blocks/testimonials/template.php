@@ -9,10 +9,11 @@ $type  = get_field('testimonials_category');
 $testimonials_page_id = (int) get_option('cbo_testimonials_archive_page');
 $current_page_id      = (int) get_queried_object_id();
 $is_testimonials_page = is_post_type_archive('testimonial') || is_tax('testimonials_cat') || ( $testimonials_page_id && $current_page_id === $testimonials_page_id );
+$is_listing_context   = $is_testimonials_page || ( $testimonials_page_id && is_admin() && (int) get_the_ID() === $testimonials_page_id );
 
 ?>
 
-<section class="cbo-testimonials <?php echo !$is_testimonials_page ? 'testimonials--relationship' : ''; ?> cbo-overflow-container<?php echo is_admin() ? ' is-admin' : ''; ?>">
+<section class="cbo-testimonials <?php echo !$is_listing_context ? 'testimonials--relationship' : ''; ?> cbo-overflow-container<?php echo is_admin() ? ' is-admin' : ''; ?>">
     <div class="testimonials-inner cbo-container">
 
         <?php
@@ -79,10 +80,10 @@ $is_testimonials_page = is_post_type_archive('testimonial') || is_tax('testimoni
                         endif;
                     } else {
                         $args = [
-                            'post_type' => 'testimonial',
-                            'posts_per_page' => 3,
-                            'post_status'    => 'publish',
-                            'no_found_rows' => true,
+                            'post_type'              => 'testimonial',
+                            'posts_per_page'         => $is_listing_context ? -1 : 3,
+                            'post_status'            => 'publish',
+                            'no_found_rows'          => true,
                             'update_post_meta_cache' => false,
                         ];
                         if ( ! empty( $type ) ) {
@@ -116,9 +117,11 @@ $is_testimonials_page = is_post_type_archive('testimonial') || is_tax('testimoni
 
         <?php if ($button): ?>
             <div class="testimonials-button slide-up">
-                <a class="cbo-button" href="<?php echo esc_url($button['url']); ?>" target="<?php echo esc_attr($button['target'] ?: '_self'); ?>">
-                    <?php echo esc_html($button['title']); ?>
-                </a>
+                <?php get_part('button/template', [
+                    'url'    => $button['url'],
+                    'label'  => $button['title'],
+                    'target' => $button['target'] ?: '_self',
+                ]); ?>
             </div>
         <?php endif; ?>
 

@@ -36,6 +36,9 @@
 		pll_register_string( 'casestudy', "%d études de cas");
 
 		pll_register_string( 'testimonial', "Voir l\'interview");
+		pll_register_string( 'testimonial', "Filtrer les témoignages par catégorie");
+		pll_register_string( 'testimonial', "%d témoignage");
+		pll_register_string( 'testimonial', "%d témoignages");
 
 		pll_register_string( 'global', "Navigation par onglets");
 		pll_register_string( 'global', "Filtrer par :");

@@ -140,14 +140,12 @@ $is_listing_context = $is_articles_page || ($blog_page_id && is_admin() && (int)
 
         <?php if ($button): ?>
             <div class="articles-button slide-up">
-                <a 
-                    class="cbo-button button--blue"
-                    href="<?php echo esc_url($button['url']); ?>"
-                    target="<?php echo esc_attr($button['target'] ?: '_self'); ?>"
-                    <?php if (($button['target'] ?? '') === '_blank'): ?>rel="noopener noreferrer"<?php endif; ?>
-                >
-                    <?php echo esc_html($button['title']); ?>
-                </a>
+                <?php get_part('button/template', [
+                    'url'    => $button['url'],
+                    'label'  => $button['title'],
+                    'target' => $button['target'] ?: '_self',
+                    'class'  => 'cbo-button button--blue',
+                ]); ?>
             </div>
         <?php endif; ?>
 

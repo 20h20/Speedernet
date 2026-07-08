@@ -101,7 +101,7 @@ SMALL SCREENS
 			min-width: 50%;
 
 			.el-inner{
-				padding: 0 10px;
+				padding: 0 0.625rem;
 			}
 		}
 	}
@@ -113,13 +113,13 @@ MEDIUM SCREENS
 @media (min-width: $screen-md-min) {
 	.testimonials-list{
 		.list-el{
-			margin: 30px 0;
+			margin: 1.875rem 0;
 			width: 33.3333333%;
 			min-width: 33.3333333%;
 			transition: all .35s cubic-bezier(.3,.71,0,1);
 
 			.el-inner{
-				padding: 0 15px;
+				padding: 0 0.9375rem;
 
 				.inner-content{
 					.content-picture{

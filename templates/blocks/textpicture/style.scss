@@ -62,24 +62,3 @@ MEDIUM SCREENS
     }
   }
 }
-
-/* -------------------------------
-LARGE SCREENS
-------------------------------- */
-@media (min-width: $screen-lg-min) {
-  .cbo-textpicture {
-    .textpicture-wrap{
-      .textpicture-content {
-
-      }
-    }
-
-    &.textpicture--reverse{
-      .textpicture-wrap{
-        .textpicture-content {
-
-        }
-      }
-    }
-  }
-}

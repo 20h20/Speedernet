@@ -13,7 +13,7 @@ TESTIMONIALS LIST COMPONENT
     margin-top: 2.75rem;
 
     .list-el{
-      margin: 40px 0;
+      margin: 2.5rem 0;
     }
   }
 
@@ -64,6 +64,7 @@ TESTIMONIALS LIST COMPONENT
 
               .list-el{
                 height: 100%;
+                margin: 0;
               }
             }
           }
@@ -101,23 +102,13 @@ TESTIMONIALS LIST COMPONENT
         transform: rotate(180deg);
       }
     }
+
+    &.is-admin{
+      .testimonials-list{
+        flex-wrap: nowrap;
+      }
+    }
   }
-
-
-
-
-  // &.is-admin{
-  //   overflow: visible;
-
-  //   .testimonials-list{
-  //     display: flex;
-
-  //     .list-el{
-  //       width: 100%;
-  //       min-width: 100%;
-  //     }
-  //   }
-  // }
 }
 
 /* -------------------------------
@@ -128,26 +119,25 @@ SMALL SCREENS
     .testimonials-list{
       display: flex;
       flex-wrap: wrap;
-      margin: -40px -10px -20px -10px;
+      margin: -2.5rem -0.625rem -1.25rem -0.625rem;
+      width: calc(100% + 1.25rem);
     }
   
     &.testimonials--relationship{
       .testimonials-list{
+        margin: 2.5rem 0 0 0;
+
         .slick-list{
           width: calc(100% - -5rem);
           margin-left: -2.5rem;
           padding: 0 2.5rem 1.5rem 2.5rem;
+
+          .list-el .el-inner {
+            padding: 0;
+          }
         }
       }
-    // }
-    // &.is-admin{
-    //   .testimonials-list{
-    //     .list-el{
-    //       width: 50%;
-    //       min-width: 50%;
-    //     }
-    //   }
-    // }
+    }
   }
 }
 
@@ -162,37 +152,37 @@ MEDIUM SCREENS
       flex-wrap: wrap;
       justify-content: space-between;
     }
+
     .testimonials-head{
       order: 1;
       flex: 1;
-      padding-right: 30px;
+      padding-right: 1.875rem;
     }
+
     .testimonials-list{
       order: 3;
-      margin:  -30px -15px;
+      margin: -1.875rem -0.9375rem;
+      width: calc(100% + 1.875rem);
     }
+
     .testimonials-button{
       margin: 0;
       max-width: fit-content;
       order: 2;
       text-align: right;
     }
+
     &.testimonials--relationship{
       .testimonials-inner{
         padding-top: 5.625rem;
+      }
+      .testimonials-list .slick-list .slick-track {
+        gap: 1.875rem;
       }
       .testimonials-bluebg{
         bottom: 1.5rem;
         height: calc(50% - 0rem);
       }
-    }
-    //  &.is-admin{
-    //   .testimonials-list{
-    //     .list-el{
-    //       width: 33.333333%;
-    //       min-width: 33.333333%;
-    //     }
-    //   }
     }
   }
 }

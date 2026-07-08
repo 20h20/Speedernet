@@ -53,16 +53,16 @@ ARTICLE BLOC MICRO COMPONENT
 				border-radius: $borderbig;
 
 				.content-top{
-					margin-top: -1.25rem;
+					margin-top: -0.9375rem;
 
 					.content-date{
 						display: inline-flex;
-						height: 2.5rem;
+						height: 1.875rem;
 						background: $colorwhite;
 						border: 0.0625rem solid $colorgrey;
 						margin: 0 auto 1.25rem;
 						font-weight: bold;
-						font-size: 1rem;
+						font-size: 0.875rem;
 					}
 					.content-category{
 						margin: -0.3125rem;
@@ -149,8 +149,6 @@ MEDIUM SCREENS
 			}
 		}
 		&:hover{
-			transform: scale(1.02);
-
 			.el-inner{
 				.inner-content{
 					.content-picture{
@@ -160,7 +158,7 @@ MEDIUM SCREENS
 					}
 				}
 				.inner-link{
-			 		.link-button{
+					.link-button{
 						.icon{
 							transform: translateX(2.625rem);
 						}
