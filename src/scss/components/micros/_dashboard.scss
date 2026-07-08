@@ -3,17 +3,6 @@
 /* ================================================================
    ADMIN BAR — Remplacement du logo WP
 ================================================================ */
-#wpadminbar #wp-admin-bar-wp-logo > .ab-item .ab-icon:before {
-	background-image: url('../images/logo-speedernet-bo.png');
-	background-size: contain;
-	background-position: center;
-	background-repeat: no-repeat;
-}
-
-#wpadminbar #wp-admin-bar-wp-logo:hover > .ab-item,
-#wpadminbar #wp-admin-bar-wp-logo > .ab-item {
-	background: transparent !important;
-}
 
 
 /* ================================================================
@@ -212,7 +201,6 @@ $dash-radius  : 8px;
 			}
 		}
 	}
-	
 
 
 	/* ================================================================

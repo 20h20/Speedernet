@@ -94,15 +94,23 @@
 				$global_css_version
 			);
 
-			/* Chargement du script principal */
-			$js_file = get_stylesheet_directory() . '/library/js/scripts.js';
-			wp_enqueue_script(
-				'cbo-scripts',
-				get_stylesheet_directory_uri() . '/library/js/scripts.js',
-				array('jquery'),
-				file_exists($js_file) ? filemtime($js_file) : wp_get_theme()->get('Version'),
-				true
-			);
+			/* Chargement des libs JS (séparées — concaténées par Autoptimize en prod) */
+			$libs_path = get_stylesheet_directory() . '/library/js/libs/';
+			$libs_url  = get_stylesheet_directory_uri() . '/library/js/libs/';
+			$lib_order = ['footer', 'forms', 'languages', 'nav', 'parallaxe', 'slick', 'scrollanim', 'search', 'wavy'];
+
+			foreach ($lib_order as $lib) {
+				$lib_file = $libs_path . $lib . '.js';
+				if (file_exists($lib_file)) {
+					wp_enqueue_script(
+						'cbo-' . $lib,
+						$libs_url . $lib . '.js',
+						array('jquery'),
+						filemtime($lib_file),
+						true
+					);
+				}
+			}
 
 			/* ---- Configuration des CPTs ----
 			 * archive_option  : clé wp_option stockant l'ID de la page d'archive
@@ -205,7 +213,10 @@
 				}
 			}
 
-			/* Charger les styles des blocs */
+			/* Charger les styles et scripts des blocs */
+			$js_blocks_path = get_stylesheet_directory() . '/library/js/blocks/';
+			$js_blocks_url  = get_stylesheet_directory_uri() . '/library/js/blocks/';
+
 			if (!empty($GLOBALS['cbo_used_blocks'])) {
 				foreach ($GLOBALS['cbo_used_blocks'] as $block_name) {
 					$block_css_file = $css_blocks_path . $block_name . '.min.css';
@@ -217,12 +228,25 @@
 							filemtime($block_css_file)
 						);
 					}
+
+					$block_js_file = $js_blocks_path . $block_name . '.js';
+					if (file_exists($block_js_file) && !wp_script_is('block-' . $block_name, 'enqueued')) {
+						wp_enqueue_script(
+							'block-' . $block_name,
+							$js_blocks_url . $block_name . '.js',
+							array('jquery'),
+							filemtime($block_js_file),
+							true
+						);
+					}
 				}
 			}
 
 			/* Parts requises par certains blocs */
 			$css_parts_path = get_stylesheet_directory() . '/library/css/parts/';
 			$css_parts_url  = get_stylesheet_directory_uri() . '/library/css/parts/';
+			$js_parts_path  = get_stylesheet_directory() . '/library/js/parts/';
+			$js_parts_url   = get_stylesheet_directory_uri() . '/library/js/parts/';
 			$block_part_deps = [
 				'faqs'         => ['faq'],
 				'testimonials' => ['testimonial', 'filters'],
@@ -234,6 +258,10 @@
 						$part_css_file = $css_parts_path . $part_name . '.min.css';
 						if (file_exists($part_css_file) && !wp_style_is('part-' . $part_name, 'enqueued')) {
 							wp_enqueue_style('part-' . $part_name, $css_parts_url . $part_name . '.min.css', array(), filemtime($part_css_file));
+						}
+						$part_js_file = $js_parts_path . $part_name . '.js';
+						if (file_exists($part_js_file) && !wp_script_is('part-' . $part_name, 'enqueued')) {
+							wp_enqueue_script('part-' . $part_name, $js_parts_url . $part_name . '.js', array('jquery'), filemtime($part_js_file), true);
 						}
 					}
 				}

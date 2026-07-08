@@ -89,7 +89,9 @@
 			'bones-scripts',
 			'wp-polyfill',
 			'regenerator-runtime',
-			'cbo-scripts',
+			// libs JS
+			'cbo-footer', 'cbo-forms', 'cbo-languages', 'cbo-nav',
+			'cbo-parallaxe', 'cbo-slick', 'cbo-scrollanim', 'cbo-search', 'cbo-wavy',
 		);
 		if (is_admin() || !in_array($handle, $deferred_handles)) {
 			return $tag;

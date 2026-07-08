@@ -16,7 +16,7 @@
 	<section class="cbo-casestudies">
 		<div class="casestudies-inner cbo-container">
 
-			<div class="casestudies-head">
+			<div class="casestudies-head slide-up">
                 <span class="cbo-tag tag--blue content-uptitle">
                     <?php pll_e('Études de cas similaires') ?>
                 </span>
