@@ -4,7 +4,7 @@
             'name' => 'video',
             'title' => 'Vidéo',
             'description' => '',
-            'category' => 'text',
+            'category' => 'media',
             'keywords' => array(
             ),
             'post_types' => array(

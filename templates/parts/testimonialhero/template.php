@@ -2,7 +2,6 @@
 
 $name     = get_field('testimonial_name');
 $function = get_field('testimonial_function');
-$logo     = get_field('testimonial_logo');
 $cats     = get_the_terms(get_the_ID(), 'testimonials_cat');
 
 ?>

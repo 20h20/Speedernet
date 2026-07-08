@@ -14,6 +14,11 @@
 	}
 	add_action( 'after_setup_theme', 'bones_ahoy' );
 
+	/* ************************* */
+	// Gravity Forms - désactiver les styles par défaut
+	/* ************************* */
+	add_filter( 'gform_disable_css', '__return_true' );
+
 
 	/* ************************* */
 	// Pic size

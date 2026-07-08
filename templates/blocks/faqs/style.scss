@@ -26,6 +26,10 @@
         flex-direction: column;
         gap: 0.625rem;
         margin-top: 1rem;
+
+        .cbo-button{
+          box-shadow: $shadowblack;
+        }
       }
     }
   }

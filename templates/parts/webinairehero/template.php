@@ -4,7 +4,7 @@ $post_id        = get_the_ID();
 $date_raw       = get_field('webinair_date', $post_id, false);
 $duree          = get_field('webinair_duration', $post_id);
 $speakers       = get_field('webinair_speakers', $post_id);
-$form_shortcode = get_field('webinair_form', $post_id);
+$form_id = (int) get_field('webinair_form', $post_id);
 $video_id       = get_field('webinair_video', $post_id);
 $video_cover    = get_field('webinair_videocover', $post_id);
 
@@ -23,7 +23,6 @@ if ( $date_raw ) {
 	}
 }
 
-$section_id = 'webinaire-' . $post_id;
 
 ?>
 
@@ -33,12 +32,7 @@ $section_id = 'webinaire-' . $post_id;
 		'title' => get_the_title(),
 	] ); ?>
 
-	<section
-		class="cbo-single-webinaire"
-		aria-labelledby="<?php echo esc_attr( $section_id . '-title' ); ?>"
-		itemscope
-		itemtype="https://schema.org/Event"
-	>
+	<section class="cbo-single-webinaire" itemscope itemtype="https://schema.org/Event">
 		<meta itemprop="name" content="<?php echo esc_attr( get_the_title() ); ?>">
 		<meta itemprop="url" content="<?php echo esc_url( get_permalink() ); ?>">
 		<meta itemprop="eventAttendanceMode" content="https://schema.org/OnlineEventAttendanceMode">
@@ -54,11 +48,6 @@ $section_id = 'webinaire-' . $post_id;
 		<div class="single-inner cbo-container">
 
 			<div class="single-content">
-
-				<h2 id="<?php echo esc_attr( $section_id . '-title' ); ?>" class="sr-only">
-					<?php echo esc_html( get_the_title() ); ?>
-				</h2>
-
 				<?php if ( $date_formatted || $duree ) : ?>
 					<div class="content-meta">
 						<i class="icon icon--datepicker" aria-hidden="true"></i>
@@ -98,11 +87,9 @@ $section_id = 'webinaire-' . $post_id;
 
 			</div>
 
-			<?php if ( ! empty( $form_shortcode ) ) : ?>
+			<?php if ( $form_id && function_exists('gravity_form') ) : ?>
 				<aside class="single-form cbo-form" aria-label="<?php echo esc_attr( pll__('Formulaire d\'inscription') ); ?>">
-					<?php foreach ( $form_shortcode as $cf7_post ) : ?>
-						<?php echo do_shortcode( '[contact-form-7 id="' . esc_attr( $cf7_post->ID ) . '" title="' . esc_attr( $cf7_post->post_title ) . '"]' ); ?>
-					<?php endforeach; ?>
+					<?php gravity_form( $form_id, false, false, false, null, true ); ?>
 				</aside>
 			<?php endif; ?>
 

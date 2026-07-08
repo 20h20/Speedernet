@@ -46,8 +46,9 @@
 			</div>
 
 			<?php if ( $post_type === 'post' ) :
-				$content      = wp_strip_all_tags( get_post_field( 'post_content', $post_id ) );
-				$word_count   = preg_match_all( '/\p{L}+/u', $content );
+				$blocks       = parse_blocks( get_post_field( 'post_content', $post_id ) );
+				$text         = implode( '', array_map( 'render_block', $blocks ) );
+				$word_count   = preg_match_all( '/\p{L}+/u', wp_strip_all_tags( $text ) );
 				$reading_time = max( 1, (int) ceil( $word_count / 200 ) );
 			?>
 				<div class="content-meta slide-up">

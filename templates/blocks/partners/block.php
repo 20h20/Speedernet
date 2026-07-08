@@ -4,7 +4,7 @@
             'name' => 'partners',
             'title' => 'Liste de partenaires',
             'description' => '',
-            'category' => 'bloc',
+            'category' => 'media',
             'keywords' => array(
             ),
             'post_types' => array(

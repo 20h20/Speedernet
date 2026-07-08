@@ -1,15 +1,29 @@
 /* -------------------------------
 FORM MICRO COMPONENT
 ------------------------------- */
-.cbo-form{
+.cbo-form {
+	// Erreurs de validation (bandeau global, dans le form)
+	.gform_validation_errors,
+	.gform_heading{
+		display: none;
+	}
+
 	form {
-		label {
+		legend{
+			display: none;
+		}
+		fieldset{
+			border: none;
+			padding: 0;
+			margin: 0;
+		}
+		
+		.gfield_label {
 			font-size: 14px;
 			transition: color 0.2s $easeinout;
 		}
 
-		.form-field:focus-within > label,
-		.form-field:focus-within .field-inner > label {
+		.gfield:focus-within > .gfield_label {
 			color: $colorblue;
 		}
 
@@ -38,12 +52,8 @@ FORM MICRO COMPONENT
 				box-shadow: 0 0 0 3px rgba($colorblue, 0.2),
 				            0 1px 3px 0 rgba(0, 0, 0, 0.1);
 			}
-
-			&.wpcf7-not-valid {
-				border-color: $colorerror;
-				box-shadow: 0 0 0 3px rgba($colorerror, 0.15);
-			}
 		}
+
 		textarea {
 			resize: none;
 			height: 8.75rem;
@@ -52,26 +62,58 @@ FORM MICRO COMPONENT
 			font-size: 0.875rem;
 			font-weight: 300;
 		}
-		.hidden-fields-container{
+
+		.gfield_visibility_hidden {
 			display: none;
 		}
-		.form-field{
+
+		.gfield {
 			margin-bottom: 14px;
 			width: 100%;
+			list-style: none;
 
-			.wpcf7-not-valid-tip{
+			.validation_message {
 				font-size: 12px;
 				color: $colorerror;
+				margin-top: 4px;
 			}
-			&.form-acceptance {
-				.field-inner{
+
+			&.gfield_error {
+				input[type="text"],
+				input[type="email"],
+				input[type="number"],
+				input[type="tel"],
+				input[type="password"],
+				input[type="date"],
+				select,
+				textarea {
+					border-color: $colorerror;
+					box-shadow: 0 0 0 3px rgba($colorerror, 0.15);
+				}
+			}
+
+			// Consent / Checkbox
+			&.gfield--type-consent{
+				border-radius: $bordermedium;
+				padding: 20px;
+				background: rgba($colorbluemedium, .2);
+
+				.ginput_container_consent{
+					padding: 0;
+				}
+				.gfield_consent_description{
+					font-size: 14px;
+					line-height: 14px;
+					margin-top: 14px;
+				}
+			}
+			&.gfield--type-consent,
+			&.gfield--type-checkbox {
+				.ginput_container {
 					display: flex;
 					flex-wrap: wrap;
 				}
-				.wpcf7-form-control-wrap{
-					order: 2;
-				}
-				input {
+				input[type="checkbox"] {
 					width: 0;
 					height: 0;
 					opacity: 0.00000001;
@@ -81,18 +123,18 @@ FORM MICRO COMPONENT
 					display: flex;
 					justify-content: flex-start;
 					position: relative;
-					position: relative;
 					cursor: pointer;
 					line-height: 14px;
 
 					&:before {
 						content: "";
 						display: block;
-						width: 12px;
-						min-width: 12px;
-						height: 12px;
-						border-radius: 2px;
-						border: 1px solid $colorgreymediumlight;
+						width: 16px;
+						min-width: 16px;
+						height: 16px;
+						border-radius: $bordersmall;
+						background: $colorwhite;
+						border: 1px solid $colorblack;
 						margin: 0 10px 0 1px;
 						cursor: pointer;
 						transition: border-color 0.2s $easeinout, box-shadow 0.2s $easeinout;
@@ -100,9 +142,9 @@ FORM MICRO COMPONENT
 					&:after {
 						content: "";
 						display: block;
-						width: 8px;
-						min-width: 8px;
-						height: 8px;
+						width: 12px;
+						min-width: 12px;
+						height: 12px;
 						border-radius: 2px;
 						background: $colorblue;
 						position: absolute;
@@ -117,59 +159,30 @@ FORM MICRO COMPONENT
 					box-shadow: 0 0 0 3px rgba($colorblue, 0.2),
 					            0 1px 3px 0 rgba(0, 0, 0, 0.1);
 				}
-				&:not(.checked) label:hover {
-					&:after{
-						transform: scale(1);
-						opacity: 0.5;
-					}
+				input[type="checkbox"]:checked ~ label:after,
+				input[type="checkbox"]:checked + label:after {
+					transform: scale(1);
 				}
-				.field-inner.checked label {
-					&:after {
-						transform: scale(1);
-					}
+				label:hover:after {
+					transform: scale(1);
+					opacity: 0.5;
 				}
 			}
 		}
-		.wpcf7-response-output {
-			color: $colorwhite;
-			display:none;
-			width: 100%;
-			margin: 30px auto 0 auto;
-			padding: 16px;
-			font-size: 14px;
-			border-radius: 5px;
 
-			&:before{
-				font-family:"icons";
-				margin-right: 10px;
-			}
+		.gform_footer{
+			margin-top: 30px;
 		}
 
-		&.invalid{
-			.wpcf7-response-output {
-				background: rgba($colorerror, .2);
-				border-left: 3px solid $colorerror;
-				display: block;
-				color: $colorerror;
-
-				&:before{
-					content:"\f114";
-				}
-			}
+		// Masquer le spinner GF par défaut (on utilise notre propre animation)
+		[id^="gform_ajax_spinner_"] {
+			display: none;
 		}
-		&.sent{
-			.wpcf7-response-output {
-				background: rgba($colorsuccess, .6);
-				border-left: 3px solid $colorsuccess;
-				display: block;
-				color: $colorgrey;
 
-				&:before{
-					content:"\f112";
-				}
-			}
-		}
-		&.submitting{
+		// Soumission en cours (GF 2.7+ pose aria-busy sur le form)
+		&[aria-busy="true"] {
+			position: relative;
+
 			&:before {
 				z-index: 99;
 				content: "";
@@ -184,16 +197,54 @@ FORM MICRO COMPONENT
 				border-radius: 50%;
 				animation: spin 1s linear infinite;
 			}
-			.form-field{
+			.gfield {
 				opacity: .2;
 			}
 		}
+
 		@keyframes spin {
 			from { transform: rotate(0deg); }
-			to { transform: rotate(360deg); }
+			to   { transform: rotate(360deg); }
+		}
+
+		// Reset liste GF
+		.gform_fields {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+		}
+
+		// Submit button
+		.gform_footer {
+			width: 100%;
+
+			.gform_button {
+				cursor: pointer;
+			}
 		}
 	}
-	.screen-reader-response{
+
+	// Confirmation (succès — GF remplace le form par ce wrapper)
+	.gform_confirmation_wrapper {
+		width: 100%;
+		margin: 30px auto 0 auto;
+		padding: 16px;
+		font-size: 14px;
+		border-radius: 5px;
+		background: rgba($colorsuccess, .6);
+		border-left: 3px solid $colorsuccess;
+		color: $colorgrey;
+
+		&:before {
+			font-family: "icons";
+			content: "\f112";
+			margin-right: 10px;
+		}
+	}
+
+	// Éléments SR de GF
+	.gform_sr_field_required,
+	.gform_submission_error {
 		display: none;
 	}
 }
@@ -201,20 +252,37 @@ FORM MICRO COMPONENT
 /* -------------------------------
 SMALL SCREENS
 ------------------------------- */
-@media (min-width: $screen-sm-min){
-	.cbo-form{
-		form{
-			display: flex;
-			flex-wrap: wrap;
-			justify-content: space-between;
-			margin: 0 -10px;
+@media (min-width: $screen-sm-min) {
+	.cbo-form {
+		form {
+			.gform_fields {
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: space-between;
+				margin: 0 -10px;
+			}
+			.gfield_label {
+				margin: 0 10px;
+			}
 
-			.form-field{
-				&.field-half{
+			.gfield {
+				&.gfield--width-half {
 					width: 50%;
 				}
-				.field-inner{
+				.ginput_container {
 					padding: 0 10px;
+				}
+				.validation_message {
+					margin-left: 10px;
+				}
+
+				&.gfield--type-consent{
+				margin-left: 10px;
+					margin-right: 10px;
+
+					.validation_message {
+						margin-left: 0;
+					}
 				}
 			}
 		}

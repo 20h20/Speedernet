@@ -17,7 +17,7 @@ $is_first	= ($index === 0);
 			id="<?php echo esc_attr($item_id); ?>-button"
 		>
 			<?php the_title(); ?>
-			<i class="icon icon--cross"></i>
+			<i class="icon icon--cross" aria-hidden="true"></i>
 		</button>
 	</h3>
 

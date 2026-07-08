@@ -22,11 +22,11 @@ $anchor = !empty($block['anchor']) ? ' id="' . esc_attr($block['anchor']) . '"' 
     <div class="faqs-inner cbo-container">
 
         <aside class="faqs-sidebar">
-            <nav class="sidebar-nav" aria-label="<?php echo esc_attr(pll__('Catégories FAQ')); ?>">
+            <nav class="sidebar-nav slide-up" aria-label="<?php echo esc_attr(pll__('Catégories FAQ')); ?>">
                 <?php foreach ($categories as $cat): ?>
                     <a
                         href="#faq-cat-<?php echo esc_attr($cat->slug); ?>"
-                        class="sidebar-link cbo-title-5"
+                        class="sidebar-link cbo-title-5 slide-up"
                         data-cat="<?php echo esc_attr($cat->slug); ?>"
                     >
                         <?php echo esc_html($cat->name); ?>
@@ -44,23 +44,23 @@ $anchor = !empty($block['anchor']) ? ' id="' . esc_attr($block['anchor']) . '"' 
                         <p class="cta-content"><?php echo esc_html($sidebar_content); ?></p>
                     <?php endif; ?>
 
-                    <?php if ($button1 || $button2): ?>
+                    <?php if ( $button1 || $button2 ) : ?>
                         <div class="cta-buttons">
-                            <?php if ($button1): ?>
-                                <a
-                                    href="<?php echo esc_url($button1['url']); ?>"
-                                    class="cbo-button button--white"
-                                    target="<?php echo esc_attr($button1['target'] ?: '_self'); ?>"
-                                    <?php if (($button1['target'] ?? '') === '_blank'): ?>rel="noopener noreferrer"<?php endif; ?>
-                                ><?php echo esc_html($button1['title']); ?></a>
+                            <?php if ( $button1 ) : ?>
+                                <?php get_part('button/template', [
+                                    'url'    => $button1['url'],
+                                    'label'  => $button1['title'],
+                                    'target' => $button1['target'] ?: '_self',
+                                    'class'  => 'cbo-button button--white',
+                                ]); ?>
                             <?php endif; ?>
-                            <?php if ($button2): ?>
-                                <a
-                                    href="<?php echo esc_url($button2['url']); ?>"
-                                    class="cbo-button button--blue"
-                                    target="<?php echo esc_attr($button2['target'] ?: '_self'); ?>"
-                                    <?php if (($button2['target'] ?? '') === '_blank'): ?>rel="noopener noreferrer"<?php endif; ?>
-                                ><?php echo esc_html($button2['title']); ?></a>
+                            <?php if ( $button2 ) : ?>
+                                <?php get_part('button/template', [
+                                    'url'    => $button2['url'],
+                                    'label'  => $button2['title'],
+                                    'target' => $button2['target'] ?: '_self',
+                                    'class'  => 'cbo-button button--blue',
+                                ]); ?>
                             <?php endif; ?>
                         </div>
                     <?php endif; ?>
@@ -95,7 +95,7 @@ $anchor = !empty($block['anchor']) ? ' id="' . esc_attr($block['anchor']) . '"' 
                             <?php echo esc_html($cat->name); ?>
                         </h2>
                         <span class="category-count cbo-tag tag--blue">
-                            <?php echo $count; ?> <?php echo esc_attr(pll__('question')); ?><?php echo $count > 1 ? 's' : ''; ?>
+                            <?php echo esc_html( $count ); ?> <?php echo esc_html( pll__('question') ); ?><?php echo $count > 1 ? 's' : ''; ?>
                         </span>
                     </div>
 
