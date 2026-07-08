@@ -13,6 +13,11 @@ BACK OFFICE COMPONENT
 			max-width: 104.375rem;
 
 			.cbo-herosimple{
+				text-align: center;
+
+				.herosimple-inner{
+					z-index: 2;
+				}
 				.cbo-blob{
 					overflow: visible;
 				}

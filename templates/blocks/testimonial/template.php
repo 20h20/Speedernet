@@ -7,7 +7,7 @@ $content  = get_field('testimonial_content');
 
 ?>
 
-<section class="cbo-testimonial" aria-label="Témoignage" itemscope itemtype="https://schema.org/Quotation">
+<section class="cbo-testimonial" itemscope itemtype="https://schema.org/Quotation">
     <div class="testimonial-inner cbo-container container--small container--nomargin container--padding">
 
         <div class="testimonial-infos" itemprop="spokenByCharacter" itemscope itemtype="https://schema.org/Person">

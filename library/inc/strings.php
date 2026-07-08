@@ -23,13 +23,17 @@
 		
 		pll_register_string( 'article', "Lire l\'article");
 
+		pll_register_string( 'casestudy', "Lire le cas" );
 		pll_register_string( 'casestudy', "Lire le cas : %s" );
 		pll_register_string( 'casestudy', "Études de cas similaires");
 		pll_register_string( 'casestudy', "Les réussites de nos clients");
 		pll_register_string( 'casestudy', "Aucune étude de cas");
+		pll_register_string( 'casestudy', "Aucune étude de cas trouvée.");
 		pll_register_string( 'casestudy', "Aucune catégorie associée à cette étude de cas");
 		pll_register_string( 'casestudy', "Études de cas");
 		pll_register_string( 'casestudy', "Filtrer les études de cas par catégorie");
+		pll_register_string( 'casestudy', "%d étude de cas");
+		pll_register_string( 'casestudy', "%d études de cas");
 
 		pll_register_string( 'testimonial', "Voir l\'interview");
 
@@ -43,15 +47,18 @@
 		pll_register_string( 'webinaire', "+ d'infos");
 		pll_register_string( 'webinaire', "Fermer");
 		pll_register_string( 'webinaire', "Speakers :");
-		pll_register_string( 'webinaire', "Speakers :");
-		pll_register_string( 'webinaire', "Speakers :");
-		pll_register_string( 'webinaire', "Speakers :");
 		pll_register_string( 'webinaire', "Thématique :");
 		pll_register_string( 'webinaire', "Date :");
 		pll_register_string( 'webinaire', "Durée :");
 		pll_register_string( 'webinaire', "Voir le replay");
+		pll_register_string( 'webinaire', "Voir le replay : %s");
 		pll_register_string( 'webinaire', "S'inscrire au webinaire");
+		pll_register_string( 'webinaire', "S'inscrire au webinaire : %s (nouvelle fenêtre)");
+		pll_register_string( 'webinaire', "+ d'infos sur : %s");
 		pll_register_string( 'webinaire', "Lire le teaser vidéo");
+		pll_register_string( 'webinaire', "Teaser vidéo du webinaire");
+		pll_register_string( 'webinaire', "Formulaire d'inscription");
+		pll_register_string( 'webinaire', "Lire la vidéo");
 
 		pll_register_string( 'faq', "Catégories FAQ");
 		pll_register_string( 'faq', "question");
@@ -63,7 +70,11 @@
 		pll_register_string( 'search', "Aucun résultat pour « %s ». Essayez avec d\'autres mots-clés.");
 		
 		pll_register_string( 'global', "Liste des partenaires");
+		pll_register_string( 'global', "(nouvelle fenêtre)");
 
-		
+		pll_register_string( 'speakers', "Voir le profil LinkedIn de %s (nouvelle fenêtre)");
+
+		pll_register_string( 'article', "%d min de lecture");
+
 	});
 ?>

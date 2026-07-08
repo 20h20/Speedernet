@@ -41,27 +41,22 @@ $button2 = $args['button2'] ?? get_field('herosimple_button2');
             </div>
         <?php endif; ?>
 
-        <?php if ($button || $button2): ?>
+        <?php if ( $button || $button2 ) : ?>
             <div class="herosimple-buttons slide-up">
-                <?php if ($button): ?>
-                    <a
-                        class="cbo-button"
-                        href="<?php echo esc_url($button['url']); ?>"
-                        target="<?php echo esc_attr($button['target'] ?: '_self'); ?>"
-                        <?php if (($button['target'] ?? '') === '_blank'): ?>rel="noopener noreferrer"<?php endif; ?>
-                    >
-                        <?php echo esc_html($button['title']); ?>
-                    </a>
+                <?php if ( $button ) : ?>
+                    <?php get_part('button/template', [
+                        'url'    => $button['url'],
+                        'label'  => $button['title'],
+                        'target' => $button['target'] ?: '_self',
+                    ]); ?>
                 <?php endif; ?>
-                <?php if ($button2): ?>
-                    <a
-                        class="cbo-button button--white"
-                        href="<?php echo esc_url($button2['url']); ?>"
-                        target="<?php echo esc_attr($button2['target'] ?: '_self'); ?>"
-                        <?php if (($button2['target'] ?? '') === '_blank'): ?>rel="noopener noreferrer"<?php endif; ?>
-                    >
-                        <?php echo esc_html($button2['title']); ?>
-                    </a>
+                <?php if ( $button2 ) : ?>
+                    <?php get_part('button/template', [
+                        'url'    => $button2['url'],
+                        'label'  => $button2['title'],
+                        'target' => $button2['target'] ?: '_self',
+                        'class'  => 'cbo-button button--white',
+                    ]); ?>
                 <?php endif; ?>
             </div>
         <?php endif; ?>

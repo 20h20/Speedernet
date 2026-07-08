@@ -30,7 +30,7 @@ BLOB COMPONENT
             right: inherit;
         }
         &::before{
-            left: -100px;
+            left: -6.25rem;
         }
         &::after{
             left: 0;
@@ -40,59 +40,81 @@ BLOB COMPONENT
     &::before {
         content: '';
         position: absolute;
-        width: 400px;
-        height: 600px;
+        width: 25rem;
+        height: 37.5rem;
         top: 10%;
-        right: -100px;
+        right: -6.25rem;
         background: $colorblue;
-        opacity: 0.3;
-        filter: blur(70px);
+        opacity: 0.4;
+        filter: blur(2.8125rem);
         border-radius: 40% 60% 60% 40% / 40% 40% 60% 60%;
-        animation: blob-morph-a 14s ease-in-out infinite;
+        will-change: transform, border-radius;
+        animation: blob-morph-a 16s ease-in-out infinite;
     }
 
     &::after {
         content: '';
         position: absolute;
-        width: 300px;
-        height: 450px;
+        width: 18.75rem;
+        height: 28.125rem;
         top: 20%;
         right: -6.25rem;
         background: $colorblue;
-        opacity: 0.2;
-        filter: blur(3.75rem);
+        opacity: 0.25;
+        filter: blur(2.1875rem);
         border-radius: 60% 40% 40% 60% / 60% 60% 40% 40%;
-        animation: blob-morph-b 18s ease-in-out infinite;
+        will-change: transform, border-radius;
+        animation: blob-morph-b 22s ease-in-out infinite;
     }
 }
 
 @keyframes blob-morph-a {
-    0%, 100% {
+    0%   {
         border-radius: 40% 60% 60% 40% / 40% 40% 60% 60%;
-        transform: translate(0, 0) scale(1);
+        transform: translate(0, 0) scale(1) rotate(0deg);
     }
-    33% {
-        border-radius: 70% 30% 30% 70% / 60% 20% 80% 40%;
-        transform: translate(-5rem, 3.75rem) scale(1.1);
+    20%  {
+        border-radius: 70% 30% 20% 80% / 50% 20% 80% 50%;
+        transform: translate(-4rem, 5rem) scale(1.08) rotate(8deg);
     }
-    66% {
-        border-radius: 20% 80% 70% 30% / 50% 70% 30% 50%;
-        transform: translate(3.75rem, -5rem) scale(0.9);
+    40%  {
+        border-radius: 20% 80% 70% 30% / 70% 50% 30% 50%;
+        transform: translate(5rem, -3rem) scale(0.92) rotate(-6deg);
+    }
+    60%  {
+        border-radius: 55% 45% 30% 70% / 30% 70% 30% 70%;
+        transform: translate(-2rem, -6rem) scale(1.12) rotate(12deg);
+    }
+    80%  {
+        border-radius: 30% 70% 55% 45% / 65% 25% 75% 35%;
+        transform: translate(3rem, 4rem) scale(0.95) rotate(-8deg);
+    }
+    100% {
+        border-radius: 40% 60% 60% 40% / 40% 40% 60% 60%;
+        transform: translate(0, 0) scale(1) rotate(0deg);
     }
 }
 
 @keyframes blob-morph-b {
-    0%, 100% {
+    0%   {
         border-radius: 60% 40% 40% 60% / 60% 60% 40% 40%;
-        transform: translate(0, 0) scale(1);
+        transform: translate(0, 0) scale(1) rotate(0deg);
     }
-    40% {
-        border-radius: 30% 70% 70% 30% / 40% 80% 20% 60%;
-        transform: translate(5rem, -3.75rem) scale(1.12);
+    25%  {
+        border-radius: 30% 70% 60% 40% / 40% 80% 20% 60%;
+        transform: translate(5rem, -4rem) scale(1.1) rotate(-10deg);
     }
-    70% {
-        border-radius: 80% 20% 50% 50% / 60% 30% 70% 40%;
-        transform: translate(-3.75rem, 5rem) scale(0.88);
+    50%  {
+        border-radius: 80% 20% 30% 70% / 70% 30% 70% 30%;
+        transform: translate(-4rem, 5rem) scale(0.88) rotate(7deg);
+    }
+    75%  {
+        border-radius: 45% 55% 75% 25% / 25% 65% 35% 75%;
+        transform: translate(2rem, -5rem) scale(1.06) rotate(-12deg);
+    }
+    100% {
+        border-radius: 60% 40% 40% 60% / 60% 60% 40% 40%;
+        transform: translate(0, 0) scale(1) rotate(0deg);
     }
 }
 
@@ -102,12 +124,12 @@ SMALL SCREENS
 @media (min-width: $screen-sm-min) {
     .cbo-blob {
         &:before {
-            width: 800px;
-            height: 800px;
+            width: 43.75rem;
+            height: 43.75rem;
         }
         &:after {
-            width: 650px;
-            height: 650px;
+            width: 31.25rem;
+            height: 31.25rem;
         }
     }
 }

@@ -43,8 +43,8 @@ $chapo  = get_field('heropicture_chapo');
                             width="<?php echo esc_attr($picture['sizes']['medium-width']); ?>"
                             height="<?php echo esc_attr($picture['sizes']['medium-height']); ?>"
                             decoding="async"
-                            loading="<?php echo $index === 1 ? 'eager' : 'lazy'; ?>"
-                            <?php if ($index === 1): ?>fetchpriority="high"<?php endif; ?>
+                            loading="eager"
+                            fetchpriority="high"
                         >
                     </span>
                 </li>

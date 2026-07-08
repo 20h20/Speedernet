@@ -14,59 +14,6 @@
 
 
 
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-			
-
-			
-
-
-
-
-			/////////////////// SLIDER TESTIMONIALS ///////////////////
-			$('.cbo-testimonials.testimonials--relationship .testimonials-list').slick({
-				arrows: false,
-				dots: true,
-				slidesToShow: 3,
-				slidesToScroll: 1,
-				infinite: false,
-				responsive: [
-					{
-						breakpoint: 1283,
-						settings: {
-							slidesToShow: 2,
-							slidesToScroll: 1
-						}
-					},
-					{
-						breakpoint: 767,
-						settings: {
-							slidesToShow: 1,
-							slidesToScroll: 1
-						}
-					}
-				]
-			});
-
-
 			
 
 
@@ -114,23 +61,7 @@
 
 
 			/////////////////// SLIDER JOBS ///////////////////
-			$('.cbo-jobslider .jobslider-list').slick({
-				arrows: true,
-				dots: true,
-				slidesToShow: 1,
-				slidesToScroll: 1,
-				infinite: true,
-				centerMode: true,
-				centerPadding: '245px',
-				responsive: [
-					{
-						breakpoint: 1024,
-						settings: {
-							centerPadding: '40px',
-						}
-					}
-				]
-			});
+			
 
 
 			
@@ -586,7 +517,9 @@
 /*include ../../templates/blocks/casestudies/script.js*/
 /*include ../../templates/blocks/cardslider/script.js*/
 /*include ../../templates/blocks/gallery/script.js*/
+/*include ../../templates/blocks/jobslider/script.js*/
 /*include ../../templates/blocks/partners/script.js*/
+/*include ../../templates/blocks/testimonials/script.js*/
 /*include ../../templates/blocks/textpictureslide/script.js*/
 /*include ../../templates/blocks/textpictureaccordion/script.js*/
 /*include ../../templates/blocks/faqs/script.js*/
