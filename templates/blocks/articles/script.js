@@ -18,9 +18,9 @@
 		} else {
 			$list.slick({
 				arrows: false,
-				dots: true,
+				dots: true, 
 				infinite: false,
-				slidesToShow: n,
+				slidesToShow: n, 
 				slidesToScroll: n
 			});
 		}

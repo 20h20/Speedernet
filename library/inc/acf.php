@@ -3,6 +3,7 @@
 		require get_template_directory() . '/templates/blocks/articles/block.php';
 		require get_template_directory() . '/templates/blocks/accordion/block.php';
 		require get_template_directory() . '/templates/blocks/cta/block.php';
+		require get_template_directory() . '/templates/blocks/glossaire/block.php';
 		require get_template_directory() . '/templates/blocks/price/block.php';
 		require get_template_directory() . '/templates/blocks/solutions/block.php';
 		require get_template_directory() . '/templates/blocks/blocs/block.php';
@@ -34,6 +35,7 @@
 			'acf/articles',
 			'acf/accordion',
 			'acf/cta',
+			'acf/glossaire',
 			'acf/price',
 			'acf/solutions',
 			'acf/blocs',

@@ -10,6 +10,7 @@
 		require_once( 'library/inc/custom-post/cpt-faq.php' );
 		require_once( 'library/inc/custom-post/cpt-testimonial.php' );
 		require_once( 'library/inc/custom-post/cpt-webinaires.php' );
+		require_once( 'library/inc/custom-post/cpt-glossaire.php' );
 		require_once( 'library/inc/acf.php' );
 		require_once( 'library/inc/strings.php' );
 	}
@@ -237,6 +238,38 @@
 			'show_option_none'  => __('— Aucun —', 'cbo'),
 			'option_none_value' => '',
 			'selected'	=> $value,
+		]);
+	}
+
+
+	/* ************************* */
+	/* Ajoute un réglage pour choisir la page archive Glossaire */
+	/* ************************* */
+	function cbo_register_glossaire_archive_page_setting() {
+		add_settings_section(
+			'cbo_glossaire_section',
+			__('Page du glossaire', 'cbo'),
+			'__return_false',
+			'reading'
+		);
+		add_settings_field(
+			'cbo_glossaire_archive_page',
+			__('Page archive Glossaire', 'cbo'),
+			'cbo_glossaire_archive_page_dropdown',
+			'reading',
+			'cbo_glossaire_section'
+		);
+		register_setting('reading', 'cbo_glossaire_archive_page');
+	}
+	add_action('admin_init', 'cbo_register_glossaire_archive_page_setting');
+
+	function cbo_glossaire_archive_page_dropdown() {
+		$value = get_option('cbo_glossaire_archive_page');
+		wp_dropdown_pages([
+			'name'              => 'cbo_glossaire_archive_page',
+			'show_option_none'  => __('— Aucune —', 'cbo'),
+			'option_none_value' => '',
+			'selected'          => $value,
 		]);
 	}
 

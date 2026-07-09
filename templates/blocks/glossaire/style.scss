@@ -1,0 +1,164 @@
+@import "../../../src/scss/partials/variables";
+
+/* ───────────────────────────────────────────────
+   GLOSSAIRE
+─────────────────────────────────────────────── */
+.cbo-glossaire {
+	.glossaire-nav {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.375rem;
+		margin-bottom: 3.125rem;
+		padding: 0.875rem;
+		background: $colorwhite;
+		border-radius: $bordermedium;
+
+		.glossaire-button {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			width: 2.375rem;
+			height: 2.375rem;
+			border-radius: $bordersmall;
+			font-size: 0.8125rem;
+			font-weight: 700;
+			color: $colorwhite;
+			text-decoration: none;
+			background: $colorblue;
+			transition: all .15s;
+
+			&:hover,
+			&.is-active {
+				background: $colorblue;
+				color: $colorwhite;
+				transform: translateY(-0.0625rem);
+			}
+		}
+	}
+	.glossaire-section{
+		.glossaire-group {
+			margin: 2.5rem 0;
+
+			.group-letter {
+				font-weight: 900;
+				line-height: 1;
+				color: $colorblue;
+				padding-top: 0.25rem;
+				opacity: .2;
+				font-size: 9.375rem;
+				margin-bottom: -3.125rem;
+			}
+
+			.glossaire-list {
+				.glossaire-item{
+					position: relative;
+					z-index: 1;
+					margin: 1.25rem 0;
+
+					.item-inner{
+						display: flex;
+						flex-direction: column;
+						gap: 0.5rem;
+						padding: 1rem 1.125rem;
+						border-radius: $bordermedium;
+						border: 0.0625rem solid $colorgreymedium;
+						background: $colorwhite;
+						text-decoration: none;
+						height: 100%;
+						transition: border-color .2s, box-shadow .2s;
+
+						.link-header {
+							display: flex;
+							align-items: center;
+							justify-content: space-between;
+							gap: 0.625rem;
+
+							.link-term {
+								font-weight: 700;
+								color: $colorblack;
+							}
+
+							.link-tag {
+								margin: 0;
+								padding: 0 0.5625rem;
+								color: $colorblue;
+								font-size: 0.625rem;
+								font-weight: 700;
+							}
+						}
+						.link-cta {
+							font-size: 0.8125rem;
+							font-weight: 700;
+							color: $colorblue;
+							transition: color .15s;
+							margin-top: auto;
+							padding-top: 0.25rem;
+
+							&:after {
+								content: ' →';
+							}
+						}
+						&:hover {
+							border-color: rgba($colorblue, .4);
+							box-shadow: 0 0.25rem 1.25rem rgba($colorbluedark, .07);
+
+							.link-cta {
+								color: color-mix(in srgb, $colorblue 80%, black);
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+/* -------------------------------
+SMALL SCREENS
+------------------------------- */
+@media (min-width:$screen-sm-min) {
+	.cbo-glossaire {
+		.glossaire-section{
+			.glossaire-group {
+
+				.glossaire-list {
+					display: flex;
+					flex-wrap: wrap;
+					margin: -0.625rem;
+
+					.glossaire-item{
+						width: 50%;
+						padding: 0 0.625rem;
+						margin: 0.625rem 0;
+					}
+				}
+			}
+		}
+	}
+}
+
+.glossaire-single-meta {
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+	flex-wrap: wrap;
+	margin-bottom: 0.5rem;
+}
+
+/* -------------------------------
+MEDIUM SCREENS
+------------------------------- */
+@media (min-width:$screen-md-min) {
+	.cbo-glossaire {
+		.glossaire-section{
+			.glossaire-group {
+
+				.glossaire-list {
+					.glossaire-item{
+						width: 33.333333%;
+					}
+				}
+			}
+		}
+	}
+}

@@ -32,8 +32,8 @@
 			wp_enqueue_style($handle, $css_url, array(), filemtime($css_file));
 		}
 
-		$js_file = get_stylesheet_directory() . '/library/js/parts/' . $slug . '.js';
-		$js_url  = get_stylesheet_directory_uri() . '/library/js/parts/' . $slug . '.js';
+		$js_file = get_stylesheet_directory() . '/templates/parts/' . $slug . '/script.js';
+		$js_url  = get_stylesheet_directory_uri() . '/templates/parts/' . $slug . '/script.js';
 		if (file_exists($js_file) && !wp_script_is($handle, 'enqueued')) {
 			wp_enqueue_script($handle, $js_url, array('jquery'), filemtime($js_file), true);
 		}
@@ -54,8 +54,8 @@
 			wp_enqueue_style($handle, $css_url, array(), filemtime($css_file));
 		}
 
-		$js_file = get_stylesheet_directory() . '/library/js/blocks/' . $name . '.js';
-		$js_url  = get_stylesheet_directory_uri() . '/library/js/blocks/' . $name . '.js';
+		$js_file = get_stylesheet_directory() . '/templates/blocks/' . $name . '/script.js';
+		$js_url  = get_stylesheet_directory_uri() . '/templates/blocks/' . $name . '/script.js';
 		if (file_exists($js_file) && !wp_script_is($handle, 'enqueued')) {
 			wp_enqueue_script($handle, $js_url, array('jquery'), filemtime($js_file), true);
 		}
@@ -95,8 +95,8 @@
 			);
 
 			/* Chargement des libs JS (séparées — concaténées par Autoptimize en prod) */
-			$libs_path = get_stylesheet_directory() . '/library/js/libs/';
-			$libs_url  = get_stylesheet_directory_uri() . '/library/js/libs/';
+			$libs_path = get_stylesheet_directory() . '/src/js/libs/';
+			$libs_url  = get_stylesheet_directory_uri() . '/src/js/libs/';
 			$lib_order = ['footer', 'forms', 'languages', 'nav', 'parallaxe', 'slick', 'scrollanim', 'search', 'wavy'];
 
 			foreach ($lib_order as $lib) {
@@ -140,6 +140,12 @@
 					'archive_option'  => 'cbo_webinaires_archive_page',
 					'taxonomies'      => ['webinaires_cat'],
 					'singular_blocks' => ['webinaires-single', 'herosimple'],
+				],
+				'glossaire' => [
+					'archive_option'  => 'cbo_glossaire_archive_page',
+					'taxonomies'      => ['glossaire_lettre'],
+					'singular_blocks' => ['glossaire', 'heropicture', 'text'],
+					'archive_blocks'  => ['glossaire'],
 				],
 			];
 
@@ -214,8 +220,8 @@
 			}
 
 			/* Charger les styles et scripts des blocs */
-			$js_blocks_path = get_stylesheet_directory() . '/library/js/blocks/';
-			$js_blocks_url  = get_stylesheet_directory_uri() . '/library/js/blocks/';
+			$js_blocks_path = get_stylesheet_directory() . '/templates/blocks/';
+			$js_blocks_url  = get_stylesheet_directory_uri() . '/templates/blocks/';
 
 			if (!empty($GLOBALS['cbo_used_blocks'])) {
 				foreach ($GLOBALS['cbo_used_blocks'] as $block_name) {
@@ -229,11 +235,11 @@
 						);
 					}
 
-					$block_js_file = $js_blocks_path . $block_name . '.js';
+					$block_js_file = $js_blocks_path . $block_name . '/script.js';
 					if (file_exists($block_js_file) && !wp_script_is('block-' . $block_name, 'enqueued')) {
 						wp_enqueue_script(
 							'block-' . $block_name,
-							$js_blocks_url . $block_name . '.js',
+							$js_blocks_url . $block_name . '/script.js',
 							array('jquery'),
 							filemtime($block_js_file),
 							true
@@ -245,8 +251,8 @@
 			/* Parts requises par certains blocs */
 			$css_parts_path = get_stylesheet_directory() . '/library/css/parts/';
 			$css_parts_url  = get_stylesheet_directory_uri() . '/library/css/parts/';
-			$js_parts_path  = get_stylesheet_directory() . '/library/js/parts/';
-			$js_parts_url   = get_stylesheet_directory_uri() . '/library/js/parts/';
+			$js_parts_path  = get_stylesheet_directory() . '/templates/parts/';
+			$js_parts_url   = get_stylesheet_directory_uri() . '/templates/parts/';
 			$block_part_deps = [
 				'faqs'         => ['faq'],
 				'testimonials' => ['testimonial', 'filters'],
@@ -259,9 +265,9 @@
 						if (file_exists($part_css_file) && !wp_style_is('part-' . $part_name, 'enqueued')) {
 							wp_enqueue_style('part-' . $part_name, $css_parts_url . $part_name . '.min.css', array(), filemtime($part_css_file));
 						}
-						$part_js_file = $js_parts_path . $part_name . '.js';
+						$part_js_file = $js_parts_path . $part_name . '/script.js';
 						if (file_exists($part_js_file) && !wp_script_is('part-' . $part_name, 'enqueued')) {
-							wp_enqueue_script('part-' . $part_name, $js_parts_url . $part_name . '.js', array('jquery'), filemtime($part_js_file), true);
+							wp_enqueue_script('part-' . $part_name, $js_parts_url . $part_name . '/script.js', array('jquery'), filemtime($part_js_file), true);
 						}
 					}
 				}

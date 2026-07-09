@@ -21,10 +21,8 @@
 		remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
 		remove_action( 'wp_print_styles', 'print_emoji_styles' );
 		remove_action( 'admin_print_styles', 'print_emoji_styles' );
-		// REST API — évite d'exposer le endpoint wp-json dans le <head>
 		remove_action( 'wp_head', 'rest_output_link_wp_head', 10 );
 		remove_action( 'template_redirect', 'rest_output_link_header', 11 );
-		// oEmbed — supprime les balises de découverte JSON/XML
 		remove_action( 'wp_head', 'wp_oembed_add_discovery_links' );
 		remove_action( 'wp_head', 'wp_oembed_add_host_js' );
 		// Shortlink — évite d'exposer l'ID interne du post (?p=123)
@@ -85,18 +83,18 @@
 	
 	/* Add defer attr on scripts */
 	function cbo_add_defer_attribute($tag, $handle) {
-		$deferred_handles = array(
-			'bones-scripts',
-			'wp-polyfill',
-			'regenerator-runtime',
-			// libs JS
-			'cbo-footer', 'cbo-forms', 'cbo-languages', 'cbo-nav',
-			'cbo-parallaxe', 'cbo-slick', 'cbo-scrollanim', 'cbo-search', 'cbo-wavy',
-		);
-		if (is_admin() || !in_array($handle, $deferred_handles)) {
-			return $tag;
+		if (is_admin()) return $tag;
+		$deferred_handles  = ['bones-scripts', 'wp-polyfill', 'regenerator-runtime'];
+		$deferred_prefixes = ['cbo-', 'block-', 'part-'];
+		foreach ($deferred_prefixes as $prefix) {
+			if (strpos($handle, $prefix) === 0) {
+				return str_replace(' src', ' defer="defer" src', $tag);
+			}
 		}
-		return str_replace( ' src', ' defer="defer" src', $tag );
+		if (in_array($handle, $deferred_handles)) {
+			return str_replace(' src', ' defer="defer" src', $tag);
+		}
+		return $tag;
 	}
 
 	/* Enable custom theme supports */

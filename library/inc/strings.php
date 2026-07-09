@@ -82,5 +82,9 @@
 
 		pll_register_string( 'article', "%d min de lecture");
 
+		
+		pll_register_string( 'glossaire', "Navigation alphabétique");
+		pll_register_string( 'glossaire', "Lire la définition");
+
 	});
 ?>
