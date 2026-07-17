@@ -76,8 +76,12 @@
   .cbo-solutions {
     .solutions-list {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
       gap: 1.5rem;
+      grid-template-columns: repeat(2, 1fr);
+
+      &:not(:has(.list-el:nth-child(2))) {
+        grid-template-columns: 1fr;
+      }
     }
   }
 }
@@ -88,7 +92,15 @@
 @media (min-width: $screen-md-min) {
   .cbo-solutions {
     .solutions-list {
-      grid-template-columns: repeat(3, 1fr);
+      &:not(:has(.list-el:nth-child(2))) {
+        grid-template-columns: 1fr;
+      }
+      &:has(.list-el:nth-child(2)):not(:has(.list-el:nth-child(3))) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      &:has(.list-el:nth-child(3)) {
+        grid-template-columns: repeat(3, 1fr);
+      }
     }
   }
 }

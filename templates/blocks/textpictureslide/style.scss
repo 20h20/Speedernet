@@ -116,7 +116,7 @@
           .el-illustration {
             z-index: -1;
             position: absolute;
-            width: 250px;
+            width: 15.625rem;
             opacity: 0;
             transform: translateY(1.5rem) scale(0.9);
             transition: opacity 0.5s $easeinout 0.35s, transform 0.5s $easeinout 0.35s;
