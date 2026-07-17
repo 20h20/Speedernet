@@ -79,21 +79,18 @@
           inset: 0;
           pointer-events: none;
           padding: 9.375rem 0;
-          clip-path: inset(100% 0 0 0);
-          transform: translateY(4%);
-          transition:
-          clip-path 0.85s $easeinout,
-          transform  0.85s $easeinout;
 
           @for $i from 1 through 10 {
             &:nth-child(#{$i}) { z-index: #{$i}; }
           }
 
-         
           &.is-active {
-            clip-path: inset(0% 0 0 0);
-            transform: translateY(0);
             pointer-events: auto;
+
+            .el-picture {
+              clip-path: inset(0% 0 0 0);
+              transform: translateY(0);
+            }
 
             .el-illustration {
               opacity: 1;
@@ -101,7 +98,7 @@
             }
           }
 
-          &:first-child {
+          &:first-child .el-picture {
             clip-path: inset(0% 0 0 0);
             transform: translateY(0);
           }
@@ -111,11 +108,15 @@
             height: 100%;
             border-radius: $borderlarge;
             overflow: hidden;
+            clip-path: inset(100% 0 0 0);
+            transform: translateY(4%);
+            transition: clip-path 0.85s $easeinout, transform 0.85s $easeinout;
           }
 
           .el-illustration {
+            z-index: -1;
             position: absolute;
-            width: 18.75rem;
+            width: 250px;
             opacity: 0;
             transform: translateY(1.5rem) scale(0.9);
             transition: opacity 0.5s $easeinout 0.35s, transform 0.5s $easeinout 0.35s;
@@ -126,14 +127,9 @@
               display: block;
             }
           }
-          &:nth-child(odd)  .el-illustration {
-            top: 5rem;
-            right: 8%;
-          }
-          &:nth-child(even) .el-illustration {
-            bottom: 5rem;
-            left: 8%;
-          }
+
+          &:nth-child(odd)  .el-illustration { top: 2.5rem;    right: -14%; }
+          &:nth-child(even) .el-illustration { bottom: 2.5rem; left: -14%;  }
         }
       }
     }
