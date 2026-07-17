@@ -1,4 +1,5 @@
 <?php
+	$uptitle	= get_field('textpicture_uptitle');	
 	$content	= get_field('textpicture_content');
 	$picture	= get_field('textpicture_picture');
 	$picturepos	= get_field('textpicture_picturepos');
@@ -24,6 +25,12 @@
 			</div>
 
 			<div class="textpicture-content">
+				<?php if ( $uptitle ) : ?>
+					<span class="cbo-tag tag--blue content-uptitle slide-up">
+						<?php echo esc_html( $uptitle ); ?>
+					</span>
+				<?php endif; ?>
+
 				<?php if($content): ?>
 					<div class="content-text cbo-cms">
 						<?php echo wp_kses_post($content); ?>
