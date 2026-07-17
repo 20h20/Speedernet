@@ -1,8 +1,9 @@
 @import "../../../src/scss/partials/variables";
 
-/* -------------------------------
-TEXT PICTURE SLIDE COMPONENT
-------------------------------- */
+/* ─────────────────────────────────────────
+   TEXTPICTURESLIDE — scroll-sticky
+───────────────────────────────────────── */
+
 .cbo-textpictureslide {
   position: relative;
 
@@ -14,6 +15,7 @@ TEXT PICTURE SLIDE COMPONENT
   .textpictureslide-images {
     display: none;
   }
+
   .textpictureslide-list {
     .list-el {
       margin: 3.125rem 0;
@@ -38,43 +40,69 @@ TEXT PICTURE SLIDE COMPONENT
 }
 
 /* -------------------------------
-MEDIUM SCREENS
+   MEDIUM SCREENS
 ------------------------------- */
 @media (min-width: $screen-md-min) {
   .cbo-textpictureslide {
+    height: calc(var(--slide-count, 1) * 100vh);
+    height: calc(var(--slide-count, 1) * 100svh);
+
     .textpictureslide-inner {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      height: 100svh;
       display: flex;
       flex-direction: row;
-      align-items: flex-start;
+      align-items: center;
       gap: 6.25rem;
+      overflow: hidden;
     }
-    
+
     .textpictureslide-images {
       display: block;
-      flex: 0 0 42%;
-      position: sticky;
-      top: 9.75rem;
+      flex: 0 0 50%;
+      align-self: stretch;
+      position: relative;
+      top: auto;
 
       .images-list {
         position: relative;
-        aspect-ratio: 4 / 3;
+        width: 100%;
+        height: 100%;
         border-radius: $borderlarge;
+        overflow: hidden;
 
         .image-el {
           position: absolute;
           inset: 0;
-          opacity: 0;
-          transition: opacity 0.6s $easeinout;
           pointer-events: none;
+          padding: 9.375rem 0;
+          clip-path: inset(100% 0 0 0);
+          transform: translateY(4%);
+          transition:
+          clip-path 0.85s $easeinout,
+          transform  0.85s $easeinout;
 
+          @for $i from 1 through 10 {
+            &:nth-child(#{$i}) { z-index: #{$i}; }
+          }
+
+         
           &.is-active {
-            opacity: 1;
+            clip-path: inset(0% 0 0 0);
+            transform: translateY(0);
             pointer-events: auto;
 
             .el-illustration {
               opacity: 1;
               transform: translateY(0) scale(1);
             }
+          }
+
+          &:first-child {
+            clip-path: inset(0% 0 0 0);
+            transform: translateY(0);
           }
 
           .el-picture {
@@ -97,20 +125,47 @@ MEDIUM SCREENS
               display: block;
             }
           }
-          &:nth-child(odd) .el-illustration  { top: -8%; right: 8%; }
-          &:nth-child(even) .el-illustration { bottom: -8%; left: 8%; }
+          &:nth-child(odd)  .el-illustration {
+            top: 150px;
+            right: 8%;
+          }
+          &:nth-child(even) .el-illustration {
+            bottom: 150px;
+            left: 8%;
+          }
         }
       }
     }
 
     .textpictureslide-list {
+      flex: 1;
+      position: relative;
+      align-self: stretch;
       display: flex;
-      flex-direction: column;
-      gap: 8.75rem 0;
+      align-items: center;
 
       .list-el {
+        position: absolute;
+        width: 100%;
+        left: 0;
         margin: 0;
+        opacity: 0;
+        transform: translateY(2rem);
+        transition: opacity 0.55s $easeinout, transform 0.55s $easeinout;
+        pointer-events: none;
+
+        &.is-active {
+          opacity: 1;
+          transform: translateY(0);
+          pointer-events: auto;
+        }
+
+        &.is-leaving {
+          opacity: 0;
+          transform: translateY(-2rem);
+        }
       }
+
       .el-picture-wrap {
         display: none;
       }

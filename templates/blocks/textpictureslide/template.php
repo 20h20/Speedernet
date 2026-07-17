@@ -4,8 +4,8 @@ $items = get_field('textpictureslide_list');
 
 ?>
 
-<section class="cbo-textpictureslide">
-	<div class="textpictureslide-inner cbo-container container--small">
+<section class="cbo-textpictureslide" style="--slide-count: <?php echo count($items) ?: 1; ?>">
+	<div class="textpictureslide-inner cbo-container">
 
 		<div class="textpictureslide-images" aria-hidden="true">
 			<div class="images-list">
