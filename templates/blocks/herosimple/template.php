@@ -1,14 +1,37 @@
 <?php
 
-$picture = $args['picture'] ?? get_field('herosimple_picture');
-$title   = $args['title']   ?? get_field('herosimple_title');
-$chapo   = $args['chapo']   ?? get_field('herosimple_chapo');
-$button  = $args['button']  ?? get_field('herosimple_button');
-$button2 = $args['button2'] ?? get_field('herosimple_button2');
+$picture     = $args['picture'] ?? get_field('herosimple_picture');
+$title       = $args['title']   ?? get_field('herosimple_title');
+$chapo       = $args['chapo']   ?? get_field('herosimple_chapo');
+$button      = $args['button']  ?? get_field('herosimple_button');
+$button2     = $args['button2'] ?? get_field('herosimple_button2');
+$type        = get_field('herosimple_type');
+$mainpicture = get_field('herosimple_mainpicture');
+
+$is_bg_picture = ($type === 'heropicture' && $mainpicture);
 
 ?>
 
-<section class="cbo-herosimple" itemscope itemtype="https://schema.org/WPHeader">
+<section class="cbo-herosimple<?php echo $is_bg_picture ? ' herosimple--bg-picture' : ''; ?>" itemscope itemtype="https://schema.org/WPHeader">
+
+    <?php if ($is_bg_picture): ?>
+        <div class="herosimple-bg cbo-picture-cover" aria-hidden="true">
+            <img
+                src="<?php echo esc_url($mainpicture['sizes']['large'] ?? $mainpicture['url']); ?>"
+                srcset="<?php echo esc_url($mainpicture['sizes']['medium'] ?? $mainpicture['url']); ?> 768w,
+                    <?php echo esc_url($mainpicture['sizes']['large']  ?? $mainpicture['url']); ?> 1024w,
+                    <?php echo esc_url($mainpicture['url']); ?> <?php echo esc_attr($mainpicture['width']); ?>w"
+                alt=""
+                sizes="100vw"
+                loading="eager"
+                fetchpriority="high"
+                decoding="async"
+                width="<?php echo esc_attr($mainpicture['width']); ?>"
+                height="<?php echo esc_attr($mainpicture['height']); ?>"
+            >
+        </div>
+    <?php endif; ?>
+
     <div class="herosimple-inner cbo-container">
 
         <?php if ($picture): ?>
@@ -62,6 +85,9 @@ $button2 = $args['button2'] ?? get_field('herosimple_button2');
         <?php endif; ?>
     </div>
 
-    <div class="cbo-blob blob--blue" aria-hidden="true"></div>
-    <div class="cbo-blob blob--yellow blob--left" aria-hidden="true"></div>
+    <?php if (!$is_bg_picture): ?>
+        <div class="cbo-blob blob--blue" aria-hidden="true"></div>
+        <div class="cbo-blob blob--yellow blob--left" aria-hidden="true"></div>
+    <?php endif; ?>
+
 </section>

@@ -4,6 +4,8 @@
 HERO RICH COMPONENT
 ------------------------------- */
 .cbo-herosimple {
+  position: relative;
+
   .herosimple-inner {
     text-align: center;
     z-index: 1;
@@ -56,6 +58,21 @@ HERO RICH COMPONENT
       }
       &::after{
         left: 0;
+      }
+    }
+  }
+
+  &.herosimple--bg-picture{
+    .herosimple-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+
+      img {
+        object-fit: contain;
+        object-position: top;
       }
     }
   }
