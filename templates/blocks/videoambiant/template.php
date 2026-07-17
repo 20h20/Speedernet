@@ -26,9 +26,6 @@ $video_url = $video ? esc_url($video['url']) : '';
 			</div>
 		<?php endif; ?>
 
-		<p class="video-label" aria-hidden="true">
-			<?php echo esc_html(pll__('Notre showreel')); ?>
-		</p>
 	</section>
 
 	<?php if ($video): ?>

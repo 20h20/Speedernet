@@ -58,8 +58,6 @@
 
 			videoFile.style.transform    = 'scale(' + scale + ')';
 			videoFile.style.borderRadius = br + 'px';
-
-			document.documentElement.style.setProperty('--video-p', p);
 		}
 
 		function videoRafTick() {

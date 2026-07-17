@@ -5,11 +5,11 @@
 ───────────────────────────────────────── */
 
 .cbo-video {
-	height: 250vh;
-	height: 250svh;
+	height: 115vh;
+	height: 115svh;
 	position: relative;
-	margin-bottom: -6.25rem;
-	margin-top: -6.25rem;
+	margin-bottom: 3rem;
+	margin-top: 3rem;
 
 	.video-inner {
 		position: relative;
@@ -35,7 +35,10 @@
 	/* Vidéo — plein écran au départ, JS la rétrécit au scroll */
 	.video-file {
 		position: absolute;
-		inset: 0;
+		top: 10%;
+		bottom: 10%;
+		left: 0;
+		right: 0;
 		overflow: hidden;
 		display: flex;
 		align-items: center;
@@ -95,25 +98,6 @@
 		transition: transform .3s $easeinout;
 	}
 
-	/* Texte flottant — apparaît pendant le rétrécissement */
-	.video-label {
-		position: absolute;
-		top: 50%;
-		left: 0;
-		right: 0;
-		transform: translateY(-50%);
-		margin: 0;
-		text-align: center;
-		font-size: 12vw;
-		font-weight: 900;
-		line-height: 1;
-		white-space: nowrap;
-		z-index: 3;
-		pointer-events: none;
-		color: rgba($colorwhite, .15);
-		opacity: var(--video-p, 0);
-		will-change: opacity;
-	}
 }
 
 
@@ -180,8 +164,8 @@
 
 @media (min-width: $screen-md-min) {
 	.cbo-video {
-		margin-bottom: -12.5rem;
-		margin-top: -12.5rem;
+		margin-bottom: 5rem;
+		margin-top: 5rem;
 
 		.video-inner {
 			position: sticky;
