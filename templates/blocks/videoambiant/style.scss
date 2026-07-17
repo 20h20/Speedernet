@@ -5,22 +5,22 @@
 ───────────────────────────────────────── */
 
 .cbo-video {
-	height: 115vh;
-	height: 115svh;
+	height: calc(115vh - var(--video-header-h, 6.25rem));
+	height: calc(115svh - var(--video-header-h, 6.25rem));
 	position: relative;
-	margin-bottom: 3rem;
+	margin-bottom: 1.5rem;
 	margin-top: 3rem;
 
 	.video-inner {
 		position: relative;
-		height: 100vh;
-		height: 100svh;
+		height: calc(100vh - var(--video-header-h, 6.25rem));
+		height: calc(100svh - var(--video-header-h, 6.25rem));
 		overflow: hidden;
 		isolation: isolate;
 
 		&.video-inner--fixed {
 			position: fixed;
-			top: 0;
+			top: var(--video-header-h, 6.25rem);
 			left: 0;
 			width: 100%;
 		}
@@ -164,12 +164,12 @@
 
 @media (min-width: $screen-md-min) {
 	.cbo-video {
-		margin-bottom: 5rem;
+		margin-bottom: 2.5rem;
 		margin-top: 5rem;
 
 		.video-inner {
 			position: sticky;
-			top: 0;
+			top: var(--video-header-h, 6.25rem);
 			transform: translateZ(0);
 		}
 	}

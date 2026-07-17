@@ -17,10 +17,11 @@
 		var videoTargetP = 0;
 		var videoSmoothP = 0;
 		var videoRafId   = null;
+		var headerH      = 0;
 
 		function videoMeasure() {
 			var siteHeader = document.querySelector('header');
-			var headerH    = siteHeader ? siteHeader.offsetHeight : 0;
+			headerH = siteHeader ? siteHeader.offsetHeight : 0;
 			document.documentElement.style.setProperty('--video-header-h', headerH + 'px');
 		}
 
@@ -28,8 +29,8 @@
 		function videoUpdateSticky() {
 			if (!videoInner || window.innerWidth >= 1024) return;
 			var rect = videoTrack.getBoundingClientRect();
-			var h    = window.innerHeight + 'px';
-			if (rect.top > 0) {
+			var h    = (window.innerHeight - headerH) + 'px';
+			if (rect.top > headerH) {
 				videoInner.classList.remove('video-inner--fixed', 'video-inner--end');
 				videoInner.style.height = '';
 			} else if (rect.bottom > window.innerHeight) {
@@ -45,9 +46,12 @@
 
 		function videoCalcTarget() {
 			var rect      = videoTrack.getBoundingClientRect();
-			var animRange = (videoTrack.offsetHeight - window.innerHeight) / 2;
+			var vh        = window.innerHeight - headerH;
+			var animRange = (videoTrack.offsetHeight - vh) / 2;
 			if (animRange <= 0) return 0;
-			return Math.max(0, Math.min(1, -rect.top / animRange));
+			var raw   = (headerH - rect.top) / animRange;
+			var delay = 0.45; // reste plein écran pour les 45% premiers du scroll
+			return Math.max(0, Math.min(1, (raw - delay) / (1 - delay)));
 		}
 
 		/* Inverted: fullscreen → shrink to 90% with border-radius */
