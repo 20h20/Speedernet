@@ -44,19 +44,22 @@
 ------------------------------- */
 @media (min-width: $screen-md-min) {
   .cbo-textpictureslide {
+    margin: -9.375rem 0;
     height: calc(var(--slide-count, 1) * 100vh);
     height: calc(var(--slide-count, 1) * 100svh);
 
     .textpictureslide-inner {
+      margin-top: 0;
+      margin-bottom: 0;
       position: sticky;
-      top: 0;
-      height: 100vh;
-      height: 100svh;
+      top: var(--video-header-h, 6.25rem);
+      height: calc(100vh - var(--video-header-h, 6.25rem));
+      height: calc(100svh - var(--video-header-h, 6.25rem));
       display: flex;
       flex-direction: row;
       align-items: center;
       gap: 6.25rem;
-      overflow: hidden;
+      overflow: visible;
     }
 
     .textpictureslide-images {
@@ -70,8 +73,6 @@
         position: relative;
         width: 100%;
         height: 100%;
-        border-radius: $borderlarge;
-        overflow: hidden;
 
         .image-el {
           position: absolute;
@@ -114,7 +115,7 @@
 
           .el-illustration {
             position: absolute;
-            width: 6.25rem;
+            width: 18.75rem;
             opacity: 0;
             transform: translateY(1.5rem) scale(0.9);
             transition: opacity 0.5s $easeinout 0.35s, transform 0.5s $easeinout 0.35s;
@@ -126,11 +127,11 @@
             }
           }
           &:nth-child(odd)  .el-illustration {
-            top: 150px;
+            top: 5rem;
             right: 8%;
           }
           &:nth-child(even) .el-illustration {
-            bottom: 150px;
+            bottom: 5rem;
             left: 8%;
           }
         }

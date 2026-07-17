@@ -10,6 +10,11 @@
 	var currentIdx = -1;
 	var isMd = window.matchMedia('(min-width: 1024px)');
 
+	function measureHeader() {
+		var h = document.querySelector('header');
+		document.documentElement.style.setProperty('--video-header-h', (h ? h.offsetHeight : 100) + 'px');
+	}
+
 	/* Desktop : index basé sur la progression dans la hauteur totale */
 	function getIdxDesktop() {
 		var rect  = section.getBoundingClientRect();
@@ -68,6 +73,7 @@
 		});
 	}
 
+	measureHeader();
 	update();
 
 	$(window).on('scroll.textpictureslide', function() {
@@ -75,6 +81,7 @@
 	});
 
 	$(window).on('resize.textpictureslide', function() {
+		measureHeader();
 		triggerLine = window.innerHeight * 0.25;
 		update();
 	});
