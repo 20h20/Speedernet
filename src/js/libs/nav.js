@@ -35,7 +35,7 @@
 
 	/////////////////// SOUS-MENU MOBILE — PANEL SYSTEM ///////////////////
 	$headerNav.on('click.mobilePanel', 'li.menu-item-has-children > a', function(e) {
-		if (window.innerWidth >= 1024) return;
+		if (window.innerWidth >= 1280) return;
 		e.preventDefault();
 		e.stopPropagation();
 

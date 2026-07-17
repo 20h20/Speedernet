@@ -66,6 +66,10 @@ MEDIUM SCREENS
 ------------------------------- */
 @media (min-width: $screen-md-min) {
   .cbo-herosimple {
+    .herosimple-picture{
+      width: 15.625rem;
+    }
+  
     .herosimple-title {
       margin-bottom: 3.125rem;
     }
