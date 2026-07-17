@@ -20,6 +20,7 @@ JOBS SLIDER COMPONENT
     &:not(.slick-slider){
       display: flex;
       gap: 2.5rem;
+      overflow: hidden;
 
       .list-el{
         width: 100%;

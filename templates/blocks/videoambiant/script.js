@@ -45,13 +45,14 @@
 		}
 
 		function videoCalcTarget() {
-			var rect      = videoTrack.getBoundingClientRect();
-			var vh        = window.innerHeight - headerH;
-			var animRange = (videoTrack.offsetHeight - vh) / 2;
+			var rect       = videoTrack.getBoundingClientRect();
+			var vh         = window.innerHeight - headerH;
+			var totalRange = videoTrack.offsetHeight - vh;
+			var holdRange  = 220; // px fixes de scroll avant que l'animation démarre
+			var animRange  = totalRange - holdRange;
 			if (animRange <= 0) return 0;
-			var raw   = (headerH - rect.top) / animRange;
-			var delay = 0.45; // reste plein écran pour les 45% premiers du scroll
-			return Math.max(0, Math.min(1, (raw - delay) / (1 - delay)));
+			var scrolled = headerH - rect.top;
+			return Math.max(0, Math.min(1, (scrolled - holdRange) / animRange));
 		}
 
 		/* Inverted: fullscreen → shrink to 90% with border-radius */
