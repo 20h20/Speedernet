@@ -1,6 +1,6 @@
 <?php
 
-$video     = get_field('videoambiant_file');
+$video	= get_field('videoambiant_file');
 $video_url = $video ? esc_url($video['url']) : '';
 
 ?>
@@ -9,10 +9,10 @@ $video_url = $video ? esc_url($video['url']) : '';
 	<section class="video-inner">
 		<?php if ($video): ?>
 			<div class="video-file" itemscope itemtype="https://schema.org/VideoObject">
-				<meta itemprop="name"        content="<?php echo esc_attr($video['title']); ?>">
+				<meta itemprop="name" content="<?php echo esc_attr($video['title']); ?>">
 				<meta itemprop="description" content="<?php echo esc_attr($video['description']); ?>">
-				<meta itemprop="uploadDate"  content="<?php echo date('Y-m-d', strtotime($video['date'])); ?>">
-				<meta itemprop="publisher"   content="Speedernet">
+				<meta itemprop="uploadDate" content="<?php echo date('Y-m-d', strtotime($video['date'])); ?>">
+				<meta itemprop="publisher" content="Speedernet">
 
 				<video class="cbo-video-element" autoplay muted loop playsinline>
 					<source type="video/mp4" src="<?php echo $video_url; ?>">

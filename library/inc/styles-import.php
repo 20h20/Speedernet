@@ -290,6 +290,11 @@
 	/* Les blocs sont chargés via gutenberg.min.css (concat de tous les blocs) avec filemtime
 	   pour éviter le double chargement et garantir le cache busting. */
 	function cbo_enqueue_block_editor_assets() {
+		// Annule les marges/max-width WP core ajoutées via :where(.wp-block) (WP 6.x+)
+		wp_register_style( 'cbo-editor-overrides', false );
+		wp_enqueue_style( 'cbo-editor-overrides' );
+		wp_add_inline_style( 'cbo-editor-overrides', '.wp-block { max-width: none; margin-top: 0; margin-bottom: 0; }' );
+
 		// Blocs — un seul fichier concaténé, cache busting via filemtime
 		$gutenberg_file = get_stylesheet_directory() . '/library/css/gutenberg.min.css';
 		if ( file_exists( $gutenberg_file ) ) {
