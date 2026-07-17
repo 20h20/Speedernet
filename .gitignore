@@ -8,9 +8,6 @@ Thumbs.db
 .DS_Store
 
 # Assets
-/library/css/*
-/library/js/*
-/library/iconfont/*
-/library/*.png
+
 
 # .github
