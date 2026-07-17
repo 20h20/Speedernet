@@ -3,13 +3,17 @@
 		var videoTrack = document.querySelector('.cbo-video');
 		if (!videoTrack) return;
 
-		var videoInner           = videoTrack.querySelector('.video-inner');
-		var videoExpandContainer = videoTrack.querySelector('.video-file');
-		var videoExpandEl        = videoTrack.querySelector('.cbo-video-element');
+		var videoInner = videoTrack.querySelector('.video-inner');
+		var videoFile  = videoTrack.querySelector('.video-file');
+		var videoEl    = videoTrack.querySelector('.cbo-video-element');
+		var playBtn    = videoTrack.querySelector('.video-play');
+		var modal      = videoTrack.querySelector('.video-modal');
+		var backdrop   = modal ? modal.querySelector('.modal-backdrop') : null;
+		var closeBtn   = modal ? modal.querySelector('.modal-close')   : null;
+		var modalVideo = modal ? modal.querySelector('.modal-video')   : null;
 
-		if (!videoExpandContainer || !videoExpandEl) return;
+		if (!videoFile || !videoEl) return;
 
-		var videoLabelEl = videoTrack.querySelector('.video-label');
 		var videoTargetP = 0;
 		var videoSmoothP = 0;
 		var videoRafId   = null;
@@ -20,7 +24,7 @@
 			document.documentElement.style.setProperty('--video-header-h', headerH + 'px');
 		}
 
-		// Sticky piloté par JS pour mobile (desktop utilise position:sticky CSS)
+		/* Mobile sticky (desktop uses CSS position:sticky) */
 		function videoUpdateSticky() {
 			if (!videoInner || window.innerWidth >= 1024) return;
 			var rect = videoTrack.getBoundingClientRect();
@@ -42,16 +46,18 @@
 		function videoCalcTarget() {
 			var rect      = videoTrack.getBoundingClientRect();
 			var animRange = (videoTrack.offsetHeight - window.innerHeight) / 2;
+			if (animRange <= 0) return 0;
 			return Math.max(0, Math.min(1, -rect.top / animRange));
 		}
 
+		/* Inverted: fullscreen → shrink to 90% with border-radius */
 		function videoRender(sp) {
 			var p     = -(Math.cos(Math.PI * sp) - 1) / 2;
-			var scale = 0.5 + 0.3 * p;
-			var br    = (20 * (1 - p)) / scale;
+			var scale = 1 - 0.1 * p;
+			var br    = 24 * p;
 
-			videoExpandContainer.style.transform    = 'scale(' + scale + ')';
-			videoExpandContainer.style.borderRadius = br + 'px';
+			videoFile.style.transform    = 'scale(' + scale + ')';
+			videoFile.style.borderRadius = br + 'px';
 
 			document.documentElement.style.setProperty('--video-p', p);
 		}
@@ -77,8 +83,34 @@
 			}
 		}
 
-		$(window).on('scroll.videoExpand', videoOnScroll);
+		/* Modal */
+		function openModal() {
+			if (!modal) return;
+			modal.hidden = false;
+			document.body.style.overflow = 'hidden';
+			if (modalVideo) { modalVideo.play(); }
+		}
 
+		function closeModal() {
+			if (!modal) return;
+			modal.hidden = true;
+			document.body.style.overflow = '';
+			if (modalVideo) {
+				modalVideo.pause();
+				modalVideo.currentTime = 0;
+			}
+		}
+
+		if (playBtn)  { playBtn.addEventListener('click', openModal); }
+		if (closeBtn) { closeBtn.addEventListener('click', closeModal); }
+		if (backdrop) { backdrop.addEventListener('click', closeModal); }
+
+		document.addEventListener('keydown', function(e) {
+			if (e.key === 'Escape' && modal && !modal.hidden) { closeModal(); }
+		});
+
+		/* Scroll & resize */
+		$(window).on('scroll.videoExpand', videoOnScroll);
 		$(window).on('resize.videoExpand', function() {
 			videoMeasure();
 			if (window.innerWidth >= 1024 && videoInner) {

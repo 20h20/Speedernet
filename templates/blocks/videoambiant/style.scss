@@ -1,17 +1,19 @@
 @import "../../../src/scss/partials/variables";
 
-/* -------------------------------
-VIDEO SCROLL EXPAND
-------------------------------- */
+/* ─────────────────────────────────────────
+   VIDEO — Shrink-on-scroll + modal
+───────────────────────────────────────── */
+
 .cbo-video {
-	height: 150vh;
-	height: 150svh;
+	height: 250vh;
+	height: 250svh;
 	position: relative;
 	margin-bottom: -6.25rem;
 	margin-top: -6.25rem;
 
 	.video-inner {
 		position: relative;
+		height: 100vh;
 		height: 100svh;
 		overflow: hidden;
 		isolation: isolate;
@@ -28,83 +30,154 @@ VIDEO SCROLL EXPAND
 			bottom: 0;
 			width: 100%;
 		}
+	}
 
-		.video-file {
+	/* Vidéo — plein écran au départ, JS la rétrécit au scroll */
+	.video-file {
+		position: absolute;
+		inset: 0;
+		overflow: hidden;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		transform-origin: center center;
+		will-change: transform, border-radius;
+
+		&::after {
+			content: '';
 			position: absolute;
-			top: calc(var(--video-header-h, 0rem) + 1.25rem);
-			bottom: 10vh;
-			left: 5%;
-			right: 5%;
-			transform-origin: center center;
-			overflow: hidden;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			border-radius: $borderlarge;
-			will-change: transform, border-radius;
-
-			&:after{
-				content: '';
-				background: rgba($colorgrey, .6);
-				position: absolute;
-				top: 0;
-				left: 0;
-				width: 100%;
-				height: 100%;
-			}
-			.icon--player{
-				background: $coloryellow;
-				color: $colorgrey;
-				border-radius: 99rem;
-				border: 0.125rem solid $colorgrey;
-				cursor: pointer;
-				width: 3.125rem;
-				height: 3.125rem;
-				font-size: 1.25rem;
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				position: absolute;
-				z-index: 1;
-				transform: scale(1);
-				transition:all .3s $easeinout;
-
-				&:hover{
-					transform: scale(1.2);
-				}
-			}
-			.cbo-video-element {
-				display: block;
-				width: 100%;
-				height: 100%;
-				object-fit: cover;
-			}
+			inset: 0;
+			background: rgba($colorbluedark, .35);
+			z-index: 1;
 		}
 
-		.video-label {
-			position: absolute;
-			top: 50%;
-			left: 0;
-			right: 0;
-			transform: translateY(-50%);
-			margin: 0;
-			text-align: center;
-			font-size: 12vw;
-			font-weight: 900;
-			line-height: 1;
-			white-space: nowrap;
-			z-index: 2;
-			pointer-events: none;
-			color: rgba($colorgrey, .3);
-			opacity: var(--video-p, 0);
-			will-change: opacity;
+		.cbo-video-element {
+			display: block;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
 		}
+	}
+
+	/* Bouton play — couvre toute la vidéo */
+	.video-play {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		background: none;
+		border: none;
+		cursor: pointer;
+		z-index: 2;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		transition: background .3s;
+
+		&:hover {
+			background: rgba($colorbluedark, .1);
+
+			.play-icon { transform: scale(1.12); }
+		}
+	}
+
+	.play-icon {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 4.5rem;
+		height: 4.5rem;
+		border-radius: 99rem;
+		background: $coloryellow;
+		color: $colorbluedark;
+		font-size: 1.375rem;
+		border: 2px solid $colorbluedark;
+		transition: transform .3s $easeinout;
+	}
+
+	/* Texte flottant — apparaît pendant le rétrécissement */
+	.video-label {
+		position: absolute;
+		top: 50%;
+		left: 0;
+		right: 0;
+		transform: translateY(-50%);
+		margin: 0;
+		text-align: center;
+		font-size: 12vw;
+		font-weight: 900;
+		line-height: 1;
+		white-space: nowrap;
+		z-index: 3;
+		pointer-events: none;
+		color: rgba($colorwhite, .15);
+		opacity: var(--video-p, 0);
+		will-change: opacity;
 	}
 }
 
-/* -------------------------------
-MEDIUM SCREENS
-------------------------------- */
+
+/* ─────────────────────────────────────────
+   MODALE vidéo
+───────────────────────────────────────── */
+
+.video-modal {
+	position: fixed;
+	inset: 0;
+	z-index: 9999;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 20px;
+
+	&[hidden] { display: none; }
+
+	.modal-backdrop {
+		position: absolute;
+		inset: 0;
+		background: rgba($colorbluedark, .92);
+		cursor: pointer;
+	}
+
+	.modal-inner {
+		position: relative;
+		z-index: 1;
+		width: 100%;
+		max-width: 1100px;
+	}
+
+	.modal-close {
+		position: absolute;
+		top: -2.5rem;
+		right: 0;
+		background: none;
+		border: none;
+		color: $colorwhite;
+		font-size: 2rem;
+		line-height: 1;
+		cursor: pointer;
+		opacity: .7;
+		transition: opacity .2s;
+		padding: 4px 8px;
+
+		&:hover { opacity: 1; }
+	}
+
+	.modal-video {
+		display: block;
+		width: 100%;
+		aspect-ratio: 16 / 9;
+		border-radius: $bordermedium;
+		background: $colorbluedark;
+		object-fit: contain;
+	}
+}
+
+
+/* ─────────────────────────────────────────
+   Desktop sticky
+───────────────────────────────────────── */
+
 @media (min-width: $screen-md-min) {
 	.cbo-video {
 		margin-bottom: -12.5rem;

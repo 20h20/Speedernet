@@ -10,6 +10,7 @@ VIDEO BLOCK — YOUTUBE PLAYER
 	}
 
 	.video-player {
+		margin: 0 auto;
 		position: relative;
 		border-radius: $borderlarge;
 		overflow: hidden;
@@ -94,15 +95,23 @@ VIDEO BLOCK — YOUTUBE PLAYER
 		}
 	}
 
-	&.cbo-video--horizontal .video-player {
-		aspect-ratio: 16 / 9;
+	&.cbo-video--horizontal  {
+		.video-player{
+			max-width: 50rem;
+			aspect-ratio: 16 / 9;
+		}
 	}
 
 	&.cbo-video--vertical {
 		.video-player {
 			aspect-ratio: 11 / 16;
 			max-width: 24rem;
-			margin: 0 auto;
+		}
+	}
+	&.cbo-video--square{
+		.video-player{
+			max-width: 37.5rem;
+			aspect-ratio: 1 / 1;
 		}
 	}
 }
