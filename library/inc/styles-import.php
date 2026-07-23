@@ -286,25 +286,36 @@
 
 
 	/* ****************** */
-	/* Chargement des styles des blocs et parts dans l'éditeur Gutenberg */
-	/* Les blocs sont chargés via gutenberg.min.css (concat de tous les blocs) avec filemtime
-	   pour éviter le double chargement et garantir le cache busting. */
+	/* Chargement des styles des blocs dans l'iframe de l'éditeur Gutenberg */
+	/* enqueue_block_assets s'exécute DANS l'iframe (WP 6.2+), contrairement à
+	   enqueue_block_editor_assets qui s'exécute dans le frame parent.
+	   On charge chaque bloc individuellement pour éviter les problèmes de
+	   transformation de sélecteurs sur un fichier concatené de 70KB. */
+	add_action( 'enqueue_block_assets', function() {
+		if ( ! is_admin() ) return;
+
+		$blocks_dir = get_stylesheet_directory() . '/library/css/blocks/';
+		$blocks_url = get_stylesheet_directory_uri() . '/library/css/blocks/';
+
+		foreach ( glob( $blocks_dir . '*.min.css' ) as $file ) {
+			$block = basename( $file, '.min.css' );
+			wp_enqueue_style(
+				'cbo-block-' . $block . '-editor',
+				$blocks_url . $block . '.min.css',
+				[],
+				filemtime( $file )
+			);
+		}
+	} );
+
+
+	/* ****************** */
+	/* Chargement des styles des parts + overrides dans l'éditeur Gutenberg */
 	function cbo_enqueue_block_editor_assets() {
 		// Annule les marges/max-width WP core ajoutées via :where(.wp-block) (WP 6.x+)
 		wp_register_style( 'cbo-editor-overrides', false );
 		wp_enqueue_style( 'cbo-editor-overrides' );
 		wp_add_inline_style( 'cbo-editor-overrides', '.wp-block { max-width: none; margin-top: 0; margin-bottom: 0; }' );
-
-		// Blocs — un seul fichier concaténé, cache busting via filemtime
-		$gutenberg_file = get_stylesheet_directory() . '/library/css/gutenberg.min.css';
-		if ( file_exists( $gutenberg_file ) ) {
-			wp_enqueue_style(
-				'editor-blocks-gutenberg',
-				get_stylesheet_directory_uri() . '/library/css/gutenberg.min.css',
-				array(),
-				filemtime( $gutenberg_file )
-			);
-		}
 
 		// Parts
 		$css_parts_path  = get_stylesheet_directory() . '/library/css/parts/';
