@@ -5,7 +5,7 @@
 		slidesToShow: 2,
 		slidesToScroll: 1,
 		infinite: true,
-		centerMode: true,
+		centerMode: false,
 		centerPadding: '10%',
 		responsive: [
 			{
