@@ -176,7 +176,7 @@ module.exports = function (grunt) {
         tasks: ["sass:parts", "postcss:parts"]
       },
 
-       admin: {
+      admin: {
         files: ["<%= path_src %>scss/components/micros/_back-office.scss"],
         tasks: ["sass:admin", "postcss:admin"]
       },
