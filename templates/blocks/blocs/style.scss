@@ -34,10 +34,6 @@ BLOCS SIMPLE COMPONENT
           }
           &.icon--blue{
             background: $colorblue;
-
-            img{
-              filter: invert(1);
-            }
           }
         }
         .inner-title{
