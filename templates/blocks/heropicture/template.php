@@ -22,15 +22,22 @@ $chapo = $args['chapo'] ?? get_field('heropicture_chapo');
 
     </div>
 
-    <?php if( have_rows('heropicture_list') ): ?>
-        <ul class="heropicture-list cbo-container" role="list">
-            <?php
-            $index = 0;
-            while ( have_rows('heropicture_list') ) : the_row();
-                $picture = get_sub_field('picture');
-                $index++;
-            ?>
-                <li class="list-el list-el--<?php echo $index; ?> herorich-animate" role="listitem">
+    <?php
+    $hp_pictures = [];
+    if ( have_rows('heropicture_list') ) {
+        while ( have_rows('heropicture_list') ) {
+            the_row();
+            $p = get_sub_field('picture');
+            if ( $p ) $hp_pictures[] = $p;
+        }
+    }
+    $hp_count = count( $hp_pictures );
+    ?>
+
+    <?php if ( $hp_count > 0 ): ?>
+        <ul class="heropicture-list cbo-container heropicture-list--count-<?php echo $hp_count; ?>" role="list">
+            <?php foreach ( $hp_pictures as $index => $picture ): ?>
+                <li class="list-el list-el--<?php echo ( $index + 1 ); ?> herorich-animate" role="listitem">
                     <span class="el-inner cbo-picture-cover">
                         <img
                             src="<?php echo esc_url($picture['sizes']['medium']); ?>"
@@ -48,7 +55,7 @@ $chapo = $args['chapo'] ?? get_field('heropicture_chapo');
                         >
                     </span>
                 </li>
-            <?php endwhile; ?>
+            <?php endforeach; ?>
         </ul>
     <?php endif; ?>
 
