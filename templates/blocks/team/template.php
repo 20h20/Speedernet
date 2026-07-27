@@ -46,12 +46,18 @@ $chapo      = get_field('team_chapo');
 
 		<?php $pictures = get_field('team_pictureslist') ?: []; ?>
 
-		<?php if (!empty($pictures)) : ?>
+		<?php if (!empty($pictures)) :
+			$mid = (int) ceil( count($pictures) / 2 );
+			$cols = [
+				'list-left'  => array_slice($pictures, 0, $mid),
+				'list-right' => array_slice($pictures, $mid),
+			];
+		?>
 			<div class="team-list">
 
-				<?php foreach (['list-left', 'list-right'] as $col) : ?>
+				<?php foreach ($cols as $col => $col_pictures) : ?>
 					<div class="<?php echo esc_attr($col); ?>">
-						<?php foreach ($pictures as $row) :
+						<?php foreach ($col_pictures as $row) :
 							$picture = $row['picture'] ?? null;
 							if (!$picture) continue;
 						?>
