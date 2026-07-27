@@ -43,7 +43,7 @@ $section_label = $title ? wp_strip_all_tags( $title ) : pll__('Nos partenaires')
 					$name = get_sub_field('partner_name');
 			?>
 				<li class="list-el" itemscope itemtype="https://schema.org/Organization">
-					<div class="el-inner cbo-picture-contain slide-up" itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
+					<div class="el-inner cbo-picture-contain" itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
 						<img
 							itemprop="contentUrl"
 							src="<?php echo esc_url( $logo['sizes']['small'] ?? $logo['url'] ); ?>"
