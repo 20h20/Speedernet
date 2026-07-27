@@ -399,4 +399,23 @@
 	}
 	add_filter( 'wpseo_breadcrumb_links', 'ju_trim_yoast_breadcrumb_links' );
 
+
+	/* ************************* */
+	/* Affiche les images dans le flux rss */
+	/* ************************* */
+	function add_imagelink_to_rss() {
+		global $post;
+
+		if ( has_post_thumbnail( $post->ID ) ) {
+			$thumb_id = get_post_thumbnail_id( $post->ID );
+			$thumb_url = wp_get_attachment_url( $thumb_id );
+
+			if ( $thumb_url ) {
+				echo "<enclosure url='" . esc_url( $thumb_url ) . "' type='image/jpeg' />\n";
+				echo "<imagelink>" . esc_url( $thumb_url ) . "</imagelink>\n";
+			}
+		}
+
+	}
+	add_action( 'rss2_item', 'add_imagelink_to_rss' );
 ?>
