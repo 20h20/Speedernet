@@ -45,7 +45,7 @@ $content = get_field('jobslider_content');
 						target="<?php echo esc_attr( $link['target'] ?: '_self' ); ?>"
 						aria-label="<?php echo esc_attr( $link['title'] ?: wp_strip_all_tags( $jobtitle ) ?: $link['url'] ); ?>"
 					>
-						<div class="inner-picture cbo-picture-cover slide-up">
+						<div class="inner-picture cbo-picture-cover">
 							<img
 								src="<?php echo esc_url( $picture['sizes']['small'] ?? $picture['url'] ); ?>"
 								srcset="
@@ -60,7 +60,7 @@ $content = get_field('jobslider_content');
 							>
 						</div>
 
-						<div class="inner-content cbo-title-4 slide-up">
+						<div class="inner-content cbo-title-4">
 							<?php echo wp_kses_post( $jobtitle ); ?>
 						</div>
 					</a>
