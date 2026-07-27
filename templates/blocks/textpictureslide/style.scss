@@ -21,9 +21,7 @@
       margin: 3.125rem 0;
 
       .el-picture-wrap {
-        position: relative;
         margin-bottom: 1.25rem;
-        padding-bottom: 2rem;
 
         .el-picture {
           width: 100%;
@@ -44,12 +42,10 @@
 ------------------------------- */
 @media (min-width: $screen-md-min) {
   .cbo-textpictureslide {
-    margin: -9.375rem 0;
     height: calc(var(--slide-count, 1) * 100vh);
     height: calc(var(--slide-count, 1) * 100svh);
 
     .textpictureslide-inner {
-      margin-top: 0;
       margin-bottom: 0;
       position: sticky;
       top: var(--video-header-h, 6.25rem);
@@ -59,7 +55,6 @@
       flex-direction: row;
       align-items: center;
       gap: 6.25rem;
-      overflow: visible;
     }
 
     .textpictureslide-images {
@@ -78,7 +73,7 @@
           position: absolute;
           inset: 0;
           pointer-events: none;
-          padding: 9.375rem 0;
+          padding: 4.375rem 0;
 
           @for $i from 1 through 10 {
             &:nth-child(#{$i}) { z-index: #{$i}; }
