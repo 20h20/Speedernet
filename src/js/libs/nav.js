@@ -135,4 +135,23 @@
 			}
 		}
 	});
+
+	/////////////////// MEGA MENU — SIDEBAR PANEL SWITCH ///////////////////
+	function switchMegaPanel($sidebarItem) {
+		if ($(window).width() < 1283) return;
+		var $container = $sidebarItem.closest('.mega-container');
+		var panelId    = $sidebarItem.data('panel');
+		$container.find('.sidebar-item').removeClass('is-active');
+		$sidebarItem.addClass('is-active');
+		$container.find('.mega-panel').removeClass('is-active');
+		$container.find('#' + panelId).addClass('is-active');
+	}
+
+	$headerNav.on('mouseenter', '.sidebar-item', function() {
+		switchMegaPanel($(this));
+	});
+
+	$headerNav.on('focusin', '.sidebar-item .sidebar-link', function() {
+		switchMegaPanel($(this).closest('.sidebar-item'));
+	});
 })(jQuery);

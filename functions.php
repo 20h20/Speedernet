@@ -13,6 +13,7 @@
 		require_once( 'library/inc/custom-post/cpt-glossaire.php' );
 		require_once( 'library/inc/acf.php' );
 		require_once( 'library/inc/strings.php' );
+		require_once( 'library/inc/customs/mega-menu-walker.php' );
 	}
 	add_action( 'after_setup_theme', 'bones_ahoy' );
 

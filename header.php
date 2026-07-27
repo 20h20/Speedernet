@@ -17,19 +17,6 @@
 		<?php
 			$hdbt = get_field('header_button', 'option');
 		?>
-
-		<script type="application/ld+json">
-		{
-			"@context": "https://schema.org",
-			"@type": "Organization",
-			"name": "<?php echo esc_js(get_bloginfo('name')); ?>",
-			"url": "<?php echo esc_url(home_url('/')); ?>",
-			"logo": {
-				"@type": "ImageObject",
-				"url": "<?php echo esc_url(get_template_directory_uri()); ?>/library/images/logo-speedernet-header.svg"
-			}
-		}
-		</script>
 	</head>
 
 	<body <?php body_class('cbo-main'); ?> itemscope itemtype="https://schema.org/WebPage">
@@ -87,6 +74,7 @@
 						'menu_class'     => '',
 						'theme_location' => 'main-nav',
 						'menu_id'        => 'menu-principal',
+						'walker'         => new CBO_Walker_Mega_Menu(),
 					)); ?>
 
 					<?php if ($hdbt):
