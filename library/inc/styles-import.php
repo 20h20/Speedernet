@@ -351,6 +351,41 @@
 
 
 	/* ****************** */
+	/* Un seul hero par page */
+	/* Empêche d'insérer un second type de hero si un hero est déjà présent sur la page. */
+	add_action( 'enqueue_block_editor_assets', function() {
+		wp_add_inline_script( 'wp-blocks', '
+(function() {
+	var HERO_BLOCKS = ["acf/herosimple", "acf/heropicture", "acf/herorich"];
+	var removing = false;
+
+	wp.data.subscribe(function() {
+		if (removing) return;
+
+		var blocks = wp.data.select("core/block-editor").getBlocks();
+		if (!blocks) return;
+
+		var heroes = blocks.filter(function(b) {
+			return HERO_BLOCKS.indexOf(b.name) !== -1;
+		});
+
+		if (heroes.length <= 1) return;
+
+		removing = true;
+		wp.data.dispatch("core/block-editor").removeBlock(heroes[heroes.length - 1].clientId);
+		wp.data.dispatch("core/notices").createNotice(
+			"error",
+			"Un seul bloc hero est autorisé par page.",
+			{ isDismissible: true, id: "cbo-hero-unique" }
+		);
+		setTimeout(function() { removing = false; }, 300);
+	});
+})();
+		' );
+	} );
+
+
+	/* ****************** */
 	/* Import des styles pour le dashboard */
 	function cbo_admin_styles() {
 		$admin_css_file = get_stylesheet_directory() . '/library/css/admin.min.css';

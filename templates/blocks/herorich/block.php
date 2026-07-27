@@ -31,7 +31,7 @@
             'supports' => array(
                 'align'         => false,
                 'mode'          => false,
-                'multiple'      => true,
+                'multiple'      => false,
                 'jsx'           => false,
                 'align_content' => false,
                 'anchor'        => true,

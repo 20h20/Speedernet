@@ -11,9 +11,9 @@
 		centerPadding: '10%',
 		responsive: [
 			{
-				breakpoint: 1024,
+				breakpoint: 1283,
 				settings: {
-					slidesToShow: 1,
+					slidesToShow: 2,
 					centerPadding: '120px',
 				}
 			},
