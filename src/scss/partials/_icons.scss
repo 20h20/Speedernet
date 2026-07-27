@@ -2,11 +2,11 @@
 
 @font-face {
     font-family:"icons";
-    src: url("../iconfont/icons.eot?263b434e55a1bf95ff74d876b7cfa41f");
-    src: url("../iconfont/icons.eot?263b434e55a1bf95ff74d876b7cfa41f#iefix") format("embedded-opentype"),
-		url("../iconfont/icons.woff?263b434e55a1bf95ff74d876b7cfa41f") format("woff"),
-		url("../iconfont/icons.ttf?263b434e55a1bf95ff74d876b7cfa41f") format("truetype"),
-		url("../iconfont/icons.svg?263b434e55a1bf95ff74d876b7cfa41f#icons") format("svg");
+    src: url("../iconfont/icons.eot?e8c15da190d10742a42c2d7dba643218");
+    src: url("../iconfont/icons.eot?e8c15da190d10742a42c2d7dba643218#iefix") format("embedded-opentype"),
+		url("../iconfont/icons.woff?e8c15da190d10742a42c2d7dba643218") format("woff"),
+		url("../iconfont/icons.ttf?e8c15da190d10742a42c2d7dba643218") format("truetype"),
+		url("../iconfont/icons.svg?e8c15da190d10742a42c2d7dba643218#icons") format("svg");
     font-weight:normal;
     font-style:normal;
     font-display:swap;
@@ -30,20 +30,21 @@
 .icon--check:before { content:"\f104"; }
 .icon--chevron:before { content:"\f105"; }
 .icon--clock:before { content:"\f106"; }
-.icon--cross:before { content:"\f107"; }
-.icon--datepicker:before { content:"\f108"; }
-.icon--external-link:before { content:"\f109"; }
-.icon--facebook:before { content:"\f10a"; }
-.icon--instagram:before { content:"\f10b"; }
-.icon--linkedin:before { content:"\f10c"; }
-.icon--logo-jb:before { content:"\f10d"; }
-.icon--mail:before { content:"\f10e"; }
-.icon--phone:before { content:"\f10f"; }
-.icon--player:before { content:"\f110"; }
-.icon--search:before { content:"\f111"; }
-.icon--success:before { content:"\f112"; }
-.icon--top-quote:before { content:"\f113"; }
-.icon--warning:before { content:"\f114"; }
-.icon--world:before { content:"\f115"; }
-.icon--x:before { content:"\f116"; }
-.icon--youtube:before { content:"\f117"; }
+.icon--close:before { content:"\f107"; }
+.icon--cross:before { content:"\f108"; }
+.icon--datepicker:before { content:"\f109"; }
+.icon--external-link:before { content:"\f10a"; }
+.icon--facebook:before { content:"\f10b"; }
+.icon--instagram:before { content:"\f10c"; }
+.icon--linkedin:before { content:"\f10d"; }
+.icon--logo-jb:before { content:"\f10e"; }
+.icon--mail:before { content:"\f10f"; }
+.icon--phone:before { content:"\f110"; }
+.icon--player:before { content:"\f111"; }
+.icon--search:before { content:"\f112"; }
+.icon--success:before { content:"\f113"; }
+.icon--top-quote:before { content:"\f114"; }
+.icon--warning:before { content:"\f115"; }
+.icon--world:before { content:"\f116"; }
+.icon--x:before { content:"\f117"; }
+.icon--youtube:before { content:"\f118"; }

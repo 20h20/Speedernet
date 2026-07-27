@@ -1,0 +1,136 @@
+/* -------------------------------
+LIGHTBOX GALERIE
+------------------------------- */
+.cbo-gallery-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+
+  &.is-open {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .lb-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba($colorgrey, 0.92);
+    backdrop-filter: blur(0.5rem);
+    cursor: zoom-out;
+  }
+
+  .lb-content {
+    position: relative;
+    z-index: 1;
+    max-width: calc(100vw - 12rem);
+    max-height: calc(100vh - 6rem);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .lb-img {
+      display: block;
+      max-width: 100%;
+      max-height: calc(100vh - 6rem);
+      border-radius: $bordermedium;
+      object-fit: contain;
+      transform: scale(0.92);
+      transition: transform 0.3s ease, opacity 0.3s ease;
+      opacity: 0;
+    }
+  }
+
+  &.is-open .lb-img {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  .lb-close,
+  .lb-prev,
+  .lb-next {
+    position: absolute;
+    z-index: 2;
+    background: rgba($colorwhite, 0.15);
+    border: 0.0625rem solid rgba($colorwhite, 0.25);
+    color: $colorwhite;
+    border-radius: 50%;
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+    font-family: 'icons';
+    font-size: 0.875rem;
+
+    &:hover {
+      background: rgba($colorwhite, 0.3);
+      transform: scale(1.1);
+    }
+  }
+
+  .lb-close {
+    top: 1.25rem;
+    right: 1.25rem;
+    font-family: inherit;
+    font-size: 0.875rem;
+  }
+
+  .lb-prev {
+    left: 1.25rem;
+    top: 50%;
+    transform: translateY(-50%);
+
+    &::before {
+      content: '\f102';
+    }
+    &:hover {
+      transform: translateY(-50%) scale(1.1);
+    }
+  }
+
+  .lb-next {
+    right: 1.25rem;
+    top: 50%;
+    transform: translateY(-50%);
+
+    &::before {
+      content: '\f101';
+    }
+    &:hover {
+      transform: translateY(-50%) scale(1.1);
+    }
+  }
+
+  .lb-counter {
+    position: absolute;
+    bottom: 1.25rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba($colorwhite, 0.6);
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    z-index: 2;
+  }
+}
+
+/* -------------------------------
+LARGE SCREENS
+------------------------------- */
+@media (min-width: $screen-lg-min) {
+  .cbo-gallery-lightbox {
+    .lb-content {
+      max-width: calc(100vw - 14rem);
+    }
+    .lb-img {
+      border-radius: $borderbig;
+    }
+  }
+}

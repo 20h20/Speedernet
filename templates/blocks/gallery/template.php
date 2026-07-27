@@ -20,7 +20,13 @@ $title  = get_field('gallery_title');
 				$picture = get_sub_field('picture');
 			?>
 				<div class="list-el" itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
-					<div class="el-inner">
+					<div class="el-inner"
+						data-full="<?php echo esc_url( $picture['url'] ); ?>"
+						data-alt="<?php echo esc_attr( $picture['alt'] ?? '' ); ?>"
+						role="button"
+						tabindex="0"
+						aria-label="<?php echo esc_attr( ! empty( $picture['title'] ) ? $picture['title'] : ( $picture['alt'] ?? '' ) ); ?>"
+					>
 						<div class="inner-picture cbo-picture-cover">
 							<img
 								src="<?php echo esc_url($picture['sizes']['large']); ?>"
@@ -36,6 +42,7 @@ $title  = get_field('gallery_title');
 								itemprop="contentUrl"
 							>
 						</div>
+						<div class="inner-zoom" aria-hidden="true"></div>
 						<meta itemprop="url" content="<?php echo esc_url($picture['url']); ?>">
 						<?php if( !empty($picture['title']) ): ?>
 							<p class="el-title" itemprop="name">
