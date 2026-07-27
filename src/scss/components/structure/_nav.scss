@@ -221,7 +221,7 @@ LARGE SCREENS
 					}
 				}
 
-				// MEGA MENU — simple dropdown sur 1280-1282px, deux panneaux sur ≥1283px
+				// MEGA MENU — simple dropdown
 				&.menu-item-has-children.megamenu {
 					> .sub-menu {
 						top: 100%;
@@ -278,15 +278,15 @@ LARGE SCREENS
 }
 
 /* -------------------------------
-MEGA MENU — TWO-PANEL (≥1283px)
+MEGA MENU
 ------------------------------- */
-@media (min-width: 1283px) {
+@media (min-width: $screen-lg-min) {
 	.cbo-nav > ul > li.menu-item-has-children.megamenu {
 		> .sub-menu {
 			padding: 0;
 			border-radius: 1rem;
 			overflow: hidden;
-			margin-top: 20px;
+			margin-top: 1.25rem;
 
 			> .mobile-item {
 				display: none !important;
@@ -345,7 +345,7 @@ MEGA MENU — TWO-PANEL (≥1283px)
 							justify-content: center;
 							flex-shrink: 0;
 							overflow: hidden;
-							padding: 8px;
+							padding: 0.5rem;
 
 							&.has-image {
 								img {

@@ -30,14 +30,14 @@
     color: $colorgrey;
     text-decoration: none;
     background: $colorwhite;
-    border: 1px solid $colorgreymediumlight;
+    border: 0.0625rem solid $colorgreymediumlight;
     transition: background-color 0.2s $easeinout, border-color 0.2s $easeinout, color 0.2s $easeinout, box-shadow 0.2s $easeinout;
 
     &.current {
       background: $colorblue;
       border-color: $colorblue;
       color: $colorwhite;
-      box-shadow: 0 4px 12px rgba($colorblue, 0.3);
+      box-shadow: 0 0.25rem 0.75rem rgba($colorblue, 0.3);
       cursor: default;
     }
 
@@ -63,7 +63,7 @@
       background: $coloryellow;
       border-color: $coloryellow;
       color: $colorgrey;
-      box-shadow: 0 4px 12px rgba($coloryellow, 0.4);
+      box-shadow: 0 0.25rem 0.75rem rgba($coloryellow, 0.4);
     }
   }
 }

@@ -22,7 +22,7 @@
 				}
 			} else if (count > 3) {
 				if (!$el.hasClass('slick-initialized')) {
-					$el.slick({ arrows: false, dots: true, infinite: false, slidesToShow: 3, slidesToScroll: 1 });
+					$el.slick({ arrows: true, dots: false, infinite: false, slidesToShow: 3, slidesToScroll: 1 });
 				}
 			} else {
 				if ($el.hasClass('slick-initialized')) $el.slick('unslick');
