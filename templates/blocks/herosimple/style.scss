@@ -4,27 +4,25 @@
 HERO RICH COMPONENT
 ------------------------------- */
 .cbo-herosimple {
-  position: relative;
-
   .herosimple-inner {
     text-align: center;
     z-index: 1;
-    margin-top: 2.5rem;
+    margin-top: 40px;
   }
   .herosimple-picture{
-    width: 10.625rem;
+    width: 170px;
     height: auto;
-    margin: 0 auto 1.875rem;
+    margin: 0 auto 30px;
 
     img{
       position: relative;
     }
   }
   .herosimple-title {
-    margin-bottom: 1.875rem;
+    margin-bottom: 30px;
   }
   .herosimple-chapo {
-    max-width: 50rem;
+    max-width: 800px;
     margin: 0 auto;
   }
   .herosimple-buttons{
@@ -32,8 +30,8 @@ HERO RICH COMPONENT
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    gap: 1rem;
-    margin-top: 1.875rem;
+    gap: 16px;
+    margin-top: 30px;
 
     .cbo-button{
       box-shadow: $shadowblack;
@@ -54,7 +52,7 @@ HERO RICH COMPONENT
         right: inherit;
       }
       &::before{
-        left: -6.25rem;
+        left: -100px;
       }
       &::after{
         left: 0;
@@ -84,11 +82,11 @@ MEDIUM SCREENS
 @media (min-width: $screen-md-min) {
   .cbo-herosimple {
     .herosimple-picture{
-      width: 25rem;
+      width: 400px;
     }
   
     .herosimple-title {
-      margin-bottom: 3.125rem;
+      margin-bottom: 50px;
     }
   }
 }

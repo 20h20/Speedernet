@@ -8,10 +8,10 @@ $title  = get_field('gallery_title');
 	<div class="gallery-inner cbo-container">
 
 		<?php if ($title): ?>
-            <div class="gallery-title cbo-title-2 slide-up">
-                <?php echo wp_kses_post($title); ?>
-            </div>
-        <?php endif; ?>
+			<div class="gallery-title cbo-title-2 slide-up">
+				<?php echo wp_kses_post($title); ?>
+			</div>
+		<?php endif; ?>
 
 		<div class="gallery-list slide-up">
 			<?php
