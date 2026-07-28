@@ -1,0 +1,67 @@
+@import "../../../src/scss/partials/variables";
+
+/* -------------------------------
+CONTACT COMPONENT
+------------------------------- */
+.cbo-contact {
+  .contact-content {
+    .contact-title {
+      margin-bottom: 1.875rem;
+    }
+    .contact-address {
+      font-style: normal;
+      margin-top: 1.25rem;
+      padding-top: 1.25rem;
+      border-top: 0.0625rem solid rgba($colorgrey, 0.12);
+    }
+  }
+
+  .contact-form {
+    margin-top: 1.875rem;
+    background: $colorwhite;
+    border-radius: $borderbig;
+    box-shadow: $shadowbig;
+    padding: 2rem 1.5rem;
+  }
+}
+
+/* -------------------------------
+MEDIUM SCREENS
+------------------------------- */
+@media (min-width: $screen-md-min) {
+  .cbo-contact {
+    .contact-inner {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 4rem;
+    }
+
+    .contact-content {
+      width: 40%;
+      max-width: 37.5rem;
+      position: sticky;
+      top: 8.75rem;
+    }
+
+    .contact-form {
+      flex: 1;
+      padding: 2.5rem;
+      margin-top: 0;
+    }
+  }
+}
+
+/* -------------------------------
+LARGE SCREENS
+------------------------------- */
+@media (min-width: $screen-lg-min) {
+  .cbo-contact {
+    .contact-inner {
+      gap: 5rem;
+    }
+    .contact-form {
+      padding: 3rem;
+    }
+  }
+}

@@ -28,6 +28,7 @@
 		require get_template_directory() . '/templates/blocks/videoambiant/block.php';
 		require get_template_directory() . '/templates/blocks/video/block.php';
 		require get_template_directory() . '/templates/blocks/webinaires/block.php';
+		require get_template_directory() . '/templates/blocks/contact/block.php';
 	} );
 
 	function allow_only_custom_blocks( $allowed_blocks, $editor_context ) {
@@ -60,6 +61,7 @@
 			'acf/videoambiant',
 			'acf/video',
 			'acf/webinaires',
+			'acf/contact',
 		);
 	}
 	add_filter( 'allowed_block_types_all', 'allow_only_custom_blocks', 10, 2 );
