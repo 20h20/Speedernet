@@ -3,8 +3,10 @@
 $picture     = $args['picture'] ?? get_field('herosimple_picture');
 $title       = $args['title']   ?? get_field('herosimple_title');
 $chapo       = $args['chapo']   ?? get_field('herosimple_chapo');
-$button      = $args['button']  ?? get_field('herosimple_button');
-$button2     = $args['button2'] ?? get_field('herosimple_button2');
+$button       = $args['button']  ?? get_field('herosimple_button');
+$buttoncolor  = get_field('herosimple_buttoncolor');
+$button2      = $args['button2'] ?? get_field('herosimple_button2');
+$button2color = get_field('herosimple_button2color');
 $type        = get_field('herosimple_type');
 $mainpicture = get_field('herosimple_mainpicture');
 
@@ -71,6 +73,7 @@ $is_bg_picture = ($type === 'heropicture' && $mainpicture);
                         'url'    => $button['url'],
                         'label'  => $button['title'],
                         'target' => $button['target'] ?: '_self',
+                        'class'  => 'cbo-button' . ( $buttoncolor ? ' button--' . esc_attr( $buttoncolor ) : '' ),
                     ]); ?>
                 <?php endif; ?>
                 <?php if ( $button2 ) : ?>
@@ -78,7 +81,7 @@ $is_bg_picture = ($type === 'heropicture' && $mainpicture);
                         'url'    => $button2['url'],
                         'label'  => $button2['title'],
                         'target' => $button2['target'] ?: '_self',
-                        'class'  => 'cbo-button button--white',
+                        'class'  => 'cbo-button' . ( $button2color ? ' button--' . esc_attr( $button2color ) : '' ),
                     ]); ?>
                 <?php endif; ?>
             </div>

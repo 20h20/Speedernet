@@ -3,7 +3,9 @@
 $title   = get_field('herorich_title');
 $chapo   = get_field('herorich_chapo');
 $button  = get_field('herorich_button');
+$buttoncolor  = get_field('herorich_buttoncolor');
 $button2 = get_field('herorich_button2');
+$button2color  = get_field('herorich_button2color');
 
 ?>
 
@@ -28,7 +30,7 @@ $button2 = get_field('herorich_button2');
 					$btn_blank = ( $button['target'] ?? '' ) === '_blank';
 				?>
 					<a
-						class="cbo-button"
+						class="cbo-button<?php echo $buttoncolor ? ' button--' . esc_attr( $buttoncolor ) : ''; ?>"
 						href="<?php echo esc_url( $button['url'] ); ?>"
 						target="<?php echo esc_attr( $button['target'] ?: '_self' ); ?>"
 						<?php if ( $btn_blank ) : ?>
@@ -44,7 +46,7 @@ $button2 = get_field('herorich_button2');
 					$btn2_blank = ( $button2['target'] ?? '' ) === '_blank';
 				?>
 					<a
-						class="cbo-button button--white"
+						class="cbo-button<?php echo $button2color ? ' button--' . esc_attr( $button2color ) : ''; ?>"
 						href="<?php echo esc_url( $button2['url'] ); ?>"
 						target="<?php echo esc_attr( $button2['target'] ?: '_self' ); ?>"
 						<?php if ( $btn2_blank ) : ?>
