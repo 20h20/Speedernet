@@ -14,6 +14,8 @@
 
         acf_register_block_type(array(
             'name'            => 'accordion',
+            'api_version'       => 3,
+            'acf_block_version' => 3,
             'title'           => 'Accordéon',
             'description'     => 'Bloc d\'accordéon',
             'category'        => 'relationship',

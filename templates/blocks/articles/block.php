@@ -14,6 +14,8 @@
 
         acf_register_block_type(array(
             'name'            => 'articles',
+            'api_version'       => 3,
+            'acf_block_version' => 3,
             'title'           => 'Liste d\'articles',
             'description'     => 'Liste d\'articles',
             'category'        => 'relationship',

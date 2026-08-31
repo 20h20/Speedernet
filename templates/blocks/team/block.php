@@ -14,6 +14,8 @@
 
         acf_register_block_type(array(
             'name'            => 'team',
+            'api_version'       => 3,
+            'acf_block_version' => 3,
             'title'           => 'Présentation d\'équipe',
             'description'     => '',
             'category'        => 'blocs',

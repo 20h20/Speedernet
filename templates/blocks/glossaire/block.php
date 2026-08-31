@@ -14,6 +14,8 @@
 
         acf_register_block_type(array(
             'name'            => 'glossaire',
+            'api_version'       => 3,
+            'acf_block_version' => 3,
             'title'           => 'Glossaire',
             'description'     => 'Affichage d\'un glossaire',
             'category'        => 'text',

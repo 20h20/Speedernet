@@ -14,6 +14,8 @@
 
         acf_register_block_type(array(
             'name'            => 'casestudies',
+            'api_version'       => 3,
+            'acf_block_version' => 3,
             'title'           => 'Liste d\'études de cas',
             'description'     => 'Liste d\'études de cas',
             'category'        => 'relationship',

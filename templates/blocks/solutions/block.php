@@ -14,6 +14,8 @@
 
         acf_register_block_type(array(
             'name'            => 'solutions',
+            'api_version'       => 3,
+            'acf_block_version' => 3,
             'title'           => 'Solutions',
             'description'     => 'Grille de solutions avec picto, numéro, titre et description.',
             'category'        => 'text',

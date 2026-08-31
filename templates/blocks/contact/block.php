@@ -14,6 +14,8 @@
 
         acf_register_block_type(array(
             'name'            => 'contact',
+            'api_version'       => 3,
+            'acf_block_version' => 3,
             'title'           => 'Formulaire de contact',
             'description'     => 'Bloc contact avec texte, adresse et formulaire Gravity Forms.',
             'category'        => 'text',

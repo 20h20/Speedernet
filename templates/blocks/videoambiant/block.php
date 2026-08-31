@@ -14,6 +14,8 @@
 
         acf_register_block_type(array(
             'name'            => 'videoambiant',
+            'api_version'       => 3,
+            'acf_block_version' => 3,
             'title'           => 'Vidéo d\'ambiance',
             'description'     => 'Affichage d\'une vidéo d\'ambiance',
             'category'        => 'media',

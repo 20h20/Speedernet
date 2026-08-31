@@ -14,6 +14,8 @@
 
         acf_register_block_type(array(
             'name'            => 'blocs',
+            'api_version'       => 3,
+            'acf_block_version' => 3,
             'title'           => 'Blocs',
             'description'     => 'Liste de blocs simple',
             'category'        => 'blocs',

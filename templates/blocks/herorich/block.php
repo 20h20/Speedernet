@@ -14,6 +14,8 @@
 
         acf_register_block_type(array(
             'name'            => 'herorich',
+            'api_version'       => 3,
+            'acf_block_version' => 3,
             'title'           => 'Hero Enrichi',
             'description'     => 'En-tête de page avec un titre, un chapeau, une liste d\'images et un bouton.',
             'category'        => 'hero',

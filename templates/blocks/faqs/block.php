@@ -14,6 +14,8 @@
 
         acf_register_block_type(array(
             'name'            => 'faqs',
+            'api_version'       => 3,
+            'acf_block_version' => 3,
             'title'           => 'Questions fréquentes',
             'description'     => 'Liste des questions fréquentes par catégorie avec sidebar de navigation.',
             'category'        => 'text',

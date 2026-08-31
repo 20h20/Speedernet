@@ -14,6 +14,8 @@
 
         acf_register_block_type(array(
             'name'            => 'partners',
+            'api_version'       => 3,
+            'acf_block_version' => 3,
             'title'           => 'Liste de partenaires',
             'description'     => '',
             'category'        => 'media',

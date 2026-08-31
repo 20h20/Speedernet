@@ -19,7 +19,9 @@
             'category'        => 'text',
             'keywords'        => array(),
             'post_types'      => array(),
-            'mode'            => 'auto',
+            'mode'            => 'preview',
+            'api_version'       => 3,
+            'acf_block_version' => 3,
             'align'           => '',
             'render_callback' => 'cbo_render_text_block',
             'enqueue_assets'  => function() {

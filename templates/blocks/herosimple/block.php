@@ -14,6 +14,8 @@
 
         acf_register_block_type(array(
             'name'            => 'herosimple',
+            'api_version'       => 3,
+            'acf_block_version' => 3,
             'title'           => 'Hero Simple',
             'description'     => 'En-tête de page avec un titre, un chapeau',
             'category'        => 'hero',

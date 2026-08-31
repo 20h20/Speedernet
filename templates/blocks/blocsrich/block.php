@@ -14,6 +14,8 @@
 
         acf_register_block_type(array(
             'name'            => 'blocsrich',
+            'api_version'       => 3,
+            'acf_block_version' => 3,
             'title'           => 'Blocs enrichis',
             'description'     => 'Liste de blocs enrichis',
             'category'        => 'blocs',

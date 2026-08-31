@@ -14,6 +14,8 @@
 
         acf_register_block_type(array(
             'name'            => 'cta',
+            'api_version'       => 3,
+            'acf_block_version' => 3,
             'title'           => 'Appel à l\'action',
             'description'     => 'Bloc CTA avec titre, bouton et picto.',
             'category'        => 'text',

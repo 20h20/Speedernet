@@ -14,6 +14,8 @@
 
         acf_register_block_type(array(
             'name'            => 'gallery',
+            'api_version'       => 3,
+            'acf_block_version' => 3,
             'title'           => 'Galerie',
             'description'     => 'Liste d\'images',
             'category'        => 'media',

@@ -14,6 +14,8 @@
 
         acf_register_block_type(array(
             'name'            => 'jobslider',
+            'api_version'       => 3,
+            'acf_block_version' => 3,
             'title'           => 'Slider métiers',
             'description'     => 'Liste de métiers',
             'category'        => 'relationship',

@@ -14,6 +14,8 @@
 
         acf_register_block_type(array(
             'name'            => 'testimonial',
+            'api_version'       => 3,
+            'acf_block_version' => 3,
             'title'           => 'Témoignage',
             'description'     => 'Affichage d\'un témoignage',
             'category'        => 'blocs',
