@@ -284,6 +284,12 @@
 	add_theme_support( 'editor-styles' );
 	add_editor_style( 'library/css/style.min.css' );
 
+	// Depuis WP 7.1 (canvas de l'éditeur toujours en iframe) + ACF Blocks V3, les styles
+	// injectés dynamiquement via enqueue_block_editor_assets() (gutenberg.min.css, parts/*)
+	// n'atteignent plus de façon fiable l'aperçu SSR des blocs dans l'iframe. add_editor_style()
+	// reste le seul mécanisme garanti par WordPress pour être répliqué dans l'iframe.
+	add_editor_style( 'library/css/gutenberg.min.css' );
+
 	// Ajoute la classe "cbo-cms" au <body> de chaque iframe TinyMCE (WYSIWYG ACF)
 	// et force le chargement de style.min.css via content_css (couvre les éditeurs ACF
 	// Gutenberg initialisés en JS, où add_editor_style() seul ne suffit pas).
