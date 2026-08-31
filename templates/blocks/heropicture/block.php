@@ -16,6 +16,7 @@
             'name'            => 'heropicture',
             'api_version'       => 3,
             'acf_block_version' => 3,
+            'auto_inline_editing' => false,
             'title'           => 'Hero avec image',
             'description'     => 'En-tête de page avec un titre, un chapeau et trois images.',
             'category'        => 'hero',

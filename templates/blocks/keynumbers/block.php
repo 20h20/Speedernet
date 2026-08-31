@@ -16,6 +16,7 @@
             'name'            => 'keynumbers',
             'api_version'       => 3,
             'acf_block_version' => 3,
+            'auto_inline_editing' => false,
             'title'           => 'Chiffres clés',
             'description'     => 'Liste de chiffres clés',
             'category'        => 'blocs',

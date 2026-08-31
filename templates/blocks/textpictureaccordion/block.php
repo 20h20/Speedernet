@@ -16,6 +16,7 @@
             'name'            => 'textpictureaccordion',
             'api_version'       => 3,
             'acf_block_version' => 3,
+            'auto_inline_editing' => false,
             'title'           => 'Texte, Images et Accordéon',
             'description'     => 'Images en mosaïque + accordéon',
             'category'        => 'text',

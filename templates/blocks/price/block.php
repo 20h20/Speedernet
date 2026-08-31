@@ -16,6 +16,7 @@
             'name'            => 'price',
             'api_version'       => 3,
             'acf_block_version' => 3,
+            'auto_inline_editing' => false,
             'title'           => 'Tarification',
             'description'     => 'Bloc de tarification avec deux offres (standard et featured).',
             'category'        => 'text',

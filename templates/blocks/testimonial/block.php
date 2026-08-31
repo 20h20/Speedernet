@@ -16,6 +16,7 @@
             'name'            => 'testimonial',
             'api_version'       => 3,
             'acf_block_version' => 3,
+            'auto_inline_editing' => false,
             'title'           => 'Témoignage',
             'description'     => 'Affichage d\'un témoignage',
             'category'        => 'blocs',

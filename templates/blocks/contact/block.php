@@ -16,6 +16,7 @@
             'name'            => 'contact',
             'api_version'       => 3,
             'acf_block_version' => 3,
+            'auto_inline_editing' => false,
             'title'           => 'Formulaire de contact',
             'description'     => 'Bloc contact avec texte, adresse et formulaire Gravity Forms.',
             'category'        => 'text',

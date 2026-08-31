@@ -16,6 +16,7 @@
             'name'            => 'solutions',
             'api_version'       => 3,
             'acf_block_version' => 3,
+            'auto_inline_editing' => false,
             'title'           => 'Solutions',
             'description'     => 'Grille de solutions avec picto, numéro, titre et description.',
             'category'        => 'text',

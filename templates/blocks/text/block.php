@@ -22,6 +22,7 @@
             'mode'            => 'preview',
             'api_version'       => 3,
             'acf_block_version' => 3,
+            'auto_inline_editing' => false,
             'align'           => '',
             'render_callback' => 'cbo_render_text_block',
             'enqueue_assets'  => function() {

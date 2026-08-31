@@ -2,7 +2,7 @@
     if( function_exists('acf_register_block_type') ):
 
         function cbo_render_articles_block( $block, $content = '', $is_preview = false, $post_id = 0 ) {
-            $has_content = get_field('articles_uptitle');
+            $has_content = get_field('articles_uptitle') || get_field('articles_title') || get_field('articles_last') || get_field('articles_articleslist');
 
             if ( $is_preview && ! $has_content ) {
                 echo '<img src="' . esc_url( get_stylesheet_directory_uri() . '/library/images/previews/articles.jpg' ) . '" alt="" style="display:block;width:100%;height:auto;">';
@@ -16,6 +16,7 @@
             'name'            => 'articles',
             'api_version'       => 3,
             'acf_block_version' => 3,
+            'auto_inline_editing' => false,
             'title'           => 'Liste d\'articles',
             'description'     => 'Liste d\'articles',
             'category'        => 'relationship',

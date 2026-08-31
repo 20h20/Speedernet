@@ -12,6 +12,48 @@ BACK OFFICE COMPONENT
 		.block-editor-block-list__block{
 			max-width: 104.375rem;
 
+			.cbo-faq .el-content{
+				display: none;
+			}
+
+			.cbo-textpictureslide {
+				height: auto;
+
+				.textpictureslide-inner {
+					position: static;
+					top: auto;
+					height: auto;
+					display: block;
+					gap: 0;
+				}
+				.textpictureslide-images {
+					display: none;
+				}
+				.textpictureslide-list {
+					flex: none;
+					display: flex;
+					flex-wrap: wrap;
+					gap: 30px 0;
+
+					.list-el {
+						position: static;
+						opacity: 1;
+						transform: none;
+						pointer-events: auto;
+						display: flex;
+						align-items: flex-start;
+						gap: 4%;
+					}
+					.el-picture-wrap {
+						display: block;
+						width: 48%;
+					}
+					.el-content {
+						width: 48%;
+					}
+				}
+			}
+
 			.cbo-herosimple{
 				text-align: center;
 

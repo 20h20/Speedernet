@@ -16,6 +16,7 @@
             'name'            => 'team',
             'api_version'       => 3,
             'acf_block_version' => 3,
+            'auto_inline_editing' => false,
             'title'           => 'Présentation d\'équipe',
             'description'     => '',
             'category'        => 'blocs',

@@ -16,6 +16,7 @@
             'name'            => 'herorich',
             'api_version'       => 3,
             'acf_block_version' => 3,
+            'auto_inline_editing' => false,
             'title'           => 'Hero Enrichi',
             'description'     => 'En-tête de page avec un titre, un chapeau, une liste d\'images et un bouton.',
             'category'        => 'hero',

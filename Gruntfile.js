@@ -107,12 +107,13 @@ module.exports = function (grunt) {
     /*    GUTENBERG MERGE CSS   */
     /* ------------------------ */
     concat: {
-      options: { separator: ";" },
+      options: { separator: "\n" },
       gutenberg: {
         src: ["<%= path_dist_blocks %>*.css"],
         dest: "<%= path_dist_styles %>gutenberg.min.css"
       },
       dist: {
+        options: { separator: ";" },
         src: ["<%= path_src %>js/**/*.js"],
         dest: "<%= path_dist %>js/scripts.js"
       }

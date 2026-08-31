@@ -16,6 +16,7 @@
             'name'            => 'faqs',
             'api_version'       => 3,
             'acf_block_version' => 3,
+            'auto_inline_editing' => false,
             'title'           => 'Questions fréquentes',
             'description'     => 'Liste des questions fréquentes par catégorie avec sidebar de navigation.',
             'category'        => 'text',

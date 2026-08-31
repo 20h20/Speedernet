@@ -16,6 +16,7 @@
             'name'            => 'webinaires',
             'api_version'       => 3,
             'acf_block_version' => 3,
+            'auto_inline_editing' => false,
             'title'           => 'Liste de webinaires',
             'description'     => 'Liste de webinaires triée par date',
             'category'        => 'relationship',

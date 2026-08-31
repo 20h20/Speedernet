@@ -290,6 +290,21 @@
 	// reste le seul mécanisme garanti par WordPress pour être répliqué dans l'iframe.
 	add_editor_style( 'library/css/gutenberg.min.css' );
 
+	// Même problème pour les CSS des "parts" (cartes casestudy, testimonial, etc.),
+	// utilisées par certains blocs (get_part()) : elles ne passaient jusqu'ici que par
+	// cbo_enqueue_block_editor_assets() (peu fiable dans l'iframe), jamais par add_editor_style().
+	foreach ( glob( get_stylesheet_directory() . '/library/css/parts/*.min.css' ) ?: array() as $part_css_file ) {
+		add_editor_style( 'library/css/parts/' . basename( $part_css_file ) );
+	}
+
+	// admin.min.css (compilé depuis src/scss/components/micros/_back-office.scss)
+	// contient les surcharges d'aperçu propres au BO (ex : blocs dont la mise en page
+	// dépend du scroll/JS, cf. textpictureslide), scopées sous .editor-styles-wrapper.
+	// Il était déjà chargé via admin_enqueue_scripts (nécessaire pour les styles wp-admin
+	// génériques : dashboard, footer...) mais ce hook n'atteint jamais l'iframe de l'éditeur.
+	// On l'ajoute donc aussi ici pour que la partie ".editor-styles-wrapper" prenne effet.
+	add_editor_style( 'library/css/admin.min.css' );
+
 	// Ajoute la classe "cbo-cms" au <body> de chaque iframe TinyMCE (WYSIWYG ACF)
 	// et force le chargement de style.min.css via content_css (couvre les éditeurs ACF
 	// Gutenberg initialisés en JS, où add_editor_style() seul ne suffit pas).

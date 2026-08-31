@@ -16,6 +16,7 @@
             'name'            => 'cardslider',
             'api_version'       => 3,
             'acf_block_version' => 3,
+            'auto_inline_editing' => false,
             'title'           => 'Slider de cartes',
             'description'     => 'Liste de cartes',
             'category'        => 'blocs',

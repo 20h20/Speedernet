@@ -16,6 +16,7 @@
             'name'            => 'gallery',
             'api_version'       => 3,
             'acf_block_version' => 3,
+            'auto_inline_editing' => false,
             'title'           => 'Galerie',
             'description'     => 'Liste d\'images',
             'category'        => 'media',

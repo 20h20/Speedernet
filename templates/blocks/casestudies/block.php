@@ -16,6 +16,7 @@
             'name'            => 'casestudies',
             'api_version'       => 3,
             'acf_block_version' => 3,
+            'auto_inline_editing' => false,
             'title'           => 'Liste d\'études de cas',
             'description'     => 'Liste d\'études de cas',
             'category'        => 'relationship',

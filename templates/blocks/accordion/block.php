@@ -16,6 +16,7 @@
             'name'            => 'accordion',
             'api_version'       => 3,
             'acf_block_version' => 3,
+            'auto_inline_editing' => false,
             'title'           => 'Accordéon',
             'description'     => 'Bloc d\'accordéon',
             'category'        => 'relationship',

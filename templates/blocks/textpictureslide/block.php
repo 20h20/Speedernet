@@ -16,6 +16,7 @@
             'name'            => 'textpictureslide',
             'api_version'       => 3,
             'acf_block_version' => 3,
+            'auto_inline_editing' => false,
             'title'           => 'Texte et Image fixe',
             'description'     => '',
             'category'        => 'text',

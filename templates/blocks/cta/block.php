@@ -16,6 +16,7 @@
             'name'            => 'cta',
             'api_version'       => 3,
             'acf_block_version' => 3,
+            'auto_inline_editing' => false,
             'title'           => 'Appel à l\'action',
             'description'     => 'Bloc CTA avec titre, bouton et picto.',
             'category'        => 'text',

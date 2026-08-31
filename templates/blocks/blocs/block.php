@@ -16,6 +16,7 @@
             'name'            => 'blocs',
             'api_version'       => 3,
             'acf_block_version' => 3,
+            'auto_inline_editing' => false,
             'title'           => 'Blocs',
             'description'     => 'Liste de blocs simple',
             'category'        => 'blocs',

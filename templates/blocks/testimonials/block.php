@@ -16,6 +16,7 @@
             'name'            => 'testimonials',
             'api_version'       => 3,
             'acf_block_version' => 3,
+            'auto_inline_editing' => false,
             'title'           => 'Liste de témoignages',
             'description'     => 'Liste de témoignages',
             'category'        => 'relationship',
