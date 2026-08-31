@@ -2,7 +2,8 @@
 BUTTONS MICRO COMPONENT
 ------------------------------- */
 input[type="submit"],
-.cbo-button{
+.cbo-button,
+button.gform_button{
 	position: relative;
 	display: inline-flex;
 	align-items: center;
