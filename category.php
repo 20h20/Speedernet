@@ -15,6 +15,20 @@
 		]);
 	?>
 
+	<?php
+		// Balisage "cbo-articles" repris à la main (comme casestudies_cat pour "cbo-casestudies"),
+		// donc son CSS (chargé normalement via get_block('articles', ...)) doit être enqueue à part.
+		$articles_css_file = get_stylesheet_directory() . '/library/css/blocks/articles.min.css';
+		if (file_exists($articles_css_file)) {
+			wp_enqueue_style(
+				'block-articles',
+				get_stylesheet_directory_uri() . '/library/css/blocks/articles.min.css',
+				array(),
+				filemtime($articles_css_file)
+			);
+		}
+	?>
+
 	<section class="cbo-articles">
 		<div class="articles-inner cbo-container">
 
