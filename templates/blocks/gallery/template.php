@@ -1,6 +1,7 @@
 <?php
 
 $title  = get_field('gallery_title');
+$chapo	= get_field('gallery_chapo');
 
 ?>
 
@@ -10,6 +11,12 @@ $title  = get_field('gallery_title');
 		<?php if ($title): ?>
 			<div class="gallery-title cbo-title-2 slide-up">
 				<?php echo wp_kses_post($title); ?>
+			</div>
+		<?php endif; ?>
+
+		<?php if ( $chapo ) : ?>
+			<div class="gallery-chapo slide-up">
+				<?php echo wp_kses_post( $chapo ); ?>
 			</div>
 		<?php endif; ?>
 
