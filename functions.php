@@ -24,6 +24,23 @@
 
 
 	/* ************************* */
+	// Add Color choices
+	/* ************************* */
+	function my_mce4_options($init) {
+		$custom_colours = '
+			"F7343A", "Rouge",
+			"FFE44B", "Jaune",
+			"0dc8d9", "Bleu",
+			"C0CFE3", "Bleu clair",
+		';		
+		$init['textcolor_map'] = '['.$custom_colours.']';
+		$init['textcolor_rows'] = 1;
+		return $init;
+	}
+	add_filter('tiny_mce_before_init', 'my_mce4_options');
+
+
+	/* ************************* */
 	// Pic size
 	/* ************************* */
 	add_action('after_setup_theme', function() {
