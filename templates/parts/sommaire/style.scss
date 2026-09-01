@@ -7,11 +7,11 @@ SOMMAIRE
 .cbo-summary {
 	margin: 0 1.25rem 1.875rem;
 	position: sticky;
-	top: 144px;
+	top: 9rem;
 	z-index: 5;
 	width: calc(100% - 2.5rem);
 	background: rgba($colorblue, .55);
-	backdrop-filter: blur(5px);
+	backdrop-filter: blur(0.3125rem);
 	border-radius: $bordermedium;
 
 	.summary-toggle {
@@ -135,13 +135,13 @@ SOMMAIRE
 
 	.cbo-summary {
 		position: sticky;
-		top: 172px;
+		top: 10.75rem;
 		pointer-events: auto;
 		margin: 0;
 		width: fit-content;
 		z-index: 2;
-		max-width: 250px;
-		padding: 30px 50px 30px 30px;
+		max-width: 15.625rem;
+		padding: 1.875rem 3.125rem 1.875rem 1.25rem;
 		border-radius: 0 $bordermedium $bordermedium 0;
 
 		.summary-list {

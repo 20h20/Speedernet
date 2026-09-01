@@ -4,6 +4,7 @@ $uptitle = get_field('team_uptitle');
 $uptitlepic  = get_field('team_uptitlepicture');
 $title      = get_field('team_title');
 $chapo      = get_field('team_chapo');
+$button = get_field('team_button');
 
 ?>
 
@@ -41,6 +42,15 @@ $chapo      = get_field('team_chapo');
 				<div class="content-chapo cbo-chapo slide-up">
 					<?php echo wp_kses_post( $chapo ); ?>
 				</div>
+			<?php endif; ?>
+
+			<?php if ( $button ) : ?>
+				<?php get_part('button/template', [
+					'url'    => $button['url'],
+					'label'  => $button['title'],
+					'target' => $button['target'] ?: '_self',
+					'class'  => 'cbo-button button--blue',
+				]); ?>
 			<?php endif; ?>
 		</div>
 

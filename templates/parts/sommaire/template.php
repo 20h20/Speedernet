@@ -2,7 +2,6 @@
 
 $post_id = get_the_ID();
 $items   = get_field('casestudy_summary', $post_id);
-
 if (!$items) return;
 
 ?>
