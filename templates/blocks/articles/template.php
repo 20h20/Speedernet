@@ -97,11 +97,7 @@ $is_listing_context = $is_articles_page || ($blog_page_id && is_admin() && (int)
                             get_part('article/template');
                             endwhile;
 
-                            if (function_exists('page_navi')) {
-                                page_navi();
-                            } else {
-                                the_posts_pagination();
-                            }
+                            get_part('pagination/template');
                         else:
                             echo '<p>' . esc_html__('Aucun article trouvé.', 'textdomain') . '</p>';
                         endif;
