@@ -35,6 +35,15 @@ $post_count   = $is_term_page
 							'hide_empty' => true,
 						]);
 
+						// Catégorie active en premier dans la liste (pas juste "selected").
+						if ($current_term_id && !empty($all_terms) && !is_wp_error($all_terms)) {
+							usort($all_terms, function($a, $b) use ($current_term_id) {
+								if ($a->term_id === $current_term_id) return -1;
+								if ($b->term_id === $current_term_id) return 1;
+								return strcasecmp($a->name, $b->name);
+							});
+						}
+
 						if (!empty($all_terms) && !is_wp_error($all_terms)) :
 				?>
 					<li class="list-el">
