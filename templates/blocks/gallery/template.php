@@ -15,7 +15,7 @@ $chapo	= get_field('gallery_chapo');
 		<?php endif; ?>
 
 		<?php if ( $chapo ) : ?>
-			<div class="gallery-chapo slide-up">
+			<div class="gallery-chapo cbo-chapo slide-up">
 				<?php echo wp_kses_post( $chapo ); ?>
 			</div>
 		<?php endif; ?>
