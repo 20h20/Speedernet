@@ -151,6 +151,41 @@ a{
 		border-radius: $bordermedium;
 		overflow: hidden;
 	}
+
+	.wp-block-table{
+		width: 100%;
+		margin: 1.875rem 0;
+		overflow-x: auto;
+		-webkit-overflow-scrolling: touch;
+		border-radius: $bordermedium;
+		border: 0.0625rem solid rgba($colorgrey, .15);
+
+		table{
+			width: 100%;
+			min-width: 37.5rem;
+			border-collapse: collapse;
+			font-size: 0.875rem;
+		}
+		td, th{
+			padding: 0.9375rem 1.25rem;
+			text-align: left;
+			vertical-align: middle;
+			border: 0.0625rem solid rgba($colorgrey, .15);
+		}
+		th,
+		tbody tr:first-child td{
+			background: $colorblue;
+			color: $colorwhite;
+			font-weight: 700;
+		}
+		tbody tr:nth-child(even){
+			background: $colorgreylight;
+		}
+		img{
+			margin: 0;
+			border-radius: $bordersmall;
+		}
+	}
 }
 
 /* -------------------------------
