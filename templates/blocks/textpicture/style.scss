@@ -10,6 +10,10 @@ TEXT PICTURE COMPONENT
       aspect-ratio: 65%;
       margin-bottom: 1.875rem;
       overflow: hidden;
+
+      .el-title{
+        display: none;
+      }
     }
   }
 
@@ -29,6 +33,33 @@ TEXT PICTURE COMPONENT
 }
 
 /* -------------------------------
+SMALL SCREENS
+------------------------------- */
+@media (min-width: $screen-sm-min) {
+  .cbo-textpicture {
+    .textpicture-wrap{
+      .textpicture-picture{
+        .el-title{
+            display: block;
+            margin: 0;
+            color: $colorwhite;
+            border-radius: $bordermedium;
+            position: absolute;
+            bottom: 0.625rem;
+            left: 0.625rem;
+            padding: 0.625rem;
+            text-align: center;
+            width: calc(100% - 1.25rem);
+            font-size: 0.75rem;
+            background-color: rgba($colorgrey, 0.5);
+            backdrop-filter: blur(0.5rem);
+          }
+      }
+    }
+  }
+}
+
+/* -------------------------------
 MEDIUM SCREENS
 ------------------------------- */
 @media (min-width: $screen-md-min) {
@@ -42,6 +73,12 @@ MEDIUM SCREENS
         width: 29.375rem;
         margin-bottom: 0;
         padding-bottom: 0%;
+
+        .el-title{
+          bottom: 1.25rem;
+          left: 1.25rem;
+          width: calc(100% - 2.5rem);
+        }
       }
       .textpicture-content {
         flex: 1;

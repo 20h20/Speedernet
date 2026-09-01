@@ -23,6 +23,11 @@
 					width="<?php echo esc_attr( $picture['width'] ); ?>"
 					height="<?php echo esc_attr( $picture['height'] ); ?>"
 				>
+				<?php if( !empty($picture['title']) ): ?>
+							<p class="el-title" itemprop="name">
+								<?php echo esc_html($picture['title']); ?>
+							</p>
+						<?php endif; ?>
 			</div>
 
 			<div class="textpicture-content">
