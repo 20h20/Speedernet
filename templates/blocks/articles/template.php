@@ -29,6 +29,7 @@ $is_listing_context = $is_articles_page || ($blog_page_id && is_admin() && (int)
                     'aria_label' => pll__('Filtrer les articles par catégorie'),
                     'singular'   => pll__('%d article'),
                     'plural'     => pll__('%d articles'),
+                    'flat'       => true,
                 ]);
             endif;
         ?>
