@@ -6,9 +6,16 @@
 	<div class="single-content">
 		<?php
 			if(have_posts()):
-				the_post();
-				get_part('articlehero/template');
-				the_content();
+			the_post();
+			get_part('articlehero/template');
+		?>
+			<div class="single-content-summary">
+				<?php get_part('sommaire/template'); ?>
+			</div>
+			<div class="single-content-body">
+				<?php the_content(); ?>
+			</div>
+		<?php
 			endif;
 		?>
 	</div>

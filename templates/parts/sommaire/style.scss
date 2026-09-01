@@ -1,0 +1,154 @@
+@import "../../../src/scss/partials/variables";
+
+/* -------------------------------
+SOMMAIRE
+------------------------------- */
+
+.cbo-summary {
+	margin: 0 1.25rem 1.875rem;
+	position: sticky;
+	top: 144px;
+	z-index: 5;
+	width: calc(100% - 2.5rem);
+	background: rgba($colorblue, .55);
+	backdrop-filter: blur(5px);
+	border-radius: $bordermedium;
+
+	.summary-toggle {
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		height: 3.125rem;
+		padding: 0 1.25rem;
+
+		.summary-label{
+			font-weight: normal;
+		}
+		.icon {
+			font-size: 0.5rem;
+			transition: transform 0.3s $easeinout;
+		}
+	}
+
+	.summary-list {
+		padding: 0 1.25rem 1.25rem;
+		display: none;
+	}
+
+	&.is-open {
+		.summary-toggle .icon {
+			transform: rotate(180deg);
+		}
+		.summary-list {
+			display: block;
+		}
+	}
+
+	.el-link {
+		position: relative;
+		display: inline-block;
+		padding: 0.625rem 0;
+		color: $colorblack;
+		text-decoration: none;
+		transition: color 0.2s $easeinout;
+
+		&::after {
+			content: '';
+			position: absolute;
+			left: 0;
+			bottom: 0.3125rem;
+			width: 100%;
+			height: 0.125rem;
+			background: currentColor;
+			border-radius: 99rem;
+			transform: scaleX(0);
+			transform-origin: left;
+			transition: transform 0.35s $easeinout;
+		}
+
+		&:hover,
+		&:focus-visible {
+			color: $colorwhite;
+
+			&::after {
+				transform: scaleX(1);
+			}
+		}
+
+		&.is-active {
+			color: $colorwhite;
+			font-weight: 700;
+
+			&::after {
+				transform: scaleX(1);
+			}
+		}
+	}
+}
+
+/* -------------------------------
+   SMALL SCREENS
+------------------------------- */
+@media (min-width: $screen-sm-min) {
+	.cbo-summary {
+		.summary-toggle {
+			display: none;
+		}
+		.summary-list {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 0 1.875rem;
+			padding: 0.9375rem 1.25rem;
+		}
+		.el-link {
+			padding: 0.3125rem 0;
+		}
+	}
+}
+
+/* -------------------------------
+   MEDIUM SCREENS
+------------------------------- */
+@media (min-width: $screen-md-min) {
+	.cbo-summary {
+		margin: 0 2.5rem 1.875rem;
+		width: calc(100% - 5rem);
+	}
+}
+
+/* -------------------------------
+   LARGE SCREENS
+------------------------------- */
+@media (min-width: $screen-lg-min) {
+	.single-content {
+		position: relative;
+	}
+	.single-content-summary {
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		pointer-events: none;
+	}
+
+	.cbo-summary {
+		position: sticky;
+		top: 172px;
+		pointer-events: auto;
+		margin: 0;
+		width: fit-content;
+		z-index: 2;
+		max-width: 250px;
+		padding: 30px 50px 30px 30px;
+		border-radius: 0 $bordermedium $bordermedium 0;
+
+		.summary-list {
+			flex-direction: column;
+		}
+		.el-link {
+			padding: 0.625rem 0;
+		}
+	}
+}

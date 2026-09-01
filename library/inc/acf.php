@@ -103,4 +103,28 @@
 	}
 	add_filter('block_categories_all', 'add_custom_block_categories');
 
+	/* ****************** */
+	/* Ancre HTML des blocs ACF */
+	/* Tous les blocs déclarent 'supports.anchor' => true, mais comme ils utilisent un
+	   render_callback (HTML brut, pas de save() géré par WP), WordPress n'ajoute jamais
+	   automatiquement l'id="..." correspondant sur la balise de sortie — seuls 2 des 29
+	   blocs le font eux-mêmes "à la main" dans leur template.php (glossaire, faqs).
+	   Ce filtre injecte l'ancre sur la première balise du HTML rendu, pour tous les
+	   autres, sans avoir à modifier chaque template individuellement. */
+	function cbo_inject_block_anchor( $block_content, $block ) {
+		if ( empty( $block['attrs']['anchor'] ) || strpos( (string) $block['blockName'], 'acf/' ) !== 0 ) {
+			return $block_content;
+		}
+
+		$anchor = $block['attrs']['anchor'];
+
+		// Déjà présent (ex : glossaire, faqs qui gèrent leur ancre eux-mêmes) : on ne double pas.
+		if ( strpos( $block_content, 'id="' . esc_attr( $anchor ) . '"' ) !== false ) {
+			return $block_content;
+		}
+
+		return preg_replace( '/^(\s*<[a-zA-Z0-9]+)/', '$1 id="' . esc_attr( $anchor ) . '"', $block_content, 1 );
+	}
+	add_filter( 'render_block', 'cbo_inject_block_anchor', 10, 2 );
+
 ?>
