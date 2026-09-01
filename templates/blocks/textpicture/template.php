@@ -4,12 +4,13 @@
 	$picture	= get_field('textpicture_picture');
 	$picturepos	= get_field('textpicture_picturepos');
 	$color	= get_field('textpicture_color');
+	$cover	= get_field('textpicture_cover');
 ?>
 
 <section class="cbo-textpicture textpicture--<?php echo esc_attr( $color ); ?> textpicture--<?php echo esc_attr( $picturepos ); ?>">
 	<div class="textpicture-inner cbo-container container--small">
 		<div class="textpicture-wrap">
-			<div class="textpicture-picture cbo-picture-cover">
+			<div class="textpicture-picture <?php echo $cover ? 'cbo-picture-cover' : 'cbo-picture-contain'; ?>">
 				<img
 					src="<?php echo esc_url( $picture['sizes']['medium'] ?? $picture['url'] ); ?>"
 					srcset="<?php echo esc_url( $picture['sizes']['small']  ?? $picture['url'] ); ?> 320w,
