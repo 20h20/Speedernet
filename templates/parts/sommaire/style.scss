@@ -68,18 +68,8 @@ SOMMAIRE
 		}
 
 		&:hover,
-		&:focus-visible {
-			color: $colorwhite;
-
-			&::after {
-				transform: scaleX(1);
-			}
-		}
-
-		&.is-active {
-			color: $colorwhite;
-			font-weight: 700;
-
+		&:focus-visible,
+		&.is-active{
 			&::after {
 				transform: scaleX(1);
 			}
@@ -146,6 +136,7 @@ SOMMAIRE
 
 		.summary-list {
 			flex-direction: column;
+			padding: 0;
 		}
 		.el-link {
 			padding: 0.625rem 0;
