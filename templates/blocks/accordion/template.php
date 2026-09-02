@@ -42,7 +42,7 @@ $is_faq_page     = is_post_type_archive('faq') || is_tax('faq_cat') || ( $archiv
                     } else {
                         $args = [
                             'post_type' => 'faq',
-                            'posts_per_page'    => 3,
+                            'posts_per_page'    => 10,
                             'post_status'   => 'publish',
                             'no_found_rows' => true,
                             'update_post_meta_cache' => false,
