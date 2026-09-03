@@ -93,21 +93,21 @@ FORM MICRO COMPONENT
 			}
 
 			// Consent / Checkbox
-			&.gfield--type-consent{
+			&.gfield--has-description{
 				border-radius: $bordermedium;
 				padding: 1.25rem;
 				background: rgba($colorbluemedium, .2);
 
-				.ginput_container_consent{
+				.ginput_container{
 					padding: 0;
 				}
-				.gfield_consent_description{
+				.gfield_description{
 					font-size: 0.875rem;
 					line-height: 0.875rem;
 					margin-top: 0.875rem;
 				}
 			}
-			&.gfield--type-consent,
+			&.gfield--has-description,
 			&.gfield--type-checkbox {
 				.ginput_container {
 					display: flex;
@@ -249,8 +249,8 @@ SMALL SCREENS
 					margin-left: 0.625rem;
 				}
 
-				&.gfield--type-consent{
-				margin-left: 0.625rem;
+				&.gfield--has-description {
+					margin-left: 0.625rem;
 					margin-right: 0.625rem;
 
 					.validation_message {

@@ -14,6 +14,8 @@
 	</div>
 
 	<?php
+		get_part('newsletter/template');
+
 		get_block('articles', [
 			'related_to' => get_the_ID(),
 			'title'      => pll__('Articles similaires'),
