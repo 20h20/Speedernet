@@ -198,6 +198,7 @@ FORM MICRO COMPONENT
 	}
 
 	// Confirmation (succès — GF remplace le form par ce wrapper)
+	.mc4wp-alert.mc4wp-success,
 	.gform_confirmation_wrapper {
 		width: 100%;
 		padding: 1rem;
@@ -210,7 +211,7 @@ FORM MICRO COMPONENT
 
 		&:before {
 			font-family: "icons";
-			content: "\f112";
+			content: "\f113";
 			margin-right: 0.625rem;
 		}
 	}
