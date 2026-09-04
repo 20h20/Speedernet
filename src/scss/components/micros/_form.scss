@@ -197,24 +197,40 @@ FORM MICRO COMPONENT
 		}
 	}
 
-	.mc4wp-alert.mc4wp-notice{
+	// Confirmation Mailchimp
+	.mc4wp-alert{
 		width: 100%;
 		padding: 1rem;
 		font-size: 0.875rem;
 		list-style: 1rem;
 		border-radius: 0.3125rem;
-		background: rgba($colorerror, .6);
-		border-left: 0.1875rem solid $colorerror;
+		margin-top: 1.25rem;
 		display: flex;
 
 		&:before {
 			font-family: "icons";
-			content: "\f115";
 			margin-right: 0.625rem;
 		}
+		&.mc4wp-notice{
+			color: $colorwhite;
+			background: rgba($colorerror, .6);
+			border-left: 0.1875rem solid $colorerror;
+
+			&:before {
+				content: "\f115";
+			}
+		}
+		&.mc4wp-success{
+			background: rgba($colorsuccess, .6);
+			border-left: 0.1875rem solid $colorsuccess;
+
+			&:before {
+				content: "\f113";
+			}
+		}
 	}
+	
 	// Confirmation (succès — GF remplace le form par ce wrapper)
-	.mc4wp-alert.mc4wp-success,
 	.gform_confirmation_wrapper {
 		width: 100%;
 		padding: 1rem;
