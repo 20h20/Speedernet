@@ -206,6 +206,7 @@ FORM MICRO COMPONENT
 		border-radius: 0.3125rem;
 		margin-top: 1.25rem;
 		display: flex;
+		color: $colorwhite;
 
 		p{
 			margin: 0;
@@ -214,8 +215,8 @@ FORM MICRO COMPONENT
 			font-family: "icons";
 			margin-right: 0.625rem;
 		}
+		&.mc4wp-error,
 		&.mc4wp-notice{
-			color: $colorwhite;
 			background: rgba($colorerror, .6);
 			border-left: 0.1875rem solid $colorerror;
 

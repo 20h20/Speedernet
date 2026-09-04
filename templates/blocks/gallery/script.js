@@ -2,7 +2,7 @@
 
 	/* ---- Slick ---- */
 	$('.cbo-gallery .gallery-list').slick({
-		arrows: false,
+		arrows: true,
 		dots: true,
 		slidesToShow: 2,
 		slidesToScroll: 1,

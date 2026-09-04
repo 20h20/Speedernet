@@ -82,6 +82,10 @@ GALLERY COMPONENT
     .slick-dots{
       margin-top: 1.875rem;
     }
+    .slick-arrow{
+      top: 50%;
+      margin-top: -3.125rem;
+    }
 
     &:not(.slick-slider){
       display: flex;
