@@ -207,6 +207,9 @@ FORM MICRO COMPONENT
 		margin-top: 1.25rem;
 		display: flex;
 
+		p{
+			margin: 0;
+		}
 		&:before {
 			font-family: "icons";
 			margin-right: 0.625rem;
