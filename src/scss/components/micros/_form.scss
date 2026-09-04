@@ -228,7 +228,8 @@ SMALL SCREENS
 @media (min-width: $screen-sm-min) {
 	.cbo-form {
 		form {
-			.gform_fields {
+			.gform_fields,
+			.mc4wp-form-fields{
 				display: flex;
 				flex-wrap: wrap;
 				justify-content: space-between;
@@ -238,6 +239,9 @@ SMALL SCREENS
 				margin: 0 0.625rem;
 			}
 
+			.gform-nl-submit{
+				padding: 0 .625rem;
+			}
 			.gfield {
 				&.gfield--width-half {
 					width: 50%;

@@ -2,9 +2,7 @@
 
 $title   = get_field('newsletter_title', 'option');
 $text    = get_field('newsletter_text', 'option');
-$form_id = (int) get_field('newsletter_form_id', 'option');
-
-if (!$title && !$form_id) return;
+$form = get_field('newsletter_form_shortcode', 'option');
 
 ?>
 
@@ -25,9 +23,9 @@ if (!$title && !$form_id) return;
 			<?php endif; ?>
 		</div>
 
-		<?php if ($form_id && function_exists('gravity_form')): ?>
+		<?php if ($form): ?>
 			<div class="newsletter-form cbo-form" aria-label="<?php echo esc_attr(pll__('Inscription à la newsletter')); ?>">
-				<?php gravity_form($form_id, false, false, false, null, true); ?>
+				<?php echo do_shortcode($form); ?>
 			</div>
 		<?php endif; ?>
 	</div>
