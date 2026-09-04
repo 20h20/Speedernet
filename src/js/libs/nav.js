@@ -4,11 +4,6 @@
 	var $header = $('header.cbo-header');
 	var surheaderH = $('.cbo-surheader').outerHeight() || 40;
 
-	/* Décalage de scroll pour les ancres (sommaire, boutons "aller à la section"...) :
-	   calculé sur la hauteur réelle du header (bannière d'info incluse quand présente,
-	   header rétréci après scroll...) plutôt qu'une valeur fixe qui ne correspond pas
-	   à tous les cas — sinon le haut de la section ciblée (sur-titre compris) se
-	   retrouve caché sous le header. */
 	function updateHeaderOffset() {
 		var h = $header.length ? $header[0].getBoundingClientRect().height : 160;
 		document.documentElement.style.scrollPaddingTop = (h + 20) + 'px';

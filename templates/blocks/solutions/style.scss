@@ -4,13 +4,17 @@
    SOLUTIONS COMPONENT
 ------------------------------- */
 .cbo-solutions {
-
   .solutions-title {
     max-width: 48rem;
-    margin-bottom: 3rem;
   }
 
+  .solutions-chapo{
+    margin-top: 1.875rem;
+    max-width: 48.125rem;
+  }
   .solutions-list {
+    margin-top: 2.5rem;
+
     .list-el {
       margin: 1.25rem 0;
   

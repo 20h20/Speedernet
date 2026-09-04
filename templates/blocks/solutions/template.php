@@ -2,6 +2,7 @@
 
 $uptitle = get_field('solutions_uptitle');
 $title   = get_field('solutions_title');
+$chapo  = get_field('solutions_chapo');
 
 ?>
 
@@ -19,6 +20,12 @@ $title   = get_field('solutions_title');
                 <?php echo wp_kses_post($title); ?>
             </div>
         <?php endif; ?>
+
+        <?php if ( $chapo ) : ?>
+			<div class="solutions-chapo cbo-cms slide-up">
+				<?php echo wp_kses_post( $chapo ); ?>
+			</div>
+		<?php endif; ?>
 
         <?php if (have_rows('solutions_list')): ?>
             <ul class="solutions-list" role="list">

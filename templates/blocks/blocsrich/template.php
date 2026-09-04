@@ -2,6 +2,7 @@
 
 $uptitle  = get_field('blocsrich_uptitle');
 $title  = get_field('blocsrich_title');
+$chapo  = get_field('blocsrich_chapo');
 
 ?>
 
@@ -19,6 +20,12 @@ $title  = get_field('blocsrich_title');
                 <?php echo wp_kses_post($title); ?>
             </div>
         <?php endif; ?>
+
+		<?php if ( $chapo ) : ?>
+			<div class="blocsrich-chapo cbo-cms slide-up">
+				<?php echo wp_kses_post( $chapo ); ?>
+			</div>
+		<?php endif; ?>
 
 		<div class="blocsrich-list" itemscope itemtype="https://schema.org/ItemList">
 			<?php
