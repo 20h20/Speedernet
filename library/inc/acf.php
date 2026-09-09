@@ -11,6 +11,7 @@
 		require get_template_directory() . '/templates/blocks/cardslider/block.php';
 		require get_template_directory() . '/templates/blocks/casestudies/block.php';
 		require get_template_directory() . '/templates/blocks/faqs/block.php';
+		require get_template_directory() . '/templates/blocks/featuredcase/block.php';
 		require get_template_directory() . '/templates/blocks/gallery/block.php';
 		require get_template_directory() . '/templates/blocks/herorich/block.php';
 		require get_template_directory() . '/templates/blocks/heropicture/block.php';
@@ -44,6 +45,7 @@
 			'acf/cardslider',
 			'acf/casestudies',
 			'acf/faqs',
+			'acf/featuredcase',
 			'acf/gallery',
 			'acf/herorich',
 			'acf/herosimple',

@@ -1,0 +1,50 @@
+@import "../../../src/scss/partials/variables";
+
+/* -------------------------------
+FEATURED CASE STUDY COMPONENT
+------------------------------- */
+.cbo-featuredcase{
+	.featuredcase-title{
+		margin-top: 1.25rem;
+	}
+	.featuredcase-chapo{
+		margin-top: 1.25rem;
+		 max-width: 48.125rem;
+	}
+	.featuredcase-card{
+		margin-top: 2.5rem;
+	}
+}
+
+/* -------------------------------
+   SMALL SCREENS
+------------------------------- */
+@media (min-width: $screen-sm-min) {
+	.cbo-featuredcase{
+		.featuredcase-card{
+			.cbo-casestudy {
+				.el-inner{
+					.inner-content {
+						display: flex;
+						flex-direction: row;
+
+						.content-picture{
+							width: 50%;
+							padding: 0;
+							border-radius: $borderbig 0 0 $borderbig;
+						}
+						.content-text{
+							width: 50%;
+							margin-top: 0;
+							border-radius: 0 $borderbig $borderbig 0;
+						}
+					}
+					.inner-link{
+						width: 50%;
+						left: 50%;
+					}
+				}
+			}
+		}
+	}
+}
