@@ -49,7 +49,7 @@
 		var $li = $(this).closest('li.menu-item-has-children');
 
 		if (!$li.data('panel-ready')) {
-			var title = $(this).clone().children('i, .icon').remove().end().text().trim();
+			var title = $(this).clone().find('i, .icon, .sidebar-icon, .sidebar-desc').remove().end().text().trim();
 			$li.children('.sub-menu').prepend(
 				'<div class="panel-header">' +
 					'<button type="button" class="panel-back" aria-label="Retour">' +

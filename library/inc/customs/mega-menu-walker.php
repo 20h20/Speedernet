@@ -13,8 +13,10 @@
  *   – end_lvl(depth=1)   closes those sub-sub-menus           ← SUPPRESS
  *   – end_lvl(depth=0)   closes the main sub-menu <ul>        ← assemble mega-wrap here
  *
- * On mobile (< 1283px) the <ul class="sub-menu"> contains plain .mobile-item
- * links that feed the existing panel slide-in system.
+ * On mobile (< 1283px) the <ul class="sub-menu"> contains .mobile-item links
+ * (with icon + sidebar-desc) that feed the existing panel slide-in system. A
+ * .mobile-item with depth-2 children gets its own nested "menu-item-has-children"
+ * sub-menu, opening a further panel with those children on click.
  *
  * On desktop (≥ 1283px) .mobile-item is hidden and .mega-wrap (with the
  * two-panel layout) is shown.
@@ -24,10 +26,12 @@
  */
 class CBO_Walker_Mega_Menu extends Walker_Nav_Menu {
 
-	private $in_mega      = false;
-	private $sidebar_html = '';
-	private $panels_html  = '';
-	private $panel_idx    = 0;
+	private $in_mega            = false;
+	private $sidebar_html       = '';
+	private $panels_html        = '';
+	private $panel_idx          = 0;
+	private $mobile_link_html   = '';
+	private $mobile_children    = '';
 
 	// ─── Level hooks ────────────────────────────────────────────────
 
@@ -101,10 +105,18 @@ class CBO_Walker_Mega_Menu extends Walker_Nav_Menu {
 					. '>';
 			}
 
-			// Mobile fallback: plain link visible on < 1283px
-			$output .= '<li class="mobile-item menu-item">';
-			$output .= '<a href="' . esc_url( $href ) . '">' . esc_html( $title ) . '</a>';
-			$output .= '</li>';
+			// Mobile fallback: link with icon + description, finalized in end_el()
+			// once we know whether this item has depth-2 children (mega-panel items).
+			$this->mobile_children = '';
+			$this->mobile_link_html = '<a href="' . esc_url( $href ) . '">'
+				. '<span class="sidebar-icon' . esc_attr( $icon_class ) . ( $icon_img_html ? ' has-image' : '' ) . '" aria-hidden="true">'
+				. $icon_img_html
+				. '</span>'
+				. '<span class="sidebar-text">'
+				. '<span class="sidebar-title">' . esc_html( $title ) . '</span>'
+				. ( $desc ? '<span class="sidebar-desc">' . esc_html( $desc ) . '</span>' : '' )
+				. '</span>'
+				. '</a>';
 
 			// Buffer sidebar item
 			$this->sidebar_html .= '<li class="sidebar-item' . esc_attr( $active ) . '" data-panel="' . esc_attr( $panel_id ) . '">';
@@ -122,7 +134,7 @@ class CBO_Walker_Mega_Menu extends Walker_Nav_Menu {
 			// Open a panel slot for this sidebar item
 			$this->panels_html .= '<div class="mega-panel' . esc_attr( $active ) . '" id="' . esc_attr( $panel_id ) . '"><ul class="panel-list">';
 			$this->panel_idx++;
-			return; // mobile-item <li> is already fully closed above
+			return; // mobile-item <li> is assembled and closed in end_el()
 		}
 
 		// ── Depth-2 panel link (buffered) ────────────────────────────
@@ -132,6 +144,11 @@ class CBO_Walker_Mega_Menu extends Walker_Nav_Menu {
 			$this->panels_html .= '<li class="panel-item">';
 			$this->panels_html .= '<a href="' . esc_url( $href ) . '">' . esc_html( $title ) . '</a>';
 			$this->panels_html .= '</li>';
+
+			// Mobile: same link, buffered into this sidebar item's own sub-menu panel.
+			$this->mobile_children .= '<li class="menu-item">';
+			$this->mobile_children .= '<a href="' . esc_url( $href ) . '">' . esc_html( $title ) . '</a>';
+			$this->mobile_children .= '</li>';
 			return;
 		}
 
@@ -141,7 +158,17 @@ class CBO_Walker_Mega_Menu extends Walker_Nav_Menu {
 	public function end_el( &$output, $item, $depth = 0, $args = null ) {
 		if ( $this->in_mega && 1 === $depth ) {
 			$this->panels_html .= '</ul></div>'; // close panel
-			return; // mobile-item was already closed in start_el
+
+			// Mobile item: emitted here, once its depth-2 children (if any) are known.
+			$has_children = '' !== $this->mobile_children;
+			$classes      = 'mobile-item menu-item' . ( $has_children ? ' menu-item-has-children' : '' );
+			$output      .= '<li class="' . esc_attr( $classes ) . '">';
+			$output      .= $this->mobile_link_html;
+			if ( $has_children ) {
+				$output .= '<ul class="sub-menu">' . $this->mobile_children . '</ul>';
+			}
+			$output .= '</li>';
+			return;
 		}
 		if ( $this->in_mega && 2 === $depth ) {
 			return; // buffered in start_el
