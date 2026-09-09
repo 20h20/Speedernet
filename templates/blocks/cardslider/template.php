@@ -6,7 +6,7 @@ $items         = get_field('cardslider_list');
 
 ?>
 
-<section class="cbo-cardslider cbo-overflow-container<?php echo is_admin() ? ' is-admin' : ''; ?>">
+<section class="cbo-cardslider cbo-overflow-container<?php echo ! empty( $is_preview ) ? ' is-admin' : ''; ?>">
 	<div class="cardslider-inner cbo-container">
 
 		<?php if($uptitle): ?>

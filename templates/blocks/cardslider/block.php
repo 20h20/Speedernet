@@ -2,7 +2,7 @@
     if( function_exists('acf_register_block_type') ):
 
         function cbo_render_cardslider_block( $block, $content = '', $is_preview = false, $post_id = 0 ) {
-            $has_content = get_field('cardslider_title');
+            $has_content = get_field('cardslider_title') || have_rows('cardslider_list');
 
             if ( $is_preview && ! $has_content ) {
                 echo '<img src="' . esc_url( get_stylesheet_directory_uri() . '/library/images/previews/cardslider.jpg' ) . '" alt="" style="display:block;width:100%;height:auto;">';
