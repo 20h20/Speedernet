@@ -133,10 +133,12 @@ CARDS SLIDER COMPONENT
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translateX(-50%) translateY(-50%) rotate(-10deg) translateZ(0);
+    // font-size (set in JS) drives the sizing so glyphs render crisp at their
+    // final size — scaling this text up via transform:scale() blurred it,
+    // since browsers rasterize text at its natural size before scaling.
+    transform: translateX(-50%) translateY(-50%) rotate(-10deg);
     z-index: -1;
     pointer-events: none;
-    will-change: transform;
   }
 }
 
@@ -157,6 +159,10 @@ MEDIUM SCREENS
           display: block;
         }
       }
+    }
+
+    .cardslider-bigtxt{
+      margin-top: -6.25rem;
     }
 
     .list-container{

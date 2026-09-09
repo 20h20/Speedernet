@@ -75,13 +75,15 @@
 
 	/* BIG TEXT FIT */
 	var bigTxt = document.querySelector('.cbo-cardslider .cardslider-bigtxt');
+	var BIGTXT_REF_SIZE = 100; // px, reference size used to measure the text's natural width
 	function fitBigText() {
 		if (!bigTxt) return;
-		var naturalW   = bigTxt.scrollWidth;
-		var containerW = bigTxt.closest('.cbo-cardslider').offsetWidth;
-		var maxScale   = (window.innerWidth * 0.70) / naturalW;
-		var scale      = Math.min((containerW / naturalW) * 1.05, maxScale);
-		bigTxt.style.transform = 'translateX(-50%) rotate(-10deg) scale(' + scale + ') translateZ(0)';
+		bigTxt.style.fontSize = BIGTXT_REF_SIZE + 'px';
+		var naturalW    = bigTxt.scrollWidth;
+		var containerW  = bigTxt.closest('.cbo-cardslider').offsetWidth;
+		var maxWidth    = window.innerWidth * 0.70;
+		var targetWidth = Math.min(containerW * 1.05, maxWidth);
+		bigTxt.style.fontSize = (BIGTXT_REF_SIZE * (targetWidth / naturalW)) + 'px';
 	}
 	fitBigText();
 
