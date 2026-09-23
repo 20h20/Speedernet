@@ -101,12 +101,14 @@ MOBILE PANEL
 			}
 		}
 		a{
-			display: block;
+			display: flex;
 			padding: 0.875rem 1.25rem;
 			color: $colorgrey;
 			font-weight: 600;
 			border-bottom: 0.0625rem solid rgba($colorgrey, 0.06);
+		}
 
+		&:not(.menu-item-has-children) > a {
 			&:after{
 				display: none;
 			}
@@ -164,8 +166,6 @@ MOBILE ITEM — ICON + DESCRIPTION
 	}
 }
 
-// .mega-wrap (desktop two-panel layout) must stay hidden below $screen-lg-min —
-// otherwise its unstyled .sidebar-item markup renders as a duplicate of .mobile-item.
 .cbo-nav .mega-wrap {
 	display: none;
 }
@@ -454,6 +454,9 @@ MEGA MENU
 
 							&:hover {
 								color: $colorblue;
+							}
+							&:after{
+								display: none;
 							}
 						}
 						&.current-menu-item a {
