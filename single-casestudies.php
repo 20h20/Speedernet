@@ -39,7 +39,7 @@
 					if ( $post_id ) {
 						$terms = wp_get_post_terms($post_id, 'casestudies_cat');
 						if ( ! empty($terms) && ! is_wp_error($terms) ) {
-							$current_term_slug = $terms[0]->slug;
+							$current_term_slugs = wp_list_pluck($terms, 'slug');
 							$args = array(
 								'post_type'      => 'casestudies',
 								'posts_per_page' => 3,
@@ -48,7 +48,7 @@
 									array(
 										'taxonomy' => 'casestudies_cat',
 										'field'    => 'slug',
-										'terms'    => $current_term_slug,
+										'terms'    => $current_term_slugs,
 									),
 								),
 							);
