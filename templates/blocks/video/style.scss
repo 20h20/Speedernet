@@ -70,6 +70,28 @@ VIDEO BLOCK — YOUTUBE PLAYER
 			}
 		}
 
+		.player-consent {
+			position: absolute;
+			inset: 0;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			gap: 1rem;
+			padding: 1.5rem;
+			text-align: center;
+			color: $colorwhite;
+			background: rgba($colorgrey, .85);
+
+			p {
+				margin: 0;
+			}
+
+			button {
+				cursor: pointer;
+			}
+		}
+
 		&:not(.player--playing):hover {
 			.player-cover::after {
 				background: rgba($colorgrey, .15);
@@ -80,7 +102,8 @@ VIDEO BLOCK — YOUTUBE PLAYER
 			}
 		}
 
-		&.player--playing {
+		&.player--playing,
+		&.player--consent {
 			cursor: default;
 
 			.player-cover,

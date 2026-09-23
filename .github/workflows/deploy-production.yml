@@ -1,11 +1,9 @@
 on:
-  push:
-    branches:
-      - main
-name: Deploy theme to Production
+  workflow_dispatch:
+name: Deploy theme to Production (SSH)
 jobs:
-  FTP-Deploy-Action:
-    name: FTP-Deploy-Action
+  RSync-Deploy-Action:
+    name: RSync-Deploy-Action
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
@@ -15,24 +13,16 @@ jobs:
           node-version: '12.x'
       - run: npm install --legacy-peer-deps
       - run: npm run build
-      - name: SFTP Deploy
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      - name: RSync-Deploy-Action
+        id: deploy_production
+        uses: Pendect/action-rsyncer@v1.1.0
+        env:
+          DEPLOY_KEY: ${{ secrets.DEPLOY_KEY_PROD }}
         with:
-          server: new-2026.speedernet.com
-          username: ${{ secrets.FTP_PROD_USERNAME }}
-          password: ${{ secrets.FTP_PROD_PASSWORD }}
-          protocol: ftps
-          port: 21
-          log-level: verbose
-          local-dir: ./
-          server-dir: /www/wp-content/themes/speedernet/
-          exclude: |
-            **/.git*
-            **/.git*/**
-            **/node_modules/**
-            **/vendor/**
-            **/.github/**
-            **/package.json
-            **/package-lock.json
-            **/.env
-            **/.gitignore
+          flags: '-avzr --delete'
+          options: '
+            --exclude ".git" --exclude ".github" --exclude "node_modules" --exclude "vendor" --exclude ".env" --exclude ".gitignore" --exclude "package.json" --exclude "package-lock.json"'
+          src: '.'
+          dest: '${{ secrets.SSH_PROD_DEST }}'
+      - name: Display status from deploy
+        run: echo "${{ steps.deploy_production.outputs.status }}"

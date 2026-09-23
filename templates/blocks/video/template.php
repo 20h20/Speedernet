@@ -26,6 +26,8 @@ if (!$youtube_id && !is_admin()) return;
 		<div
 			class="video-player slide-up"
 			data-youtube-id="<?php echo esc_attr($youtube_id); ?>"
+			data-consent-text="<?php echo esc_attr(pll__('Veuillez accepter les cookies pour lire cette vidéo.')); ?>"
+			data-consent-button="<?php echo esc_attr(pll__('Gérer mes cookies')); ?>"
 			itemscope
 			itemtype="https://schema.org/VideoObject"
 		>
