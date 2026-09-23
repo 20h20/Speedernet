@@ -21,7 +21,7 @@ jobs:
           server: new-2026.speedernet.com
           username: ${{ secrets.FTP_PROD_USERNAME }}
           password: ${{ secrets.FTP_PROD_PASSWORD }}
-          protocol: ftp
+          protocol: ftps
           port: 21
           log-level: verbose
           local-dir: ./
