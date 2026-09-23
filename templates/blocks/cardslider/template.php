@@ -2,6 +2,7 @@
 
 $uptitle       = get_field('cardslider_uptitle');
 $section_title = get_field('cardslider_title');
+$chapo = get_field('cardslider_chapo');
 $items         = get_field('cardslider_list');
 
 ?>
@@ -18,6 +19,12 @@ $items         = get_field('cardslider_list');
 		<?php if($section_title): ?>
 			<div class="cardslider-title cbo-title-2 slide-up">
 				<?php echo wp_kses_post($section_title); ?>
+			</div>
+		<?php endif; ?>
+
+		<?php if ( $chapo ) : ?>
+			<div class="cardslider-chapo slide-up">
+				<?php echo wp_kses_post( $chapo ); ?>
 			</div>
 		<?php endif; ?>
 

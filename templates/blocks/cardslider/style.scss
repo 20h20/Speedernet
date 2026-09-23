@@ -30,6 +30,13 @@ CARDS SLIDER COMPONENT
   .cardslider-inner{
     padding-bottom: 3.125rem;
   }
+  .cardslider-title{
+    max-width: 48.125rem;
+  }
+  .cardslider-chapo{
+    margin-top: 1.875rem;
+    max-width: 48.125rem;
+  }
   .cardslider-tabs {
     overflow-x: auto;
     display: flex;

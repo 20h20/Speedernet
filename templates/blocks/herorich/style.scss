@@ -10,6 +10,10 @@ HERO RICH COMPONENT
   .herorich-inner {
     text-align: center;
     margin-bottom: 0;
+
+    body:not(.home) & {
+      margin-top: 0;
+    }
   }
   .herorich-title {
     margin-bottom: 1.875rem;

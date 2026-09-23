@@ -2,6 +2,7 @@
 
 $uptitle  = get_field('blocs_uptitle');
 $title  = get_field('blocs_title');
+$chapo	= get_field('blocs_chapo');
 
 ?>
 
@@ -9,14 +10,20 @@ $title  = get_field('blocs_title');
 	<div class="blocs-inner cbo-container">
 
 		<?php if($uptitle): ?>
-			<span class="cbo-tag tag--blue blocsrich-uptitle slide-up">
+			<span class="cbo-tag tag--blue blocs-uptitle slide-up">
 				<?php echo esc_html($uptitle); ?>
 			</span>
 		<?php endif; ?>
 
 		<?php if ($title): ?>
-			<div class="blocsrich-title cbo-title-2 slide-up">
+			<div class="blocs-title cbo-title-2 slide-up">
 				<?php echo wp_kses_post($title); ?>
+			</div>
+		<?php endif; ?>
+
+		<?php if ( $chapo ) : ?>
+			<div class="blocs-chapo slide-up">
+				<?php echo wp_kses_post( $chapo ); ?>
 			</div>
 		<?php endif; ?>
 
@@ -52,7 +59,7 @@ $title  = get_field('blocs_title');
 						<?php endif; ?>
 
 						<?php if($content): ?>
-							<div class="inner-content slide-up">
+							<div class="inner-content cbo-cms slide-up">
 								<?php echo wp_kses_post($content); ?>
 							</div>
 						<?php endif; ?>
