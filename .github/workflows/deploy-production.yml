@@ -23,6 +23,7 @@ jobs:
           password: ${{ secrets.FTP_PROD_PASSWORD }}
           protocol: ftp
           port: 21
+          log-level: verbose
           local-dir: ./
           server-dir: /www/wp-content/themes/speedernet/
           exclude: |
