@@ -35,7 +35,7 @@
 			<?php pll_e('Aller au contenu principal') ?>
 		</a>
 
-		<header class="cbo-header toto">
+		<header class="cbo-header tintin">
 			<?php include get_template_directory() . '/library/inc/customs/upheader.php'; ?>
 
 			<div class="header-inner">
