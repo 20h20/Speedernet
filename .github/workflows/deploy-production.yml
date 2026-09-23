@@ -25,6 +25,6 @@ jobs:
           options: '
             --exclude "web/app/.htaccess" --exclude "web/app/advanced-cache.php" --exclude "web/app/autoptimize_404_handler.php" --exclude "web/app/cache" --exclude "web/app/ewww" --exclude "web/app/upgrade" --exclude "web/app/updraft" --exclude "web/app/upgrade-temp-backup" --exclude "web/app/uploads" --exclude "web/app/uploads-webpc" --exclude "web/.htaccess" --exclude "web/.htpasswd" --exclude "web/wp" --exclude ".env" --exclude "package.json" --exclude "package-lock.json" --exclude ".gitignore"  --exclude ".git" --exclude "vendor" --exclude ".github" --exclude "node_modules"'
           src: '.'
-          dest: 'julienbrh@ftp.cluster015.hosting.ovh.net:/home/julienbrh/speedernet/wp-content/themes/speedernet'
+          dest: 'new-2026@new-2026.speedernet.com:/home/public_html/wp-content/themes/speedernet'
       - name: Display status from deploy
         run: echo "${{ steps.deploy_production.outputs.status }}"
