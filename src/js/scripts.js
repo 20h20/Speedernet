@@ -21,7 +21,6 @@
 /*include ../../templates/blocks/testimonials/script.js*/
 /*include ../../templates/blocks/textpictureslide/script.js*/
 /*include ../../templates/blocks/textpictureaccordion/script.js*/
-/*include ../../templates/blocks/faqs/script.js*/
 /*include ../../templates/blocks/video/script.js*/
 
 /* ─── Parts ─────────────────────────────────────────────────────── */

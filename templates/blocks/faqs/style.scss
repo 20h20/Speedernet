@@ -4,11 +4,59 @@
    FAQS COMPONENT
 ------------------------------- */
 .cbo-faqs {
-  .faqs-sidebar {
-    .sidebar-nav {
-      display: none;
+  .faqs-backlink {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.875rem;
+    color: $colorgrey;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s;
+
+    .icon {
+      font-size: 0.75rem;
     }
 
+    &:hover {
+      color: $colorblue;
+    }
+  }
+
+  .faqs-categories {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .category-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    border: 0.0625rem solid rgba($colorgrey, 0.2);
+    border-radius: $bordermedium;
+    transition: all 0.3s $easeinout;
+
+    .category-card-title {
+      color: $colorgrey;
+    }
+    .category-card-count{
+      color:$colorgrey;
+      margin-bottom: 0;
+    }
+    &:hover {
+      background: $colorblue;
+      border-color: $colorblue;
+
+      .category-card-title {
+        color: $colorwhite;
+      }
+    }
+  }
+
+  .faqs-sidebar {
     .sidebar-ctas {
       background: $colorblue;
       border-radius: $bordermedium;
@@ -91,32 +139,6 @@
       position: sticky;
       top: calc(5rem - -1.25rem);
 
-      .sidebar-nav {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-        margin-bottom: 1.25rem;
-
-        .sidebar-link {
-          display: flex;
-          align-items: center;
-          padding: 0.75rem 1rem;
-          border: 0.0625rem solid rgba($colorgrey, 0.2);
-          border-radius: $bordermedium;
-          color: $colorgrey;
-          text-decoration: none;
-          transition: all 0.3s $easeinout;
-          font-size: 0.9375rem;
-
-          &.active,
-          &:hover {
-            background: $colorblue;
-            border-color: $colorblue;
-            color: $colorwhite;
-          }
-        }
-      }
-
       .sidebar-ctas {
         margin-bottom: 0;
       }
@@ -125,6 +147,10 @@
     .faqs-content {
       flex: 1;
       min-width: 0;
+    }
+
+    .faqs-categories {
+      grid-template-columns: repeat(2, 1fr);
     }
   }
 }
