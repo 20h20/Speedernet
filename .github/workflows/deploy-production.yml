@@ -2,7 +2,7 @@ on:
   push:
     branches: 
       - main
-name: Deploy theme to Staging
+name: Deploy theme to Prod
 jobs:
   FTP-Deploy-Action:
     name: FTP-Deploy-Action
