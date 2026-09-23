@@ -1,8 +1,8 @@
-on: 
+on:
   push:
-    branches: 
+    branches:
       - main
-name: Deploy theme to Prod
+name: Deploy theme to Production
 jobs:
   FTP-Deploy-Action:
     name: FTP-Deploy-Action
@@ -15,15 +15,23 @@ jobs:
           node-version: '12.x'
       - run: npm install --legacy-peer-deps
       - run: npm run build
-      - name: Remove files that shouldn't be deployed
-        run: rm -rf node_modules .git .github .gitignore package.json package-lock.json .env
-      - name: SFTP-Deploy-Action
-        uses: wlixcc/SFTP-Deploy-Action@v1.2.6
+      - name: FTP Deploy
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          username: 'new-2026'
-          server: 'new-2026.speedernet.com'
-          port: '22'
-          ssh_private_key: ${{ secrets.DEPLOY_KEY_PROD }}
-          local_path: './*'
-          remote_path: '/home/public_html/wp-content/themes/speedernet'
-          sftp_only: true
+          server: new-2026.speedernet.com
+          username: ${{ secrets.FTP_PROD_USERNAME }}
+          password: ${{ secrets.FTP_PROD_PASSWORD }}
+          protocol: ftp
+          port: 21
+          local-dir: ./
+          server-dir: /www/wp-content/themes/speedernet/
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+            **/vendor/**
+            **/.github/**
+            **/package.json
+            **/package-lock.json
+            **/.env
+            **/.gitignore
