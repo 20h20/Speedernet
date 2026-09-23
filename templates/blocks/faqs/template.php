@@ -49,43 +49,45 @@ foreach ($loop_categories as $cat) {
 
 ?>
 
-<section class="cbo-faqs"<?php echo $anchor; ?><?php echo $active_cat ? ' itemscope itemtype="https://schema.org/FAQPage"' : ''; ?>>
+<section class="cbo-faqs<?php echo $active_cat ? '' : ' cbo-faqs--categories'; ?>"<?php echo $anchor; ?><?php echo $active_cat ? ' itemscope itemtype="https://schema.org/FAQPage"' : ''; ?>>
     <div class="faqs-inner cbo-container">
 
-        <aside class="faqs-sidebar">
-            <?php if ($sidebar_title || $button1 || $button2): ?>
-                <div class="sidebar-ctas slide-up">
-                    <?php if ($sidebar_title): ?>
-                        <p class="cta-title cbo-title-4"><?php echo esc_html($sidebar_title); ?></p>
-                    <?php endif; ?>
+        <?php if ($active_cat): ?>
+            <aside class="faqs-sidebar">
+                <?php if ($sidebar_title || $button1 || $button2): ?>
+                    <div class="sidebar-ctas slide-up">
+                        <?php if ($sidebar_title): ?>
+                            <p class="cta-title cbo-title-4"><?php echo esc_html($sidebar_title); ?></p>
+                        <?php endif; ?>
 
-                    <?php if ($sidebar_content): ?>
-                        <p class="cta-content"><?php echo esc_html($sidebar_content); ?></p>
-                    <?php endif; ?>
+                        <?php if ($sidebar_content): ?>
+                            <p class="cta-content"><?php echo esc_html($sidebar_content); ?></p>
+                        <?php endif; ?>
 
-                    <?php if ( $button1 || $button2 ) : ?>
-                        <div class="cta-buttons">
-                            <?php if ( $button1 ) : ?>
-                                <?php get_part('button/template', [
-                                    'url'    => $button1['url'],
-                                    'label'  => $button1['title'],
-                                    'target' => $button1['target'] ?: '_self',
-                                    'class'  => 'cbo-button button--white',
-                                ]); ?>
-                            <?php endif; ?>
-                            <?php if ( $button2 ) : ?>
-                                <?php get_part('button/template', [
-                                    'url'    => $button2['url'],
-                                    'label'  => $button2['title'],
-                                    'target' => $button2['target'] ?: '_self',
-                                    'class'  => 'cbo-button button--blue',
-                                ]); ?>
-                            <?php endif; ?>
-                        </div>
-                    <?php endif; ?>
-                </div>
-            <?php endif; ?>
-        </aside>
+                        <?php if ( $button1 || $button2 ) : ?>
+                            <div class="cta-buttons">
+                                <?php if ( $button1 ) : ?>
+                                    <?php get_part('button/template', [
+                                        'url'    => $button1['url'],
+                                        'label'  => $button1['title'],
+                                        'target' => $button1['target'] ?: '_self',
+                                        'class'  => 'cbo-button button--white',
+                                    ]); ?>
+                                <?php endif; ?>
+                                <?php if ( $button2 ) : ?>
+                                    <?php get_part('button/template', [
+                                        'url'    => $button2['url'],
+                                        'label'  => $button2['title'],
+                                        'target' => $button2['target'] ?: '_self',
+                                        'class'  => 'cbo-button button--blue',
+                                    ]); ?>
+                                <?php endif; ?>
+                            </div>
+                        <?php endif; ?>
+                    </div>
+                <?php endif; ?>
+            </aside>
+        <?php endif; ?>
 
         <div class="faqs-content">
             <?php if ($active_cat):

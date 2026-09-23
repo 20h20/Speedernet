@@ -45,6 +45,7 @@
     .category-card-count{
       color:$colorgrey;
       margin-bottom: 0;
+      min-width: fit-content;
     }
     &:hover {
       background: $colorblue;
@@ -123,6 +124,17 @@
 }
 
 /* -------------------------------
+   SMALL SCREENS
+------------------------------- */
+@media (min-width: $screen-sm-min) {
+  .cbo-faqs {
+    &.cbo-faqs--categories .faqs-categories {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}
+
+/* -------------------------------
    MEDIUM SCREENS
 ------------------------------- */
 @media (min-width: $screen-md-min) {
@@ -143,14 +155,12 @@
         margin-bottom: 0;
       }
     }
-
-    .faqs-content {
-      flex: 1;
-      min-width: 0;
-    }
-
     .faqs-categories {
       grid-template-columns: repeat(2, 1fr);
+    }
+
+    &.cbo-faqs--categories .faqs-categories {
+      grid-template-columns: repeat(3, 1fr);
     }
   }
 }
@@ -163,7 +173,6 @@
     .faqs-inner {
       gap: 6.25rem;
     }
-
     .faqs-sidebar {
       width: 22rem;
     }

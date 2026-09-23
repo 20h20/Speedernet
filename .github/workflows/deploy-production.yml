@@ -1,0 +1,37 @@
+on:
+  push:
+    branches:
+      - main
+name: Deploy theme to Production
+jobs:
+  FTP-Deploy-Action:
+    name: FTP-Deploy-Action
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Set up Node.js
+        uses: actions/setup-node@master
+        with:
+          node-version: '12.x'
+      - run: npm install --legacy-peer-deps
+      - run: npm run build
+      - name: SFTP Deploy
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: new-2026.speedernet.com
+          username: ${{ secrets.FTP_PROD_USERNAME }}
+          password: ${{ secrets.FTP_PROD_PASSWORD }}
+          protocol: ftp
+          port: 21
+          local-dir: ./
+          server-dir: /www/wp-content/themes/speedernet/
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+            **/vendor/**
+            **/.github/**
+            **/package.json
+            **/package-lock.json
+            **/.env
+            **/.gitignore
