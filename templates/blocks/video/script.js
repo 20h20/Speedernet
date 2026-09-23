@@ -24,7 +24,7 @@
 	function showConsentNotice($player) {
 		var notice = '<div class="player-consent">'
 			+ '<p>' + $player.data('consent-text') + '</p>'
-			+ '<button type="button" class="cbo-button button--white cmplz-manage-consent-cats">' + $player.data('consent-button') + '</button>'
+			+ '<button type="button" class="cbo-button button--white cmplz-manage-consent">' + $player.data('consent-button') + '</button>'
 			+ '</div>';
 
 		$player.find('.player-embed').html(notice);

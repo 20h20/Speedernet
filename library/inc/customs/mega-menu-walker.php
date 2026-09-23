@@ -119,7 +119,8 @@ class CBO_Walker_Mega_Menu extends Walker_Nav_Menu {
 				. '</a>';
 
 			// Buffer sidebar item
-			$this->sidebar_html .= '<li class="sidebar-item' . esc_attr( $active ) . '" data-panel="' . esc_attr( $panel_id ) . '">';
+			$extra_classes = ! empty( $item->classes ) ? ' ' . implode( ' ', array_filter( $item->classes ) ) : '';
+			$this->sidebar_html .= '<li class="sidebar-item' . esc_attr( $active . $extra_classes ) . '" data-panel="' . esc_attr( $panel_id ) . '">';
 			$this->sidebar_html .= '<a href="' . esc_url( $href ) . '" class="sidebar-link">';
 			$this->sidebar_html .= '<span class="sidebar-icon' . esc_attr( $icon_class ) . ( $icon_img_html ? ' has-image' : '' ) . '" aria-hidden="true">';
 			$this->sidebar_html .= $icon_img_html;
@@ -141,7 +142,8 @@ class CBO_Walker_Mega_Menu extends Walker_Nav_Menu {
 		if ( $this->in_mega && 2 === $depth ) {
 			$title = apply_filters( 'the_title', $item->title, $item->ID );
 			$href  = ! empty( $item->url ) ? $item->url : '#';
-			$this->panels_html .= '<li class="panel-item">';
+			$extra_classes = ! empty( $item->classes ) ? ' ' . implode( ' ', array_filter( $item->classes ) ) : '';
+			$this->panels_html .= '<li class="panel-item' . esc_attr( $extra_classes ) . '">';
 			$this->panels_html .= '<a href="' . esc_url( $href ) . '">' . esc_html( $title ) . '</a>';
 			$this->panels_html .= '</li>';
 
@@ -161,7 +163,8 @@ class CBO_Walker_Mega_Menu extends Walker_Nav_Menu {
 
 			// Mobile item: emitted here, once its depth-2 children (if any) are known.
 			$has_children = '' !== $this->mobile_children;
-			$classes      = 'mobile-item menu-item' . ( $has_children ? ' menu-item-has-children' : '' );
+			$extra_classes = ! empty( $item->classes ) ? ' ' . implode( ' ', array_filter( $item->classes ) ) : '';
+			$classes      = 'mobile-item menu-item' . ( $has_children ? ' menu-item-has-children' : '' ) . $extra_classes;
 			$output      .= '<li class="' . esc_attr( $classes ) . '">';
 			$output      .= $this->mobile_link_html;
 			if ( $has_children ) {

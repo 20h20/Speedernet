@@ -29,7 +29,7 @@
 		</script>
 	</head>
 
-	<body <?php body_class('cbo-main'); ?> itemscope itemtype="https://schema.org/WebPage">
+	<body <?php body_class('cbo-main toto'); ?> itemscope itemtype="https://schema.org/WebPage">
 
 		<a class="skip-link" href="#main-content">
 			<?php pll_e('Aller au contenu principal') ?>

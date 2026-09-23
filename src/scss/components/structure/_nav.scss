@@ -185,6 +185,9 @@ LARGE SCREENS
 		padding: 0;
 		height: auto;
 
+		.cbo-none{
+			display: none;
+		}
 		> ul {
 			display: flex;
 
