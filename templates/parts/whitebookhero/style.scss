@@ -1,0 +1,65 @@
+@import "../../../src/scss/partials/variables";
+
+/* -------------------------------
+SINGLE LIVRE BLANC
+------------------------------- */
+.cbo-single-whitebook {
+	.single-content {
+		.content-cover {
+			margin: 0 0 2.5rem 0;
+
+			img {
+				display: block;
+				max-width: 100%;
+				height: auto;
+				border-radius: $bordermedium;
+				box-shadow: $shadowblack;
+			}
+		}
+	}
+	.single-form {
+		margin-top: 2.5rem;
+		background: $colorwhite;
+		border-radius: $borderlarge;
+		box-shadow: $shadowblack;
+		padding: 1.25rem;
+		height: fit-content;
+	}
+}
+
+/* -------------------------------
+SMALL SCREENS
+------------------------------- */
+@media (min-width: $screen-sm-min) {
+	.cbo-single-whitebook {
+		.single-inner {
+			display: flex;
+			align-items: flex-start;
+		}
+		.single-content {
+			flex: 1;
+			padding-right: 2.5rem;
+		}
+		.single-form {
+			width: 40%;
+			max-width: 31.25rem;
+			position: sticky;
+			top: 10.75rem;
+		}
+	}
+}
+
+/* -------------------------------
+LARGE SCREENS
+------------------------------- */
+@media (min-width: $screen-lg-min) {
+	.cbo-single-whitebook {
+		.single-content {
+			padding-right: 4.375rem;
+		}
+		.single-form {
+			padding: 2.5rem;
+			margin-top: 0;
+		}
+	}
+}

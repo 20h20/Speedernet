@@ -10,6 +10,7 @@
 		require_once( 'library/inc/custom-post/cpt-faq.php' );
 		require_once( 'library/inc/custom-post/cpt-testimonial.php' );
 		require_once( 'library/inc/custom-post/cpt-webinaires.php' );
+		require_once( 'library/inc/custom-post/cpt-whitebook.php' );
 		require_once( 'library/inc/custom-post/cpt-glossaire.php' );
 		require_once( 'library/inc/acf.php' );
 		require_once( 'library/inc/strings.php' );
@@ -253,6 +254,40 @@
 		$value = get_option('cbo_webinaires_archive_page');
 		wp_dropdown_pages([
 			'name'	=> 'cbo_webinaires_archive_page',
+			'show_option_none'  => __('— Aucun —', 'cbo'),
+			'option_none_value' => '',
+			'selected'	=> $value,
+		]);
+	}
+
+
+	/* ************************* */
+	/* Ajoute un réglage pour choisir la page archive Livres blancs */
+	/* ************************* */
+	function cbo_register_whitebook_archive_page_setting() {
+		add_settings_section(
+			'cbo_whitebook_section',
+			__('Page de listing des livres blancs', 'cbo'),
+			'__return_false',
+			'reading'
+		);
+
+		add_settings_field(
+			'cbo_whitebook_archive_page',
+			__('Page de listing des livres blancs', 'cbo'),
+			'cbo_whitebook_archive_page_dropdown',
+			'reading',
+			'cbo_whitebook_section'
+		);
+
+		register_setting('reading', 'cbo_whitebook_archive_page');
+	}
+	add_action('admin_init', 'cbo_register_whitebook_archive_page_setting');
+
+	function cbo_whitebook_archive_page_dropdown() {
+		$value = get_option('cbo_whitebook_archive_page');
+		wp_dropdown_pages([
+			'name'	=> 'cbo_whitebook_archive_page',
 			'show_option_none'  => __('— Aucun —', 'cbo'),
 			'option_none_value' => '',
 			'selected'	=> $value,

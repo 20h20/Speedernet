@@ -29,6 +29,7 @@
 		require get_template_directory() . '/templates/blocks/videoambiant/block.php';
 		require get_template_directory() . '/templates/blocks/video/block.php';
 		require get_template_directory() . '/templates/blocks/webinaires/block.php';
+		require get_template_directory() . '/templates/blocks/whitebooks/block.php';
 		require get_template_directory() . '/templates/blocks/contact/block.php';
 	} );
 
@@ -63,6 +64,7 @@
 			'acf/videoambiant',
 			'acf/video',
 			'acf/webinaires',
+			'acf/whitebooks',
 			'acf/contact',
 		);
 	}

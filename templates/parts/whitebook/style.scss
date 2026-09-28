@@ -1,0 +1,58 @@
+@import "../../../src/scss/partials/variables";
+
+/* -------------------------------
+WHITEBOOK CARD PART
+------------------------------- */
+.cbo-whitebook {
+	background: $colorwhite;
+	border-radius: $borderlarge;
+	box-shadow: $shadowbig;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+
+	.whitebook-cover {
+		margin: 0;
+
+		img {
+			display: block;
+			width: 100%;
+			height: auto;
+			aspect-ratio: 5 / 3;
+			object-fit: cover;
+		}
+	}
+
+	.whitebook-content {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		padding: 1.25rem;
+
+		.content-title {
+			margin-bottom: 0;
+		}
+		.content-resume {
+			margin-bottom: 1.875rem;
+		}
+		.content-cta {
+			margin-top: auto;
+
+			i {
+				margin-left: 0.625rem;
+			}
+		}
+	}
+}
+
+/* -------------------------------
+MEDIUM SCREENS
+------------------------------- */
+@media (min-width: $screen-md-min) {
+	.cbo-whitebook {
+		.whitebook-content {
+			padding: 2.5rem;
+		}
+	}
+}

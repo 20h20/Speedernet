@@ -1,0 +1,1 @@
+.cbo-whitebooks .whitebooks-list{margin-top:3.125rem;width:100%;display:grid;grid-template-columns:1fr;gap:1.25rem}.cbo-whitebooks .whitebooks-empty{opacity:.6;font-style:italic}@media(min-width: 768px){.cbo-whitebooks .whitebooks-list{grid-template-columns:repeat(2, 1fr);gap:2.5rem}}@media(min-width: 1280px){.cbo-whitebooks .whitebooks-list{grid-template-columns:repeat(3, 1fr)}}

@@ -64,6 +64,11 @@
 		pll_register_string( 'webinaire', "Formulaire d'inscription");
 		pll_register_string( 'webinaire', "Lire la vidéo");
 
+		pll_register_string( 'whitebook', "Formulaire de téléchargement");
+		pll_register_string( 'whitebook', "Télécharger le livre blanc");
+		pll_register_string( 'whitebook', "Télécharger le livre blanc : %s");
+		pll_register_string( 'whitebook', "Aucun livre blanc disponible pour le moment.");
+
 		pll_register_string( 'faq', "Catégories FAQ");
 		pll_register_string( 'faq', "question");
 

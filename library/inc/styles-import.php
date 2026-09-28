@@ -141,6 +141,12 @@
 					'taxonomies'      => ['webinaires_cat'],
 					'singular_blocks' => ['webinaires-single', 'herosimple'],
 				],
+				'whitebook' => [
+					'archive_option'  => 'cbo_whitebook_archive_page',
+					'taxonomies'      => [],
+					'singular_blocks' => ['herosimple'],
+					'archive_blocks'  => ['whitebooks'],
+				],
 				'glossaire' => [
 					'archive_option'  => 'cbo_glossaire_archive_page',
 					'taxonomies'      => ['glossaire_lettre'],

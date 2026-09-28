@@ -1,0 +1,41 @@
+@import "../../../src/scss/partials/variables";
+
+/* -------------------------------
+WHITEBOOKS BLOCK COMPONENT
+------------------------------- */
+.cbo-whitebooks {
+    .whitebooks-list {
+        margin-top: 3.125rem;
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+    }
+    .whitebooks-empty {
+        opacity: 0.6;
+        font-style: italic;
+    }
+}
+
+/* -------------------------------
+SMALL SCREENS
+------------------------------- */
+@media (min-width: $screen-sm-min) {
+    .cbo-whitebooks {
+        .whitebooks-list {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
+        }
+    }
+}
+
+/* -------------------------------
+LARGE SCREENS
+------------------------------- */
+@media (min-width: $screen-lg-min) {
+    .cbo-whitebooks {
+        .whitebooks-list {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+}
