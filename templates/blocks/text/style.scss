@@ -11,6 +11,10 @@ TEXT COMPONENT
             border-radius: $borderbig $borderbig 0 0;
         }
     }
+
+    img.is-zoomable{
+        cursor: zoom-in;
+    }
 }
 
 /* -------------------------------
