@@ -41,8 +41,10 @@
 	});
 
 	/////////////////// SOUS-MENU MOBILE — PANEL SYSTEM ///////////////////
+	var mqDesktop = window.matchMedia('(min-width: 1280px)');
+
 	$headerNav.on('click.mobilePanel', 'li.menu-item-has-children > a', function(e) {
-		if (window.innerWidth >= 1280) return;
+		if (mqDesktop.matches) return;
 		e.preventDefault();
 		e.stopPropagation();
 
@@ -145,7 +147,7 @@
 
 	/////////////////// MEGA MENU — SIDEBAR PANEL SWITCH ///////////////////
 	function switchMegaPanel($sidebarItem) {
-		if ($(window).width() < 1283) return;
+		if (!mqDesktop.matches) return;
 		var $container = $sidebarItem.closest('.mega-container');
 		var panelId    = $sidebarItem.data('panel');
 		$container.find('.sidebar-item').removeClass('is-active');

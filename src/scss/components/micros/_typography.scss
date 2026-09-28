@@ -150,6 +150,8 @@ a{
 		margin: 0 auto;
 		border-radius: $bordermedium;
 		overflow: hidden;
+		max-width: 100%;
+  		height: auto;
 	}
 	table{
 		display: block;
