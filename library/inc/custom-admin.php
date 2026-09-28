@@ -28,7 +28,6 @@
 
 	// Nettoyage du menu du back office - Items principaux
 	add_action( 'admin_init', function () {
-		remove_menu_page( 'edit-comments.php' );
 		remove_menu_page( 'tools.php' );
 	});
 
@@ -100,17 +99,49 @@
 		remove_meta_box('dashboard_activity', 'dashboard', 'normal');
 	}
 	add_action('admin_init', 'remove_dashboard_meta'); 
-	
 
-	// Redirection de la page des commentaires
-	function wpc_redirect_comments_page() {
-		global $pagenow;
-		
-		if ($pagenow === 'edit-comments.php') {
-			wp_redirect(admin_url('index.php'));
-			exit;
+
+	/* ************************* */
+	// Désactivation complète des commentaires, pings et trackbacks
+	// (les robots postent directement sur wp-comments-post.php, XML-RPC ou l'API REST)
+	/* ************************* */
+	// Fermeture des commentaires et pings sur tous les contenus
+	add_filter('comments_open', '__return_false', 20);
+	add_filter('pings_open', '__return_false', 20);
+
+	// Masque les commentaires existants en front
+	add_filter('comments_array', '__return_empty_array', 10);
+
+	// Retire le support des commentaires et trackbacks de tous les types de contenu
+	add_action('init', function() {
+		foreach (get_post_types() as $post_type) {
+			if (post_type_supports($post_type, 'comments')) {
+				remove_post_type_support($post_type, 'comments');
+				remove_post_type_support($post_type, 'trackbacks');
+			}
 		}
-	}
-	add_action('admin_init', 'wpc_redirect_comments_page');
-	
+	}, 100);
+
+	// Bloque l'accès direct au script d'envoi de commentaire
+	add_action('pre_comment_on_post', function() {
+		wp_die('Les commentaires sont désactivés.', '', ['response' => 403]);
+	});
+
+	// XML-RPC : suppression des méthodes de pingback et de commentaire
+	add_filter('xmlrpc_methods', function($methods) {
+		unset($methods['pingback.ping'], $methods['pingback.extensions.getPingbacks'], $methods['wp.newComment']);
+		return $methods;
+	});
+	add_filter('wp_headers', function($headers) {
+		unset($headers['X-Pingback']);
+		return $headers;
+	});
+
+	// API REST : suppression des routes de commentaires
+	add_filter('rest_endpoints', function($endpoints) {
+		unset($endpoints['/wp/v2/comments'], $endpoints['/wp/v2/comments/(?P<id>[\d]+)']);
+		return $endpoints;
+	});
+
+
 ?>
