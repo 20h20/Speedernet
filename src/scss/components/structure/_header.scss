@@ -11,7 +11,7 @@ SURHEADER / UPHEADER
 	align-items: center;
 	justify-content: space-between;
 	flex-wrap: wrap;
-	backdrop-filter: blur(1.25rem);
+	backdrop-filter: blur(1.25rem) brightness(1.3);
 	transition: all .4s cubic-bezier(.694,.048,.335,1);
 
 	.header-inner {
