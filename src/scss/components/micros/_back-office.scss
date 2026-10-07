@@ -5,6 +5,14 @@ BACK OFFICE COMPONENT
 ------------------------------- */
 
 // BLOCKS
+// Liens non cliquables dans l'aperçu des blocs ACF (évite de charger une page dans
+// l'éditeur) ; le clic passe au bloc parent, qui reste sélectionnable.
+// Doublé en JS (cf. cbo-editor-nolinks dans styles-import.php)
+.editor-styles-wrapper [data-type^="acf/"] a {
+	pointer-events: none;
+	cursor: default;
+}
+
 .editor-styles-wrapper{
 	.wp-block-post-content{
 		overflow: hidden;

@@ -378,6 +378,26 @@
 
 
 	/* ****************** */
+	/* Liens non cliquables dans l'éditeur */
+	/* enqueue_block_assets (et non enqueue_block_editor_assets) pour que le script soit
+	   aussi injecté dans l'iframe du canvas. Empêche un clic sur un lien d'un aperçu de
+	   bloc de charger la page cible dans l'éditeur ; la sélection du bloc reste active. */
+	add_action( 'enqueue_block_assets', function() {
+		if ( ! is_admin() ) return;
+
+		wp_register_script( 'cbo-editor-nolinks', false, array(), null, true );
+		wp_enqueue_script( 'cbo-editor-nolinks' );
+		wp_add_inline_script( 'cbo-editor-nolinks', '
+document.addEventListener("click", function(e) {
+	if (e.target.closest && e.target.closest(".editor-styles-wrapper a[href]")) {
+		e.preventDefault();
+	}
+}, true);
+		' );
+	} );
+
+
+	/* ****************** */
 	/* Un seul hero par page */
 	/* Empêche d'insérer un second type de hero si un hero est déjà présent sur la page. */
 	add_action( 'enqueue_block_editor_assets', function() {

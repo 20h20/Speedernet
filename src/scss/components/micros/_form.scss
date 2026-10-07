@@ -259,6 +259,42 @@ FORM MICRO COMPONENT
 	}
 }
 
+// Complianz - placeholder reCaptcha Gravity Forms
+// Masqué par défaut, affiché uniquement sans consentement marketing (classe posée en JS, cf. libs/forms.js)
+.cmplz-gf-recaptcha.cmplz-accept-marketing {
+	display: none !important;
+	height: auto !important;
+	background-image: none !important;
+	background: $colorgreylight !important;
+	border-left: 0.1875rem solid $coloryellow !important;
+	border-radius: $bordersmall !important;
+	box-shadow: none !important;
+	padding: 0.625rem 1rem;
+	margin-top: 0.625rem;
+	font-size: 0.875rem;
+	line-height: 1.4 !important;
+	color: $colorgrey;
+	text-decoration: underline;
+	cursor: pointer;
+
+	&:before {
+		font-family: "icons";
+		content: "\f115";
+		margin-right: 0.625rem;
+		text-decoration: none;
+	}
+	&:hover,
+	&:focus-visible {
+		text-decoration: none;
+	}
+
+	.cbo-cmplz-no-marketing & {
+		display: flex !important;
+		justify-content: flex-start;
+		align-items: center;
+	}
+}
+
 /* -------------------------------
 SMALL SCREENS
 ------------------------------- */
