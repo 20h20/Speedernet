@@ -25,7 +25,10 @@
 			function gtag(){dataLayer.push(arguments);}
 			gtag('js', new Date());
 
-			gtag('config', 'G-DL663BQ4HZ');
+			gtag('config', 'G-DL663BQ4HZ', {
+				cookie_expires: 33696000,
+				cookie_update: false
+			});
 		</script>
 	</head>
 
