@@ -6,6 +6,13 @@ $cover      = $args['cover']      ?? get_field('video_cover');
 $format     = $args['format']     ?? (get_field('video_format') ?: 'horizontal');
 $section_id = $args['id']         ?? '';
 
+// Nettoyage de l'ID YouTube : supprime les espaces et accepte une URL complète
+// (youtube.com/watch?v=, youtu.be/, /embed/, /shorts/) collée à la place de l'ID
+$youtube_id = trim( (string) $youtube_id );
+if ( preg_match( '~(?:v=|youtu\.be/|/embed/|/shorts/)([A-Za-z0-9_-]{11})~', $youtube_id, $yt_match ) ) {
+	$youtube_id = $yt_match[1];
+}
+
 if (!$youtube_id && !is_admin()) return;
 
 ?>

@@ -34,7 +34,7 @@
 	$(function() {
 		$('.video-player').each(function() {
 			var $player = $(this);
-			var ytId    = $player.data('youtube-id');
+			var ytId    = $.trim(String($player.data('youtube-id') || ''));
 			if (!ytId) return;
 
 			$player.find('.player-button, .player-cover').on('click', function() {
