@@ -38,6 +38,9 @@ LARGE SCREENS
 ------------------------------- */
 @media (min-width: $screen-lg-min) {
     .cbo-text{
+        .text-wrap{
+            padding : 0 6.875rem;
+        }
         &.text--blue{
             .text-wrap{
                 padding: 6.875rem 6.875rem 0 6.875rem;
