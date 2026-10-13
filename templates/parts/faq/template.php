@@ -1,4 +1,5 @@
 <?php
+defined( 'ABSPATH' ) || exit;
 
 $index      = (int) get_query_var('faq_index', 0);
 $section_id = get_query_var('faq_section_id') ?: 'faq';

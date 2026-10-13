@@ -1,4 +1,5 @@
 <?php
+defined( 'ABSPATH' ) || exit;
     if (is_home()) {
         $articles_page = get_post(get_option('page_for_posts'));
         if ($articles_page) {

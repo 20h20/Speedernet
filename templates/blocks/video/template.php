@@ -1,4 +1,5 @@
 <?php
+defined( 'ABSPATH' ) || exit;
 
 $title      = $args['title']      ?? get_field('video_title');
 $youtube_id = $args['youtube_id'] ?? get_field('video_youtube_id');

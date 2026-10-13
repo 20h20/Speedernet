@@ -1,4 +1,5 @@
 <?php
+defined( 'ABSPATH' ) || exit;
 	add_action('init', function() {
 		pll_register_string( 'header', "Navigation principale");
 		pll_register_string( 'header', "Ouvrir la navigation principale");

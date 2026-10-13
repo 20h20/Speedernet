@@ -1,4 +1,5 @@
 <?php
+defined( 'ABSPATH' ) || exit;
 	function cbo_whitebook() {
 		register_post_type( 'whitebook',
 		array( 'labels' => array(

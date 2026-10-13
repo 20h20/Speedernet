@@ -1,3 +1,4 @@
+<?php defined( 'ABSPATH' ) || exit; ?>
 <section class="cbo-price" aria-label="Tarification">
 	<div class="price-inner cbo-container">
 		<div class="price-list">

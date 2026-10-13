@@ -1,4 +1,5 @@
 <?php
+defined( 'ABSPATH' ) || exit;
 
 $uptitle = get_field('jobslider_uptitle');
 $title   = get_field('jobslider_title');

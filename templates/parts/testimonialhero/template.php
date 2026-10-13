@@ -1,4 +1,5 @@
 <?php
+defined( 'ABSPATH' ) || exit;
 
 $name     = get_field('testimonial_name');
 $function = get_field('testimonial_function');

@@ -1,3 +1,4 @@
+<?php defined( 'ABSPATH' ) || exit; ?>
 <div class="cbo-searchoverlay"></div>
 
 <div class="cbo-searchbar" aria-hidden="true">

@@ -1,4 +1,5 @@
 <?php
+defined( 'ABSPATH' ) || exit;
 	add_action( 'acf/init', function() {
 		require get_template_directory() . '/templates/blocks/articles/block.php';
 		require get_template_directory() . '/templates/blocks/accordion/block.php';

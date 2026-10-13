@@ -1,4 +1,5 @@
 <?php
+defined( 'ABSPATH' ) || exit;
 
 $title   = get_field('contact_title');
 $chapo   = get_field('contact_chapo');

@@ -1,4 +1,5 @@
 <?php
+defined( 'ABSPATH' ) || exit;
 
 $picture     = $args['picture'] ?? get_field('herosimple_picture');
 $title       = $args['title']   ?? get_field('herosimple_title');

@@ -1,4 +1,5 @@
 <?php
+defined( 'ABSPATH' ) || exit;
 
 $post_id        = get_the_ID();
 $date_raw       = get_field('webinair_date', $post_id, false);

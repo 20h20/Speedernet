@@ -1,4 +1,5 @@
 <?php
+defined( 'ABSPATH' ) || exit;
 
 $bigtxt	= get_field('keynumbers_bigtxt');
 $uptitle	= get_field('keynumbers_uptitle');

@@ -1,4 +1,5 @@
 <?php
+defined( 'ABSPATH' ) || exit;
 
 $video	= get_field('videoambiant_file');
 $video_url = $video ? esc_url($video['url']) : '';

@@ -1,4 +1,5 @@
 <?php
+defined( 'ABSPATH' ) || exit;
 
 $post_id = get_the_ID();
 $form_id = (int) get_field('whitebook_form', $post_id);

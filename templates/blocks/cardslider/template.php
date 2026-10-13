@@ -1,4 +1,5 @@
 <?php
+defined( 'ABSPATH' ) || exit;
 
 $uptitle       = get_field('cardslider_uptitle');
 $section_title = get_field('cardslider_title');

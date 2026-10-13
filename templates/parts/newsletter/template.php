@@ -1,4 +1,5 @@
 <?php
+defined( 'ABSPATH' ) || exit;
 
 $title   = get_field('newsletter_title', 'option');
 $text    = get_field('newsletter_text', 'option');

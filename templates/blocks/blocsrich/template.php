@@ -1,4 +1,5 @@
 <?php
+defined( 'ABSPATH' ) || exit;
 
 $uptitle  = get_field('blocsrich_uptitle');
 $title  = get_field('blocsrich_title');

@@ -1,4 +1,5 @@
 <?php
+defined( 'ABSPATH' ) || exit;
 
 $title  = get_field('cta_title');
 $button = get_field('cta_button');

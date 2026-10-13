@@ -1,4 +1,5 @@
 <?php
+defined( 'ABSPATH' ) || exit;
 	get_header();
 	$page_id = get_option('cbo_whitebook_archive_page');
 ?>

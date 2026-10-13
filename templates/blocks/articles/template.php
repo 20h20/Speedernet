@@ -1,4 +1,5 @@
 <?php
+defined( 'ABSPATH' ) || exit;
 
 $related_to   = $args['related_to'] ?? null;
 $title_arg    = $args['title']      ?? null;

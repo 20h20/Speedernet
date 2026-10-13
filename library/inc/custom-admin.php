@@ -1,4 +1,5 @@
 <?php
+defined( 'ABSPATH' ) || exit;
 
 	function remove_admin_login_header() {
 		remove_action('wp_head', '_admin_bar_bump_cb');
@@ -7,23 +8,16 @@
 
 	// Hooks
 	add_filter( 'upload_mimes', 'cbo_mime_types' );
-	add_filter( 'wp_check_filetype_and_ext', 'cbo_file_types', 10, 4 );
 
 
 	// Autoriser l'import des fichiers SVG et WEBP
+	// SVG réservé aux administrateurs : un SVG peut embarquer du JavaScript (XSS)
 	function cbo_mime_types( $mimes ){
-		$mimes['svg'] = 'image/svg+xml';
+		if ( current_user_can( 'manage_options' ) ) {
+			$mimes['svg'] = 'image/svg+xml';
+		}
 		$mimes['webp'] = 'image/webp';
 		return $mimes;
-	}
-
-	// Contrôle de l'import d'un WEBP
-	function cbo_file_types( $types, $file, $filename, $mimes ) {
-		if ( false !== strpos( $filename, '.webp' ) ) {
-			$types['ext'] = 'webp';
-			$types['type'] = 'image/webp';
-		}
-		return $types;
 	}
 
 	// Nettoyage du menu du back office - Items principaux
@@ -127,11 +121,9 @@
 		wp_die('Les commentaires sont désactivés.', '', ['response' => 403]);
 	});
 
-	// XML-RPC : suppression des méthodes de pingback et de commentaire
-	add_filter('xmlrpc_methods', function($methods) {
-		unset($methods['pingback.ping'], $methods['pingback.extensions.getPingbacks'], $methods['wp.newComment']);
-		return $methods;
-	});
+	// XML-RPC : désactivation complète (évite le brute-force via system.multicall)
+	add_filter('xmlrpc_enabled', '__return_false');
+	add_filter('xmlrpc_methods', '__return_empty_array');
 	add_filter('wp_headers', function($headers) {
 		unset($headers['X-Pingback']);
 		return $headers;
@@ -142,6 +134,27 @@
 		unset($endpoints['/wp/v2/comments'], $endpoints['/wp/v2/comments/(?P<id>[\d]+)']);
 		return $endpoints;
 	});
+
+
+	/* ************************* */
+	// Anti-énumération des identifiants de connexion
+	/* ************************* */
+	// API REST : routes utilisateurs réservées aux connectés (Gutenberg en a besoin)
+	add_filter('rest_endpoints', function($endpoints) {
+		if (!is_user_logged_in()) {
+			unset($endpoints['/wp/v2/users'], $endpoints['/wp/v2/users/(?P<id>[\d]+)']);
+		}
+		return $endpoints;
+	});
+
+	// ?author=1 et archives auteur (/author/identifiant/) redirigés vers l'accueil
+	// Priorité 1 : avant redirect_canonical qui révèlerait l'identifiant dans l'URL
+	add_action('template_redirect', function() {
+		if (is_author() || isset($_GET['author'])) {
+			wp_safe_redirect(home_url('/'), 301);
+			exit;
+		}
+	}, 1);
 
 
 ?>

@@ -1,4 +1,5 @@
 <?php
+defined( 'ABSPATH' ) || exit;
 	function cbo_faq() { 
 		register_post_type( 'faq',
 		array( 'labels' => array(

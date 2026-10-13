@@ -1,4 +1,5 @@
 <?php
+defined( 'ABSPATH' ) || exit;
     if( function_exists('acf_register_block_type') ):
 
         function cbo_render_textpicture_block( $block, $content = '', $is_preview = false, $post_id = 0 ) {

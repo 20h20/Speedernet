@@ -1,4 +1,5 @@
 <?php
+defined( 'ABSPATH' ) || exit;
 	function cbo_testimonial() { 
 		register_post_type( 'testimonial',
 		array( 'labels' => array(

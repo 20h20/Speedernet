@@ -1,4 +1,5 @@
 <?php
+defined( 'ABSPATH' ) || exit;
 
 $taxonomy   = $args['taxonomy']   ?? 'category';
 $post_type  = $args['post_type']  ?? 'post';

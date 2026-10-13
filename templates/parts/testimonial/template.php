@@ -1,4 +1,5 @@
 <?php
+defined( 'ABSPATH' ) || exit;
 
 $post_id    = get_the_ID();
 $categories = get_the_terms( $post_id, 'testimonials_cat' );

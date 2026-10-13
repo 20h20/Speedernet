@@ -1,4 +1,5 @@
 <?php
+defined( 'ABSPATH' ) || exit;
 
 $pictures = get_field('textpictureaccordion_pictures');
 $items    = get_field('textpictureaccordion_items');

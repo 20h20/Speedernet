@@ -1,4 +1,5 @@
 <?php
+defined( 'ABSPATH' ) || exit;
 
 $url    = $args['url']    ?? '';
 $label  = $args['label']  ?? '';

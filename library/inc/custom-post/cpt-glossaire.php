@@ -1,4 +1,5 @@
 <?php
+defined( 'ABSPATH' ) || exit;
 	function cbo_glossaire() {
 		register_post_type('glossaire',
 			array(

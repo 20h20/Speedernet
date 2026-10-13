@@ -1,13 +1,18 @@
 <?php
+defined( 'ABSPATH' ) || exit;
 	// Ordre des widgets dans le dashboard
 	add_action('wp_dashboard_setup', 'set_dashboard_widget_order', 100);
 	function set_dashboard_widget_order() {
 		global $wp_meta_boxes;
 		$wp_meta_boxes['dashboard']['normal']['core'] = array(
 			'welcome_dashboard'      => array('id' => 'welcome_dashboard',      'title' => 'Bienvenue',                'callback' => 'display_welcome_message',                          'args' => array()),
-			'google_sheet_dashboard' => array('id' => 'google_sheet_dashboard', 'title' => 'Suivi de maintenance',    'callback' => 'display_google_sheet_data',                        'args' => array()),
-			'custom_git_commits'     => array('id' => 'custom_git_commits',     'title' => 'Modifications récentes',  'callback' => 'render_custom_git_commits_dashboard_widget',        'args' => array()),
 		);
+
+		// Suivi de maintenance (prix) et commits Git : administrateurs uniquement
+		if (current_user_can('manage_options')) {
+			$wp_meta_boxes['dashboard']['normal']['core']['google_sheet_dashboard'] = array('id' => 'google_sheet_dashboard', 'title' => 'Suivi de maintenance',   'callback' => 'display_google_sheet_data',                 'args' => array());
+			$wp_meta_boxes['dashboard']['normal']['core']['custom_git_commits']     = array('id' => 'custom_git_commits',     'title' => 'Modifications récentes', 'callback' => 'render_custom_git_commits_dashboard_widget', 'args' => array());
+		}
 	}
 
 
@@ -82,6 +87,7 @@
 	}
 
 	function add_google_sheet_dashboard_widget() {
+		if (!current_user_can('manage_options')) return;
 		$year = date('Y');
 		wp_add_dashboard_widget(
 			'google_sheet_dashboard',
@@ -92,6 +98,7 @@
 	add_action('wp_dashboard_setup', 'add_google_sheet_dashboard_widget');
 
 	function display_google_sheet_data() {
+		if (!current_user_can('manage_options')) return;
 		$data = get_google_sheet_json();
 	
 		if (!$data || !isset($data['table']['rows'])) {
@@ -163,6 +170,7 @@
 	   WIDGET GIT
 	─────────────────────────────────────────── */
 	function render_custom_git_commits_dashboard_widget() {
+		if (!current_user_can('manage_options')) return;
 		$api_url = 'https://api.github.com/repos/20h20/Speedernet/commits?sha=develop&per_page=5';
 
 		if (!defined('GITHUB_TOKEN')) {

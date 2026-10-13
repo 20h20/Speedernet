@@ -52,14 +52,17 @@
 
 		if (!$li.data('panel-ready')) {
 			var title = $(this).clone().find('i, .icon, .sidebar-icon, .sidebar-desc').remove().end().text().trim();
-			$li.children('.sub-menu').prepend(
+			var $panelHeader = $(
 				'<div class="panel-header">' +
 					'<button type="button" class="panel-back" aria-label="Retour">' +
 						'<i class="icon icon--arrow-next" aria-hidden="true"></i>' +
 					'</button>' +
-					'<span class="panel-title">' + title + '</span>' +
+					'<span class="panel-title"></span>' +
 				'</div>'
 			);
+			// .text() : le titre est inséré comme texte, jamais interprété comme HTML
+			$panelHeader.find('.panel-title').text(title);
+			$li.children('.sub-menu').prepend($panelHeader);
 			$li.data('panel-ready', true);
 		}
 		$li.addClass('panel--open');

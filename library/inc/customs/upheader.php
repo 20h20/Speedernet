@@ -1,4 +1,5 @@
 <?php
+defined( 'ABSPATH' ) || exit;
 
 $sur_link = get_field('surheader_link', 'option');
 $phone = get_field('global_phone', 'option');

@@ -1,3 +1,4 @@
+<?php defined( 'ABSPATH' ) || exit; ?>
 
 	<?php include get_template_directory() . '/library/inc/customs/searchbar.php'; ?>
 

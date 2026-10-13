@@ -1,4 +1,5 @@
 <?php
+defined( 'ABSPATH' ) || exit;
 
 $uptitle    = get_field('partners_uptitle');
 $uptitlepic = get_field('partners_uptitlepicture');

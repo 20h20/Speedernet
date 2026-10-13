@@ -1,4 +1,5 @@
 <?php
+defined( 'ABSPATH' ) || exit;
 	add_action( 'init', 'cbo_clean_head' );
 	add_action( 'wp_enqueue_scripts', 'cbo_scripts_and_styles', 999 );
 	add_filter( 'the_generator', 'cbo_remove_rss_version' );
@@ -6,8 +7,17 @@
 	add_filter( 'gallery_style', 'cbo_remove_gallery_style' );
 	add_filter( 'script_loader_tag', 'cbo_add_defer_attribute', 10, 2 );
 
-	remove_filter('pre_term_description', 'wp_filter_kses');
+	/* Descriptions de termes : HTML autorisé, mais filtré comme un contenu d'article
+	   (balises de mise en forme conservées, <script>/attributs on* supprimés) */
+	add_action('init', function() {
+		// Filtre posé par kses_init() pour les rôles sans unfiltered_html
+		if (false !== has_filter('pre_term_description', 'wp_filter_kses')) {
+			remove_filter('pre_term_description', 'wp_filter_kses');
+			add_filter('pre_term_description', 'wp_filter_post_kses');
+		}
+	}, 20);
 	remove_filter('term_description', 'wp_kses_data');
+	add_filter('term_description', 'wp_kses_post');
 
 	/* Nettoyage du wp_head */
 	function cbo_clean_head() {
@@ -25,7 +35,6 @@
 		remove_action( 'template_redirect', 'rest_output_link_header', 11 );
 		remove_action( 'wp_head', 'wp_oembed_add_discovery_links' );
 		remove_action( 'wp_head', 'wp_oembed_add_host_js' );
-		// Shortlink — évite d'exposer l'ID interne du post (?p=123)
 		remove_action( 'wp_head', 'wp_shortlink_wp_head', 10, 0 );
 		add_action( 'wp_head', 'bones_remove_wp_widget_recent_comments_style', 1 );
 		add_filter( 'title-tag', 'cbo_head_title', 10, 3 );

@@ -1,4 +1,5 @@
 <?php
+defined( 'ABSPATH' ) || exit;
 
 $content = get_field('glossaire_content');
 $letters = get_terms(array(

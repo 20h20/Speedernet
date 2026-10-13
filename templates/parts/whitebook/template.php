@@ -1,4 +1,5 @@
 <?php
+defined( 'ABSPATH' ) || exit;
 
 $post_id  = get_the_ID();
 $card_id  = 'whitebook-' . $post_id;

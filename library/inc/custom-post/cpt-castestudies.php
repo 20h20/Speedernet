@@ -1,4 +1,5 @@
 <?php
+defined( 'ABSPATH' ) || exit;
 	function cbo_casestudies() { 
 		register_post_type( 'casestudies',
 		array( 'labels' => array(

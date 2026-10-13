@@ -1,4 +1,5 @@
 <?php
+defined( 'ABSPATH' ) || exit;
 
 $speakers     = $args['speakers']     ?? [];
 $show_details = $args['show_details'] ?? false;

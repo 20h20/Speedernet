@@ -1,4 +1,5 @@
 <?php
+defined( 'ABSPATH' ) || exit;
 	get_header();
 ?>
 	<div class="cbo-page page-404">
@@ -10,7 +11,7 @@
 					</h1>
 
 					<?php pll_e('La page que vous rechechez n\'existe pas.<br />Vous pouvez toujours revenir sur vos pas.') ?><br/><br/>
-					<a class="cbo-button" href="<?php echo home_url(); ?>">
+					<a class="cbo-button" href="<?php echo esc_url( home_url() ); ?>">
 						<?php pll_e('Revenir à l\'accueil') ?>
 					</a>
 				</div>

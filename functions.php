@@ -1,4 +1,5 @@
 <?php
+defined( 'ABSPATH' ) || exit;
 	function bones_ahoy() {
 		add_theme_support( 'post-thumbnails' );
 		add_theme_support( 'title-tag' );
@@ -336,6 +337,23 @@
 		header('X-Frame-Options: SAMEORIGIN');
 		header('Referrer-Policy: strict-origin-when-cross-origin');
 		header('Permissions-Policy: camera=(), microphone=(), geolocation=()');
+		// HSTS : uniquement en HTTPS (sans includeSubDomains pour ne pas impacter les sous-domaines)
+		if (is_ssl()) {
+			header('Strict-Transport-Security: max-age=31536000');
+		}
+	});
+
+
+	/* ************************* */
+	/* Recherche : longueur max de la requête */
+	/* Évite les requêtes LIKE démesurées envoyées par des robots */
+	/* ************************* */
+	add_action('pre_get_posts', function($query) {
+		if (is_admin() || !$query->is_main_query() || !$query->is_search()) return;
+		$search = (string) $query->get('s');
+		if (mb_strlen($search) > 100) {
+			$query->set('s', mb_substr($search, 0, 100));
+		}
 	});
 
 
@@ -372,7 +390,7 @@
 	/* CUSTOM LOGIN */
 	/* ************************* */
 	function childtheme_custom_login() {
-		echo '<link rel="stylesheet" type="text/css" href="' . get_bloginfo('stylesheet_directory') . '/library/css/style.min.css" />';
+		echo '<link rel="stylesheet" type="text/css" href="' . esc_url(get_bloginfo('stylesheet_directory') . '/library/css/style.min.css') . '" />';
 	}
 	add_action('login_head', 'childtheme_custom_login');
 

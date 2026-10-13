@@ -1,4 +1,5 @@
 <?php
+defined( 'ABSPATH' ) || exit;
 
 $color     = $args['color']     ?? get_field('text_color');
 $uptitle   = $args['uptitle']   ?? get_field('text_uptitle');

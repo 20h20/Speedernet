@@ -1,4 +1,5 @@
 <?php
+defined( 'ABSPATH' ) || exit;
 
 $uptitle = get_field('featuredcase_uptitle');
 $title   = get_field('featuredcase_title');

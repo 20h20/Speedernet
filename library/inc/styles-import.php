@@ -1,4 +1,5 @@
 <?php
+defined( 'ABSPATH' ) || exit;
 
 	/* ****************** */
 	/* Initialisation du tableau global des blocs utilisés */

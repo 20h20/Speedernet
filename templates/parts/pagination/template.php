@@ -1,3 +1,4 @@
+<?php defined( 'ABSPATH' ) || exit; ?>
 <?php if ( get_the_posts_pagination() ) : ?>
 	<nav class="cbo-pagination" aria-label="<?php pll_e('Pagination'); ?>">
 		<?php the_posts_pagination( [

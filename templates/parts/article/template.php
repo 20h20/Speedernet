@@ -1,4 +1,5 @@
 <?php
+defined( 'ABSPATH' ) || exit;
 
 $categories = get_the_category();
 $categories_list = '';

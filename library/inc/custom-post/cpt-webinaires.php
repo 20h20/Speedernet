@@ -1,4 +1,5 @@
 <?php
+defined( 'ABSPATH' ) || exit;
 	function cbo_webinaires() {
 		register_post_type( 'webinaires',
 		array( 'labels' => array(

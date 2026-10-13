@@ -1,4 +1,5 @@
 <?php
+defined( 'ABSPATH' ) || exit;
 
 $title           = get_field('accordion_title');
 $last            = get_field('accordion_last');

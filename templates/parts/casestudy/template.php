@@ -1,4 +1,5 @@
 <?php
+defined( 'ABSPATH' ) || exit;
 
 $post_id	= get_the_ID();
 $client	= get_field('casestudy_client', $post_id);
