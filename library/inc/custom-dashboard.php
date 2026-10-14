@@ -7,12 +7,21 @@ defined( 'ABSPATH' ) || exit;
 		$wp_meta_boxes['dashboard']['normal']['core'] = array(
 			'welcome_dashboard'      => array('id' => 'welcome_dashboard',      'title' => 'Bienvenue',                'callback' => 'display_welcome_message',                          'args' => array()),
 		);
-
-		// Suivi de maintenance (prix) et commits Git : administrateurs uniquement
 		if (current_user_can('manage_options')) {
-			$wp_meta_boxes['dashboard']['normal']['core']['google_sheet_dashboard'] = array('id' => 'google_sheet_dashboard', 'title' => 'Suivi de maintenance',   'callback' => 'display_google_sheet_data',                 'args' => array());
 			$wp_meta_boxes['dashboard']['normal']['core']['custom_git_commits']     = array('id' => 'custom_git_commits',     'title' => 'Modifications récentes', 'callback' => 'render_custom_git_commits_dashboard_widget', 'args' => array());
 		}
+	}
+
+	// Ordre imposé : Bienvenue, puis Suivi du projet (MU-plugin project-hub-widget, ajouté après ce fichier) et Modifications récentes.
+	// Ignore l'ordre éventuellement enregistré par l'utilisateur, puisque le layout est verrouillé. Largeurs : _dashboard.scss.
+	add_filter('get_user_option_meta-box-order_dashboard', 'set_dashboard_columns_order');
+	function set_dashboard_columns_order() {
+		return array(
+			'normal'  => 'welcome_dashboard,project_hub_widget,custom_git_commits',
+			'side'    => '',
+			'column3' => '',
+			'column4' => '',
+		);
 	}
 
 
@@ -60,103 +69,6 @@ defined( 'ABSPATH' ) || exit;
 			</div>
 		</div>';
 	}
-	
-
-	/* ───────────────────────────────────────────
-	   DONNÉES GOOGLE SHEET (Time tracking)
-	─────────────────────────────────────────── */
-	// Données Google Sheet (Time tracking)
-	function get_google_sheet_json() {
-		$url = '#';
-		$response = wp_remote_get($url);
-
-		if (is_wp_error($response)) return null;
-
-		$json = wp_remote_retrieve_body($response);
-		$json = str_replace(["/*O_o*/", "google.visualization.Query.setResponse("], '', $json);
-		$json = substr($json, 0, -2);
-
-		return json_decode($json, true);
-	}
-
-	function add_google_sheet_dashboard_widget() {
-		if (!current_user_can('manage_options')) return;
-		$year = date('Y');
-		wp_add_dashboard_widget(
-			'google_sheet_dashboard',
-			"Récapitulatif du temps passé sur le site en $year",
-			'display_google_sheet_data'
-		);
-	}	
-	add_action('wp_dashboard_setup', 'add_google_sheet_dashboard_widget');
-
-	function display_google_sheet_data() {
-		if (!current_user_can('manage_options')) return;
-		$data = get_google_sheet_json();
-	
-		if (!$data || !isset($data['table']['rows'])) {
-			echo '<div class="cbo-bo-timesheet-none">Pas de maintenance en cours sur le site.</div>';
-			return;
-		}
-		$totals = [];
-		echo '<table><thead><tr>
-				<th>Date</th>
-				<th>Tâche effectuée</th>
-				<th>Temps passé</th>
-				<th>Prix</th>
-				<th>Facturé</th>
-			</tr></thead><tbody>';
-
-		foreach ($data['table']['rows'] as $row) {
-			$date   = isset($row['c'][0]['v']) ? esc_html($row['c'][0]['v']) : '-';
-			$task   = isset($row['c'][1]['v']) ? esc_html($row['c'][1]['v']) : '-';
-			$time   = isset($row['c'][2]['v']) ? esc_html($row['c'][2]['v']) : '-';
-			$price  = isset($row['c'][3]['v']) ? esc_html($row['c'][3]['v']) : '-';
-			$billed = isset($row['c'][4]['v']) ? esc_html($row['c'][4]['v']) : '-';
-	
-			if ($date === '-' || stripos($date, 'Total') !== false) {
-				$totals[] = ['date' => $date, 'time' => $time, 'price' => $price];
-				continue;
-			}
-
-			$billed_class = strtolower($billed) === 'oui' ? 'billed--ok' : 'billed--nonok';
-
-			echo "<tr>
-				<td>{$date}</td>
-				<td>{$task}</td>
-				<td>{$time}</td>
-				<td>{$price} €</td>
-				<td><span class='billed {$billed_class}'>{$billed}</span></td>
-			</tr>";
-		}
-
-		echo '</tbody>';
-
-		if (!empty($totals)) {
-			echo '<tfoot>';
-			foreach ($totals as $total) {
-				$time_text = ($total['time'] !== '-' && !empty($total['time'])) ? esc_html($total['time']) . ' jour' : '';
-				echo "<tr>
-					<td>" . esc_html($total['date']) . "</td>
-					<td>{$time_text}</td>
-					<td>" . esc_html($total['price']) . " €</td>
-				</tr>";
-			}
-			echo '</tfoot>';
-		}
-		echo '</table>';
-	}
-
-
-
-
-
-
-
-
-
-
-
 
 
 	/* ───────────────────────────────────────────

@@ -304,10 +304,20 @@ $dash-radius  : 8px;
 
 
 	/* ================================================================
+	   WIDGET SUIVI DU PROJET (MU-plugin project-hub-widget)
+	================================================================ */
+	#project_hub_widget {
+		flex: 0 0 calc(80% - 10px);
+
+		.inside { padding: 16px 20px 20px; }
+	}
+
+
+	/* ================================================================
 	   WIDGET GIT COMMITS
 	================================================================ */
 	#custom_git_commits {
-		flex: 0 0 calc(34% - 10px);
+		flex: 0 0 calc(20% - 10px);
 		border: none;
 		box-shadow: 0 2px 16px rgba($dbcolorbluedark, .08);
 		background: none;
