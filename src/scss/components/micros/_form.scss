@@ -179,7 +179,6 @@ FORM MICRO COMPONENT
 			display: none;
 		}
 
-
 		// Reset liste GF
 		.gform_fields {
 			list-style: none;
@@ -256,89 +255,6 @@ FORM MICRO COMPONENT
 	.gform_sr_field_required,
 	.gform_submission_error {
 		display: none;
-	}
-}
-
-// Complianz - placeholder reCaptcha Gravity Forms
-// Masqué par défaut, affiché uniquement sans consentement marketing (classe posée en JS, cf. libs/forms.js)
-.cmplz-gf-recaptcha.cmplz-accept-marketing {
-	display: none !important;
-	height: auto !important;
-	background-image: none !important;
-	background: $colorgreylight !important;
-	border-left: 0.1875rem solid $coloryellow !important;
-	border-radius: $bordersmall !important;
-	box-shadow: none !important;
-	padding: 0.625rem 1rem;
-	margin-top: 0.625rem;
-	font-size: 0.875rem;
-	line-height: 1.4 !important;
-	color: $colorgrey;
-	text-decoration: underline;
-	cursor: pointer;
-
-	&:before {
-		font-family: "icons";
-		content: "\f115";
-		margin-right: 0.625rem;
-		text-decoration: none;
-	}
-	&:hover,
-	&:focus-visible {
-		text-decoration: none;
-	}
-
-	.cbo-cmplz-no-marketing & {
-		display: flex !important;
-		justify-content: flex-start;
-		align-items: center;
-	}
-}
-
-// Complianz - bouton "Gérer le consentement"
-// Par défaut : à moitié masqué hors écran (offset négatif) sur desktop et display:none sur mobile
-body #cmplz-manage-consent .cmplz-manage-consent:not(.cmplz-dismissed) {
-	display: block;
-	bottom: 0;
-	right: 1rem;
-	height: auto;
-	min-width: 0;
-	padding: 0.5rem 1rem;
-	animation: none;
-	background-color: $colorbluedark;
-	color: $colorwhite;
-	border: 0;
-	border-radius: $bordersmall $bordersmall 0 0;
-	font-family: $fontprimary, sans-serif;
-	font-size: 0.8125rem;
-	font-weight: 600;
-	line-height: 1.2;
-	transition: background-color 0.3s, color 0.3s;
-
-	&:hover,
-	&:focus-visible {
-		animation: none;
-		background-color: $coloryellow;
-		color: $colorbluedark;
-	}
-	&:focus-visible {
-		outline: 0.125rem solid $colorbluedark;
-		outline-offset: 0.125rem;
-	}
-
-	// La barre d'admin est positionnée en bas d'écran (cf. _base.scss)
-	.admin-bar & {
-		bottom: 46px;
-
-		@media (min-width: 783px) {
-			bottom: 32px;
-		}
-	}
-
-	@media (min-width: $screen-sm-min) {
-		right: 2.5rem;
-		padding: 0.625rem 1.25rem;
-		font-size: 0.875rem;
 	}
 }
 
