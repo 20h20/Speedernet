@@ -52,7 +52,7 @@ defined( 'ABSPATH' ) || exit;
 				<strong class="wb-hello">Bonjour ' . esc_html($first_name) . ',<br>content de vous revoir.</strong>
 				<div class="wb-actions">
 					<a href="' . $site_url . '" target="_blank" rel="noopener noreferrer" class="wb-btn wb-btn--light">Voir le site <span aria-hidden="true">↗</span></a>
-					<a href="' . $new_post . '" class="wb-btn wb-btn--ghost">Nouvel article</a>
+					<a href="https://espace-client.julien-brochard.fr/wp-admin/" class="wb-btn wb-btn--ghost" target="_blank" rel="noopener noreferrer">Gestion du site</a>
 				</div>
 			</div>
 			<div class="wb-deco" aria-hidden="true">
@@ -60,13 +60,6 @@ defined( 'ABSPATH' ) || exit;
 			</div>
 		</div>';
 	}
-
-
-
-
-
-
-
 	
 
 	/* ───────────────────────────────────────────
