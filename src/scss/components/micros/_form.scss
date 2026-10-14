@@ -295,6 +295,53 @@ FORM MICRO COMPONENT
 	}
 }
 
+// Complianz - bouton "Gérer le consentement"
+// Par défaut : à moitié masqué hors écran (offset négatif) sur desktop et display:none sur mobile
+body #cmplz-manage-consent .cmplz-manage-consent:not(.cmplz-dismissed) {
+	display: block;
+	bottom: 0;
+	right: 1rem;
+	height: auto;
+	min-width: 0;
+	padding: 0.5rem 1rem;
+	animation: none;
+	background-color: $colorbluedark;
+	color: $colorwhite;
+	border: 0;
+	border-radius: $bordersmall $bordersmall 0 0;
+	font-family: $fontprimary, sans-serif;
+	font-size: 0.8125rem;
+	font-weight: 600;
+	line-height: 1.2;
+	transition: background-color 0.3s, color 0.3s;
+
+	&:hover,
+	&:focus-visible {
+		animation: none;
+		background-color: $coloryellow;
+		color: $colorbluedark;
+	}
+	&:focus-visible {
+		outline: 0.125rem solid $colorbluedark;
+		outline-offset: 0.125rem;
+	}
+
+	// La barre d'admin est positionnée en bas d'écran (cf. _base.scss)
+	.admin-bar & {
+		bottom: 46px;
+
+		@media (min-width: 783px) {
+			bottom: 32px;
+		}
+	}
+
+	@media (min-width: $screen-sm-min) {
+		right: 2.5rem;
+		padding: 0.625rem 1.25rem;
+		font-size: 0.875rem;
+	}
+}
+
 /* -------------------------------
 SMALL SCREENS
 ------------------------------- */
