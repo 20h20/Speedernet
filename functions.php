@@ -5,7 +5,6 @@ defined( 'ABSPATH' ) || exit;
 		add_theme_support( 'title-tag' );
 		require_once( 'library/inc/custom-cleanup.php' );
 		require_once( 'library/inc/custom-admin.php' );
-		require_once( 'library/inc/custom-dashboard.php' );
 		require_once( 'library/inc/styles-import.php' );
 		require_once( 'library/inc/custom-post/cpt-castestudies.php' );
 		require_once( 'library/inc/custom-post/cpt-faq.php' );

@@ -11,15 +11,22 @@
 ## Develop :
 - `grunt watch`
 
+## Mise en place du Token Git :
+- Dans Personal access tokens > Fine-grained tokens, cliquer sur Generate new token.
+- Remplir les champs :
+    - Token name : Dashboard WP – Speedernet
+    - Resource owner : 20h20
+    - Expiration : 1 an, par exemple.
+    - Repository access : Only select repositories > 20h20/Speedernet.
+    - Permissions > Repository permissions > Contents : Read-only.
+- Cliquer sur Generate token et copier la valeur dans le wp-config.php
 
 ## Mise en place du déploiement - Staging :
 - Pour le staging : se rendre dans Github, onglet Settings puis Secrets and variables > Actions
 - Ajouter un repository secret DEPLOY_KEY_STAGING - Coller la clé privée SSH
 
 ## Mise en place du déploiement - Production :
-- Se rendre dans Github > Settings > Secrets & Variables > Actions
-- Création d'un New Repository Secret : FTP_PROD_PASSWORD
-- Création d'un New Repository Secret : FTP_PROD_USERNAME
+
 
 
 ## Staging :

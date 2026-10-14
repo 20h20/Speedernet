@@ -110,3 +110,33 @@ BACK OFFICE COMPONENT
 #wpbody input[type="submit"] {
 	height: auto;
 }
+
+
+/* ================================================================
+   PIED DE PAGE ADMIN
+================================================================ */
+#wpfooter #footer-left {
+	display: flex;
+	align-items: center;
+	color: $colorjb;
+
+	a {
+		color: $colorjb;
+		font-weight: 700;
+		display: flex;
+		align-items: center;
+
+		i {
+			background: $colorwhite;
+			color: $colorjb;
+			width: 28px;
+			height: 28px;
+			border-radius: 99rem;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-size: 18px;
+			margin: 0 6px 0 8px;
+		}
+	}
+}
